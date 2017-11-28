@@ -1,0 +1,119 @@
+//
+//  UserCenterService.swift
+//  BorrowMoney
+//
+//  Created by 雪飞雨落 on 2017/11/15.
+//  Copyright © 2017年 sparrow. All rights reserved.
+//
+
+import Foundation
+
+class UserCenterService: NSObject {
+    static let userInstance = UserCenterService()
+    static let urlDataCenter : URLDataCenter = URLDataCenter()
+    
+    // 基本细信息
+    func baseInfo(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.baseInfo()
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            failure(errorInfo)
+        }
+    }
+    
+    
+    // 退出登录
+    func loginOut(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.loginOut()
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            success(responseObject)
+        }) { (errorInfo) in
+            failure(errorInfo)
+        }
+    }
+    
+    // 是否接受消息推送
+    func pushMessageChangeStates(state : String, success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.pushMessageChange(state: state)
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            success(responseObject)
+        }) { (errorInfo) in
+            failure(errorInfo)
+        }
+    }
+    
+    // 查询消息推送状态
+    func requestPushMessageChangeStates(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestPushMessageState()
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            failure(errorInfo)
+        }
+    }
+    
+    
+    // 修改登录密码
+    func changePassword(psw : String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.changePassword(psw : psw)
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            success(dataDict as AnyObject)
+        }) { (errorInfo) in
+            failure(errorInfo)
+        }
+    }
+    
+    
+    // 大额信贷经理
+    func requestLoanOfficeSate(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestLoanOffice()
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            success(dataDict as AnyObject)
+        }) { (errorInfo) in
+            failure(errorInfo)
+        }
+    }
+    
+    
+    // 消息中心
+    func requestMessageSate(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestMessageCount()
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            failure(errorInfo)
+        }
+    }
+    
+    // 消息列表
+    func requestMessageListData(currentPage:String,pageSize:String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestMessageListData(currentPage: currentPage, pageSize: pageSize)
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            failure(errorInfo)
+        }
+    }
+    
+    
+    // 更改某条消息的状态
+    func updateMessageData(state:String,messageId:String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.deleteMessageData(status: state, messageId: messageId)
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            
+            success(dataDict as AnyObject)
+        }) { (errorInfo) in
+            failure(errorInfo)
+        }
+    }
+}
