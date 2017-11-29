@@ -9,20 +9,20 @@
 import UIKit
 
 class OrderManageVC: BasicVC {
-
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // 创建UI
+        createUI()
     }
     
     
-    override func setUpNavigationView() -> () {
-        super .setUpNavigationView()
-        self.navigationItem .titleView = NaviBarView() .setUpNaviBarWithTitle(title: "订单管理");
-    }
+    // 创建UI
+    func createUI() -> Void {
     
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 }
+

@@ -16,7 +16,7 @@ import Foundation
  key：  key值
  value: 字典[key1:value1, key2:value2] 对应的模型
  */
-@objc public protocol DictModelProtocol{
+@objc public protocol ArrayToModelProtocol{
     static func customClassMapping() -> [String: String]?
 }
 

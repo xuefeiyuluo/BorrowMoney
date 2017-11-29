@@ -182,7 +182,20 @@ class MessageCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     // 全部已读的点击事件
     func messgaeClick() -> Void {
-        
+        for i in 0 ..< self.messageArray.count {
+            let model : MessageCenterModel = self.messageArray[i] as! MessageCenterModel
+            if !(model.status == "read") {
+                model.status = "read"
+                UserCenterService.userInstance.allMessageData(success: { (responseObject) in
+                    
+                }, failure: { (errorInfo) in
+                    
+                })
+            }
+        }
+        self.rightBtn?.setTitleColor(TEXT_BLACK_COLOR, for: UIControlState.normal)
+        self.messageTableView?.reloadData()
+
     }
     
     

@@ -119,6 +119,42 @@ class URLDataCenter: NSObject {
         URLCenter.urlCenterInstance.engineeringBool = false
         return URLCenter.urlCenterInstance
     }
+    
+    // 全部已读消息列表
+    public func allMessageData() -> URLCenter {
+        URLCenter.urlCenterInstance.dict = [:]
+        URLCenter.urlCenterInstance.method = "product.markAllMessageAsRead"
+        URLCenter.urlCenterInstance.sessionBool = true
+        URLCenter.urlCenterInstance.engineeringBool = false
+        return URLCenter.urlCenterInstance
+    }
+
+    // 还款管理列表
+    public func repayManageData() -> URLCenter {
+        URLCenter.urlCenterInstance.dict = [:]
+        URLCenter.urlCenterInstance.method = "roleInfo.loanList"
+        URLCenter.urlCenterInstance.sessionBool = true
+        URLCenter.urlCenterInstance.engineeringBool = false
+        return URLCenter.urlCenterInstance
+    }
+
+    // 设为已还
+    public func requestMakeRepaid(planId : String) -> URLCenter {
+        URLCenter.urlCenterInstance.dict = ["ids":planId]
+        URLCenter.urlCenterInstance.method = "roleInfo.makeRepaid"
+        URLCenter.urlCenterInstance.sessionBool = true
+        URLCenter.urlCenterInstance.engineeringBool = false
+        return URLCenter.urlCenterInstance
+    }
+    
+    // 账户异常
+    public func accountAbnormal(accountId : String) -> URLCenter {
+        URLCenter.urlCenterInstance.dict = ["id":accountId]
+        URLCenter.urlCenterInstance.method = "roleInfo.flushStatus"
+        URLCenter.urlCenterInstance.sessionBool = true
+        URLCenter.urlCenterInstance.engineeringBool = false
+        return URLCenter.urlCenterInstance
+    }
 }
 
 

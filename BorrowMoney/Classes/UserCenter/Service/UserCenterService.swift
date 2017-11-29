@@ -116,4 +116,54 @@ class UserCenterService: NSObject {
             failure(errorInfo)
         }
     }
+    
+    // 更改某条消息的状态
+    func allMessageData(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.allMessageData()
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            
+            success(dataDict as AnyObject)
+        }) { (errorInfo) in
+            failure(errorInfo)
+        }
+    }
+    
+    
+    // 还款管理列表
+    func requestRepayManageListData(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.repayManageData()
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            failure(errorInfo)
+        }
+    }
+
+    // 设为已还
+    func requestMakeRepaids(planId : String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestMakeRepaid(planId: planId)
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            
+            success(dataDict as AnyObject)
+        }) { (errorInfo) in
+            failure(errorInfo)
+        }
+    }
+    
+    // 账户异常
+    func requestAccountError(accountId : String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.accountAbnormal(accountId: accountId)
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            
+            success(dataDict as AnyObject)
+        }) { (errorInfo) in
+            failure(errorInfo)
+        }
+    }
+    
 }

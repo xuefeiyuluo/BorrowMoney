@@ -43,6 +43,7 @@ final class AlamofireManager: NSObject {
     
     // post请求
     func postRequest(urlCenter : URLCenter,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        SVProgressHUD.show()
         let headers: HTTPHeaders = ["Accept": "application/json","Content-type":"application/json;charset=utf-8"]
         
         // 数据组装

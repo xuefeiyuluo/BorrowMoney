@@ -89,3 +89,17 @@ func orderManage() -> BasicVC {
     orderManage.hidesBottomBarWhenPushed = true
     return orderManage
 }
+
+// 还款记录
+func repayRecord() -> BasicVC {
+    let repayRecord : RepayRecordVC = RepayRecordVC()
+    return repayRecord
+}
+
+
+// 账单详情
+func billDetail(model : LoanManageData) -> BasicVC {
+    let detail : BillDetailVC = BillDetailVC()
+    detail.loanModel = model
+    return detail
+}
