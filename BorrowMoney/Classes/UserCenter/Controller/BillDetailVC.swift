@@ -19,6 +19,8 @@ class BillDetailVC: BasicVC {
     override func setUpNavigationView() -> () {
         super .setUpNavigationView()
         self.navigationItem .titleView = NaviBarView() .setUpNaviBarWithTitle(title: "账单详情");
+        
+        XPrint("trbgtrwbtrwbtrwb")
     }
     
     

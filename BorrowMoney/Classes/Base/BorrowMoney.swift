@@ -34,6 +34,11 @@ let CURRENTVERSION = Bundle.main.infoDictionary!["CFBundleShortVersionString"] a
 let SERVERURL = ""
 
 
+
+
+
+
+
 // ***************************** UserDefaults *************************************
 let USERDEFAULT : UserDefaults = UserDefaults .standard
 
