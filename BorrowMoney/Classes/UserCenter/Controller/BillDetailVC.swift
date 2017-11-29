@@ -21,6 +21,13 @@ class BillDetailVC: BasicVC {
         self.navigationItem .titleView = NaviBarView() .setUpNaviBarWithTitle(title: "账单详情");
         
         XPrint("trbgtrwbtrwbtrwb")
+        XPrint("trbgtrwbtrwbtrwb")
+        XPrint("trbgtrwbtrwbtrwb")
+        XPrint("trbgtrwbtrwbtrwb")
+        XPrint("trbgtrwbtrwbtrwb")
+        XPrint("trbgtrwbtrwbtrwb")
+        XPrint("trbgtrwbtrwbtrwb")
+        XPrint("trbgtrwbtrwbtrwb")
     }
     
     
