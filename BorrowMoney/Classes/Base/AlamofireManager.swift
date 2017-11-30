@@ -14,7 +14,7 @@ final class AlamofireManager: NSObject {
     static let secret = "fbcf15e88f1b821cb9a1b4446cea1e8f"
     
     // get请求
-    func getRequest(url:String,params:NSMutableDictionary,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+    func getRequest(urlCenter : URLCenter,params:NSMutableDictionary,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
         
         let headers: HTTPHeaders = [
             "Accept": "application/json",
@@ -24,7 +24,7 @@ final class AlamofireManager: NSObject {
 //            "Accept": "text/plain"
         ]
         
-        Alamofire.request(url as String, method: .get, parameters:params as? Parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject:DataResponse<Any>) in
+        Alamofire.request(urlCenter.method as String, method: .get, parameters:params as? Parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject:DataResponse<Any>) in
             switch(responseObject.result){
             case .success(let value):
                 
@@ -33,7 +33,7 @@ final class AlamofireManager: NSObject {
                 success(value as AnyObject)
                 break
             case .failure(let error):
-                let errorInfo = self.handleFailResult(error: error)
+                let errorInfo = self.handleFailResult(error: error,urlCenter : urlCenter)
                 failure(errorInfo)
                 break
             }
@@ -59,7 +59,7 @@ final class AlamofireManager: NSObject {
                 break
             case .failure(let error):
                 SVProgressHUD .dismiss()
-                let errorInfo = self.handleFailResult(error: error)
+                let errorInfo = self.handleFailResult(error: error,urlCenter : urlCenter)
                 failure(errorInfo)
                 break
             }
@@ -167,8 +167,9 @@ final class AlamofireManager: NSObject {
     
     
     // 处理失败结果
-    func handleFailResult(error : Error) -> (ErrorInfo) {
+    func handleFailResult(error : Error,urlCenter : URLCenter) -> (ErrorInfo) {
         let errorInfo = ErrorInfo()
+        errorInfo.methodName = urlCenter.method
         errorInfo.error = error
         return errorInfo
     }

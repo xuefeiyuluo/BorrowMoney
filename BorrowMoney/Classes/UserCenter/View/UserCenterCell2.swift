@@ -44,7 +44,7 @@ class UserCenterCell2: UITableViewCell, UICollectionViewDelegate, UICollectionVi
     }
     
     
-    // UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
+    //MARK: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -68,7 +68,7 @@ class UserCenterCell2: UITableViewCell, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : UserCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "userCollection", for: indexPath) as! UserCollectionViewCell
         
-        cell.dataDict = self.dataArray?[indexPath.item] as! NSDictionary
+        cell.dataDict = self.dataArray?[indexPath.item] as? NSDictionary
         return cell
     }
     

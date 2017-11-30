@@ -34,13 +34,13 @@ let CURRENTVERSION = Bundle.main.infoDictionary!["CFBundleShortVersionString"] a
 let SERVERURL = ""
 
 
-
-
-
-
-
 // ***************************** UserDefaults *************************************
 let USERDEFAULT : UserDefaults = UserDefaults .standard
+
+
+// ****************************** 系统delegate *************************************
+let APPDELEGATE = (UIApplication.shared.delegate) as! AppDelegate
+
 
 
 /**

@@ -19,6 +19,7 @@ class UserCenterService: NSObject {
             let dataDict : NSDictionary = responseObject as! NSDictionary
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
             failure(errorInfo)
         }
     }
@@ -30,6 +31,7 @@ class UserCenterService: NSObject {
         AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
             success(responseObject)
         }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
             failure(errorInfo)
         }
     }
@@ -40,6 +42,7 @@ class UserCenterService: NSObject {
         AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
             success(responseObject)
         }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
             failure(errorInfo)
         }
     }
@@ -51,6 +54,7 @@ class UserCenterService: NSObject {
             let dataDict : NSDictionary = responseObject as! NSDictionary
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
             failure(errorInfo)
         }
     }
@@ -63,6 +67,7 @@ class UserCenterService: NSObject {
             let dataDict : NSDictionary = responseObject as! NSDictionary
             success(dataDict as AnyObject)
         }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
             failure(errorInfo)
         }
     }
@@ -75,6 +80,7 @@ class UserCenterService: NSObject {
             let dataDict : NSDictionary = responseObject as! NSDictionary
             success(dataDict as AnyObject)
         }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
             failure(errorInfo)
         }
     }
@@ -88,6 +94,7 @@ class UserCenterService: NSObject {
             
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
             failure(errorInfo)
         }
     }
@@ -100,6 +107,7 @@ class UserCenterService: NSObject {
             
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
             failure(errorInfo)
         }
     }
@@ -113,6 +121,7 @@ class UserCenterService: NSObject {
             
             success(dataDict as AnyObject)
         }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
             failure(errorInfo)
         }
     }
@@ -125,6 +134,7 @@ class UserCenterService: NSObject {
             
             success(dataDict as AnyObject)
         }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
             failure(errorInfo)
         }
     }
@@ -138,6 +148,7 @@ class UserCenterService: NSObject {
             
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
             failure(errorInfo)
         }
     }
@@ -150,6 +161,7 @@ class UserCenterService: NSObject {
             
             success(dataDict as AnyObject)
         }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
             failure(errorInfo)
         }
     }
@@ -162,6 +174,7 @@ class UserCenterService: NSObject {
             
             success(dataDict as AnyObject)
         }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
             failure(errorInfo)
         }
     }

@@ -9,7 +9,8 @@
 import UIKit
 
 class ErrorInfo: NSObject {
-    public let errNo : NSInteger? = nil
-    public let msg : String? = nil
+    public var errNo : NSInteger? = nil
+    public var methodName : String = ""// 请求方法名称
+    public var msg : String = "请求失败"
     public var error : Error? = nil
 }

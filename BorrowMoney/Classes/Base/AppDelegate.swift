@@ -10,7 +10,7 @@ import UIKit
 
 var rootViewController : CustomNavigationController?// 根控制器默认为隐藏
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
     
     var window: UIWindow?
     var tabBar : UITabBarController?
@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame:UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
-        tabBar = TabBarController()
+        self.tabBar = TabBarController()
+        self.tabBar?.delegate = self
         rootViewController = CustomNavigationController(rootViewController:tabBar!)
         rootViewController?.navigationBar.isHidden = true
         window?.rootViewController = rootViewController;
@@ -51,6 +52,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         
     }
+    
+
+    // MARK: UITabBarControllerDelegate
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if let nav : UINavigationController = viewController as? UINavigationController {
+            let array : NSArray = nav.viewControllers as NSArray
+            let vc : UIViewController = array[0] as! UIViewController
+            XPrint(String (format: "点击了%@", vc))
+        }
+        return true
+    }
+    
+    // tableBar界面的跳转
+    func tabBarControllerSelectedIndex(index : Int) -> Void {
+        self.tabBar?.selectedIndex = index
+    }
+    
     
     // 数据初始化
     func initializationData() -> Void {

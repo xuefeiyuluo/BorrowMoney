@@ -103,3 +103,11 @@ func billDetail(model : LoanManageData) -> BasicVC {
     detail.loanModel = model
     return detail
 }
+
+
+// 首页搜索结果页面
+func searchResult() -> BasicVC {
+    let result : SearchResultVC = SearchResultVC()
+    result.hidesBottomBarWhenPushed = true
+    return result
+}
