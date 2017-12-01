@@ -17,12 +17,17 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     var productTypeView : ProductTypeView?// 产品类别
     var rollPictureView : RollPictureView?// 滚动图
     var fixedAdverView : FixedAdverView?// 固定广告
+    var bannerArray : [BannerModel] = [BannerModel]()// 全部广告数据
+    var hotArray : [HotLoanModel] = [HotLoanModel]()// 热门贷款数据
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // 隐藏导航栏
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        // 获取热门贷款信息
+        self.requestHotLoanInfo()
     }
     
     
@@ -37,6 +42,9 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         
         // 添加下拉刷新
         createRefresh()
+        
+        // 获取首页广告信息(只请求一次)
+        requestBannerInfo()
     }
 
     
@@ -58,9 +66,12 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         }
         
         self.homeTableView?.mj_header = MJRefreshGifHeader(refreshingBlock: { () -> Void in
-            // 获取首页信息
-//            self.requestHomeInfo()
             self.homeTableView?.mj_header.endRefreshing()
+            // 获取首页广告信息
+            self.requestBannerInfo()
+            
+            // 获取热门贷款信息
+            self.requestHotLoanInfo()
         })
         
         var imageArray2 : [UIImage] = [UIImage]()
@@ -86,6 +97,9 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         tableView.register(LoanBrandCell.self, forCellReuseIdentifier: "loanBrand")
         self.homeTableView = tableView
         self.view .addSubview(self.homeTableView!)
+        
+        
+        
         
         let headerView : UIView = UIView.init(frame: CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: 280 * HEIGHT_SCALE))
         self.tableHeaderView = headerView
@@ -116,10 +130,8 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         
         }
         
-        
         // 固定广告
         let fixedAdverView : FixedAdverView = FixedAdverView()
-        fixedAdverView.backgroundColor = UIColor.gray
         self.fixedAdverView = fixedAdverView
         self.tableHeaderView?.addSubview(self.fixedAdverView!)
         self.fixedAdverView?.snp.makeConstraints({ (make) in
@@ -127,15 +139,11 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             make.top.equalTo((self.rollPictureView?.snp.bottom)!)
             make.height.equalTo(90 * HEIGHT_SCALE)
         })
-        self.fixedAdverView?.adverClickBlock = { (index) in
-            // 300左边的点击事件  400右边的点击事件
-            if index == 300 {
-                
-            } else {
-                
-            }
+        self.fixedAdverView?.adverClickBlock = { (url) in
+            
         }
         self.homeTableView?.tableHeaderView = self.tableHeaderView
+        
         
         let footerView : UIView = UIView.init(frame: CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: 40 * HEIGHT_SCALE))
         let moreBtn : UIButton = UIButton (type: UIButtonType.custom)
@@ -153,7 +161,7 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return self.hotArray.count
     }
     
     
@@ -175,7 +183,12 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100 * HEIGHT_SCALE
+        let temphot : HotLoanModel = self.hotArray[indexPath.section] as HotLoanModel
+        if self.isEmptyAndNil(str: temphot.descriptions!) {
+            return 75 * HEIGHT_SCALE
+        } else {
+            return 105 * HEIGHT_SCALE
+        }
     }
     
     
@@ -212,13 +225,16 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : LoanBrandCell = tableView.dequeueReusableCell(withIdentifier: "loanBrand") as! LoanBrandCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-//        cell.messageModel = self.messageArray[indexPath.row] as? MessageCenterModel
+        cell.hotModel = self.hotArray[indexPath.section] as HotLoanModel
+        cell.fastLoan?.tag = indexPath.section
+        cell.fastLoan?.addTarget(self, action: #selector(fastClick(sender:)), for: UIControlEvents.touchUpInside)
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let hotLoan : HotLoanModel = self.hotArray[indexPath.section]
+        self.navigationController?.pushViewController(loanDetail(hotLoan: hotLoan), animated: true)
     }
     
     
@@ -247,12 +263,91 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         super.setUpNavigationView()
         self.navigationItem.titleView = NaviBarView() .setUpNaviBarWithTitle(title: "首页");
         self.navigationItem.leftBarButtonItem = nil
+        
     }
     
     
-    // 获取首页信息
-    func requestHomeInfo() -> Void {
+    // 更新广告信息
+    func updateBannerInfo() -> Void {
+        // 数据处理
+        var productArray : [BannerModel] = [BannerModel]()
+        var rollArray : [BannerModel] = [BannerModel]()
+        var fixedArray : [BannerModel] = [BannerModel]()
+        for i in 0 ..< self.bannerArray.count {
+            let tempBanner : BannerModel = self.bannerArray[i]
+            if tempBanner.location == "top_banner_50" {
+                rollArray.append(tempBanner)
+            } else if tempBanner.location == "loan_type_banner_50" {
+                productArray.append(tempBanner)
+            } else if tempBanner.location == "loan_left_banner_50" {
+                fixedArray.append(tempBanner)
+            } else if tempBanner.location == "loan_right_banner_50" {
+                fixedArray.append(tempBanner)
+            }
+        }
         
+        
+        // 界面更新
+        // 产品类别
+        if productArray.count <= 5 {
+            self.productTypeView?.lineView?.isHidden = true
+            self.productTypeView?.snp.updateConstraints({ (make) in
+                make.height.equalTo(85 * HEIGHT_SCALE)
+                
+            })
+            self.tableHeaderView?.frame = CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: 270 * HEIGHT_SCALE)
+        } else {
+            self.productTypeView?.lineView?.isHidden = false
+            self.productTypeView?.snp.updateConstraints({ (make) in
+                make.height.equalTo(95 * HEIGHT_SCALE)
+                
+            })
+            self.tableHeaderView?.frame = CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: 280 * HEIGHT_SCALE)
+        }
+        self.productTypeView?.updateProductData(dataArray: productArray as NSArray)
+        
+        // 滚动图
+        self.rollPictureView?.updateRollImageDate(dateArray: rollArray as NSArray)
+        
+        // 固定广告
+        self.fixedAdverView?.updateFixedAdverData(dataArray: fixedArray as NSArray)
+        
+//        self.tableHeaderView?.backgroundColor = UIColor.red
+//        self.homeTableView?.backgroundColor = UIColor.green
+        // 更改头部高度后，刷新界面（解决多余的高度仍然显示的问题）
+        self.homeTableView?.reloadData()
+    }
+    
+    
+    
+    // 获取首页广告信息
+    func requestBannerInfo() -> Void {
+        HomePageService.homeInstance.requestBannerInfo(success: { (responseObject) in
+            
+            let dataArray : NSArray = responseObject as! NSArray
+            self.bannerArray = BannerModel.objectArrayWithKeyValuesArray(array: dataArray) as! [BannerModel]
+            
+            // 更新广告信息
+            self.updateBannerInfo()
+            
+            
+            
+        }) { (errorInfo) in
+            
+        }
+    }
+    
+    
+    // 获取热门贷款信息
+    func requestHotLoanInfo() -> Void {
+        HomePageService.homeInstance.requestHotLoanList(success: { (responseObject) in
+            let dataArray : NSArray = responseObject as! NSArray
+            self.hotArray = HotLoanModel.objectArrayWithKeyValuesArray(array: dataArray) as! [HotLoanModel]
+            // 刷新界面
+            self.homeTableView?.reloadData()
+        }) { (errorInfo) in
+            
+        }
     }
     
     
@@ -261,6 +356,15 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         // 跳转贷款大全
         APPDELEGATE.tabBarControllerSelectedIndex(index: 1)
     }
+    
+    
+    // 一键申请点击事件
+    func fastClick(sender: UIButton) -> Void {
+//        let hotLoan : HotLoanModel = self.hotArray[sender.tag]
+//        self.navigationController?.pushViewController(loanDetail(hotLoan: hotLoan), animated: true)
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

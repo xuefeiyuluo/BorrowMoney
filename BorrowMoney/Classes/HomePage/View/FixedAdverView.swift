@@ -8,12 +8,14 @@
 
 import UIKit
 
-typealias AdverClickBlock = (Int) -> Void
+typealias AdverClickBlock = (_ url : String) -> Void
 class FixedAdverView: UIView {
 
     var adverClickBlock : AdverClickBlock?
     var leftBtn : UIButton?// 左边的按钮
     var rightBtn : UIButton?// 右边的按钮
+    var adverArray : NSArray?// 数据源
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -22,7 +24,6 @@ class FixedAdverView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         // 创建界面
         createUI()
     }
@@ -46,7 +47,7 @@ class FixedAdverView: UIView {
         self.rightBtn = rightBtn
         self.addSubview(rightBtn)
         rightBtn.snp.makeConstraints { (make) in
-            make.top.left.bottom.equalTo(self)
+            make.top.right.bottom.equalTo(self)
             make.width.equalTo(SCREEN_WIDTH / 2)
         }
     }
@@ -55,16 +56,29 @@ class FixedAdverView: UIView {
     // 按钮的点击事件
     func tapClick(sender : UIButton) -> Void {
         if self.adverClickBlock != nil {
-            self.adverClickBlock!(sender.tag)
+            var bannerModel : BannerModel?//
+            if sender.tag == 300 {
+                bannerModel = self.adverArray?[0] as? BannerModel
+            } else {
+                bannerModel = self.adverArray?[1] as? BannerModel
+            }
+            self.adverClickBlock!((bannerModel?.address)!)
         }
     }
 
 
     // 数据更新
-    func updateFixedAdverData() -> Void {
-        self.leftBtn?.kf.setBackgroundImage(with: URL.init(string: ""), for: UIControlState.normal)
-        self.rightBtn?.kf.setBackgroundImage(with: URL.init(string: ""), for: UIControlState.normal)
+    func updateFixedAdverData(dataArray : NSArray) -> Void {
+        if dataArray.count > 0 {
+            self.adverArray = dataArray
+            for i in 0 ..< dataArray.count {
+                let tempBanner : BannerModel = dataArray[i] as! BannerModel
+                if i == 0 {
+                    self.leftBtn?.kf.setBackgroundImage(with: URL.init(string: tempBanner.logo!), for: UIControlState.normal)
+                } else {
+                    self.rightBtn?.kf.setBackgroundImage(with: URL.init(string: tempBanner.logo!), for: UIControlState.normal)
+                }
+            }
+        }
     }
-
-
 }

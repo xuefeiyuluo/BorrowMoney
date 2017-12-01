@@ -31,4 +31,12 @@ class RollPictureView: UIView {
         
     }
 
+    
+    // 数据源
+    func updateRollImageDate(dateArray : NSArray) -> Void {
+        
+    }
+    
+    
+    
 }

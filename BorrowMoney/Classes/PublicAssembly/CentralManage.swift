@@ -111,3 +111,12 @@ func searchResult() -> BasicVC {
     result.hidesBottomBarWhenPushed = true
     return result
 }
+
+
+// 贷款详情页面
+func loanDetail(hotLoan : HotLoanModel) -> BasicVC {
+    let result : LoanDetailVC = LoanDetailVC()
+    result.hotLoan = hotLoan
+    result.hidesBottomBarWhenPushed = true
+    return result
+}

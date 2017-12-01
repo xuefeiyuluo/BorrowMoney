@@ -8,11 +8,18 @@
 
 import UIKit
 
-typealias ImageTapBlock = (Int) -> Void
 class ProductViewCell: UICollectionViewCell {
     var iconImage : UIImageView?// 产品图标
     var productName : UILabel?// 产品名称
-    var imageTapBlock : ImageTapBlock?// 图片的点击回调
+    var model : BannerModel? {
+        didSet{
+            // 图标
+            self.iconImage?.kf.setImage(with: URL (string: (model?.logo)!))
+            
+            // 产品名称
+            self.productName?.text = model?.name
+        }
+    }
     
     
     override init(frame: CGRect) {
@@ -29,11 +36,10 @@ class ProductViewCell: UICollectionViewCell {
     
     // 创建UI
     func createUI() -> Void {
-        
+        // 产品图标
         let iconImage : UIImageView = UIImageView()
         iconImage.isUserInteractionEnabled = true
-        iconImage.backgroundColor = UIColor.purple
-        iconImage.contentMode = .center
+        iconImage.contentMode = .scaleToFill
         self.iconImage = iconImage
         self.contentView.addSubview(self.iconImage!)
         self.iconImage?.snp.makeConstraints({ (make) in
@@ -41,12 +47,9 @@ class ProductViewCell: UICollectionViewCell {
             make.height.width.equalTo(46 * HEIGHT_SCALE)
             make.centerX.equalTo(self.contentView.snp.centerX)
         })
-        let tap : UITapGestureRecognizer = UITapGestureRecognizer (target: self, action: #selector(imageClick(sender:)))
-        self.iconImage?.addGestureRecognizer(tap)
         
-        
+        // 产品名称
         let loanName : UILabel = UILabel()
-        loanName.text = "小额可带";
         loanName.font = UIFont.systemFont(ofSize: 11 * HEIGHT_SCALE)
         loanName.textAlignment = NSTextAlignment.center
         loanName.textColor = TEXT_BLACK_COLOR
@@ -58,13 +61,4 @@ class ProductViewCell: UICollectionViewCell {
             make.height.equalTo(15 * HEIGHT_SCALE)
         }
     }
-    
-    
-    // 图片的点击事件
-    func imageClick(sender : UIImageView) -> Void {
-        if self.imageTapBlock != nil {
-            self.imageTapBlock!(sender.tag)
-        }
-    }
-    
 }

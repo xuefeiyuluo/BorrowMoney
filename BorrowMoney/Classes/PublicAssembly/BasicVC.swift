@@ -44,7 +44,7 @@ class BasicVC: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = NAVIGATION_COLOR
-        self.navigationItem .leftBarButtonItem = NaviBarView() .addBarButtonItem(target: self, action: #selector(comeBack))
+        self.navigationItem.leftBarButtonItem = NaviBarView().addBarButtonItem(target: self, action: #selector(comeBack))
     }
     
     

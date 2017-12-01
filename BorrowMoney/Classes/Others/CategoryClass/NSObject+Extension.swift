@@ -59,6 +59,8 @@ extension NSObject {
                 if key != "" {
                     originalPropertyKey = propertyKey!
                     propertyKey = String(key)
+                } else {
+                    originalPropertyKey = ""
                 }
                 
                 // 取得字典中的值

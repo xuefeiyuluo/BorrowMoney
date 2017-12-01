@@ -155,6 +155,25 @@ class URLDataCenter: NSObject {
         URLCenter.urlCenterInstance.engineeringBool = false
         return URLCenter.urlCenterInstance
     }
+    
+    // 首页广告信息
+    public func bannerInfo(system : String) -> URLCenter {
+        URLCenter.urlCenterInstance.dict = ["system":system]
+        URLCenter.urlCenterInstance.method = "appBanner.getBanner"
+        URLCenter.urlCenterInstance.sessionBool = true
+        URLCenter.urlCenterInstance.engineeringBool = false
+        return URLCenter.urlCenterInstance
+    }
+    
+    
+    // 首页热门贷款
+    public func hotInfo() -> URLCenter {
+        URLCenter.urlCenterInstance.dict = [:]
+        URLCenter.urlCenterInstance.method = "rank.getHotLoan"
+        URLCenter.urlCenterInstance.sessionBool = true
+        URLCenter.urlCenterInstance.engineeringBool = false
+        return URLCenter.urlCenterInstance
+    }
 }
 
 

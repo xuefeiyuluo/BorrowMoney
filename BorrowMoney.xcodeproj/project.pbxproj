@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1E5657E5BDC108A4BF39A17D /* Pods_BorrowMoney.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4590E8911C82E60953B15D95 /* Pods_BorrowMoney.framework */; };
+		400B42B01FD12461009B4EE0 /* HomePageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B42AF1FD12461009B4EE0 /* HomePageService.swift */; };
+		400B42B21FD12B97009B4EE0 /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B42B11FD12B97009B4EE0 /* BannerModel.swift */; };
+		400B42B41FD14326009B4EE0 /* HotLoanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B42B31FD14326009B4EE0 /* HotLoanModel.swift */; };
 		4017EDC71F8E196A0077B8E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4017EDC61F8E196A0077B8E0 /* Assets.xcassets */; };
 		4017EDCA1F8E196A0077B8E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4017EDC81F8E196A0077B8E0 /* LaunchScreen.storyboard */; };
 		4017EDD51F8E196A0077B8E0 /* BorrowMoneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4017EDD41F8E196A0077B8E0 /* BorrowMoneyTests.swift */; };
@@ -76,6 +79,7 @@
 		401F8BF21FCFE07C00298DD4 /* FixedAdverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8BF11FCFE07C00298DD4 /* FixedAdverView.swift */; };
 		401F8BF41FCFE27D00298DD4 /* LoanBrandCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8BF31FCFE27D00298DD4 /* LoanBrandCell.swift */; };
 		401F8BF61FD0049D00298DD4 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8BF51FD0049D00298DD4 /* ProductViewCell.swift */; };
+		403FD2451FD1BCB00034C4E5 /* LoanDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403FD2441FD1BCB00034C4E5 /* LoanDetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +100,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		400B42AF1FD12461009B4EE0 /* HomePageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageService.swift; sourceTree = "<group>"; };
+		400B42B11FD12B97009B4EE0 /* BannerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
+		400B42B31FD14326009B4EE0 /* HotLoanModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotLoanModel.swift; sourceTree = "<group>"; };
 		4017EDBC1F8E196A0077B8E0 /* BorrowMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BorrowMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4017EDC61F8E196A0077B8E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4017EDC91F8E196A0077B8E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -172,6 +179,7 @@
 		401F8BF11FCFE07C00298DD4 /* FixedAdverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedAdverView.swift; sourceTree = "<group>"; };
 		401F8BF31FCFE27D00298DD4 /* LoanBrandCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoanBrandCell.swift; sourceTree = "<group>"; };
 		401F8BF51FD0049D00298DD4 /* ProductViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
+		403FD2441FD1BCB00034C4E5 /* LoanDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoanDetailVC.swift; sourceTree = "<group>"; };
 		4590E8911C82E60953B15D95 /* Pods_BorrowMoney.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BorrowMoney.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30E7E8962F70FA8C295C3E8 /* Pods-BorrowMoney.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BorrowMoney.release.xcconfig"; path = "Pods/Target Support Files/Pods-BorrowMoney/Pods-BorrowMoney.release.xcconfig"; sourceTree = "<group>"; };
 		CF58623B744DB930670B6B5D /* Pods-BorrowMoney.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BorrowMoney.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BorrowMoney/Pods-BorrowMoney.debug.xcconfig"; sourceTree = "<group>"; };
@@ -347,6 +355,8 @@
 		401F8B6A1FCEDF1800298DD4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				400B42B11FD12B97009B4EE0 /* BannerModel.swift */,
+				400B42B31FD14326009B4EE0 /* HotLoanModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -354,6 +364,7 @@
 		401F8B6B1FCEDF1800298DD4 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				400B42AF1FD12461009B4EE0 /* HomePageService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -387,6 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				401F8B6F1FCEDF1800298DD4 /* LoanBooksVC.swift */,
+				403FD2441FD1BCB00034C4E5 /* LoanDetailVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -772,6 +784,7 @@
 				401F8BB41FCEDF1800298DD4 /* NaviBarView.swift in Sources */,
 				401F8BB51FCEDF1800298DD4 /* TabBarController.swift in Sources */,
 				401F8BB31FCEDF1800298DD4 /* ErrorInfo.swift in Sources */,
+				400B42B01FD12461009B4EE0 /* HomePageService.swift in Sources */,
 				401F8BDB1FCEDF1800298DD4 /* MessageCenterModel.swift in Sources */,
 				401F8BE11FCEDF1800298DD4 /* UserCenterCell1.swift in Sources */,
 				401F8BE21FCEDF1800298DD4 /* UserCenterCell2.swift in Sources */,
@@ -781,6 +794,7 @@
 				401F8BC81FCEDF1800298DD4 /* LoginSegmentedView.swift in Sources */,
 				401F8BE61FCFB47D00298DD4 /* CustomNavigationView.swift in Sources */,
 				401F8BB81FCEDF1800298DD4 /* NSArray+Extension.swift in Sources */,
+				400B42B41FD14326009B4EE0 /* HotLoanModel.swift in Sources */,
 				401F8BD51FCEDF1800298DD4 /* RepayRecordVC.swift in Sources */,
 				401F8BC31FCEDF1800298DD4 /* BasicWebVC.swift in Sources */,
 				401F8BBC1FCEDF1800298DD4 /* UIColor+Extension.swift in Sources */,
@@ -794,6 +808,7 @@
 				401F8BEE1FCFDFB900298DD4 /* ProductTypeView.swift in Sources */,
 				401F8BAD1FCEDF1800298DD4 /* ForgetVC.swift in Sources */,
 				401F8BC71FCEDF1800298DD4 /* LoginInfoView.swift in Sources */,
+				403FD2451FD1BCB00034C4E5 /* LoanDetailVC.swift in Sources */,
 				401F8BAF1FCEDF1800298DD4 /* AlamofireManager.swift in Sources */,
 				401F8BC91FCEDF1800298DD4 /* LoginVC.swift in Sources */,
 				401F8BE31FCEDF1800298DD4 /* UserCenterHeaderView.swift in Sources */,
@@ -811,6 +826,7 @@
 				401F8BB71FCEDF1800298DD4 /* LoanBooksVC.swift in Sources */,
 				401F8BD61FCEDF1800298DD4 /* SetUpVC.swift in Sources */,
 				401F8BE01FCEDF1800298DD4 /* RepayManageHeaderView.swift in Sources */,
+				400B42B21FD12B97009B4EE0 /* BannerModel.swift in Sources */,
 				401F8BC01FCEDF1800298DD4 /* XFoundation.swift in Sources */,
 				401F8BAE1FCEDF1800298DD4 /* RegisterVC.swift in Sources */,
 				401F8BF01FCFE04200298DD4 /* RollPictureView.swift in Sources */,

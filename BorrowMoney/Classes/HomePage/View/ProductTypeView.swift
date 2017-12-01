@@ -15,6 +15,7 @@ class ProductTypeView: UIView, UICollectionViewDelegate, UICollectionViewDataSou
     var line1 : UIButton?// 第一条横线
     var line2 : UIButton?// 第一条横线
     var imageBlock : ImageBlock?// 图片的点击事件
+    var productArray : [BannerModel] = [BannerModel]()// 数据源
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -91,7 +92,7 @@ class ProductTypeView: UIView, UICollectionViewDelegate, UICollectionViewDataSou
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return self.productArray.count
     }
     
     
@@ -107,16 +108,7 @@ class ProductTypeView: UIView, UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : ProductViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "product", for: indexPath) as! ProductViewCell
-        cell.iconImage?.tag = indexPath.item
-//        cell.dataDict = self.dataArray?[indexPath.item] as? NSDictionary
-        
-        
-        
-        cell.imageTapBlock = { (tag) in
-            if self.imageBlock != nil {
-                self.imageBlock!(tag)
-            }
-        }
+        cell.model = self.productArray[indexPath.item]
         return cell
     }
     
@@ -129,5 +121,35 @@ class ProductTypeView: UIView, UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
 
+    }
+    
+    
+    // MARK: UIScrollViewDelegate
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offset : CGPoint = scrollView.contentOffset
+        if offset.x / (self.productCollectionView?.frame.size.width)! == 0 {
+            self.line1?.isSelected = true
+            self.line2?.isSelected = false
+        } else if offset.x / (self.productCollectionView?.frame.size.width)! == 1{
+            self.line1?.isSelected = false
+            self.line2?.isSelected = true
+        }
+    }
+    
+    
+    // 数据源
+    func updateProductData(dataArray : NSArray) -> Void {
+        if dataArray.count > 0 {
+            self.productArray = (dataArray as? [BannerModel])!
+            // 数据填充
+            if self.productArray.count % 5 != 0 {
+                for _ in 0 ..< (5 - self.productArray.count % 5) {
+                    self.productArray.append(BannerModel())
+                }
+            }
+            
+            // 刷新数据
+            self.productCollectionView?.reloadData()
+        }
     }
 }
