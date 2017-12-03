@@ -43,7 +43,10 @@ final class AlamofireManager: NSObject {
     
     // post请求
     func postRequest(urlCenter : URLCenter,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
-        SVProgressHUD.show()
+        if urlCenter.loadingIcon {
+            SVProgressHUD.show()
+        }
+        
         let headers: HTTPHeaders = ["Accept": "application/json","Content-type":"application/json;charset=utf-8"]
         
         // 数据组装
@@ -177,7 +180,7 @@ final class AlamofireManager: NSObject {
     
     // 请求数据组装
     func requestDataAssemble(urlCenter : URLCenter) -> (NSMutableDictionary) {
-        let dict : NSMutableDictionary = NSMutableDictionary (dictionary: urlCenter.dict!)
+        let dict : NSMutableDictionary = NSMutableDictionary (dictionary: urlCenter.dict)
         dict .setObject(self.requestTimeInterval(), forKey: "timestamp" as NSCopying)
         dict .setObject("b28f79b83f1e1862", forKey: "appkey" as NSCopying)
         dict .setObject("1.0", forKey: "version" as NSCopying)

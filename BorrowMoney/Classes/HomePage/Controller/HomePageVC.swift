@@ -19,6 +19,7 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     var fixedAdverView : FixedAdverView?// 固定广告
     var bannerArray : [BannerModel] = [BannerModel]()// 全部广告数据
     var hotArray : [HotLoanModel] = [HotLoanModel]()// 热门贷款数据
+    var messageTimer : Timer?// 消息的定时器
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -28,6 +29,12 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         
         // 获取热门贷款信息
         self.requestHotLoanInfo()
+        
+        // 请求消息数据
+        self.requestMessageList()
+        
+        // 消息中心的定时器
+        createTimer()
     }
     
     
@@ -48,8 +55,20 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     }
 
     
+    // 消息的定时器
+    func createTimer() -> Void {
+        if self.messageTimer == nil {
+            self.messageTimer = Timer (timeInterval: 5, target: self, selector: #selector(requestMessageList), userInfo: nil, repeats: true)
+            RunLoop.main.add(self.messageTimer!, forMode: RunLoopMode.commonModes)
+        }
+    }
+    
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        self.messageTimer?.invalidate()
+        self.messageTimer = nil
         
         // 显示导航栏
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -72,6 +91,9 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             
             // 获取热门贷款信息
             self.requestHotLoanInfo()
+            
+            // 请求消息数据
+            self.requestMessageList()
         })
         
         var imageArray2 : [UIImage] = [UIImage]()
@@ -97,9 +119,7 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         tableView.register(LoanBrandCell.self, forCellReuseIdentifier: "loanBrand")
         self.homeTableView = tableView
         self.view .addSubview(self.homeTableView!)
-        
-        
-        
+
         
         let headerView : UIView = UIView.init(frame: CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: 280 * HEIGHT_SCALE))
         self.tableHeaderView = headerView
@@ -307,13 +327,19 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         self.productTypeView?.updateProductData(dataArray: productArray as NSArray)
         
         // 滚动图
+        
+        let model : BannerModel = BannerModel()
+        model.logo = "http://image.jiedianqian.com/20171116112144_daishangqian.png"
+        rollArray.append(model)
+        
+        let model1 : BannerModel = BannerModel()
+        model1.logo = "http://image.jiedianqian.com/20171116110418_mashangjin.png"
+        rollArray.append(model1)
+        
         self.rollPictureView?.updateRollImageDate(dateArray: rollArray as NSArray)
         
         // 固定广告
         self.fixedAdverView?.updateFixedAdverData(dataArray: fixedArray as NSArray)
-        
-//        self.tableHeaderView?.backgroundColor = UIColor.red
-//        self.homeTableView?.backgroundColor = UIColor.green
         // 更改头部高度后，刷新界面（解决多余的高度仍然显示的问题）
         self.homeTableView?.reloadData()
     }
@@ -329,9 +355,6 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             
             // 更新广告信息
             self.updateBannerInfo()
-            
-            
-            
         }) { (errorInfo) in
             
         }
@@ -345,6 +368,22 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             self.hotArray = HotLoanModel.objectArrayWithKeyValuesArray(array: dataArray) as! [HotLoanModel]
             // 刷新界面
             self.homeTableView?.reloadData()
+        }) { (errorInfo) in
+            
+        }
+    }
+    
+    
+    // 请求消息数据
+    func requestMessageList() -> Void {
+        UserCenterService.userInstance.requestMessageSate(success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            if (dataDict["newMessageCount"] as! Int) > 0 {
+                self.navigationView?.messageBtn?.setImage(UIImage (named: "newMessage.png"), for: UIControlState.normal)
+            } else {
+                self.navigationView?.messageBtn?.setImage(UIImage (named: "message.png"), for: UIControlState.normal)
+            }
+            
         }) { (errorInfo) in
             
         }

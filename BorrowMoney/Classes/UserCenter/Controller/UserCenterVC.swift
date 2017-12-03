@@ -38,6 +38,9 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             // 获取用户基本信息
             requestBaseInfo()
             
+            // 请求消息中心数据
+            self.requestMessageList()
+            
             // 消息中心的定时器
             createTimer()
         }
@@ -77,6 +80,9 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         self.userTableView?.mj_header = MJRefreshGifHeader(refreshingBlock: { () -> Void in
             // 获取用户基本信息
             self.requestBaseInfo()
+            // 请求消息中心数据
+            self.requestMessageList()
+            
             self.userTableView?.mj_header.endRefreshing()
         })
         

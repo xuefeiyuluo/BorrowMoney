@@ -9,170 +9,151 @@
 import UIKit
 
 class URLDataCenter: NSObject {
+    
     // 登录
     public func login(mobile : String,password : String) -> URLCenter {
-        URLCenter.urlCenterInstance.dict = ["mobile":mobile,"password":password]
-        URLCenter.urlCenterInstance.method = "account.login"
-        URLCenter.urlCenterInstance.sessionBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.dict = ["mobile":mobile,"password":password]
+        param.method = "account.login"
+        param.sessionBool = false
+        return param
     }
     
     
     // 验证码登录
     public func loginWithCode(mobile : String,code : String) -> URLCenter {
-        URLCenter.urlCenterInstance.dict = ["mobile":mobile,"verifyCode":code]
-        URLCenter.urlCenterInstance.method = "account.do_register"
-        URLCenter.urlCenterInstance.sessionBool = false
-        URLCenter.urlCenterInstance.engineeringBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.dict = ["mobile":mobile,"verifyCode":code]
+        param.method = "account.do_register"
+        param.sessionBool = false
+        return param
     }
     
     
     // 获取验证码
     public func verificationCode(mobile : String,code : String) -> URLCenter {
-        URLCenter.urlCenterInstance.dict = ["mobile":mobile,"captchaCode":code]
-        URLCenter.urlCenterInstance.method = "account.send_verify_code"
-        URLCenter.urlCenterInstance.sessionBool = false
-        URLCenter.urlCenterInstance.engineeringBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.dict = ["mobile":mobile,"captchaCode":code]
+        param.method = "account.send_verify_code"
+        param.sessionBool = false
+        return param
     }
     
-    // 获取验证码
+    // 个人中心
     public func baseInfo() -> URLCenter {
-        URLCenter.urlCenterInstance.dict = [:]
-        URLCenter.urlCenterInstance.method = "roleInfo.getBasicInfo"
-        URLCenter.urlCenterInstance.sessionBool = true
-        URLCenter.urlCenterInstance.engineeringBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.method = "roleInfo.getBasicInfo"
+        return param
     }
 
-    // 获取验证码
+    // 退出登录
     public func loginOut() -> URLCenter {
-        URLCenter.urlCenterInstance.dict = [:]
-        URLCenter.urlCenterInstance.method = "account.logout"
-        URLCenter.urlCenterInstance.sessionBool = true
-        URLCenter.urlCenterInstance.engineeringBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.method = "account.logout"
+        return param
     }
     
     // 是否接受推送消息
     public func pushMessageChange(state : String) -> URLCenter {
-        URLCenter.urlCenterInstance.dict = ["notifcationEnable":state]
-        URLCenter.urlCenterInstance.method = "configure.saveNotifcationEnable"
-        URLCenter.urlCenterInstance.sessionBool = true
-        URLCenter.urlCenterInstance.engineeringBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.dict = ["notifcationEnable":state]
+        param.method = "configure.saveNotifcationEnable"
+        return param
     }
     
     // 查询推送消息状态
     public func requestPushMessageState() -> URLCenter {
-        URLCenter.urlCenterInstance.dict = [:]
-        URLCenter.urlCenterInstance.method = "configure.getNotifcationEnable"
-        URLCenter.urlCenterInstance.sessionBool = true
-        URLCenter.urlCenterInstance.engineeringBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.method = "configure.getNotifcationEnable"
+        return param
     }
     
     // 修改登录密码
     public func changePassword(psw : String) -> URLCenter {
-        URLCenter.urlCenterInstance.dict = ["password":psw]
-        URLCenter.urlCenterInstance.method = "account.set_password"
-        URLCenter.urlCenterInstance.sessionBool = true
-        URLCenter.urlCenterInstance.engineeringBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.dict = ["password":psw]
+        param.method = "account.set_password"
+        return param
     }
     
     // 大额信贷经理
     public func requestLoanOffice() -> URLCenter {
-        URLCenter.urlCenterInstance.dict = [:]
-        URLCenter.urlCenterInstance.method = "xdb.entry.getAlreadyContactProvider"
-        URLCenter.urlCenterInstance.sessionBool = true
-        URLCenter.urlCenterInstance.engineeringBool = true
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.method = "xdb.entry.getAlreadyContactProvider"
+        param.engineeringBool = true
+        return param
     }
     
     // 消息中心
     public func requestMessageCount() -> URLCenter {
-        URLCenter.urlCenterInstance.dict = [:]
-        URLCenter.urlCenterInstance.method = "notification.getNewMessageCount"
-        URLCenter.urlCenterInstance.sessionBool = true
-        URLCenter.urlCenterInstance.engineeringBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.method = "notification.getNewMessageCount"
+        param.loadingIcon = false
+        return param
     }
     
     
     // 消息列表  
     public func requestMessageListData(currentPage:String,pageSize:String) -> URLCenter {
-        URLCenter.urlCenterInstance.dict = ["pageNo":currentPage,"pageSize":pageSize]
-        URLCenter.urlCenterInstance.method = "product.getMessageByUid"
-        URLCenter.urlCenterInstance.sessionBool = true
-        URLCenter.urlCenterInstance.engineeringBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.dict = ["pageNo":currentPage,"pageSize":pageSize]
+        param.method = "product.getMessageByUid"
+        return param
     }
     
     
     // 消息列表
     public func deleteMessageData(status:String,messageId:String) -> URLCenter {
-        URLCenter.urlCenterInstance.dict = ["status":status,"message_id":messageId]
-        URLCenter.urlCenterInstance.method = "product.updateMessage"
-        URLCenter.urlCenterInstance.sessionBool = true
-        URLCenter.urlCenterInstance.engineeringBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.dict = ["status":status,"message_id":messageId]
+        param.method = "product.updateMessage"
+        return param
     }
     
     // 全部已读消息列表
     public func allMessageData() -> URLCenter {
-        URLCenter.urlCenterInstance.dict = [:]
-        URLCenter.urlCenterInstance.method = "product.markAllMessageAsRead"
-        URLCenter.urlCenterInstance.sessionBool = true
-        URLCenter.urlCenterInstance.engineeringBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.method = "product.markAllMessageAsRead"
+        return param
     }
 
     // 还款管理列表
     public func repayManageData() -> URLCenter {
-        URLCenter.urlCenterInstance.dict = [:]
-        URLCenter.urlCenterInstance.method = "roleInfo.loanList"
-        URLCenter.urlCenterInstance.sessionBool = true
-        URLCenter.urlCenterInstance.engineeringBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.method = "roleInfo.loanList"
+        return param
     }
 
     // 设为已还
     public func requestMakeRepaid(planId : String) -> URLCenter {
-        URLCenter.urlCenterInstance.dict = ["ids":planId]
-        URLCenter.urlCenterInstance.method = "roleInfo.makeRepaid"
-        URLCenter.urlCenterInstance.sessionBool = true
-        URLCenter.urlCenterInstance.engineeringBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.dict = ["ids":planId]
+        param.method = "roleInfo.makeRepaid"
+        return param
     }
     
     // 账户异常
     public func accountAbnormal(accountId : String) -> URLCenter {
-        URLCenter.urlCenterInstance.dict = ["id":accountId]
-        URLCenter.urlCenterInstance.method = "roleInfo.flushStatus"
-        URLCenter.urlCenterInstance.sessionBool = true
-        URLCenter.urlCenterInstance.engineeringBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.dict = ["id":accountId]
+        param.method = "roleInfo.flushStatus"
+        return param
     }
     
     // 首页广告信息
     public func bannerInfo(system : String) -> URLCenter {
-        URLCenter.urlCenterInstance.dict = ["system":system]
-        URLCenter.urlCenterInstance.method = "appBanner.getBanner"
-        URLCenter.urlCenterInstance.sessionBool = true
-        URLCenter.urlCenterInstance.engineeringBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.dict = ["system":system]
+        param.method = "appBanner.getBanner"
+        return param
     }
     
     
     // 首页热门贷款
     public func hotInfo() -> URLCenter {
-        URLCenter.urlCenterInstance.dict = [:]
-        URLCenter.urlCenterInstance.method = "rank.getHotLoan"
-        URLCenter.urlCenterInstance.sessionBool = true
-        URLCenter.urlCenterInstance.engineeringBool = false
-        return URLCenter.urlCenterInstance
+        let param : URLCenter = URLCenter()
+        param.method = "rank.getHotLoan"
+        return param
     }
 }
 
