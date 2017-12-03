@@ -38,7 +38,7 @@ class CustomNavigationView: UIView {
         self.messageBtn = messageBtn
         self.addSubview(messageBtn)
         messageBtn.snp.makeConstraints { (make) in
-            make.right.equalTo(self.snp.right).offset(-10 * WIDTH_SCALE)
+            make.right.equalTo(self.snp.right).offset(-5 * WIDTH_SCALE)
             make.top.equalTo(self.snp.top).offset(20)
             make.height.equalTo(40)
             make.width.equalTo(30 * WIDTH_SCALE)

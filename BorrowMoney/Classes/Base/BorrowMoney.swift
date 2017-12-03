@@ -31,7 +31,7 @@ let CURRENTVERSION = Bundle.main.infoDictionary!["CFBundleShortVersionString"] a
 
 
 // ********************************* URL ******************************************
-let SERVERURL = "http://gw.jiedianqian.com/gateway"
+let SERVERURL = ""
 
 
 // ***************************** UserDefaults *************************************
