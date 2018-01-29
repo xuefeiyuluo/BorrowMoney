@@ -51,21 +51,18 @@ class RollPictureView: UIView, UIScrollViewDelegate {
         // 左边的imageView
         let leftImage : UIImageView = UIImageView.init(frame: CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: 95 * HEIGHT_SCALE))
         leftImage.isUserInteractionEnabled = true
-        leftImage.backgroundColor = UIColor.red
         self.letfImageView = leftImage
         rollScrollView.addSubview(self.letfImageView!)
         
         // 中间的imageView
         let midImage : UIImageView = UIImageView.init(frame: CGRect (x: SCREEN_WIDTH, y: 0, width: SCREEN_WIDTH, height: 95 * HEIGHT_SCALE))
         midImage.isUserInteractionEnabled = true
-        midImage.backgroundColor = UIColor.green
         self.midImageView = midImage
         rollScrollView.addSubview(self.midImageView!)
         
         // 右边的imageView
         let rightImage : UIImageView = UIImageView.init(frame: CGRect (x: SCREEN_WIDTH * 2, y: 0, width: SCREEN_WIDTH, height: 95 * HEIGHT_SCALE))
         rightImage.isUserInteractionEnabled = true
-        rightImage.backgroundColor = UIColor.yellow
         self.rightImageView = rightImage
         rollScrollView.addSubview(self.rightImageView!)
         
@@ -113,13 +110,37 @@ class RollPictureView: UIView, UIScrollViewDelegate {
     }
     
     
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let offset : CGPoint = scrollView.contentOffset
+//        XPrint("开始滚动。。。")
+//        if offset.x / (self.rollScrollView?.frame.size.width)! == 0 {
+//            self.rollScrollView?.contentOffset = CGPoint(x: SCREEN_WIDTH, y: 0)
+//        } else if offset.x / (self.rollScrollView?.frame.size.width)! == 2 {
+//            self.rollScrollView?.contentOffset = CGPoint(x: SCREEN_WIDTH, y: 0)
+//        }
+//    }
+    
+    
+    
+    
+    
+    
     // 图片定时器
     func imageChange() -> Void {
-        self.currentNumber = (self.currentNumber + 1 + (self.imageArray?.count)!)  % (self.imageArray?.count)!
-        //设置后没有效果，而且数据错乱
-//        self.rollScrollView?.setContentOffset(CGPoint(x: 750, y: 0), animated: true)
-        changeImageView(imageNumber: self.currentNumber)
-        self.rollScrollView?.contentOffset = CGPoint(x: SCREEN_WIDTH, y: 0)
+        if self.imageArray != nil && (self.imageArray?.count)! > 0 {
+            self.currentNumber = (self.currentNumber + 1 + (self.imageArray?.count)!)  % (self.imageArray?.count)!
+            changeImageView(imageNumber: self.currentNumber)
+            self.rollScrollView?.contentOffset = CGPoint(x: SCREEN_WIDTH, y: 0)
+        }
+        
+        //设置后没有效果，而且数据错乱，出现一闪而过的现象
+//        self.rollScrollView?.setContentOffset(CGPoint(x: SCREEN_WIDTH * 2, y: 0), animated: true)
+        
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
+//            
+//        }
+        
+        
     }
     
     

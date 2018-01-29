@@ -57,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     // MARK: UITabBarControllerDelegate
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if let nav : UINavigationController = viewController as? UINavigationController {
+            SVProgressHUD.dismiss()
             let array : NSArray = nav.viewControllers as NSArray
             let vc : UIViewController = array[0] as! UIViewController
             XPrint(String (format: "点击了%@", vc))

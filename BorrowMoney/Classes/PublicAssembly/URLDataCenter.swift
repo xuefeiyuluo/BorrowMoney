@@ -155,6 +155,36 @@ class URLDataCenter: NSObject {
         param.method = "rank.getHotLoan"
         return param
     }
+    
+    // 最近热搜
+    public func hotKeyword() -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.method = "rank.getHotLoan"
+        return param
+    }
+    
+    // 贷款大全 贷款类型
+    public func requestLoanType() -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.method = "rank.getTagList"
+        return param
+    }
+    
+    // 贷款大全 贷款金额
+    public func requestLoanAmountRank() -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.method = "rank.getSearchAmount"
+        return param
+    }
+    
+
+    // 贷款大全贷款列表
+    public func loanBooksList(rankType : String,loanTagId : String,leftRange : String,rightRange : String,offset : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["rankType":rankType,"loanTagId":loanTagId,"leftRange":leftRange,"rightRange":rightRange,"offset":offset,"returnType":"returnList","pageSize":"10"]
+        param.method = "rank.getRecommendation"
+        return param
+    }
 }
 
 

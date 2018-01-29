@@ -42,14 +42,12 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             self.requestMessageList()
             
             // 消息中心的定时器
-            createTimer()
+//            createTimer()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 初始化数据
-        initializationData()
         
         // 创建UI
         createUI()
@@ -373,7 +371,8 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     
     // 初始化数据
-    func initializationData() -> Void {
+    override func initializationData() -> Void {
+        super.initializationData()
         self.sectionArray = [["RowOrderManage","RowRepaymentManage"],["RowUserIconListView"],["RowUserSetUp"]]
     }
     

@@ -327,15 +327,6 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         self.productTypeView?.updateProductData(dataArray: productArray as NSArray)
         
         // 滚动图
-        
-        let model : BannerModel = BannerModel()
-        model.logo = "http://image.jiedianqian.com/20171116112144_daishangqian.png"
-        rollArray.append(model)
-        
-        let model1 : BannerModel = BannerModel()
-        model1.logo = "http://image.jiedianqian.com/20171116110418_mashangjin.png"
-        rollArray.append(model1)
-        
         self.rollPictureView?.updateRollImageDate(dateArray: rollArray as NSArray)
         
         // 固定广告

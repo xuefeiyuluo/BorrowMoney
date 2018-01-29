@@ -12,8 +12,8 @@ import SnapKit
 // ******************************* 屏幕尺寸 ***************************************
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
-let WIDTH_SCALE = getScreenHightscale()
-let HEIGHT_SCALE = getScreenWidthscale()
+let WIDTH_SCALE = getScreenWidthscale()
+let HEIGHT_SCALE = getScreenHightscale()
 
 
 // ********************************* 颜色 *****************************************
@@ -31,7 +31,7 @@ let CURRENTVERSION = Bundle.main.infoDictionary!["CFBundleShortVersionString"] a
 
 
 // ********************************* URL ******************************************
-let SERVERURL = ""
+let SERVERURL = "http://gw.jiedianqian.com/gateway"
 
 
 // ***************************** UserDefaults *************************************

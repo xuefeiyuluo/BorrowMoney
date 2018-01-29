@@ -62,7 +62,9 @@ class FixedAdverView: UIView {
             } else {
                 bannerModel = self.adverArray?[1] as? BannerModel
             }
-            self.adverClickBlock!((bannerModel?.address)!)
+            if bannerModel != nil {
+                self.adverClickBlock!((bannerModel?.address)!)
+            }
         }
     }
 

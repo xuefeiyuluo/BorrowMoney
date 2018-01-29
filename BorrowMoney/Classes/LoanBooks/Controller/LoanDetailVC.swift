@@ -50,6 +50,8 @@ class LoanDetailVC: BasicVC {
     func tapClick() -> Void {
         
     }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

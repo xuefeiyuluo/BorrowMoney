@@ -25,4 +25,5 @@ extension String {
         
         return String(format: hash .lowercased as String)
     }
+    
 }

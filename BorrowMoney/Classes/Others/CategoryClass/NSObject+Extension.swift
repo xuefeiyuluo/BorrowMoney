@@ -20,6 +20,7 @@ import Foundation
     static func customClassMapping() -> [String: String]?
 }
 
+
 extension NSObject {
     // dict: 要进行转换的字典
     class func objectWithKeyValues(dict: NSDictionary)->AnyObject?{
@@ -138,7 +139,7 @@ extension NSObject {
      */
     class func objectArrayWithKeyValuesArray(array: NSArray)->NSArray?{
         if array.count == 0{
-            return nil
+            return []
         }
         var result = [AnyObject]()
         for item in array{
@@ -186,5 +187,13 @@ extension NSObject {
         } else {
             return false
         }
+    }
+    
+    
+    // 计算文字的尺寸
+    func sizeWithText(text : String,font : UIFont, maxSize : CGSize) -> CGSize {
+        let dic = NSDictionary(object: font, forKey: NSFontAttributeName as NSCopying)
+        let size : CGSize = text.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, attributes: dic as? [String : AnyObject], context: nil).size
+        return size
     }
 }

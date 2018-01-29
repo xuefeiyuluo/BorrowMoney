@@ -1,20 +1,20 @@
 //
-//  HomePageService.swift
+//  LoanBooksService.swift
 //  BorrowMoney
 //
-//  Created by 雪飞雨落 on 2017/12/1.
-//  Copyright © 2017年 sparrow. All rights reserved.
+//  Created by 雪飞雨落 on 2018/1/25.
+//  Copyright © 2018年 sparrow. All rights reserved.
 //
 
 import UIKit
 
-class HomePageService: NSObject {
-    static let homeInstance = HomePageService()
+class LoanBooksService: NSObject {
+    static let loanInstance = LoanBooksService()
     static let urlDataCenter : URLDataCenter = URLDataCenter()
     
-    // 首页广告信息
-    func requestBannerInfo(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
-        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.bannerInfo(system:"jiedianqian")
+    // 贷款大全列表
+    func requestLoanBooksList(rankType:String,loanTagId:String,leftRange:String,rightRange:String,offset:String,  success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.loanBooksList(rankType: rankType, loanTagId: loanTagId, leftRange: leftRange, rightRange: rightRange, offset: offset)
         AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
             let dataDict : NSDictionary = responseObject as! NSDictionary
             success(dataDict["data"] as AnyObject)
@@ -25,9 +25,9 @@ class HomePageService: NSObject {
     }
     
     
-    // 首页热门贷款
-    func requestHotLoanList(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
-        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.hotInfo()
+    // 贷款大全 贷款类型
+    func requestLoanType(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestLoanType()
         AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
             let dataDict : NSDictionary = responseObject as! NSDictionary
             success(dataDict["data"] as AnyObject)
@@ -38,9 +38,9 @@ class HomePageService: NSObject {
     }
     
     
-    // 最近热搜
-    func requestHotKeyword(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
-        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.hotInfo()
+    // 贷款大全 贷款金额区间
+    func requestLoanAmontRank(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestLoanAmountRank()
         AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
             let dataDict : NSDictionary = responseObject as! NSDictionary
             success(dataDict["data"] as AnyObject)
@@ -49,5 +49,4 @@ class HomePageService: NSObject {
             failure(errorInfo)
         }
     }
-    
 }

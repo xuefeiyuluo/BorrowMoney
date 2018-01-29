@@ -10,6 +10,7 @@ import UIKit
 
 class BasicVC: UIViewController {
 
+    // navigationBar最下面有条横线，判断当前横线是否要隐藏
     var navigationLine : Bool? {
         didSet {
             if navigationLine! {
@@ -37,8 +38,24 @@ class BasicVC: UIViewController {
         
         // 设置导航栏
         setUpNavigationView()
+        
+        // 初始化数据
+        initializationData()
     }
     
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        SVProgressHUD.dismiss()
+    }
+    
+    
+    // 初始化数据
+    func initializationData() -> Void {
+        
+    }
+    
+
     // 设置导航栏
     func setUpNavigationView() -> () {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
