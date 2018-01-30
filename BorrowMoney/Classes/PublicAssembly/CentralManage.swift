@@ -106,9 +106,10 @@ func billDetail(model : LoanManageData) -> BasicVC {
 
 
 // 首页搜索结果页面
-func searchResult() -> BasicVC {
+func searchResult(dataDict:NSDictionary) -> BasicVC {
     let result : SearchResultVC = SearchResultVC()
     result.hidesBottomBarWhenPushed = true
+    result.dataDict = dataDict
     return result
 }
 

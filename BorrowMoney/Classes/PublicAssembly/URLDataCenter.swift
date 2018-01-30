@@ -156,12 +156,32 @@ class URLDataCenter: NSObject {
         return param
     }
     
-    // 最近热搜
+    // 最近热搜列表
     public func hotKeyword() -> URLCenter {
         let param : URLCenter = URLCenter()
         param.method = "rank.getHotLoan"
         return param
     }
+    
+    
+    // 最近热搜词
+    public func hotKeyText() -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.method = "rank.getHotKeyword"
+        return param
+    }
+    
+    
+    // 根据热搜词列表
+    public func hotKeyLoanlist(keyword:String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.method = "rank.searchProduct"
+        param.dict = ["keyword":keyword]
+        return param
+    }
+    
+    
+    
     
     // 贷款大全 贷款类型
     public func requestLoanType() -> URLCenter {

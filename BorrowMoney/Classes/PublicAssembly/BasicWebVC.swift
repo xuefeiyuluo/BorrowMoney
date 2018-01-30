@@ -13,8 +13,17 @@ class BasicWebVC: BasicVC {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // 创建webview
+        createWebUI()
     }
-
+    
+    
+    // 创建webview
+    func createWebUI() -> Void {
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

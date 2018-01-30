@@ -20,6 +20,8 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     var bannerArray : [BannerModel] = [BannerModel]()// 全部广告数据
     var hotArray : [HotLoanModel] = [HotLoanModel]()// 热门贷款数据
     var messageTimer : Timer?// 消息的定时器
+    var hotText : NSDictionary?// 最近热搜的标签
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -52,6 +54,9 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         
         // 获取首页广告信息(只请求一次)
         requestBannerInfo()
+        
+        // 最近热搜标签
+        requestHotText()
     }
 
     
@@ -268,12 +273,13 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             make.height.equalTo(64 + (30 * HEIGHT_SCALE))
         })
         
+        weak var weakSelf = self
         self.navigationView?.navigationBlock = {(tag) in
             // 100消息的点击事件  200搜索的点击事件
             if tag == 100 {
-                self.navigationController?.pushViewController(messageCenter(), animated: true)
+                weakSelf?.navigationController?.pushViewController(messageCenter(), animated: true)
             } else {
-                self.navigationController?.pushViewController(searchResult(), animated: true)
+                weakSelf?.navigationController?.pushViewController(searchResult(dataDict: (weakSelf?.hotText!)!), animated: true)
             }
         }
     }
@@ -336,6 +342,19 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    // 更多贷款产品的点击事件
+    func moreClick() -> Void {
+        // 跳转贷款大全
+        APPDELEGATE.tabBarControllerSelectedIndex(index: 1)
+    }
+    
+    
+    // 一键申请点击事件
+    func fastClick(sender: UIButton) -> Void {
+//        let hotLoan : HotLoanModel = self.hotArray[sender.tag]
+//        self.navigationController?.pushViewController(loanDetail(hotLoan: hotLoan), animated: true)
+    }
+    
     
     // 获取首页广告信息
     func requestBannerInfo() -> Void {
@@ -376,22 +395,16 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             }
             
         }) { (errorInfo) in
-            
         }
     }
     
     
-    // 更多贷款产品的点击事件
-    func moreClick() -> Void {
-        // 跳转贷款大全
-        APPDELEGATE.tabBarControllerSelectedIndex(index: 1)
-    }
-    
-    
-    // 一键申请点击事件
-    func fastClick(sender: UIButton) -> Void {
-//        let hotLoan : HotLoanModel = self.hotArray[sender.tag]
-//        self.navigationController?.pushViewController(loanDetail(hotLoan: hotLoan), animated: true)
+    // 最近热搜标签
+    func requestHotText() -> Void {
+        HomePageService.homeInstance.requestHotKeyText(success: { (responseObject) in
+            self.hotText = responseObject as? NSDictionary
+        }) { (errorInfo) in
+        }
     }
     
     
