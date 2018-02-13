@@ -125,6 +125,13 @@ class UserCenterHeaderView: UIView {
         }
     }
     
+    
+    // 退出登录的界面
+    func loginOutUpdateView() -> Void {
+        self.headerImage?.image = UIImage (named: "avatarHeader.png")
+        self.userName?.text = "点击登录"
+    }
+    
 
     // 头像的点击事件
     func headerClick() -> Void {

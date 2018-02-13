@@ -50,7 +50,7 @@ final class AlamofireManager: NSObject {
         let headers: HTTPHeaders = ["Accept": "application/json","Content-type":"application/json;charset=utf-8"]
         
         // 数据组装
-        let dict : NSMutableDictionary = self .requestDataAssemble(urlCenter: urlCenter)
+        let dict : NSMutableDictionary = self.requestDataAssemble(urlCenter: urlCenter)
         
         Alamofire.request(SERVERURL as String, method: .post, parameters:dict as? Parameters, encoding: URLEncoding.default, headers: headers).responseJSON { (responseObject:DataResponse<Any>) in
             switch(responseObject.result){

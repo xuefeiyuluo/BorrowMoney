@@ -42,6 +42,14 @@ let USERDEFAULT : UserDefaults = UserDefaults .standard
 let APPDELEGATE = (UIApplication.shared.delegate) as! AppDelegate
 
 
+// ****************************** 固定html5页面 *************************************
+let CommonProblem = "http://www.jiedianqian.com/questionH5/index.html"
+let LuckDraw = "http://www.jiedianqian.com/rotategame/index.html"
+let InvitingFriends = "http://www.jiedianqian.com/mgm/indexV2.html"
+
+
+
+
 
 /**
  *  获取屏幕高比例

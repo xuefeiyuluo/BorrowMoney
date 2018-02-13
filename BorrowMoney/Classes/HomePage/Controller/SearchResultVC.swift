@@ -8,12 +8,14 @@
 
 import UIKit
 
-class SearchResultVC: BasicVC, UISearchBarDelegate {
+class SearchResultVC: BasicVC, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
-    var navigationView : SearchNavigationView?//
+    var navigationView : SearchNavigationView?// 头部搜索
+    var resultTableView : UITableView?// 搜索列表
     var hotView : UIView = UIView()// 热搜View
     var dataDict : NSDictionary?// 热门搜索标签的数据源
-    var hotArray : [String] = [String]()
+    var hotArray : [String] = [String]()// 热门搜索标签列表
+    var resultData : [HotLoanModel] = [HotLoanModel]()// 搜索结果列表
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -31,6 +33,9 @@ class SearchResultVC: BasicVC, UISearchBarDelegate {
 
         // 创建热搜UI
         createHotView()
+        
+        // 创建搜索结果列表
+        createResultListUI()
     }
     
     
@@ -43,7 +48,8 @@ class SearchResultVC: BasicVC, UISearchBarDelegate {
     
     
     // 创建自定义导航栏
-    func createCustomNavigationView() -> Void {
+    func createCustomNavigationView() -> Void
+    {
         let navigationView : SearchNavigationView = SearchNavigationView()
         navigationView.cancelBtn?.addTarget(self, action: #selector(cancelClick), for: UIControlEvents.touchUpInside)
         navigationView.searchBar?.layer.cornerRadius = 34 * HEIGHT_SCALE / 2
@@ -60,7 +66,8 @@ class SearchResultVC: BasicVC, UISearchBarDelegate {
     
     
     // 创建热搜UI
-    func createHotView() -> Void {
+    func createHotView() -> Void
+    {
         self.view.addSubview(self.hotView)
         self.hotView.snp.makeConstraints { (make) in
             make.top.equalTo((self.navigationView?.snp.bottom)!).offset(15 * HEIGHT_SCALE)
@@ -96,9 +103,95 @@ class SearchResultVC: BasicVC, UISearchBarDelegate {
     }
     
     
+    // 创建搜索结果列表
+    func createResultListUI() -> Void
+    {
+        
+        let resultTableView : UITableView = UITableView (frame: CGRect.zero, style: UITableViewStyle.grouped)
+        resultTableView.delegate = self
+        resultTableView.dataSource = self
+        resultTableView.isHidden = true
+        resultTableView.separatorStyle = .none
+        resultTableView.register(LoanBrandCell.self, forCellReuseIdentifier: "loanBrand")
+        self.resultTableView = resultTableView
+        self.view.addSubview(self.resultTableView!)
+        self.resultTableView?.snp.makeConstraints({ (make) in
+            make.top.right.left.bottom.equalTo(self.view)
+        })
+    }
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return self.resultData.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return 1
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        let temphot : HotLoanModel = self.resultData[indexPath.section] as HotLoanModel
+        if self.isEmptyAndNil(str: temphot.descriptions!) {
+            return 75 * HEIGHT_SCALE
+        } else {
+            return 105 * HEIGHT_SCALE
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    {
+        return 10 * HEIGHT_SCALE
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat
+    {
+        return 0.01 * HEIGHT_SCALE
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
+    {
+        return nil
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView?
+    {
+        return nil
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell : LoanBrandCell = tableView.dequeueReusableCell(withIdentifier: "loanBrand") as! LoanBrandCell
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.hotModel = self.resultData[indexPath.section] as HotLoanModel
+        cell.fastLoan?.tag = indexPath.section
+        cell.fastLoan?.addTarget(self, action: #selector(fastClick(sender:)), for: UIControlEvents.touchUpInside)
+        return cell
+    }
+    
+    
+    
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let loanMode : HotLoanModel = self.resultData[indexPath.section]
+        self.navigationController?.pushViewController(loanDetail(hotLoan:loanMode), animated: true)
+    }
+    
+    
     // MARK: UISearchBarDelegate
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
+        requestKeywordLoanlist(keyword: searchBar.text!)
     }
     
     
@@ -111,16 +204,29 @@ class SearchResultVC: BasicVC, UISearchBarDelegate {
     }
     
     
+    // 一键申请点击事件
+    func fastClick(sender: UIButton) -> Void
+    {
+//        let hotLoan : HotLoanModel = self.hotArray[sender.tag]
+//        self.navigationController?.pushViewController(loanDetail(hotLoan: hotLoan), animated: true)
+    }
+    
+    
     // 取消按钮
-    func cancelClick() -> Void {
+    func cancelClick() -> Void
+    {
         self.view.endEditing(true)
         self.navigationController?.popViewController(animated: true)
     }
     
     
     // 根据输入的关键词搜索
-    func requestKeywordLoanlist(keyword:String) -> Void {
+    func requestKeywordLoanlist(keyword:String) -> Void
+    {
         HomePageService.homeInstance.requestSearchText(keyword: "免息", success: { (responseObject) in
+            let tempDict : NSDictionary = responseObject as! NSDictionary
+            
+//            self.resultData = HotLoanModel.objectArrayWithKeyValuesArray(array: tempDict["allList"] as! NSArray) as! [HotLoanModel]
             
         }) { (errorInfo) in
         }

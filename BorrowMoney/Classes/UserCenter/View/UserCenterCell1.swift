@@ -103,9 +103,6 @@ class UserCenterCell1: UITableViewCell {
     
     // 更新还款管理
     func updatePayManage(loanData : LoanProductsModel) -> Void {
-
-        
-        self.subLabel?.textColor = UIColor().colorWithHexString(hex: "FF5A30")
         // 类型 有逾期HAD_OVERDUED、无逾期NORMAL_REPAY、无贷款应还或未登陆NO_LOAN
         if loanData.type == "HAD_OVERDUED" {
             self.subLabel?.text = NSString (format: "%@元", loanData.currentRepayAmount!) as String
@@ -119,19 +116,37 @@ class UserCenterCell1: UITableViewCell {
             self.subLabel?.text = "0.00元"
             self.payLabel?.text = "本期应还"
             self.payLabel?.textColor = UIColor().colorWithHexString(hex: "999999")
-            
         }
         
         
         // 金额为0时颜色为黑色
         if loanData.currentRepayAmount?.floatValue == 0 {
             self.subLabel?.textColor = UIColor().colorWithHexString(hex: "585858")
-            self.subLabel?.font = UIFont.boldSystemFont(ofSize: 16 * WIDTH_SCALE)
         } else {
             self.subLabel?.textColor = UIColor().colorWithHexString(hex: "FF5A30")
-            self.subLabel?.font = UIFont .systemFont(ofSize: 16 * WIDTH_SCALE)
         }
+        self.subLabel?.font = UIFont .systemFont(ofSize: 16 * WIDTH_SCALE)
     }
+    
+    
+    // 退出登录订单管理界面
+    func loginOutOrdeManageView() -> Void {
+        self.subLabel?.text = "暂无订单记录"
+        self.subLabel?.textColor = LINE_COLOR3
+        self.subLabel?.font = UIFont .systemFont(ofSize: 13 * WIDTH_SCALE)
+        
+    }
+    
+    // 退出登录还款管理界面
+    func loginOutPayManageView() -> Void {
+        self.subLabel?.text = "0.00元"
+        self.payLabel?.text = "本期应还"
+        self.payLabel?.textColor = UIColor().colorWithHexString(hex: "999999")
+        self.subLabel?.font = UIFont .systemFont(ofSize: 16 * WIDTH_SCALE)
+        self.subLabel?.textColor = UIColor().colorWithHexString(hex: "585858")
+    }
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

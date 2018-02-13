@@ -1,3 +1,33 @@
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//
+//         .............................................
+//                  佛祖镇楼                  BUG辟易
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
 //
 //  UserCenterVC.swift
 //  BorrowMoney
@@ -190,7 +220,30 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             
             cell.userIconBlock = {index in
-                XPrint(index)
+                // 贷款计算器
+                if index == 0 {
+                    self.navigationController?.pushViewController(userCenterWebViewWithUrl(url: "http://www.jiedianqian.com/questionH5/index.html"), animated: true)
+                // 微信公众号
+                } else if index == 1 {
+                // 常见问题
+                } else if index == 2 {
+                    self.navigationController?.pushViewController(userCenterWebViewWithUrl(url: CommonProblem), animated: true)
+                // 现金
+                } else if index == 3 {
+                // 免息卷
+                } else if index == 4 {
+                // 赚积分
+                } else if index == 5 {
+                // 抽奖赢免息
+                } else if index == 6 {
+                    self.navigationController?.pushViewController(userCenterWebViewWithUrl(url: LuckDraw), animated: true)
+                // 邀请好友
+                } else if index == 7 {
+                    self.navigationController?.pushViewController(userCenterWebViewWithUrl(url: InvitingFriends), animated: true)
+                // 第三方账户
+                } else if index == 8 {
+                    
+                }
             }
             
             return cell
@@ -357,7 +410,7 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     override func setUpNavigationView() {
         super.setUpNavigationView()
-        self.navigationItem.titleView = NaviBarView() .setUpNaviBarWithTitle(title: "个人中心");
+        self.navigationItem.titleView = NaviBarView().setUpNaviBarWithTitle(title: "个人中心");
         self.navigationItem.leftBarButtonItem = nil
         
         let rightBtn = UIButton (type: UIButtonType.custom)
@@ -374,8 +427,19 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     override func initializationData() -> Void {
         super.initializationData()
         self.sectionArray = [["RowOrderManage","RowRepaymentManage"],["RowUserIconListView"],["RowUserSetUp"]]
+        NotificationCenter.default.addObserver(self, selector: #selector(loginOut), name: NSNotification.Name (rawValue: "NotificationLoginOut"), object: nil)
     }
     
+    
+    // 退出登录后，界面刷新
+    func loginOut() -> Void
+    {
+        self.headerView?.loginOutUpdateView()
+        self.orderManageView?.loginOutOrdeManageView()
+        self.payManageView?.loginOutPayManageView()
+    }
+    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

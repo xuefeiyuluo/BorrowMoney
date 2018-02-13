@@ -26,4 +26,15 @@ extension String {
         return String(format: hash .lowercased as String)
     }
     
+    
+    // utf8编码
+    func utf8EncodedString() ->String {
+//        var arr = [UInt8]()
+//        arr += self.utf8
+//        return String(bytes: arr,encoding: String.Encoding.utf8)!
+
+        var encodeWord = self.addingPercentEncoding(withAllowedCharacters: NSCharacterSet(charactersIn:"`#%^{}\"[]|\\<> ").inverted)
+        
+        return encodeWord!
+    }
 }

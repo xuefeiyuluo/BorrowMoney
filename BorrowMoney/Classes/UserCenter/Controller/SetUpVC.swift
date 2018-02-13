@@ -299,13 +299,9 @@ class SetUpVC: BasicVC {
         UserCenterService.userInstance.loginOut(success: { (responseObject) in
             let dataDict : NSDictionary = responseObject as! NSDictionary
             if dataDict["code"] as! String == "0" {
-                USERDEFAULT.removeObject(forKey: "userInfo")
-                USERDEFAULT.synchronize()
+                USERDEFAULT.clearUserDefaultsData()
+                NotificationCenter.default.post(name: NSNotification.Name (rawValue: "NotificationLoginOut"), object: nil)
                 self.navigationController?.popViewController(animated: true)
-                
-                
-                
-                
             }
         }) { (errorInfo) in
         }

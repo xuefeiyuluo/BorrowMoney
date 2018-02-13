@@ -182,7 +182,6 @@ class URLDataCenter: NSObject {
     
     
     
-    
     // 贷款大全 贷款类型
     public func requestLoanType() -> URLCenter {
         let param : URLCenter = URLCenter()

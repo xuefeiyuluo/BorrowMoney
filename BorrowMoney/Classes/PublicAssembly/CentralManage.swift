@@ -45,6 +45,15 @@ func personalInfo() -> BasicVC {
 }
 
 
+// 个人中心webView界面
+func userCenterWebViewWithUrl(url : String) -> BasicVC {
+    let userCenterWeb : UserCenterWebVC = UserCenterWebVC()
+    userCenterWeb.hidesBottomBarWhenPushed = true
+    userCenterWeb.url = url
+    return userCenterWeb
+}
+
+
 // 设置
 func setUp() -> BasicVC {
     let setUp : SetUpVC = SetUpVC()

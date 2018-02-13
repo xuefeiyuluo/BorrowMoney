@@ -12,20 +12,20 @@ class UserCenterModel: NSObject {
 
     
     
-    var yhzxShowFlag : String?//
-    var signInToday : String?//
-    var headImage : String?//
+    var yhzxShowFlag : String? = ""//
+    var signInToday : String? = ""//
+    var headImage : String? = ""//
     var record : LoanProductsModel?//
-    var linkUrl : String?//
-    var verify : String?//
-    var mobile : String?//
+    var linkUrl : String? = ""//
+    var verify : String? = ""//
+    var mobile : String? = ""//
     var application : LoanOrderModel?//
-    var zmxyShowFlag : String?//
-    var idCard : String?//
-    var balanceAmount : String?//
-    var zmScore : String?//
-    var redPacketCount : String?//
-    var gender : String?//
-    var name : String?//
+    var zmxyShowFlag : String? = ""//
+    var idCard : String? = ""//
+    var balanceAmount : String? = ""//
+    var zmScore : String? = ""//
+    var redPacketCount : String? = ""//
+    var gender : String? = ""//
+    var name : String? = ""//
 
 }

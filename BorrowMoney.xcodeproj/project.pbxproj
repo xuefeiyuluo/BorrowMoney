@@ -87,6 +87,7 @@
 		4025052A2019EE9C00FD4B3E /* SortViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402505292019EE9C00FD4B3E /* SortViewCell.swift */; };
 		403FD2451FD1BCB00034C4E5 /* LoanDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403FD2441FD1BCB00034C4E5 /* LoanDetailVC.swift */; };
 		40B080ED201EF1EA0054134A /* HotSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B080EC201EF1EA0054134A /* HotSearchView.swift */; };
+		40CCFE852031917500A8C7C7 /* UserCenterWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CCFE842031917500A8C7C7 /* UserCenterWebVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -194,6 +195,7 @@
 		402505292019EE9C00FD4B3E /* SortViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewCell.swift; sourceTree = "<group>"; };
 		403FD2441FD1BCB00034C4E5 /* LoanDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoanDetailVC.swift; sourceTree = "<group>"; };
 		40B080EC201EF1EA0054134A /* HotSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotSearchView.swift; sourceTree = "<group>"; };
+		40CCFE842031917500A8C7C7 /* UserCenterWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenterWebVC.swift; sourceTree = "<group>"; };
 		4590E8911C82E60953B15D95 /* Pods_BorrowMoney.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BorrowMoney.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30E7E8962F70FA8C295C3E8 /* Pods-BorrowMoney.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BorrowMoney.release.xcconfig"; path = "Pods/Target Support Files/Pods-BorrowMoney/Pods-BorrowMoney.release.xcconfig"; sourceTree = "<group>"; };
 		CF58623B744DB930670B6B5D /* Pods-BorrowMoney.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BorrowMoney.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BorrowMoney/Pods-BorrowMoney.debug.xcconfig"; sourceTree = "<group>"; };
@@ -553,6 +555,7 @@
 				401F8B9A1FCEDF1800298DD4 /* RepayRecordVC.swift */,
 				401F8B9B1FCEDF1800298DD4 /* SetUpVC.swift */,
 				401F8B9C1FCEDF1800298DD4 /* UserCenterVC.swift */,
+				40CCFE842031917500A8C7C7 /* UserCenterWebVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -829,6 +832,7 @@
 				401F8BCF1FCEDF1800298DD4 /* BillDetailVC.swift in Sources */,
 				401F8BDD1FCEDF1800298DD4 /* UserCenterService.swift in Sources */,
 				401F8BB01FCEDF1800298DD4 /* AppDelegate.swift in Sources */,
+				40CCFE852031917500A8C7C7 /* UserCenterWebVC.swift in Sources */,
 				401F8BD41FCEDF1800298DD4 /* RepayManageVC.swift in Sources */,
 				401F8BEE1FCFDFB900298DD4 /* ProductTypeView.swift in Sources */,
 				401F8BAD1FCEDF1800298DD4 /* ForgetVC.swift in Sources */,

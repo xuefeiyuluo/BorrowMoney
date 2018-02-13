@@ -15,6 +15,7 @@ extension UserDefaults {
         self.synchronize()
     }
     
+    
     func getCustomObject(key : String) -> AnyObject? {
         let decodedObject = self.object(forKey: key) as? NSData
         
@@ -23,5 +24,11 @@ extension UserDefaults {
             return object as AnyObject
         }
         return nil
+    }
+    
+
+    // 清除所有的存储本地的数据
+    func clearUserDefaultsData() -> Void {
+        self.removeObject(forKey: "userInfo")
     }
 }
