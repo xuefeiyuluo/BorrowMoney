@@ -62,10 +62,10 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     // 消息的定时器
     func createTimer() -> Void {
-        if self.messageTimer == nil {
-            self.messageTimer = Timer (timeInterval: 5, target: self, selector: #selector(requestMessageList), userInfo: nil, repeats: true)
-            RunLoop.main.add(self.messageTimer!, forMode: RunLoopMode.commonModes)
-        }
+//        if self.messageTimer == nil {
+//            self.messageTimer = Timer (timeInterval: 5, target: self, selector: #selector(requestMessageList), userInfo: nil, repeats: true)
+//            RunLoop.main.add(self.messageTimer!, forMode: RunLoopMode.commonModes)
+//        }
     }
     
     
@@ -138,7 +138,7 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             make.height.equalTo(95 * HEIGHT_SCALE)
         })
         self.productTypeView?.imageBlock = { (index) in
-        
+            self.navigationController?.pushViewController(largeLoan(), animated: true)
         }
         
         
@@ -168,7 +168,6 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             
         }
         self.homeTableView?.tableHeaderView = self.tableHeaderView
-        
         
         let footerView : UIView = UIView.init(frame: CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: 40 * HEIGHT_SCALE))
         let moreBtn : UIButton = UIButton (type: UIButtonType.custom)
@@ -315,28 +314,48 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         
         // 界面更新
         // 产品类别
-        if productArray.count <= 5 {
+        var productHeight : CGFloat = 0.0
+        if productArray.count > 0 && productArray.count <= 5  {
+            productHeight = 10
             self.productTypeView?.lineView?.isHidden = true
             self.productTypeView?.snp.updateConstraints({ (make) in
                 make.height.equalTo(85 * HEIGHT_SCALE)
                 
             })
-            self.tableHeaderView?.frame = CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: 270 * HEIGHT_SCALE)
-        } else {
+        } else if productArray.count > 5 {
             self.productTypeView?.lineView?.isHidden = false
             self.productTypeView?.snp.updateConstraints({ (make) in
                 make.height.equalTo(95 * HEIGHT_SCALE)
-                
             })
-            self.tableHeaderView?.frame = CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: 280 * HEIGHT_SCALE)
+        } else {
+            productHeight = 95
         }
-        self.productTypeView?.updateProductData(dataArray: productArray as NSArray)
+        
+        if productArray.count > 0 {
+            self.productTypeView?.updateProductData(dataArray: productArray as NSArray)
+        }
+        
         
         // 滚动图
-        self.rollPictureView?.updateRollImageDate(dateArray: rollArray as NSArray)
+        var rollHeight : CGFloat = 0.0
+        if rollArray.count > 0 {
+            self.rollPictureView?.updateRollImageDate(dateArray: rollArray as NSArray)
+        } else {
+            rollHeight = 95
+        }
+        
         
         // 固定广告
-        self.fixedAdverView?.updateFixedAdverData(dataArray: fixedArray as NSArray)
+        var fixedHeight : CGFloat = 0.0
+        if fixedArray.count > 0 {
+            self.fixedAdverView?.updateFixedAdverData(dataArray: fixedArray as NSArray)
+        } else {
+            fixedHeight = 90
+        }
+        
+        // 更新头部的高度
+        self.tableHeaderView?.frame = CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: (280 - productHeight - rollHeight - fixedHeight) * HEIGHT_SCALE)
+        
         // 更改头部高度后，刷新界面（解决多余的高度仍然显示的问题）
         self.homeTableView?.reloadData()
     }

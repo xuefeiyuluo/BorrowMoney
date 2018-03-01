@@ -22,6 +22,7 @@ import Foundation
 
 
 extension NSObject {
+    
     // dict: 要进行转换的字典
     class func objectWithKeyValues(dict: NSDictionary)->AnyObject?{
         if XFoundation.isClassFromFoundation(c: self) {

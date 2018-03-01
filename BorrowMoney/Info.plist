@@ -44,5 +44,13 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>“借点钱”需要访问您的相册</string>
+	<key>NSCameraUsageDescription</key>
+	<string>“借点钱”需要访问您的相机</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>“借点钱”需要访问您的位置</string>
+	<key>NSContactsUsageDescription</key>
+	<string>“借点钱”需要访问您的通讯录</string>
 </dict>
 </plist>

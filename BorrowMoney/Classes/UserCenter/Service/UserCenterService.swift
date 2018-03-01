@@ -179,4 +179,35 @@ class UserCenterService: NSObject {
         }
     }
     
+    
+    // 我的现金
+    func requestMyCash(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestMyCashInfo()
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            failure(errorInfo)
+        }
+    }
+    
+    // 资金明细
+    func requestCaptialList(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestCaptialDetail()
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            failure(errorInfo)
+        }
+    }
+    
+    
+    
+    
+    
 }

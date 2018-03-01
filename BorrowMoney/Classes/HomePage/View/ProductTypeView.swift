@@ -8,8 +8,8 @@
 
 import UIKit
 
-typealias ImageBlock = (Int) -> Void
-class ProductTypeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+typealias ImageBlock = (String) -> Void
+class ProductTypeView: BasicView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     var productCollectionView : UICollectionView?//
     var lineView : UIView?// 横线
     var line1 : UIButton?// 第一条横线
@@ -18,21 +18,8 @@ class ProductTypeView: UIView, UICollectionViewDelegate, UICollectionViewDataSou
     var productArray : [BannerModel] = [BannerModel]()// 数据源
     
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        // 创建界面
-        createUI()
-    }
-    
-    
     // 创建界面
-    func createUI() -> Void {
+    override func createUI() -> Void {
         let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.scrollDirection = UICollectionViewScrollDirection.horizontal
         layout.itemSize = CGSize (width: SCREEN_WIDTH / 5 - 0.01, height: 80 * HEIGHT_SCALE)
@@ -120,7 +107,9 @@ class ProductTypeView: UIView, UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-
+        if self.imageBlock != nil {
+            self.imageBlock!("")
+        }
     }
     
     

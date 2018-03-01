@@ -9,7 +9,7 @@
 import UIKit
 
 typealias RollImageBlock = (Int) -> Void
-class RollPictureView: UIView, UIScrollViewDelegate {
+class RollPictureView: BasicView, UIScrollViewDelegate {
 
     var rollImageBlock : RollImageBlock?//
     var rollScrollView : UIScrollView?//
@@ -19,6 +19,7 @@ class RollPictureView: UIView, UIScrollViewDelegate {
     var currentNumber : Int = 0// 当前图片显示
     var imageArray : NSArray?// 数据源
     var imageTimer : Timer?// 图片的定时器
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -28,16 +29,15 @@ class RollPictureView: UIView, UIScrollViewDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        // 创建界面
-        createUI()
-        
         // 滚动图片的定时器
         createTimer()
     }
     
     
+    
+    
     // 创建界面
-    func createUI() -> Void {
+    override func createUI() -> Void {
         let rollScrollView : UIScrollView = UIScrollView.init(frame: CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: 95 * HEIGHT_SCALE))
         rollScrollView.contentOffset = CGPoint(x: SCREEN_WIDTH, y: 0)
         rollScrollView.showsHorizontalScrollIndicator = false

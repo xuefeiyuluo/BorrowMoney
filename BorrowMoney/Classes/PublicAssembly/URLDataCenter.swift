@@ -204,6 +204,22 @@ class URLDataCenter: NSObject {
         param.method = "rank.getRecommendation"
         return param
     }
+    
+    
+    // 我的现金 基本信息
+    public func requestMyCashInfo() -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.method = "mgm.getBalance"
+        return param
+    }
+    
+    // 资金明细
+    public func requestCaptialDetail() -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["type":"all"]
+        param.method = "mgm.getWalletDetail"
+        return param
+    }
 }
 
 

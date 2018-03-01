@@ -9,7 +9,7 @@
 import UIKit
 
 typealias HomeNavigationBlock = (Int) -> Void
-class CustomNavigationView: UIView {
+class CustomNavigationView: BasicView {
     var messageBtn : UIButton?// 消息icon
     var promptLabel : UILabel?//
     var navigationBlock : HomeNavigationBlock?// 头部按钮的点击事件
@@ -22,14 +22,11 @@ class CustomNavigationView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = NAVIGATION_COLOR
-        
-        // 创建界面
-        createUI()
     }
     
     
     // 创建界面
-    func createUI() -> Void {
+    override func createUI() -> Void {
         // 消息图标
         let messageBtn : UIButton = UIButton (type: UIButtonType.custom)
         messageBtn.setImage(UIImage (named: "message.png"), for: UIControlState.normal)

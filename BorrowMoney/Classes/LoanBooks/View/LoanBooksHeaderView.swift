@@ -9,26 +9,15 @@
 import UIKit
 
 typealias TapClickType = (String) -> Void
-class LoanBooksHeaderView: UIView {
+class LoanBooksHeaderView: BasicView {
     lazy var headerView : UIView = UIView()
     lazy var dataArray : [String] = ["金额不限","所有贷款类型","排序"]
     var uiArray : [UIButton] = [UIButton]()// 数组控件
     var tapClickType : TapClickType?// 头部点击 "amount"  "loanType" "sort"
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        // 创建界面
-        createUI()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     
     // 创建界面
-    func createUI() -> Void {
+    override func createUI() -> Void {
         self.backgroundColor = UIColor.white
         let viewWidth : CGFloat = SCREEN_WIDTH / 3
         self.addSubview(self.headerView)

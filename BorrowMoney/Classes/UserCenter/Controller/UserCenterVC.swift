@@ -222,27 +222,47 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             cell.userIconBlock = {index in
                 // 贷款计算器
                 if index == 0 {
-                    self.navigationController?.pushViewController(userCenterWebViewWithUrl(url: "http://www.jiedianqian.com/questionH5/index.html"), animated: true)
+                    self.navigationController?.pushViewController(loanCalculator(), animated: true)
                 // 微信公众号
                 } else if index == 1 {
+                    self.navigationController?.pushViewController(weChatFocus(), animated: true)
                 // 常见问题
                 } else if index == 2 {
                     self.navigationController?.pushViewController(userCenterWebViewWithUrl(url: CommonProblem), animated: true)
                 // 现金
                 } else if index == 3 {
+                    userLogin(successHandler: { () -> (Void) in
+                        self.navigationController?.pushViewController(cash(), animated: true)
+                    }) { () -> (Void) in
+                    }
                 // 免息卷
                 } else if index == 4 {
+                    userLogin(successHandler: { () -> (Void) in
+                        self.navigationController?.pushViewController(interestFree(), animated: true)
+                    }) { () -> (Void) in
+                    }
                 // 赚积分
                 } else if index == 5 {
+                    userLogin(successHandler: { () -> (Void) in
+                        self.navigationController?.pushViewController(integral(), animated: true)
+                    }) { () -> (Void) in
+                    }
                 // 抽奖赢免息
                 } else if index == 6 {
-                    self.navigationController?.pushViewController(userCenterWebViewWithUrl(url: LuckDraw), animated: true)
+                    userLogin(successHandler: { () -> (Void) in
+                        self.navigationController?.pushViewController(userCenterWebViewWithUrl(url: LuckDraw), animated: true)
+                    }) { () -> (Void) in
+                    }
+                    
                 // 邀请好友
                 } else if index == 7 {
                     self.navigationController?.pushViewController(userCenterWebViewWithUrl(url: InvitingFriends), animated: true)
                 // 第三方账户
                 } else if index == 8 {
-                    
+                    userLogin(successHandler: { () -> (Void) in
+                        self.navigationController?.pushViewController(accountManage(), animated: true)
+                    }) { () -> (Void) in
+                    }
                 }
             }
             
@@ -317,10 +337,10 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     // 消息中心的定时器
     func createTimer() -> Void {
-        if self.messageTimer == nil {
-            self.messageTimer = Timer (timeInterval: 5, target: self, selector: #selector(requestMessageList), userInfo: nil, repeats: true)
-            RunLoop.main.add(self.messageTimer!, forMode: RunLoopMode.commonModes)
-        }
+//        if self.messageTimer == nil {
+//            self.messageTimer = Timer (timeInterval: 5, target: self, selector: #selector(requestMessageList), userInfo: nil, repeats: true)
+//            RunLoop.main.add(self.messageTimer!, forMode: RunLoopMode.commonModes)
+//        }
     }
     
     

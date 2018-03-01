@@ -12,6 +12,8 @@ import Alamofire
 final class AlamofireManager: NSObject {
     static let shareNetWork = AlamofireManager()
     static let secret = "fbcf15e88f1b821cb9a1b4446cea1e8f"
+    var alertViewSate : Bool = true// 重新登录的弹框
+    
     
     // get请求
     func getRequest(urlCenter : URLCenter,params:NSMutableDictionary,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
@@ -49,6 +51,9 @@ final class AlamofireManager: NSObject {
         
         let headers: HTTPHeaders = ["Accept": "application/json","Content-type":"application/json;charset=utf-8"]
         
+        // 设置请求超时时长
+        self.setRequestTimeOut()
+        
         // 数据组装
         let dict : NSMutableDictionary = self.requestDataAssemble(urlCenter: urlCenter)
         
@@ -56,7 +61,6 @@ final class AlamofireManager: NSObject {
             switch(responseObject.result){
             case .success(let value):
                 SVProgressHUD .dismiss()
-
                 // 返回结果处理
                 self.handleSuccessResult(value: value, success: success, failure: failure)
                 break
@@ -160,8 +164,31 @@ final class AlamofireManager: NSObject {
     
     // 处理请求成功但返回的一些错误信息
     func errorResult(resultDict : NSDictionary,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        
+        // 登录超时，重新登录界面
+        if (resultDict["code"]as! String) == "-8" {
+            USERDEFAULT.clearUserDefaultsData()
+            NotificationCenter.default.post(name: NSNotification.Name (rawValue: "NotificationLoginOut"), object: nil)
+            if self.alertViewSate {
+                self.alertViewSate = false
+                let alertView : UIAlertView = UIAlertView (title: "登录失效，请重新登录", message: "", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "登录")
+                alertView.showWithAlertBlock(alertBlock: { (btnIndex, btnTitle) in
+                    if btnIndex != 0 {
+                        userLogin(successHandler: { () -> (Void) in
+                            self.alertViewSate = false
+                        }) { () -> (Void) in
+                            self.alertViewSate = true
+                            // 跳转贷款大全
+                            APPDELEGATE.tabBarControllerSelectedIndex(index: 1)
+                        }
+                    } else {
+                        self.alertViewSate = true
+                    }
+                })
+            }
+            
         // 短信发送触发图形码验证
-        if (resultDict["code"]as! String) == "-69" {
+        } else if (resultDict["code"]as! String) == "-69" {
             success(resultDict)
         } else {
             SVProgressHUD .showError(withStatus: resultDict["desc"]as! String)
@@ -237,5 +264,14 @@ final class AlamofireManager: NSObject {
         let tempSign = contentString.md5.appending(AlamofireManager.secret)
         let md5Sign = tempSign.md5
         return md5Sign
+    }
+    
+    
+    // 设置请求超时时长
+    func setRequestTimeOut() -> Void {
+        var sessionManager:Alamofire.SessionManager!
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 10
+        sessionManager = Alamofire.SessionManager(configuration: configuration)
     }
 }

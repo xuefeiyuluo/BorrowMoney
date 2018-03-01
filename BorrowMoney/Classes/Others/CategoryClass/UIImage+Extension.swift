@@ -7,10 +7,12 @@
 //
 
 import Foundation
+
 public enum DirectionEnum : Int {
     case leftToRight
     case topToBottom
 }
+
 extension UIImage {
     
     // 根据颜色值创建图片
@@ -32,7 +34,7 @@ extension UIImage {
     
     
     // 获取渐变的图片
-    public func imageGradientPicture(gradientColors:[UIColor],size:CGSize,direction:DirectionEnum) -> UIImage {
+    func imageGradientPicture(gradientColors:[UIColor],size:CGSize,direction:DirectionEnum) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, true, 0)
         let context = UIGraphicsGetCurrentContext()
         let colorSpace = CGColorSpaceCreateDeviceRGB()

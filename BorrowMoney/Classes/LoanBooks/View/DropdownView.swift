@@ -10,7 +10,7 @@ import UIKit
 
 typealias DataBlock = (_ loanType : LoanAmountType, _ tag : Int) -> Void
 
-class DropdownView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate{
+class DropdownView: BasicView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate{
     
     lazy var backBtn : UIButton = UIButton (type: UIButtonType.custom)// 背景点击事件
     lazy var dropView : UIView = UIView()

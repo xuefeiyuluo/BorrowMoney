@@ -8,27 +8,16 @@
 
 import UIKit
 
-class RepayManageHeaderView: UIView {
+class RepayManageHeaderView: BasicView {
     var amountLabel : UILabel?// 逾期金额
     var dateLabel : UILabel?// 逾期天数
     var amountInfo : UILabel?//
     var dateInfo : UILabel?//
     var infoLabel : UILabel?// 具体信息
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        // 创建UI
-        createUI()
-    }
-    
     
     // 创建UI
-    func createUI() -> Void {
+    override func createUI() -> Void {
         // 背景
         let backImage : UIImageView = UIImageView()
         backImage.backgroundColor = NAVIGATION_COLOR

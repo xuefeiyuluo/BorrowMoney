@@ -9,7 +9,7 @@
 import UIKit
 
 typealias AdverClickBlock = (_ url : String) -> Void
-class FixedAdverView: UIView {
+class FixedAdverView: BasicView {
 
     var adverClickBlock : AdverClickBlock?
     var leftBtn : UIButton?// 左边的按钮
@@ -17,20 +17,8 @@ class FixedAdverView: UIView {
     var adverArray : NSArray?// 数据源
     
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        // 创建界面
-        createUI()
-    }
-    
-    
     // 创建界面
-    func createUI() -> Void {
+    override func createUI() -> Void {
         let leftBtn : UIButton = UIButton.init(type: UIButtonType.custom)
         leftBtn.tag = 300
         leftBtn.addTarget(self, action: #selector(tapClick(sender:)), for: UIControlEvents.touchUpInside)

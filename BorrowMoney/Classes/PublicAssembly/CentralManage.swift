@@ -130,3 +130,73 @@ func loanDetail(hotLoan : HotLoanModel) -> BasicVC {
     result.hidesBottomBarWhenPushed = true
     return result
 }
+
+
+// 大额贷款
+func largeLoan() -> BasicVC {
+    let largeLoan : LargeLoanVC = LargeLoanVC()
+    largeLoan.hidesBottomBarWhenPushed = true
+    return largeLoan
+}
+
+
+// 微信公众号
+func weChatFocus() -> BasicVC {
+    let weChat : WeChatFocusVC = WeChatFocusVC()
+    weChat.hidesBottomBarWhenPushed = true
+    return weChat
+}
+
+
+// 贷款计算器
+func loanCalculator() -> BasicVC {
+    let loanCalculator : LoanCalculatorVC = LoanCalculatorVC()
+    loanCalculator.hidesBottomBarWhenPushed = true
+    return loanCalculator
+}
+
+
+// 我的现金
+func cash() -> BasicVC {
+    let cash : MyCashVC = MyCashVC()
+    cash.hidesBottomBarWhenPushed = true
+    return cash
+}
+
+
+// 我的免息卷
+func interestFree() -> BasicVC {
+    let interestFree : MyInterestFreeVC = MyInterestFreeVC()
+    interestFree.hidesBottomBarWhenPushed = true
+    return interestFree
+}
+
+
+// 我要攒积分
+func integral() -> BasicVC {
+    let integral : MyIntegralVC = MyIntegralVC()
+    integral.hidesBottomBarWhenPushed = true
+    return integral
+}
+
+
+// 账号管理
+func accountManage() -> BasicVC {
+    let accountManage : AccountManageVC = AccountManageVC()
+    accountManage.hidesBottomBarWhenPushed = true
+    return accountManage
+}
+
+
+// 资金明细
+func capitalDetails() -> BasicVC {
+    let capitalDetails : CapitalDetailsVC = CapitalDetailsVC()
+    return capitalDetails
+}
+
+
+// 添加银行卡
+func bankCard() -> BasicVC {
+    let bankCard : BankCardVC = BankCardVC()
+    return bankCard
+}

@@ -10,25 +10,14 @@ import UIKit
 import Kingfisher
 
 typealias UserHeaderBlock = (Int) -> Void
-class UserCenterHeaderView: UIView {
+class UserCenterHeaderView: BasicView {
 
     var userName : UILabel?// 姓名
     var headerImage : UIImageView?// 头像
     var userHeaderBlock : UserHeaderBlock?
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        // 创建UI
-        createUI()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    
     // 创建UI
-    func createUI() -> Void {
+    override func createUI() -> Void {
         let backImageView = UIImageView()
         backImageView.image = UIImage (named: "UserHeaderBg.png")
         backImageView.isUserInteractionEnabled = true

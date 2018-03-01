@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchNavigationView: UIView {
+class SearchNavigationView: BasicView {
     var cancelBtn : UIButton?// 取消按钮
     var searchBar : UISearchBar?// 搜索框
     
@@ -20,14 +20,11 @@ class SearchNavigationView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = NAVIGATION_COLOR
-        
-        // 创建界面
-        createUI()
     }
     
     
     // 创建界面
-    func createUI() -> Void {
+    override func createUI() -> Void {
         // 取消按钮
         let cancelBtn : UIButton = UIButton (type: UIButtonType.custom)
         cancelBtn.setTitle("取消", for: UIControlState.normal)
