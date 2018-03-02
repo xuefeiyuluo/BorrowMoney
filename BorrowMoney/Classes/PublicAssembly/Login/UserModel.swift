@@ -15,7 +15,7 @@ class UserModel: NSObject, NSCoding{
     var isNewUser : String?//
     var hasPassword : Bool?//
     var name : String?//
-    var idCard : String?//
+    var idCard : String?// 身份证号码
     var roleType : String?//
     var verify : String?//
     var headImage : String?// 头像
@@ -25,6 +25,7 @@ class UserModel: NSObject, NSCoding{
     var signInToday : Bool?//
     var yhzxShowFlag : String?//
     var gender : String?//
+    var bankCard : String?// 银行卡号
     
     override init() {
         super.init()
@@ -48,6 +49,7 @@ class UserModel: NSObject, NSCoding{
         signInToday = decoder.decodeObject(forKey: "signInToday") as? Bool
         yhzxShowFlag = decoder.decodeObject(forKey: "yhzxShowFlag") as? String
         gender = decoder.decodeObject(forKey: "gender") as? String
+        bankCard = decoder.decodeObject(forKey: "bankCard") as? String
         
     }
     
@@ -65,6 +67,7 @@ class UserModel: NSObject, NSCoding{
         aCoder.encode(redPacketCount, forKey: "redPacketCount")
         aCoder.encode(yhzxShowFlag, forKey: "yhzxShowFlag")
         aCoder.encode(gender, forKey: "gender")
+        aCoder.encode(bankCard, forKey: "bankCard")
     }
 
 }

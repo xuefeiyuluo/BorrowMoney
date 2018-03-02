@@ -21,6 +21,8 @@ class PublicService: NSObject {
             let dataDict : NSDictionary = responseObject as! NSDictionary
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -35,6 +37,8 @@ class PublicService: NSObject {
             let dataDict : NSDictionary = responseObject as! NSDictionary
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -48,6 +52,8 @@ class PublicService: NSObject {
             // 数据处理 json转model
             success(responseObject)
         }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }

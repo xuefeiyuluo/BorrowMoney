@@ -197,4 +197,39 @@ extension NSObject {
         let size : CGSize = text.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, attributes: dic as? [String : AnyObject], context: nil).size
         return size
     }
+    
+    
+    // 获取当前控制器
+    func getCurrentVC()->UIViewController{
+        var window = UIApplication.shared.keyWindow
+        if window?.windowLevel != UIWindowLevelNormal{
+            let windows = UIApplication.shared.windows
+            for  tempwin in windows{
+                if tempwin.windowLevel == UIWindowLevelNormal{
+                    window = tempwin
+                    break
+                }
+            }
+        }
+        let frontView = (window?.subviews)![0]
+        let nextResponder = frontView.next
+        if nextResponder?.isKind(of: UIViewController.classForCoder()) == true {
+            return nextResponder as! UIViewController
+        } else if nextResponder?.isKind(of: UINavigationController.classForCoder()) == true {
+            return (nextResponder as! UINavigationController).visibleViewController!
+        } else {
+            if (window?.rootViewController) is UINavigationController{
+                //只有这个是显示的controller 是可以的必须有nav才行
+                return ((window?.rootViewController) as! UINavigationController).visibleViewController!
+            }else if (window?.rootViewController) is TabBarController {
+                //不行只是最三个开始的页面
+                return ((window?.rootViewController) as! UITabBarController).selectedViewController!
+            }
+            return (window?.rootViewController)!
+        }
+    }
+
+    
+    
+    
 }

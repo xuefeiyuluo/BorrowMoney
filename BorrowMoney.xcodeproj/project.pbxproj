@@ -14,11 +14,14 @@
 		4011FE541FF22B12006CC349 /* DropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011FE531FF22B12006CC349 /* DropdownView.swift */; };
 		4011FE561FF2590A006CC349 /* DropViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011FE551FF2590A006CC349 /* DropViewCell.swift */; };
 		40142AA92047AAA100A181C5 /* UIAlertView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40142AA82047AAA100A181C5 /* UIAlertView+Extension.swift */; };
+		40142AAE2047F90F00A181C5 /* BankNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40142AAD2047F90F00A181C5 /* BankNameModel.swift */; };
 		4017EDC71F8E196A0077B8E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4017EDC61F8E196A0077B8E0 /* Assets.xcassets */; };
 		4017EDCA1F8E196A0077B8E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4017EDC81F8E196A0077B8E0 /* LaunchScreen.storyboard */; };
 		4017EDD51F8E196A0077B8E0 /* BorrowMoneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4017EDD41F8E196A0077B8E0 /* BorrowMoneyTests.swift */; };
 		4017EDE01F8E196A0077B8E0 /* BorrowMoneyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4017EDDF1F8E196A0077B8E0 /* BorrowMoneyUITests.swift */; };
 		401D9ABB1FD694E70038A860 /* LoanBooksHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D9ABA1FD694E70038A860 /* LoanBooksHeaderView.swift */; };
+		401E56D62049537400C73CBE /* DisCountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401E56D52049537400C73CBE /* DisCountViewCell.swift */; };
+		401E56D82049590300C73CBE /* DiscountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401E56D72049590300C73CBE /* DiscountModel.swift */; };
 		401F8BAD1FCEDF1800298DD4 /* ForgetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B591FCEDF1800298DD4 /* ForgetVC.swift */; };
 		401F8BAE1FCEDF1800298DD4 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B5A1FCEDF1800298DD4 /* RegisterVC.swift */; };
 		401F8BAF1FCEDF1800298DD4 /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B5F1FCEDF1800298DD4 /* AlamofireManager.swift */; };
@@ -135,6 +138,7 @@
 		4011FE531FF22B12006CC349 /* DropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownView.swift; sourceTree = "<group>"; };
 		4011FE551FF2590A006CC349 /* DropViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewCell.swift; sourceTree = "<group>"; };
 		40142AA82047AAA100A181C5 /* UIAlertView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertView+Extension.swift"; sourceTree = "<group>"; };
+		40142AAD2047F90F00A181C5 /* BankNameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankNameModel.swift; sourceTree = "<group>"; };
 		4017EDBC1F8E196A0077B8E0 /* BorrowMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BorrowMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4017EDC61F8E196A0077B8E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4017EDC91F8E196A0077B8E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -147,6 +151,8 @@
 		4017EDE11F8E196A0077B8E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4017EDED1F8E1B790077B8E0 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "Pods/../build/Debug-iphoneos/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
 		401D9ABA1FD694E70038A860 /* LoanBooksHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanBooksHeaderView.swift; sourceTree = "<group>"; };
+		401E56D52049537400C73CBE /* DisCountViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisCountViewCell.swift; sourceTree = "<group>"; };
+		401E56D72049590300C73CBE /* DiscountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountModel.swift; sourceTree = "<group>"; };
 		401F8B591FCEDF1800298DD4 /* ForgetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetVC.swift; sourceTree = "<group>"; };
 		401F8B5A1FCEDF1800298DD4 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		401F8B5F1FCEDF1800298DD4 /* AlamofireManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
@@ -319,6 +325,13 @@
 				4017EDE11F8E196A0077B8E0 /* Info.plist */,
 			);
 			path = BorrowMoneyUITests;
+			sourceTree = "<group>";
+		};
+		401E56D92049977A00C73CBE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		401F8B561FCEDF1800298DD4 /* Classes */ = {
@@ -494,6 +507,7 @@
 		401F8B731FCEDF1800298DD4 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				401E56D92049977A00C73CBE /* Resource */,
 				401F8B741FCEDF1800298DD4 /* CategoryClass */,
 				401F8B7C1FCEDF1800298DD4 /* Lib */,
 				401F8B7D1FCEDF1800298DD4 /* Model */,
@@ -627,6 +641,8 @@
 				401F8BA21FCEDF1800298DD4 /* UserCenterModel.swift */,
 				40234E6D20453FCE006B988A /* CashModel.swift */,
 				40234E7B204568BD006B988A /* CapitalModel.swift */,
+				40142AAD2047F90F00A181C5 /* BankNameModel.swift */,
+				401E56D72049590300C73CBE /* DiscountModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -653,6 +669,7 @@
 				40234E7920455F5D006B988A /* CapitalViewCell.swift */,
 				4022003E204648C200BC296A /* CaptialNullDataView.swift */,
 				402D0AD62046C36400BA24E1 /* BankSheetView.swift */,
+				401E56D52049537400C73CBE /* DisCountViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -884,6 +901,7 @@
 				40B080ED201EF1EA0054134A /* HotSearchView.swift in Sources */,
 				40234E6C204526FF006B988A /* BankCardVC.swift in Sources */,
 				401F8BE11FCEDF1800298DD4 /* UserCenterCell1.swift in Sources */,
+				401E56D82049590300C73CBE /* DiscountModel.swift in Sources */,
 				4021B3C52044050A00E16022 /* WeChatFocusVC.swift in Sources */,
 				401F8BE21FCEDF1800298DD4 /* UserCenterCell2.swift in Sources */,
 				401D9ABB1FD694E70038A860 /* LoanBooksHeaderView.swift in Sources */,
@@ -898,6 +916,7 @@
 				401F8BD51FCEDF1800298DD4 /* RepayRecordVC.swift in Sources */,
 				401F8BC31FCEDF1800298DD4 /* BasicWebVC.swift in Sources */,
 				4025052A2019EE9C00FD4B3E /* SortViewCell.swift in Sources */,
+				40142AAE2047F90F00A181C5 /* BankNameModel.swift in Sources */,
 				40234E6020450816006B988A /* LoanCalculatorVC.swift in Sources */,
 				401F8BBC1FCEDF1800298DD4 /* UIColor+Extension.swift in Sources */,
 				401F8BD01FCEDF1800298DD4 /* MessageCenterVC.swift in Sources */,
@@ -909,6 +928,7 @@
 				401F8BB01FCEDF1800298DD4 /* AppDelegate.swift in Sources */,
 				40CCFE852031917500A8C7C7 /* UserCenterWebVC.swift in Sources */,
 				40142AA92047AAA100A181C5 /* UIAlertView+Extension.swift in Sources */,
+				401E56D62049537400C73CBE /* DisCountViewCell.swift in Sources */,
 				401F8BD41FCEDF1800298DD4 /* RepayManageVC.swift in Sources */,
 				40234E7820455EBA006B988A /* BasicViewCell.swift in Sources */,
 				40234E7A20455F5D006B988A /* CapitalViewCell.swift in Sources */,
@@ -1103,7 +1123,8 @@
 			baseConfigurationReference = CF58623B744DB930670B6B5D /* Pods-BorrowMoney.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Luo Xuanbin (4VGDFLUTSF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Luo Xuanbin (4VGDFLUTSF)";
 				DEVELOPMENT_TEAM = BB7E664454;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1112,10 +1133,10 @@
 				INFOPLIST_FILE = BorrowMoney/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = BorrowMoney;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wdzj.rzj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "709ccca8-9274-4dfe-ac5a-b1cea435ffe2";
+				PROVISIONING_PROFILE_SPECIFIER = dve_jdq_1207;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/BorrowMoney/Classes/Base/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
@@ -1137,7 +1158,7 @@
 				INFOPLIST_FILE = BorrowMoney/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = BorrowMoney;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wdzj.rzj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

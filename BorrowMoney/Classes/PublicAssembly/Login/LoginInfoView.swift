@@ -10,7 +10,7 @@ import UIKit
 
 typealias JumpBlock = (Int) -> Void
 typealias LoginBlock = (Int) -> Void
-class LoginInfoView: UIView {
+class LoginInfoView: BasicView {
 
     var userImage : UIImageView = UIImageView()
     var pswField : UITextField = UITextField()
@@ -24,21 +24,16 @@ class LoginInfoView: UIView {
     var second : Int = 60
     var loginBlock : LoginBlock?
     var jumpBlock : JumpBlock?
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override init(frame: CGRect) {
-        super .init(frame: frame)
-        
-        // 创建登录view
-        createLoginView()
-    }
-    
 
+    
+    override func initializationData() {
+        super.initializationData()
+        NotificationCenter.default.addObserver(self, selector: #selector(loginTextFieldChange(notification:)), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
+    }
+    
+    
     // 创建登录view
-    func createLoginView() -> () {
+    override func createUI() -> () {
         
         // 手机号view
         createUserView()
@@ -226,15 +221,29 @@ class LoginInfoView: UIView {
     }
     
     
+    // text改变时调用
+    func loginTextFieldChange(notification:Notification) -> Void {
+        let textField:UITextField! = notification.object as! UITextField
+        if textField == self.phoneField {
+            if (textField.text?.count)! > 11 {
+                self.phoneField.text = textField.text?.substringInRange(0...10)
+            }
+        } else if textField == self.pswField {
+            if (textField.text?.count)! > 20 {
+                self.pswField.text = textField.text?.substringInRange(0...19)
+            }
+        }
+    }
+    
+    
     // 获取验证码的点击事件
     func codeClick() -> () {
-        if (self.phoneField.text?.characters.count)! < 11  {
+        if (self.phoneField.text?.count)! < 11  {
             SVProgressHUD.showError(withStatus: "请输入正确的手机号码")
             return
         }
         self .endEditing(true)
         
-        SVProgressHUD.show()
         PublicService.publicServiceInstance.requestVerificationCode(mobile: self.phoneField.text!, code: self.graphicCode, success: { (responseObject) in
             let resultDict = responseObject as! NSDictionary
             if resultDict["code"] as! String == "0" {
@@ -290,18 +299,18 @@ class LoginInfoView: UIView {
     
     // 输入信息验证
     func dataValidation() -> Bool {
-        if (self.phoneField.text?.characters.count)! < 11  {
+        if (self.phoneField.text?.count)! < 11  {
             SVProgressHUD.showError(withStatus: "请输入正确的手机号码")
             return false
         }
         
         if self.pswField.placeholder == "请输入验证码"  {
-            if (self.pswField.text?.characters.count)! < 6  {
+            if (self.pswField.text?.count)! < 6  {
                 SVProgressHUD.showError(withStatus: "请输入正确的验证码")
                 return false
             }
         } else {
-            if (self.pswField.text?.characters.count)! < 6 || (self.pswField.text?.characters.count)! > 20 {
+            if (self.pswField.text?.count)! < 6 || (self.pswField.text?.count)! > 20 {
                 SVProgressHUD.showError(withStatus: "请输入正确的登录密码")
                 return false
             }

@@ -112,6 +112,7 @@ class LoginVC: BasicVC {
     // 登录成功后的数据处理
     func loginSuccessDataHandle(dict : NSDictionary) -> Void {
         let userInfo : UserModel = UserModel()
+//        userInfo.mobile = self.loginView.phoneField.text
         userInfo.sessionId = dict["sessionId"] as? String
         userInfo.webCookies = dict["webCookies"] as? NSArray
         userInfo.hasPassword = dict["hasPassword"] as? Bool

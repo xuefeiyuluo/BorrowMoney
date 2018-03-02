@@ -21,6 +21,12 @@ class MyCashVC: BasicVC, UIAlertViewDelegate {
         
         // 获取我的现金信息
         requestBankCard()
+        
+        // 银行卡认证完成后，界面更新
+        if USERINFO?.bankCard != nil {
+            self.cardLabel.text = USERINFO?.bankCard
+            self.cardBtn.setTitle("变更", for: UIControlState.normal)
+        }
     }
     
     override func viewDidLoad() {
@@ -232,11 +238,6 @@ class MyCashVC: BasicVC, UIAlertViewDelegate {
         }) { (errorInfo) in
         }
     }
-    
-    
-    
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

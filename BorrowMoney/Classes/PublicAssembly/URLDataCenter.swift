@@ -220,6 +220,49 @@ class URLDataCenter: NSObject {
         param.method = "mgm.getWalletDetail"
         return param
     }
+    
+    
+    // 银行列表
+    public func requestBankList() -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.method = "mgm.getBankList"
+        return param
+    }
+    
+    
+    // 银行卡正确性认证
+    public func requestBankCardVerify(cardNo : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["cardNo":cardNo]
+        param.method = "mgm.verifyBank"
+        return param
+    }
+    
+    
+    // 银行卡id
+    public func requestBankCardId(mobilePhone : String,cardNo : String,name : String,idCard : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["mobilephone":mobilePhone,"cardNo":cardNo,"name":name,"idCard":idCard]
+        param.method = "mgm.send_bind_card_verify_code"
+        return param
+    }
+    
+
+    // 完成银行卡认证
+    public func requestCompeleBankCardVerify(verifyCode : String,mobilePhone : String,requestId : String,bankName : String,cardNo : String,name : String,idCard : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["verifyCode":verifyCode,"mobilephone":mobilePhone,"requestId":requestId,"bankName":bankName,"cardNo":cardNo,"ownerName":name,"ownerIdcard":idCard]
+        param.method = "mgm.bindBank"
+        return param
+    }
+    
+    
+    // 免息卷列表
+    public func requestDiscountlist() -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.method = "mgm.getMyRedPacket"
+        return param
+    }
 }
 
 

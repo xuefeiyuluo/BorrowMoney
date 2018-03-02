@@ -107,7 +107,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     func initializationData() -> Void {
         // 设置弹框最小显示时间
         SVProgressHUD .setMinimumDismissTimeInterval(1.0)
+        
+        // 设置UID
+        if USERDEFAULT.object(forKey: "uuid") == nil {
+            USERDEFAULT.set(NSUUID().uuidString, forKey: "uuid")
+        }
     }
-    
 }
 

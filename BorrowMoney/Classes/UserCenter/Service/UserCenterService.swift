@@ -20,6 +20,7 @@ class UserCenterService: NSObject {
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -32,6 +33,7 @@ class UserCenterService: NSObject {
             success(responseObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -43,6 +45,7 @@ class UserCenterService: NSObject {
             success(responseObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -55,6 +58,7 @@ class UserCenterService: NSObject {
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -68,6 +72,7 @@ class UserCenterService: NSObject {
             success(dataDict as AnyObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -81,6 +86,7 @@ class UserCenterService: NSObject {
             success(dataDict as AnyObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -95,6 +101,7 @@ class UserCenterService: NSObject {
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -108,6 +115,7 @@ class UserCenterService: NSObject {
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -122,6 +130,7 @@ class UserCenterService: NSObject {
             success(dataDict as AnyObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -135,6 +144,7 @@ class UserCenterService: NSObject {
             success(dataDict as AnyObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -149,6 +159,7 @@ class UserCenterService: NSObject {
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -162,6 +173,7 @@ class UserCenterService: NSObject {
             success(dataDict as AnyObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -175,6 +187,7 @@ class UserCenterService: NSObject {
             success(dataDict as AnyObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -189,6 +202,7 @@ class UserCenterService: NSObject {
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -202,12 +216,83 @@ class UserCenterService: NSObject {
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
+            failure(errorInfo)
+        }
+    }
+    
+    // 银行列表
+    func requestBankListData(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestBankList()
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
     
     
+    // 银行卡号验证
+    func requestBankCardVerify(cardNo : String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestBankCardVerify(cardNo: cardNo)
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
+            failure(errorInfo)
+        }
+    }
+    
+
+    // 银行卡code
+    func requestBankCardRequestId(mobilePhone : String,cardNo : String,name : String,idCard : String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestBankCardId(mobilePhone: mobilePhone, cardNo: cardNo, name: name, idCard: idCard)
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
+            failure(errorInfo)
+        }
+    }
     
     
+    // 银行卡认证
+    func requestCompeleBankCardVerify(verifyCode : String,mobilePhone : String,requestId : String,bankName : String,cardNo : String,name : String,idCard : String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestCompeleBankCardVerify(verifyCode: verifyCode, mobilePhone: mobilePhone, requestId: requestId, bankName: bankName, cardNo: cardNo, name: name, idCard: idCard)
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            
+            success(dataDict)
+        }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
+            failure(errorInfo)
+        }
+    }
+    
+    
+    // 免息卷列表界面
+    func requestDiscountList(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestDiscountlist()
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
+            failure(errorInfo)
+        }
+    }
     
 }

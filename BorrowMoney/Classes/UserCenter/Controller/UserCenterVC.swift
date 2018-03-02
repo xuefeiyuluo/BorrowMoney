@@ -372,21 +372,22 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             // 获取大额信贷经理
             self.requestLoanOfficeSate()
             
-            USERINFO?.mobile = dataDict["mobile"] as? String
-            USERINFO?.webCookies = dataDict["webCookies"] as? NSArray
-            USERINFO?.hasPassword = dataDict["hasPassword"] as? Bool
-            USERINFO?.isNewUser = dataDict["isNewUser"] as? String
-            USERINFO?.name = dataDict["name"] as? String
-            USERINFO?.idCard = dataDict["idCard"] as? String
-            USERINFO?.roleType = dataDict["roleType"] as? String
-            USERINFO?.verify = dataDict["verify"] as? String
-            USERINFO?.headImage = dataDict["headImage"] as? String
-            USERINFO?.redPacketCount = dataDict["redPacketCount"] as? String
-            USERINFO?.balanceAmount = dataDict["balanceAmount"] as? String
-            USERINFO?.signInToday = dataDict["signInToday"] as? Bool
-            USERINFO?.yhzxShowFlag = dataDict["yhzxShowFlag"] as? String
-            USERINFO?.gender = dataDict["gender"] as? String
-            USERDEFAULT.saveCustomObject(customObject: USERINFO!, key: "userInfo")
+            let userInfo : UserModel = USERINFO!
+            userInfo.mobile = dataDict["mobile"] as? String
+            userInfo.webCookies = dataDict["webCookies"] as? NSArray
+            userInfo.hasPassword = dataDict["hasPassword"] as? Bool
+            userInfo.isNewUser = dataDict["isNewUser"] as? String
+            userInfo.name = dataDict["name"] as? String
+            userInfo.idCard = dataDict["idCard"] as? String
+            userInfo.roleType = dataDict["roleType"] as? String
+            userInfo.verify = dataDict["verify"] as? String
+            userInfo.headImage = dataDict["headImage"] as? String
+            userInfo.redPacketCount = dataDict["redPacketCount"] as? String
+            userInfo.balanceAmount = dataDict["balanceAmount"] as? String
+            userInfo.signInToday = dataDict["signInToday"] as? Bool
+            userInfo.yhzxShowFlag = dataDict["yhzxShowFlag"] as? String
+            userInfo.gender = dataDict["gender"] as? String
+            USERDEFAULT.saveCustomObject(customObject: userInfo, key: "userInfo")
         }) { (errorInfo) in
             
         }

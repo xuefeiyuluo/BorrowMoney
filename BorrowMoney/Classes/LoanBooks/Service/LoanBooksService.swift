@@ -20,6 +20,7 @@ class LoanBooksService: NSObject {
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -33,6 +34,7 @@ class LoanBooksService: NSObject {
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }
@@ -46,6 +48,7 @@ class LoanBooksService: NSObject {
             success(dataDict["data"] as AnyObject)
         }) { (errorInfo) in
             SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
             failure(errorInfo)
         }
     }

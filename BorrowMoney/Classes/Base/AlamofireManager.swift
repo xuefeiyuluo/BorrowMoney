@@ -12,8 +12,7 @@ import Alamofire
 final class AlamofireManager: NSObject {
     static let shareNetWork = AlamofireManager()
     static let secret = "fbcf15e88f1b821cb9a1b4446cea1e8f"
-    var alertViewSate : Bool = true// 重新登录的弹框
-    
+    var alertView : UIAlertView?//"-8"重新登录弹框
     
     // get请求
     func getRequest(urlCenter : URLCenter,params:NSMutableDictionary,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
@@ -164,27 +163,18 @@ final class AlamofireManager: NSObject {
     
     // 处理请求成功但返回的一些错误信息
     func errorResult(resultDict : NSDictionary,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
-        
         // 登录超时，重新登录界面
         if (resultDict["code"]as! String) == "-8" {
             USERDEFAULT.clearUserDefaultsData()
             NotificationCenter.default.post(name: NSNotification.Name (rawValue: "NotificationLoginOut"), object: nil)
-            if self.alertViewSate {
-                self.alertViewSate = false
-                let alertView : UIAlertView = UIAlertView (title: "登录失效，请重新登录", message: "", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "登录")
-                alertView.showWithAlertBlock(alertBlock: { (btnIndex, btnTitle) in
-                    if btnIndex != 0 {
-                        userLogin(successHandler: { () -> (Void) in
-                            self.alertViewSate = false
-                        }) { () -> (Void) in
-                            self.alertViewSate = true
-                            // 跳转贷款大全
-                            APPDELEGATE.tabBarControllerSelectedIndex(index: 1)
-                        }
-                    } else {
-                        self.alertViewSate = true
-                    }
-                })
+
+            if self.alertView == nil {
+                self.alertView = UIAlertView (title: "登录失效，请重新登录", message: "", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "登录")
+                showAlertView(alertView: self.alertView!)
+            } else {
+                if (self.alertView?.isVisible)! == false{
+                    showAlertView(alertView: self.alertView!)
+                }
             }
             
         // 短信发送触发图形码验证
@@ -193,6 +183,20 @@ final class AlamofireManager: NSObject {
         } else {
             SVProgressHUD .showError(withStatus: resultDict["desc"]as! String)
         }
+    }
+    
+    
+    // 显示登录弹框
+    func showAlertView(alertView : UIAlertView) -> Void {
+        alertView.showWithAlertBlock(alertBlock: { (btnIndex, btnTitle) in
+            if btnIndex != 0 {
+                userLogin(successHandler: { () -> (Void) in
+                }) { () -> (Void) in
+                    // 跳转贷款大全
+                    APPDELEGATE.tabBarControllerSelectedIndex(index: 1)
+                }
+            }
+        })
     }
     
     
@@ -213,12 +217,12 @@ final class AlamofireManager: NSObject {
         dict .setObject("1.0", forKey: "version" as NSCopying)
         dict .setObject("MD5", forKey: "signType" as NSCopying)
         dict .setObject(CURRENTVERSION, forKey: "appVersion" as NSCopying)
-        dict .setObject("appStore", forKey: "channel" as NSCopying)
         dict .setObject("IOS", forKey: "deviceType" as NSCopying)
+        dict.setObject("jiedianqian", forKey: "system" as NSCopying)
+        dict.setObject(USERDEFAULT.object(forKey: "uuid") as! String, forKey: "uid" as NSCopying)
         var method : String = urlCenter.method
         if !urlCenter.engineeringBool {
             method = "jiedianqian.".appending(method)
-            dict .setObject("jiedianqian", forKey: "system" as NSCopying)
         } else {
             
         }

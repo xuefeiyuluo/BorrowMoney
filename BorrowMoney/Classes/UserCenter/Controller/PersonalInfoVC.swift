@@ -15,7 +15,7 @@ class PersonalInfoVC: BasicVC {
 
     override func setUpNavigationView() -> () {
         super .setUpNavigationView()
-        self.navigationItem .titleView = NaviBarView() .setUpNaviBarWithTitle(title: "个人信息");
+        self.navigationItem .titleView = NaviBarView() .setUpNaviBarWithTitle(title: "我的预估额度");
     }
     
     

@@ -14,10 +14,16 @@ extension UIAlertView : UIAlertViewDelegate {
     
     // 给alertView添加了一个Block的属性
     func showWithAlertBlock(alertBlock : AlertBlock) -> Void {
-            objc_removeAssociatedObjects(self)
-            objc_setAssociatedObject(self, &UIAlertView.blockKey, alertBlock, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY)
-            self.delegate = self
+        
+        objc_removeAssociatedObjects(self)
+        objc_setAssociatedObject(self, &UIAlertView.blockKey, alertBlock, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY)
+        self.delegate = self
+    
+        // 获取当前的控制器vc
+        let vc  = self.getCurrentVC()
+        if vc.isKind(of: LoginVC.self) != true {
             self.show()
+        }
     }
     
     
