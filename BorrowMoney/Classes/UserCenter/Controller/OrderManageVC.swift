@@ -24,5 +24,13 @@ class OrderManageVC: BasicVC {
     func createUI() -> Void {
     
     }
+    
+    override func setUpNavigationView() {
+        super.setUpNavigationView()
+        self.navigationItem .titleView = NaviBarView() .setUpNaviBarWithTitle(title: "订单管理")
+    }
+    
+    
+    
 }
 

@@ -139,7 +139,7 @@ class RepayManageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     override func setUpNavigationView() -> () {
         super .setUpNavigationView()
-        self.navigationItem .titleView = NaviBarView() .setUpNaviBarWithTitle(title: "还款管理");
+        self.navigationItem .titleView = NaviBarView() .setUpNaviBarWithTitle(title: "还款管理")
         
         let rightBtn = UIButton (type: UIButtonType.custom)
         rightBtn.frame = CGRect (x: 0, y: 0, width: 60 * WIDTH_SCALE, height: 30)

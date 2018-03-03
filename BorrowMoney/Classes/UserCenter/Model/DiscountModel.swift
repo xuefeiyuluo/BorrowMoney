@@ -9,17 +9,17 @@
 import UIKit
 
 class DiscountModel: NSObject {
-    var content : NSString = ""//
-    var endTime : NSString = ""// 结束时间
-    var loanChannelId : NSString = ""//
-    var loanChannelLogo : NSString = ""//
-    var loanChannelName : NSString = ""//
-    var name : NSString = ""//
-    var packetAmount : NSString = ""// 金额
-    var redPacketId : NSString = ""//
-    var startTime : NSString = ""//
-    var status : NSString = ""//
-    var statusCode : NSString = ""//
-    var url : NSString = ""//
-    var userRedPacketId : NSString = ""//
+    var content : String = ""// 免息卷机构
+    var endTime : String = ""// 有效期时间
+    var loanChannelId : String = ""//
+    var loanChannelLogo : String = ""//
+    var loanChannelName : String = ""//
+    var name : String = ""// 免息卷名称
+    var packetAmount : String = ""// 金额
+    var redPacketId : String = ""//
+    var startTime : String = ""//
+    var status : String = ""//
+    var statusCode : String = ""//"0"未打开  “1”已打开  “2”已过期
+    var url : String = ""// logo
+    var userRedPacketId : String = ""//
 }

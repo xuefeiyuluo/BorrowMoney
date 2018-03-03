@@ -11,7 +11,7 @@ import UIKit
 class DisCountViewCell: BasicViewCell {
     var backImage : UIImageView = UIImageView()// 背景图片
     var iconImage : UIImageView = UIImageView()// icon图标
-    var nameLabel : UILabel = UILabel()// 红包来源
+    var nameLabel : UILabel = UILabel()// 红包名称
     var mechanismLabel : UILabel = UILabel()// 发红包机构
     var dateLabel : UILabel = UILabel()// 时间
     var amountLabel : UILabel = UILabel()// 红包金额
@@ -21,7 +21,64 @@ class DisCountViewCell: BasicViewCell {
     var openImageView : UIImageView = UIImageView()// 已拆红包的图片
     var discountModel : DiscountModel? {
         didSet{
+            weak var weakSelf = self
+            // logo
+            self.iconImage.kf.setImage(with: URL (string: (discountModel?.url)!), placeholder: UIImage (named: ""), options: nil, progressBlock: nil) { (image, error, typr, imageUrl) in
+                if weakSelf?.discountModel?.statusCode == "1" {
+                    weakSelf?.iconImage.image = image
+                }
+            }
+        
+            // 红包名称
+            self.nameLabel.text = discountModel?.name
             
+            // 发红包机构
+            self.mechanismLabel.text = discountModel?.content
+            
+            // 时间
+            self.dateLabel.text = String (format: "有效期至%@", (discountModel?.endTime)!)
+            
+            // 红包金额
+            self.amountLabel.text = String (format: "%@.00", (discountModel?.packetAmount)!)
+            
+            // 背景图片   "0"未打开  “1”已打开  “2”已过期
+            if discountModel?.statusCode == "0" {
+                self.backImage.image = UIImage (named: "discountUnopened.png")
+                self.nameLabel.textColor = TEXT_SECOND_COLOR
+                self.mechanismLabel.textColor = LINE_COLOR3
+                self.dateLabel.textColor = LINE_COLOR3
+                self.amountLabel.textColor = UIColor().colorWithHexString(hex: "ff5a30")
+                self.stateLabel.text = "去使用"
+                self.stateLabel.textColor = LINE_COLOR3
+                self.useImage.isHidden = false
+                self.openBtn.isHidden = false
+                self.openImageView.image = UIImage (named: "")
+                self.openImageView.isHidden = true
+            } else if discountModel?.statusCode == "1" {
+                self.backImage.image = UIImage (named: "DiscountOpen.png")
+                self.nameLabel.textColor = TEXT_SECOND_COLOR
+                self.mechanismLabel.textColor = LINE_COLOR3
+                self.dateLabel.textColor = LINE_COLOR3
+                self.amountLabel.textColor = LINE_COLOR3
+                self.stateLabel.text = "已使用"
+                self.stateLabel.textColor = LINE_COLOR3
+                self.useImage.isHidden = true
+                self.openBtn.isHidden = true
+                self.openImageView.image = UIImage (named: "")
+                self.openImageView.isHidden = true
+            } else {
+                self.backImage.image = UIImage (named: "discountOverdue.png")
+                self.nameLabel.textColor = LINE_COLOR2
+                self.mechanismLabel.textColor = LINE_COLOR2
+                self.dateLabel.textColor = LINE_COLOR2
+                self.amountLabel.textColor = LINE_COLOR2
+                self.stateLabel.text = ""
+                self.stateLabel.textColor = LINE_COLOR2
+                self.useImage.isHidden = true
+                self.openBtn.isHidden = true
+                self.openImageView.image = UIImage (named: "overdueIcon.png")
+                self.openImageView.isHidden = false
+            }
         }
     }
     
@@ -31,7 +88,6 @@ class DisCountViewCell: BasicViewCell {
         super.createUI()
         
         // 背景图片
-        self.backImage.image = UIImage (named: "discountUnopened.png")
         self.backImage.isUserInteractionEnabled = true
         self.contentView.addSubview(self.backImage)
         self.backImage.snp.makeConstraints { (make) in
@@ -39,7 +95,6 @@ class DisCountViewCell: BasicViewCell {
         }
         
         // icon图片
-        self.iconImage.backgroundColor = UIColor.purple
         self.iconImage.contentMode = UIViewContentMode.center
         self.iconImage.layer.cornerRadius = (70 * WIDTH_SCALE) / 2
         self.iconImage.layer.masksToBounds = true
@@ -51,9 +106,7 @@ class DisCountViewCell: BasicViewCell {
             make.bottom.equalTo(self.contentView.snp.bottom).offset(-15 * WIDTH_SCALE)
         }
         
-        // 红包来源
-        self.nameLabel.text = "通用免息卷"
-        self.nameLabel.textColor = UIColor.black
+        // 红包名称
         self.nameLabel.font = UIFont.systemFont(ofSize: 13 * WIDTH_SCALE)
         self.contentView.addSubview(self.nameLabel)
         self.nameLabel.snp.makeConstraints { (make) in
@@ -62,7 +115,6 @@ class DisCountViewCell: BasicViewCell {
         }
         
         // 发红包机构
-        self.mechanismLabel.text = "fdhsvf"
         self.mechanismLabel.font = UIFont.systemFont(ofSize: 12 * WIDTH_SCALE)
         self.contentView.addSubview(self.mechanismLabel)
         self.mechanismLabel.snp.makeConstraints { (make) in
@@ -71,7 +123,6 @@ class DisCountViewCell: BasicViewCell {
         }
         
         // 时间
-        self.dateLabel.text = "2018-01-23"
         self.dateLabel.font = UIFont.systemFont(ofSize: 13 * WIDTH_SCALE)
         self.contentView.addSubview(self.dateLabel)
         self.dateLabel.snp.makeConstraints { (make) in
@@ -87,8 +138,6 @@ class DisCountViewCell: BasicViewCell {
         }
         
         // 红包金额
-        self.amountLabel.text = "10.00"
-        self.amountLabel.textColor = UIColor().colorWithHexString(hex: "FF583A")
         self.amountLabel.font = UIFont.systemFont(ofSize: 23 * WIDTH_SCALE)
         self.contentView.addSubview(self.amountLabel)
         self.amountLabel.snp.makeConstraints { (make) in
@@ -97,7 +146,6 @@ class DisCountViewCell: BasicViewCell {
         }
         
         // 红包状态
-        self.stateLabel.text = "去使用"
         self.stateLabel.font = UIFont.systemFont(ofSize: 14 * WIDTH_SCALE)
         self.contentView.addSubview(self.stateLabel)
         self.stateLabel.snp.makeConstraints { (make) in
@@ -116,7 +164,6 @@ class DisCountViewCell: BasicViewCell {
             make.width.equalTo(25 * WIDTH_SCALE)
         }
         
-        self.openBtn.tag = 888
         self.contentView.addSubview(self.openBtn)
         self.openBtn.snp.makeConstraints { (make) in
             make.right.left.top.bottom.equalTo(rightView)

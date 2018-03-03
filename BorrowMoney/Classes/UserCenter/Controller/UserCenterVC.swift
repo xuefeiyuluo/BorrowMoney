@@ -325,7 +325,7 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         
         // 订单管理
         self.payManageView?.updatePayManage(loanData: (self.userCenter?.record)!)
-        
+
         // 还款管理
         if self.userCenter?.application != nil {
             self.orderManageView?.updateOrdeManage(loanOrdermodel:(self.userCenter?.application)!)
@@ -337,10 +337,10 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     // 消息中心的定时器
     func createTimer() -> Void {
-//        if self.messageTimer == nil {
-//            self.messageTimer = Timer (timeInterval: 5, target: self, selector: #selector(requestMessageList), userInfo: nil, repeats: true)
-//            RunLoop.main.add(self.messageTimer!, forMode: RunLoopMode.commonModes)
-//        }
+        if self.messageTimer == nil {
+            self.messageTimer = Timer (timeInterval: 5, target: self, selector: #selector(requestMessageList), userInfo: nil, repeats: true)
+            RunLoop.main.add(self.messageTimer!, forMode: RunLoopMode.commonModes)
+        }
     }
     
     

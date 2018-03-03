@@ -54,6 +54,14 @@ func userCenterWebViewWithUrl(url : String) -> BasicVC {
 }
 
 
+// 加载本地html
+func localWebView(path : String) -> BasicVC {
+    let localWeb : BasicLocalWebVC = BasicLocalWebVC()
+    localWeb.path = path
+    return localWeb
+}
+
+
 // 设置
 func setUp() -> BasicVC {
     let setUp : SetUpVC = SetUpVC()

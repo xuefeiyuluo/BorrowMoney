@@ -106,7 +106,7 @@ class MyInterestFreeVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: UITableViewDelegate, UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 10
+        return self.discountArray.count
     }
     
     
@@ -133,8 +133,28 @@ class MyInterestFreeVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : DisCountViewCell = tableView.dequeueReusableCell(withIdentifier: "disCountView") as! DisCountViewCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-//        cell.discountModel = self.discountArray[indexPath.section]
+        cell.discountModel = self.discountArray[indexPath.section]
+        cell.openBtn.tag = indexPath.section
+        cell.openBtn.addTarget(self, action: #selector(openClick(sender:)), for: UIControlEvents.touchUpInside)
         return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model : DiscountModel = self.discountArray[indexPath.section]
+        if model.statusCode == "0" {
+            weak var weakSelf = self
+            let alertView : UIAlertView = UIAlertView (title: "暂不满足拆开红包的条件哦！", message: "", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "去借款")
+            alertView.showWithAlertBlock(alertBlock: { (btnIndex, btnTitle) in
+                if btnIndex != 0 {
+                    // 跳转贷款大全
+                    APPDELEGATE.tabBarControllerSelectedIndex(index: 1)
+                    
+                    // 返回上个界面
+                    weakSelf?.comeBack()
+                }
+            })
+        }
     }
     
     
@@ -144,9 +164,20 @@ class MyInterestFreeVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    // 右边的点击事件
+    func openClick(sender : UIButton) -> Void {
+        let model : DiscountModel = self.discountArray[sender.tag]
+        if model.statusCode == "0" || model.statusCode == "1" {
+            // 跳转贷款大全
+            APPDELEGATE.tabBarControllerSelectedIndex(index: 1)
+        }
+    }
+    
+    
     // 使用说明
     func instructionsClick() -> Void {
-        
+        let path = Bundle.main.path(forResource: "redPackExplain", ofType: "html")
+        self.navigationController?.pushViewController(localWebView(path: path!), animated: true)
     }
 
     
@@ -171,19 +202,19 @@ class MyInterestFreeVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             let tempArray : NSArray = responseObject as! NSArray
             // 优惠卷列表
             self.discountArray = DiscountModel.objectArrayWithKeyValuesArray(array: tempArray) as! [DiscountModel]
-            self.discountTableView?.reloadData()
-//            if self.discountArray.count > 0 {
-//                self.discountTableView?.isHidden = false
-//                self.footView.isHidden = false
-//                self.nullView.isHidden = true
-//
-//                // 刷新数据
-//                self.discountTableView?.reloadData()
-//            } else {
-//                self.discountTableView?.isHidden = true
-//                self.footView.isHidden = true
-//                self.nullView.isHidden = false
-//            }
+            
+            if self.discountArray.count > 0 {
+                self.discountTableView?.isHidden = false
+                self.footView.isHidden = false
+                self.nullView.isHidden = true
+
+                // 刷新数据
+                self.discountTableView?.reloadData()
+            } else {
+                self.discountTableView?.isHidden = true
+                self.footView.isHidden = true
+                self.nullView.isHidden = false
+            }
         }) { (error) in
         }
     }

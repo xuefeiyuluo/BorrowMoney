@@ -96,7 +96,7 @@ class UserCenterHeaderView: BasicView {
     func updateHeadeView(userCenter : UserCenterModel) -> Void {
         
         // 头像
-        self.headerImage?.kf.setImage(with: URL (string: userCenter.headImage!), placeholder: UIImage (named: ""), options: [KingfisherOptionsInfoItem.forceRefresh], progressBlock: nil, completionHandler: nil)
+        self.headerImage?.kf.setImage(with: URL (string: userCenter.headImage!), placeholder: UIImage (named: "avatarHeader.png"), options: nil, progressBlock: nil, completionHandler: nil)
         
         // 姓名
         if !self.isEmptyAndNil(str: userCenter.name!) {

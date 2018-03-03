@@ -43,9 +43,6 @@
 		401F8BBF1FCEDF1800298DD4 /* XConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B7F1FCEDF1800298DD4 /* XConfigure.swift */; };
 		401F8BC01FCEDF1800298DD4 /* XFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B801FCEDF1800298DD4 /* XFoundation.swift */; };
 		401F8BC11FCEDF1800298DD4 /* XPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B811FCEDF1800298DD4 /* XPrint.swift */; };
-		401F8BC21FCEDF1800298DD4 /* BasicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B831FCEDF1800298DD4 /* BasicVC.swift */; };
-		401F8BC31FCEDF1800298DD4 /* BasicWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B841FCEDF1800298DD4 /* BasicWebVC.swift */; };
-		401F8BC41FCEDF1800298DD4 /* CentralManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B851FCEDF1800298DD4 /* CentralManage.swift */; };
 		401F8BC51FCEDF1800298DD4 /* GraphicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B871FCEDF1800298DD4 /* GraphicView.swift */; };
 		401F8BC61FCEDF1800298DD4 /* LoginFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B881FCEDF1800298DD4 /* LoginFooterView.swift */; };
 		401F8BC71FCEDF1800298DD4 /* LoginInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B891FCEDF1800298DD4 /* LoginInfoView.swift */; };
@@ -53,8 +50,6 @@
 		401F8BC91FCEDF1800298DD4 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B8B1FCEDF1800298DD4 /* LoginVC.swift */; };
 		401F8BCA1FCEDF1800298DD4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B8C1FCEDF1800298DD4 /* UserModel.swift */; };
 		401F8BCB1FCEDF1800298DD4 /* PublicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B8E1FCEDF1800298DD4 /* PublicService.swift */; };
-		401F8BCC1FCEDF1800298DD4 /* URLCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B8F1FCEDF1800298DD4 /* URLCenter.swift */; };
-		401F8BCD1FCEDF1800298DD4 /* URLDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B901FCEDF1800298DD4 /* URLDataCenter.swift */; };
 		401F8BCE1FCEDF1800298DD4 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B931FCEDF1800298DD4 /* AboutVC.swift */; };
 		401F8BCF1FCEDF1800298DD4 /* BillDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B941FCEDF1800298DD4 /* BillDetailVC.swift */; };
 		401F8BD01FCEDF1800298DD4 /* MessageCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B951FCEDF1800298DD4 /* MessageCenterVC.swift */; };
@@ -99,9 +94,7 @@
 		40234E6A20452632006B988A /* CapitalDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40234E6920452632006B988A /* CapitalDetailsVC.swift */; };
 		40234E6C204526FF006B988A /* BankCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40234E6B204526FF006B988A /* BankCardVC.swift */; };
 		40234E6E20453FCE006B988A /* CashModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40234E6D20453FCE006B988A /* CashModel.swift */; };
-		40234E7420454CE0006B988A /* BasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40234E7320454CE0006B988A /* BasicView.swift */; };
 		40234E7620454D35006B988A /* CapitalDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40234E7520454D35006B988A /* CapitalDetailHeaderView.swift */; };
-		40234E7820455EBA006B988A /* BasicViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40234E7720455EBA006B988A /* BasicViewCell.swift */; };
 		40234E7A20455F5D006B988A /* CapitalViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40234E7920455F5D006B988A /* CapitalViewCell.swift */; };
 		40234E7C204568BD006B988A /* CapitalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40234E7B204568BD006B988A /* CapitalModel.swift */; };
 		4025052620197FAB00FD4B3E /* LoanBooksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025052520197FAA00FD4B3E /* LoanBooksService.swift */; };
@@ -109,6 +102,15 @@
 		4025052A2019EE9C00FD4B3E /* SortViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402505292019EE9C00FD4B3E /* SortViewCell.swift */; };
 		402D0AD72046C36400BA24E1 /* BankSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D0AD62046C36400BA24E1 /* BankSheetView.swift */; };
 		403FD2451FD1BCB00034C4E5 /* LoanDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403FD2441FD1BCB00034C4E5 /* LoanDetailVC.swift */; };
+		4067B1BA204A8EBD0036804F /* redPackExplain.html in Resources */ = {isa = PBXBuildFile; fileRef = 4067B1B9204A8EBD0036804F /* redPackExplain.html */; };
+		4067B1C3204AA8390036804F /* BasicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4067B1BC204AA8390036804F /* BasicVC.swift */; };
+		4067B1C4204AA8390036804F /* BasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4067B1BD204AA8390036804F /* BasicView.swift */; };
+		4067B1C5204AA8390036804F /* BasicViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4067B1BE204AA8390036804F /* BasicViewCell.swift */; };
+		4067B1C6204AA8390036804F /* BasicWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4067B1BF204AA8390036804F /* BasicWebVC.swift */; };
+		4067B1C7204AA8390036804F /* CentralManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4067B1C0204AA8390036804F /* CentralManage.swift */; };
+		4067B1C8204AA8390036804F /* URLCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4067B1C1204AA8390036804F /* URLCenter.swift */; };
+		4067B1C9204AA8390036804F /* URLDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4067B1C2204AA8390036804F /* URLDataCenter.swift */; };
+		4067B1CB204AA8E40036804F /* BasicLocalWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4067B1CA204AA8E40036804F /* BasicLocalWebVC.swift */; };
 		4084BDB420469DAF008A354F /* XNumRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4084BDB320469DAF008A354F /* XNumRule.swift */; };
 		40B080ED201EF1EA0054134A /* HotSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B080EC201EF1EA0054134A /* HotSearchView.swift */; };
 		40CCFE852031917500A8C7C7 /* UserCenterWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CCFE842031917500A8C7C7 /* UserCenterWebVC.swift */; };
@@ -175,9 +177,6 @@
 		401F8B7F1FCEDF1800298DD4 /* XConfigure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XConfigure.swift; sourceTree = "<group>"; };
 		401F8B801FCEDF1800298DD4 /* XFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XFoundation.swift; sourceTree = "<group>"; };
 		401F8B811FCEDF1800298DD4 /* XPrint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPrint.swift; sourceTree = "<group>"; };
-		401F8B831FCEDF1800298DD4 /* BasicVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicVC.swift; sourceTree = "<group>"; };
-		401F8B841FCEDF1800298DD4 /* BasicWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicWebVC.swift; sourceTree = "<group>"; };
-		401F8B851FCEDF1800298DD4 /* CentralManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralManage.swift; sourceTree = "<group>"; };
 		401F8B871FCEDF1800298DD4 /* GraphicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphicView.swift; sourceTree = "<group>"; };
 		401F8B881FCEDF1800298DD4 /* LoginFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginFooterView.swift; sourceTree = "<group>"; };
 		401F8B891FCEDF1800298DD4 /* LoginInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInfoView.swift; sourceTree = "<group>"; };
@@ -185,8 +184,6 @@
 		401F8B8B1FCEDF1800298DD4 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		401F8B8C1FCEDF1800298DD4 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		401F8B8E1FCEDF1800298DD4 /* PublicService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicService.swift; sourceTree = "<group>"; };
-		401F8B8F1FCEDF1800298DD4 /* URLCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLCenter.swift; sourceTree = "<group>"; };
-		401F8B901FCEDF1800298DD4 /* URLDataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLDataCenter.swift; sourceTree = "<group>"; };
 		401F8B931FCEDF1800298DD4 /* AboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		401F8B941FCEDF1800298DD4 /* BillDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillDetailVC.swift; sourceTree = "<group>"; };
 		401F8B951FCEDF1800298DD4 /* MessageCenterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCenterVC.swift; sourceTree = "<group>"; };
@@ -231,9 +228,7 @@
 		40234E6920452632006B988A /* CapitalDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalDetailsVC.swift; sourceTree = "<group>"; };
 		40234E6B204526FF006B988A /* BankCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCardVC.swift; sourceTree = "<group>"; };
 		40234E6D20453FCE006B988A /* CashModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashModel.swift; sourceTree = "<group>"; };
-		40234E7320454CE0006B988A /* BasicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicView.swift; sourceTree = "<group>"; };
 		40234E7520454D35006B988A /* CapitalDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalDetailHeaderView.swift; sourceTree = "<group>"; };
-		40234E7720455EBA006B988A /* BasicViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicViewCell.swift; sourceTree = "<group>"; };
 		40234E7920455F5D006B988A /* CapitalViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalViewCell.swift; sourceTree = "<group>"; };
 		40234E7B204568BD006B988A /* CapitalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalModel.swift; sourceTree = "<group>"; };
 		4025052520197FAA00FD4B3E /* LoanBooksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanBooksService.swift; sourceTree = "<group>"; };
@@ -241,6 +236,15 @@
 		402505292019EE9C00FD4B3E /* SortViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewCell.swift; sourceTree = "<group>"; };
 		402D0AD62046C36400BA24E1 /* BankSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSheetView.swift; sourceTree = "<group>"; };
 		403FD2441FD1BCB00034C4E5 /* LoanDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoanDetailVC.swift; sourceTree = "<group>"; };
+		4067B1B9204A8EBD0036804F /* redPackExplain.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = redPackExplain.html; sourceTree = "<group>"; };
+		4067B1BC204AA8390036804F /* BasicVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicVC.swift; sourceTree = "<group>"; };
+		4067B1BD204AA8390036804F /* BasicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicView.swift; sourceTree = "<group>"; };
+		4067B1BE204AA8390036804F /* BasicViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicViewCell.swift; sourceTree = "<group>"; };
+		4067B1BF204AA8390036804F /* BasicWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicWebVC.swift; sourceTree = "<group>"; };
+		4067B1C0204AA8390036804F /* CentralManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralManage.swift; sourceTree = "<group>"; };
+		4067B1C1204AA8390036804F /* URLCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLCenter.swift; sourceTree = "<group>"; };
+		4067B1C2204AA8390036804F /* URLDataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLDataCenter.swift; sourceTree = "<group>"; };
+		4067B1CA204AA8E40036804F /* BasicLocalWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicLocalWebVC.swift; sourceTree = "<group>"; };
 		4084BDB320469DAF008A354F /* XNumRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XNumRule.swift; sourceTree = "<group>"; };
 		40B080EC201EF1EA0054134A /* HotSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotSearchView.swift; sourceTree = "<group>"; };
 		40CCFE842031917500A8C7C7 /* UserCenterWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenterWebVC.swift; sourceTree = "<group>"; };
@@ -330,6 +334,7 @@
 		401E56D92049977A00C73CBE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				4067B1B8204A8EAA0036804F /* Html */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -560,15 +565,9 @@
 		401F8B821FCEDF1800298DD4 /* PublicAssembly */ = {
 			isa = PBXGroup;
 			children = (
+				4067B1BB204AA8390036804F /* Basic */,
 				401F8B8D1FCEDF1800298DD4 /* PublicService */,
 				401F8B861FCEDF1800298DD4 /* Login */,
-				401F8B831FCEDF1800298DD4 /* BasicVC.swift */,
-				401F8B841FCEDF1800298DD4 /* BasicWebVC.swift */,
-				401F8B851FCEDF1800298DD4 /* CentralManage.swift */,
-				401F8B8F1FCEDF1800298DD4 /* URLCenter.swift */,
-				401F8B901FCEDF1800298DD4 /* URLDataCenter.swift */,
-				40234E7320454CE0006B988A /* BasicView.swift */,
-				40234E7720455EBA006B988A /* BasicViewCell.swift */,
 			);
 			path = PublicAssembly;
 			sourceTree = "<group>";
@@ -672,6 +671,29 @@
 				401E56D52049537400C73CBE /* DisCountViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		4067B1B8204A8EAA0036804F /* Html */ = {
+			isa = PBXGroup;
+			children = (
+				4067B1B9204A8EBD0036804F /* redPackExplain.html */,
+			);
+			path = Html;
+			sourceTree = "<group>";
+		};
+		4067B1BB204AA8390036804F /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				4067B1BC204AA8390036804F /* BasicVC.swift */,
+				4067B1BD204AA8390036804F /* BasicView.swift */,
+				4067B1BE204AA8390036804F /* BasicViewCell.swift */,
+				4067B1BF204AA8390036804F /* BasicWebVC.swift */,
+				4067B1C0204AA8390036804F /* CentralManage.swift */,
+				4067B1C1204AA8390036804F /* URLCenter.swift */,
+				4067B1C2204AA8390036804F /* URLDataCenter.swift */,
+				4067B1CA204AA8E40036804F /* BasicLocalWebVC.swift */,
+			);
+			path = Basic;
 			sourceTree = "<group>";
 		};
 		D91B5ECCA6968DA070262B67 /* Pods */ = {
@@ -806,6 +828,7 @@
 			files = (
 				4017EDCA1F8E196A0077B8E0 /* LaunchScreen.storyboard in Resources */,
 				4017EDC71F8E196A0077B8E0 /* Assets.xcassets in Resources */,
+				4067B1BA204A8EBD0036804F /* redPackExplain.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -880,11 +903,12 @@
 			files = (
 				401F8BB61FCEDF1800298DD4 /* HomePageVC.swift in Sources */,
 				401F8BDC1FCEDF1800298DD4 /* UserCenterModel.swift in Sources */,
+				4067B1C5204AA8390036804F /* BasicViewCell.swift in Sources */,
 				401F8BD11FCEDF1800298DD4 /* ModifyPasswordVC.swift in Sources */,
+				4067B1C6204AA8390036804F /* BasicWebVC.swift in Sources */,
 				4021B3C32043FD8700E16022 /* LargeLoanVC.swift in Sources */,
 				401F8BD71FCEDF1800298DD4 /* UserCenterVC.swift in Sources */,
 				40234E7620454D35006B988A /* CapitalDetailHeaderView.swift in Sources */,
-				40234E7420454CE0006B988A /* BasicView.swift in Sources */,
 				401F8BB21FCEDF1800298DD4 /* CustomNavigationController.swift in Sources */,
 				4011FE541FF22B12006CC349 /* DropdownView.swift in Sources */,
 				401F8BE41FCEDF1800298DD4 /* UserCollectionViewCell.swift in Sources */,
@@ -905,16 +929,17 @@
 				4021B3C52044050A00E16022 /* WeChatFocusVC.swift in Sources */,
 				401F8BE21FCEDF1800298DD4 /* UserCenterCell2.swift in Sources */,
 				401D9ABB1FD694E70038A860 /* LoanBooksHeaderView.swift in Sources */,
+				4067B1C9204AA8390036804F /* URLDataCenter.swift in Sources */,
 				401F8BDF1FCEDF1800298DD4 /* RepayManageCell.swift in Sources */,
 				401F8BD21FCEDF1800298DD4 /* OrderManageVC.swift in Sources */,
 				401F8BDE1FCEDF1800298DD4 /* MessageCenterCell.swift in Sources */,
 				401F8BC81FCEDF1800298DD4 /* LoginSegmentedView.swift in Sources */,
 				402D0AD72046C36400BA24E1 /* BankSheetView.swift in Sources */,
 				401F8BE61FCFB47D00298DD4 /* CustomNavigationView.swift in Sources */,
+				4067B1C8204AA8390036804F /* URLCenter.swift in Sources */,
 				401F8BB81FCEDF1800298DD4 /* NSArray+Extension.swift in Sources */,
 				400B42B41FD14326009B4EE0 /* HotLoanModel.swift in Sources */,
 				401F8BD51FCEDF1800298DD4 /* RepayRecordVC.swift in Sources */,
-				401F8BC31FCEDF1800298DD4 /* BasicWebVC.swift in Sources */,
 				4025052A2019EE9C00FD4B3E /* SortViewCell.swift in Sources */,
 				40142AAE2047F90F00A181C5 /* BankNameModel.swift in Sources */,
 				40234E6020450816006B988A /* LoanCalculatorVC.swift in Sources */,
@@ -922,6 +947,8 @@
 				401F8BD01FCEDF1800298DD4 /* MessageCenterVC.swift in Sources */,
 				40234E662045098E006B988A /* MyIntegralVC.swift in Sources */,
 				401F8BBF1FCEDF1800298DD4 /* XConfigure.swift in Sources */,
+				4067B1C3204AA8390036804F /* BasicVC.swift in Sources */,
+				4067B1C4204AA8390036804F /* BasicView.swift in Sources */,
 				401F8BD91FCEDF1800298DD4 /* LoanOrderModel.swift in Sources */,
 				401F8BCF1FCEDF1800298DD4 /* BillDetailVC.swift in Sources */,
 				401F8BDD1FCEDF1800298DD4 /* UserCenterService.swift in Sources */,
@@ -930,7 +957,6 @@
 				40142AA92047AAA100A181C5 /* UIAlertView+Extension.swift in Sources */,
 				401E56D62049537400C73CBE /* DisCountViewCell.swift in Sources */,
 				401F8BD41FCEDF1800298DD4 /* RepayManageVC.swift in Sources */,
-				40234E7820455EBA006B988A /* BasicViewCell.swift in Sources */,
 				40234E7A20455F5D006B988A /* CapitalViewCell.swift in Sources */,
 				401F8BEE1FCFDFB900298DD4 /* ProductTypeView.swift in Sources */,
 				401F8BAD1FCEDF1800298DD4 /* ForgetVC.swift in Sources */,
@@ -947,11 +973,11 @@
 				401F8BCB1FCEDF1800298DD4 /* PublicService.swift in Sources */,
 				401F8BC11FCEDF1800298DD4 /* XPrint.swift in Sources */,
 				401F8BB91FCEDF1800298DD4 /* NSDictionary+Extension.swift in Sources */,
+				4067B1CB204AA8E40036804F /* BasicLocalWebVC.swift in Sources */,
 				401F8BD81FCEDF1800298DD4 /* LoanManageModel.swift in Sources */,
 				401F8BEA1FCFDA7500298DD4 /* SearchResultVC.swift in Sources */,
 				401F8BBD1FCEDF1800298DD4 /* UIImage+Extension.swift in Sources */,
 				401F8BF61FD0049D00298DD4 /* ProductViewCell.swift in Sources */,
-				401F8BC41FCEDF1800298DD4 /* CentralManage.swift in Sources */,
 				401F8BEC1FCFDAFC00298DD4 /* SearchNavigationView.swift in Sources */,
 				401F8BB71FCEDF1800298DD4 /* LoanBooksVC.swift in Sources */,
 				401F8BD61FCEDF1800298DD4 /* SetUpVC.swift in Sources */,
@@ -960,6 +986,7 @@
 				401F8BC01FCEDF1800298DD4 /* XFoundation.swift in Sources */,
 				401F8BAE1FCEDF1800298DD4 /* RegisterVC.swift in Sources */,
 				401F8BF01FCFE04200298DD4 /* RollPictureView.swift in Sources */,
+				4067B1C7204AA8390036804F /* CentralManage.swift in Sources */,
 				4021B3C720441A0200E16022 /* XJurisdiction.swift in Sources */,
 				401F8BC61FCEDF1800298DD4 /* LoginFooterView.swift in Sources */,
 				40234E622045087E006B988A /* MyCashVC.swift in Sources */,
@@ -967,16 +994,13 @@
 				4084BDB420469DAF008A354F /* XNumRule.swift in Sources */,
 				401F8BBB1FCEDF1800298DD4 /* String+Extension.swift in Sources */,
 				401F8BBE1FCEDF1800298DD4 /* UserDefaults+Extension.swift in Sources */,
-				401F8BCD1FCEDF1800298DD4 /* URLDataCenter.swift in Sources */,
 				401F8BBA1FCEDF1800298DD4 /* NSObject+Extension.swift in Sources */,
 				4025052620197FAB00FD4B3E /* LoanBooksService.swift in Sources */,
 				401F8BCE1FCEDF1800298DD4 /* AboutVC.swift in Sources */,
 				401F8BCA1FCEDF1800298DD4 /* UserModel.swift in Sources */,
-				401F8BCC1FCEDF1800298DD4 /* URLCenter.swift in Sources */,
 				401F8BF21FCFE07C00298DD4 /* FixedAdverView.swift in Sources */,
 				4022003F204648C200BC296A /* CaptialNullDataView.swift in Sources */,
 				402505282019B50400FD4B3E /* LoanAmountType.swift in Sources */,
-				401F8BC21FCEDF1800298DD4 /* BasicVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

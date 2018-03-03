@@ -312,13 +312,12 @@ class SetUpVC: BasicVC {
     func requestPushMessageState() -> Void {
         UserCenterService.userInstance.requestPushMessageChangeStates(success: { (responseObject) in
             let dataDict : NSDictionary = responseObject as! NSDictionary
-            if dataDict["ios_notification_enable"] as! Int == 0 {
+            if dataDict["ios_notification_enable"] as! String == "0" {
                 self.pushSwith?.setOn(false, animated: true)
             } else {
                 self.pushSwith?.setOn(true, animated: true)
             }
         }) { (errorInfo) in
-            
         }
     }
     
