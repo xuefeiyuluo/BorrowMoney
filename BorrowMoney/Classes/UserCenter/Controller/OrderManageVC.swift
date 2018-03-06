@@ -9,7 +9,7 @@
 import UIKit
 
 class OrderManageVC: BasicVC {
-    
+    var headerView : OrderHeaderView = OrderHeaderView()// 头部view
     
     
     override func viewDidLoad() {
@@ -22,7 +22,14 @@ class OrderManageVC: BasicVC {
     
     // 创建UI
     func createUI() -> Void {
-    
+        self.view.addSubview(self.headerView)
+        self.headerView.snp.makeConstraints { (make) in
+            make.top.left.right.equalTo(self.view)
+            make.height.equalTo(40 * HEIGHT_SCALE)
+        }
+        self.headerView.orderClickBlock = {tag in
+            XPrint(tag)
+        }
     }
     
     override func setUpNavigationView() {

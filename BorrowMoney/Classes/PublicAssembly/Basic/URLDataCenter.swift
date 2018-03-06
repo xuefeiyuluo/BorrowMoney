@@ -263,6 +263,22 @@ class URLDataCenter: NSObject {
         param.method = "mgm.getMyRedPacket"
         return param
     }
+    
+    
+    //  积分数量
+    public func requestIntegralAmount() -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.method = "taskCenter.getBalance"
+        return param
+    }
+    
+    
+    //  积分信息
+    public func requestIntegralInfo() -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.method = "taskCenter.getUserTaskList"
+        return param
+    }
 }
 
 

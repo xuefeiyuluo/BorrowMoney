@@ -208,3 +208,12 @@ func bankCard() -> BasicVC {
     let bankCard : BankCardVC = BankCardVC()
     return bankCard
 }
+
+
+// 积分明细
+func intergralDetail() -> BasicVC {
+    let bankCard : IntegralDetailVC = IntegralDetailVC()
+    return bankCard
+}
+
+
