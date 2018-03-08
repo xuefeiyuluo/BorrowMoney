@@ -217,3 +217,17 @@ func intergralDetail() -> BasicVC {
 }
 
 
+// 订单详情
+func orderDetail(orderModel : OrderManageModel) -> BasicVC {
+    let orderDetail : OrderDetailVC = OrderDetailVC()
+    orderDetail.orderModel = orderModel
+    return orderDetail
+}
+
+
+// 查询“xx”贷款结果
+func loanResult(loanModel : LoanOrderModel) -> BasicVC {
+    let loanOrder : LoanResultVC = LoanResultVC()
+    loanOrder.loanOrder = loanModel
+    return loanOrder
+}

@@ -279,6 +279,34 @@ class URLDataCenter: NSObject {
         param.method = "taskCenter.getUserTaskList"
         return param
     }
+    
+
+    //  订单管理列表
+    public func requestOrderList(status : String,pageNo : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["status":status,"pageSize":"10","pageNo":pageNo]
+        param.method = "userOrder.queryOrderList"
+        return param
+    }
+    
+
+    //  还款管理推荐列表
+    public func requestRepayRecommendList(pageNo : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["pageSize":"10","pageNo":pageNo]
+        param.method = "roleInfo.recommendLoan"
+        return param
+    }
+    
+    
+    
+    //  查询xx贷款结果
+//    public func requestLoanResult(status : String,pageNo : String) -> URLCenter {
+//        let param : URLCenter = URLCenter()
+//        param.dict = ["status":status,"pageSize":"10","pageNo":pageNo]
+//        param.method = "userOrder.queryOrderList"
+//        return param
+//    }
 }
 
 

@@ -15,7 +15,6 @@ class RepayManageHeaderView: BasicView {
     var dateInfo : UILabel?//
     var infoLabel : UILabel?// 具体信息
     
-    
     // 创建UI
     override func createUI() -> Void {
         // 背景
@@ -29,7 +28,6 @@ class RepayManageHeaderView: BasicView {
         
         // 逾期金额
         let amoutName : UILabel = UILabel()
-        amoutName.text = "逾期金额:"
         amoutName.textColor = UIColor.white
         amoutName.font = UIFont .systemFont(ofSize: 13 * WIDTH_SCALE)
         self.amountInfo = amoutName
@@ -41,7 +39,6 @@ class RepayManageHeaderView: BasicView {
         
         // 金额
         let amountLabel : UILabel = UILabel()
-        amountLabel.text = "1948.67"
         amountLabel.textColor = UIColor.white
         amountLabel.font = UIFont .systemFont(ofSize: 30 * WIDTH_SCALE)
         self.amountLabel = amountLabel
@@ -76,7 +73,6 @@ class RepayManageHeaderView: BasicView {
         
         // 天数
         let dateLabel : UILabel = UILabel()
-        dateLabel.text = "70"
         dateLabel.textColor = UIColor.white
         dateLabel.font = UIFont .systemFont(ofSize: 30 * WIDTH_SCALE)
         self.dateLabel = dateLabel
@@ -88,7 +84,7 @@ class RepayManageHeaderView: BasicView {
         
         // 已逾期
         let dateName : UILabel = UILabel()
-        dateName.text = "已逾期"
+        
         dateName.textColor = UIColor.white
         dateName.font = UIFont .systemFont(ofSize: 13 * WIDTH_SCALE)
         self.dateInfo = dateName
@@ -99,7 +95,7 @@ class RepayManageHeaderView: BasicView {
         }
         // 已逾期
         let infoLabel : UILabel = UILabel()
-        infoLabel.text = "欠款总额为213242.54元，共计3笔"
+        
         infoLabel.textColor = UIColor.white
         infoLabel.textAlignment = NSTextAlignment.center
         infoLabel.font = UIFont .systemFont(ofSize: 12 * WIDTH_SCALE)
@@ -109,5 +105,25 @@ class RepayManageHeaderView: BasicView {
             make.right.left.equalTo(backImage)
             make.bottom.equalTo(backImage.snp.bottom).offset(-15 * HEIGHT_SCALE)
         }
+    }
+    
+    
+    // 更新界面
+    func updateHeaderView(loanManage : LoanManageModel) -> Void {
+        if loanManage.status == "HAD_OVERDUED" {
+            self.amountLabel?.text = "逾期金额:"
+            self.dateLabel?.text = "已逾期:"
+        } else {
+            self.amountLabel?.text = "应还金额:"
+            self.dateLabel?.text = "距还款日:"
+        }
+        
+        // 金额
+        self.amountLabel?.text = loanManage.currentRepayAmount
+        
+        // 天数
+        let absTemp : Int = abs(Int(loanManage.currentRepayDays!)!)
+        self.dateLabel?.text = String(absTemp)
+        self.infoLabel?.text = String (format: "欠款总额为%@元，共计%@笔", loanManage.totalRepayAmount!,loanManage.totalCount!)
     }
 }

@@ -306,10 +306,16 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
                 
             }
         } else if rowString == UserCenterVC.RowOrderManage {
-            userLogin(successHandler: { () -> (Void) in
-                self.navigationController?.pushViewController(orderManage(), animated: true)
-            }) { () -> (Void) in
-                
+            if self.userCenter?.application != nil {
+                userLogin(successHandler: { () -> (Void) in
+                    self.navigationController?.pushViewController(orderManage(), animated: true)
+                }) { () -> (Void) in
+                }
+            } else {
+                let alertView : UIAlertView = UIAlertView (title: "你还没有申请任何贷款，赶快申请吧！", message: "", delegate: nil, cancelButtonTitle: "去申请贷款")
+                alertView.showWithAlertBlock(alertBlock: { (btnIndex, btnTitle) in
+                    APPDELEGATE.tabBarControllerSelectedIndex(index: 1)
+                })
             }
         } else if rowString == UserCenterVC.RowLargeAmountView {
             
@@ -323,10 +329,10 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         // 用户信息
         self.headerView?.updateHeadeView(userCenter: self.userCenter!)
         
-        // 订单管理
+        // 还款管理
         self.payManageView?.updatePayManage(loanData: (self.userCenter?.record)!)
 
-        // 还款管理
+        // 订单管理
         if self.userCenter?.application != nil {
             self.orderManageView?.updateOrdeManage(loanOrdermodel:(self.userCenter?.application)!)
         } else {

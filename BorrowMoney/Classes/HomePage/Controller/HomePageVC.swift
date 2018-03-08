@@ -308,6 +308,9 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
                 fixedArray.append(tempBanner)
             } else if tempBanner.location == "loan_right_banner_50" {
                 fixedArray.append(tempBanner)
+                let basicModel : BasicModel = BASICINFO!
+                basicModel.lightningLoanUrl = tempBanner.address
+                USERDEFAULT.saveCustomObject(customObject: basicModel as NSCoding, key: "basicInfo")
             }
         }
         

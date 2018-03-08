@@ -8,6 +8,14 @@
 
 import Foundation
 
+// ******************************** 基本信息 ***************************************
+var BASICINFO : BasicModel? {
+    get {
+        return XConfigure.instance.requestBacicInfo() as BasicModel
+    }
+}
+
+
 // ******************************** 用户信息 ***************************************
 var USERINFO : UserModel? {
     get {
@@ -26,6 +34,20 @@ var ASSERLOGIN : Bool? {
 
 class XConfigure: NSObject {
     static let instance : XConfigure = XConfigure()
+    
+    // 获取基本信息
+    func requestBacicInfo() -> BasicModel {
+        var basicModel : BasicModel?
+        if (USERDEFAULT.getCustomObject(key: "basicInfo") != nil) {
+            basicModel = USERDEFAULT.getCustomObject(key: "basicInfo") as? BasicModel
+        } else {
+            basicModel = BasicModel()
+            basicModel?.uuid = NSUUID().uuidString
+            USERDEFAULT.saveCustomObject(customObject: (basicModel)!, key: "basicInfo")
+        }
+        return basicModel!
+    }
+    
     
     // 获取用户信息
     func requestUserInfo() -> UserModel {

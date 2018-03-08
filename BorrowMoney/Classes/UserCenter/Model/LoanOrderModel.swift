@@ -11,12 +11,12 @@ import UIKit
 class LoanOrderModel: NSObject {
     var acceptNewApi : String?//
     var application_id : String?//
-    var channelName : String?//
-    var channel_id : String?//
-    var create_time : String?//
-    var loan_amount : String?//
-    var loan_id : String?//
-    var loan_terms : String?//
-    var logo : String?//
+    var channelName : String?// 机构名称
+    var channel_id : String?// 机构ID
+    var create_time : String?// 创建时间
+    var loan_amount : String?// 金额
+    var loan_id : String?// 贷款ID
+    var loan_terms : String?// 分期
+    var logo : String?// icon
     var showAmountDetail : String?//
 }

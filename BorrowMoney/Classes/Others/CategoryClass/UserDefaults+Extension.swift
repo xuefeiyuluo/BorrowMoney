@@ -30,5 +30,6 @@ extension UserDefaults {
     // 清除所有的存储本地的数据
     func clearUserDefaultsData() -> Void {
         self.removeObject(forKey: "userInfo")
+        self.removeObject(forKey: "basicInfo")
     }
 }

@@ -71,6 +71,7 @@ class BasicVC: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

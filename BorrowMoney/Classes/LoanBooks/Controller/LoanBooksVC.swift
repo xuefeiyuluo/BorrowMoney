@@ -128,7 +128,7 @@ class LoanBooksVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
         createTableView()
         
         // 添加下拉刷新 上拉加载更多
-        createRefresh()
+        setUpRefresh()
     }
     
     
@@ -149,7 +149,7 @@ class LoanBooksVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     
     
     // 添加下拉刷新 上拉加载更多
-    func createRefresh() -> Void {
+    func setUpRefresh() -> Void {
         // 下拉刷新
         var imageArray : [UIImage] = [UIImage]()
         for i in 0 ..< 6 {
@@ -176,6 +176,10 @@ class LoanBooksVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
         self.booksTableView.mj_footer = MJRefreshAutoNormalFooter (refreshingBlock: {
             self.requestLoanList()
         })
+        let footer : MJRefreshAutoNormalFooter = self.booksTableView.mj_footer as! MJRefreshAutoNormalFooter
+        footer.setTitle("接小二努力加载产品中...", for: .idle)
+        footer.setTitle("接小二努力加载产品中...", for: .refreshing)
+        footer.setTitle("没有没有更多数据了", for: .noMoreData)
     }
     
     
@@ -245,6 +249,7 @@ class LoanBooksVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let loanMode : HotLoanModel = self.booksArray[indexPath.section]
+        loanMode.source = "2"
         self.navigationController?.pushViewController(loanDetail(hotLoan:loanMode), animated: true)
     }
     
@@ -462,6 +467,9 @@ class LoanBooksVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
             
             self.booksTableView.reloadData()
         }) { (errorInfo) in
+            // 取消上拉 下拉动画
+            self.booksTableView.mj_header.endRefreshing()
+            self.booksTableView.mj_footer.endRefreshing()
         }
     }
     

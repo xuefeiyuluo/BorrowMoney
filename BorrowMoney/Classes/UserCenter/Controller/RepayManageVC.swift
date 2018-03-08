@@ -15,14 +15,23 @@ class RepayManageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     var loaoManage : LoanManageModel?// 获取的数据
     var loanArray : NSArray = []// 还款管理列表
     var selectedSection : Int?//
+    var rightBtn : UIButton = UIButton()// 还款记录
+    var repayRecomView : RepayRecomView = RepayRecomView()// 推荐（无数据）数据界面
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 获取还款管理列表
+        self.requestRepayManageData()
+    }
 
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // 创建UI
         createUI()
-        
+
         // 添加下拉刷新
         createRefresh()
     }
@@ -41,6 +50,8 @@ class RepayManageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             self.repayTableView?.mj_footer.endRefreshing()
         })
         let footer : MJRefreshBackNormalFooter = self.repayTableView?.mj_footer as! MJRefreshBackNormalFooter
+        footer.setTitle("接小二努力加载产品中...", for: .idle)
+        footer.setTitle("接小二努力加载产品中...", for: .refreshing)
         footer.setTitle("已经到了我的底线", for: MJRefreshState.noMoreData)
         // 刚进入就刷新数据
         self.repayTableView?.mj_header.beginRefreshing()
@@ -49,14 +60,34 @@ class RepayManageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     // 创建UI
     func createUI() -> Void {
-        let tableView :UITableView  = UITableView.init(frame: CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - 64), style: UITableViewStyle.plain)
+        // 推荐列表
+        self.repayRecomView.backgroundColor = MAIN_COLOR
+        self.view.addSubview(self.repayRecomView)
+        self.repayRecomView.snp.makeConstraints { (make) in
+            make.top.left.right.bottom.equalTo(self.view)
+        }
+        // 点击列表的回调
+        self.repayRecomView.recommendDetail = { (loanModel : HotLoanModel) in
+            self.navigationController?.pushViewController(loanDetail(hotLoan:loanModel), animated: true)
+        }
+        // “一键申请”的回调
+        self.repayRecomView.recommendFast = { (loanModel : HotLoanModel) in
+            
+        }
+        
+        
+        // 还款管理列表
+        let tableView :UITableView  = UITableView.init(frame: CGRect.zero, style: UITableViewStyle.plain)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = MAIN_COLOR
         tableView.separatorStyle = .none
         tableView.register(RepayManageCell.self, forCellReuseIdentifier: "repayManage")
         self.repayTableView = tableView
-        self.view .addSubview(self.repayTableView!)
+        self.view.addSubview(self.repayTableView!)
+        self.repayTableView?.snp.makeConstraints({ (make) in
+            make.top.left.right.bottom.equalTo(self.view)
+        })
         
         let headerView : RepayManageHeaderView = RepayManageHeaderView.init(frame: CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: 95 * HEIGHT_SCALE))
         self.headerView = headerView
@@ -141,15 +172,14 @@ class RepayManageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         super .setUpNavigationView()
         self.navigationItem .titleView = NaviBarView() .setUpNaviBarWithTitle(title: "还款管理")
         
-        let rightBtn = UIButton (type: UIButtonType.custom)
-        rightBtn.frame = CGRect (x: 0, y: 0, width: 60 * WIDTH_SCALE, height: 30)
-        rightBtn.titleLabel?.font = UIFont .systemFont(ofSize: 13)
-        rightBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -20)
-        rightBtn.setTitle("还款记录", for: UIControlState.normal)
-        rightBtn.setTitleColor(LINE_COLOR2, for: UIControlState.normal)
-        rightBtn.addTarget(self, action: #selector(repayClick), for: UIControlEvents.touchUpInside)
-        rightBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -25)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem (customView:rightBtn)
+        self.rightBtn.frame = CGRect (x: 0, y: 0, width: 60 * WIDTH_SCALE, height: 30)
+        self.rightBtn.titleLabel?.font = UIFont .systemFont(ofSize: 13)
+        self.rightBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -20)
+        self.rightBtn.setTitle("还款记录", for: UIControlState.normal)
+        self.rightBtn.setTitleColor(LINE_COLOR2, for: UIControlState.normal)
+        self.rightBtn.addTarget(self, action: #selector(repayClick), for: UIControlEvents.touchUpInside)
+        self.rightBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -25)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem (customView:self.rightBtn)
     }
 
     
@@ -223,15 +253,27 @@ class RepayManageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             let dataDict : NSDictionary = responseObject as! NSDictionary
             self.loaoManage = LoanManageModel.objectWithKeyValues(dict: dataDict) as? LoanManageModel
             
-            self.loanArray = (self.loaoManage?.loanList)!
+            // 更新头部View
+            if !(self.loaoManage?.status == "NO_LOAN") {
+                self.headerView?.updateHeaderView(loanManage: self.loaoManage!)
+            }
             
-            self.repayTableView?.mj_footer.endRefreshingWithNoMoreData()
-            
-            // 界面刷新
-            self.repayTableView?.reloadData()
-            
+            if (self.loaoManage?.loanList.count == 0) {
+                self.repayTableView?.isHidden = true
+                self.repayRecomView.isHidden = false
+                self.rightBtn.isHidden = true
+                // 数据请求
+                self.repayRecomView.requestRecommendListData()
+            } else {
+                self.repayTableView?.isHidden = false
+                self.repayRecomView.isHidden = true
+                self.rightBtn.isHidden = false
+                self.loanArray = (self.loaoManage?.loanList)!
+                self.repayTableView?.mj_footer.endRefreshingWithNoMoreData()
+                // 界面刷新
+                self.repayTableView?.reloadData()
+            }
         }) { (errorInfo) in
-            
         }
     }
 

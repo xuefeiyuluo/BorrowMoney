@@ -48,18 +48,8 @@ class OrderHeaderView: BasicView {
     
     // 按钮的点击事件
     func tapClick(sender : UIButton) -> Void {
-        for i in 0 ..< self.uiArray.count {
-            let btn : UIButton = self.uiArray[i] as UIButton;
-            if btn.tag == sender.tag {
-                btn.isSelected = true
-            } else {
-                btn.isSelected = false
-            }
-        }
-        
-        UIView.animate(withDuration: 0.3) {
-            self.lineView.frame = CGRect (x: CGFloat(sender.tag) * self.btnWidth, y: 39 * HEIGHT_SCALE, width: self.btnWidth, height: 1 * HEIGHT_SCALE)
-        }
+        // 改变按钮的状态
+        changeBtnStates(tag: sender.tag)
         
         if self.orderClickBlock != nil {
             self.orderClickBlock!(sender.tag)
@@ -67,6 +57,28 @@ class OrderHeaderView: BasicView {
     }
     
     
+    // vc控制器滚动后改变当前Btn的状态
+    func scrollChangeHeaderStates(index : Int) -> Void {
+        // 改变按钮的状态
+        changeBtnStates(tag: index)
+    }
+    
+    
+    // 改变按钮的状态
+    func changeBtnStates(tag : Int) -> Void {
+        for i in 0 ..< self.uiArray.count {
+            let btn : UIButton = self.uiArray[i] as UIButton;
+            if btn.tag == tag {
+                btn.isSelected = true
+            } else {
+                btn.isSelected = false
+            }
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.lineView.frame = CGRect (x: CGFloat(tag) * self.btnWidth, y: 39 * HEIGHT_SCALE, width: self.btnWidth, height: 1 * HEIGHT_SCALE)
+        }
+    }
     
     
     override func initializationData() {

@@ -219,7 +219,7 @@ final class AlamofireManager: NSObject {
         dict .setObject(CURRENTVERSION, forKey: "appVersion" as NSCopying)
         dict .setObject("IOS", forKey: "deviceType" as NSCopying)
         dict.setObject("jiedianqian", forKey: "system" as NSCopying)
-        dict.setObject(USERDEFAULT.object(forKey: "uuid") as! String, forKey: "uid" as NSCopying)
+        dict.setObject(BASICINFO?.uuid! as Any, forKey: "uid" as NSCopying)
         var method : String = urlCenter.method
         if !urlCenter.engineeringBool {
             method = "jiedianqian.".appending(method)
