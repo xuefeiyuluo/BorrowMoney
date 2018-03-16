@@ -99,10 +99,10 @@ class UserCenterHeaderView: BasicView {
         self.headerImage?.kf.setImage(with: URL (string: userCenter.headImage!), placeholder: UIImage (named: "avatarHeader.png"), options: nil, progressBlock: nil, completionHandler: nil)
         
         // 姓名
-        if !self.isEmptyAndNil(str: userCenter.name!) {
+        if !(userCenter.name?.isEmpty)! {
             self.userName?.text = userCenter.name
         } else {
-            if !self.isEmptyAndNil(str: userCenter.mobile!) {
+            if !(userCenter.mobile?.isEmpty)! {
                 self.userName?.text = userCenter.mobile
             } else {
                 if ASSERLOGIN! {

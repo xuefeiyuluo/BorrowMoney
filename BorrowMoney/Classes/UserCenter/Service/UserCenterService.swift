@@ -354,4 +354,20 @@ class UserCenterService: NSObject {
             failure(errorInfo)
         }
     }
+    
+    
+    // 获取订单详情
+    func requestOrderDetailInfo(orderId: String,loanType : String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestOrderDetail(orderId: orderId, loanType: loanType)
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            if !(dataDict["data"] is NSNull) {
+                success(dataDict["data"] as AnyObject)
+            }
+        }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
+            failure(errorInfo)
+        }
+    }
 }

@@ -208,7 +208,7 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let temphot : HotLoanModel = self.hotArray[indexPath.section] as HotLoanModel
-        if self.isEmptyAndNil(str: temphot.descriptions!) {
+        if (temphot.descriptions?.isEmpty)! {
             return 75 * HEIGHT_SCALE
         } else {
             return 105 * HEIGHT_SCALE

@@ -10,15 +10,8 @@ import UIKit
 
 class recommendCell: BasicViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    // 创建界面
+    override func createUI() {
+        super.createUI()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

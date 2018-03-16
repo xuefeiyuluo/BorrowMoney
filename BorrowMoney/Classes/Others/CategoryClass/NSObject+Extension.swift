@@ -103,7 +103,19 @@ extension NSObject {
                 } else if (valueType.range(of: "NSNull") != nil) {
                     let subModelStr:String! = XFoundation.getCustomObjectType(code: propertyType!)
                     if subModelStr == nil{
-                        value = "" as AnyObject
+                        // 判断当前key的类型如NSArray，NSDictionary
+                        let keyType : [String] = propertyType?.components(separatedBy: "\"") as! [String]
+                        if keyType.count >= 2 {
+                            if keyType[1] == "NSArray" || keyType[1] == "Array" {
+                                value = [AnyObject]() as AnyObject
+                            } else if keyType[1] == "NSDictionary" || keyType[1] == "Dictionary" {
+                                value = [String:Any]() as AnyObject
+                            } else {
+                                value = "" as AnyObject
+                            }
+                        } else {
+                            value = "" as AnyObject
+                        }
                     } else {
                         value = nil
                     }
@@ -167,27 +179,8 @@ extension NSObject {
     
     // 添加属性的替换的方法
     func replacedKeyFromPropertyName() -> NSDictionary {
+        // [替换后的key:原来的key]
         return [:]
-    }
-    
-    
-    // 判断字符串是否为nil或“”
-    func isEmptyAndNil(str : String) -> Bool {
-        if isEmptyString(str: str) || str.isEmpty {
-            return true;
-        } else {
-            return false
-        }
-    }
-    
-    
-    // 判断字符串是否为""
-    func isEmptyString(str : String) -> Bool {
-        if str == ""{
-            return true
-        } else {
-            return false
-        }
     }
     
     

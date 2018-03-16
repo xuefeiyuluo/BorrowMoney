@@ -186,7 +186,7 @@ class ModifyPasswordVC: BasicVC {
     
     // 输入信息验证
     func dataValidation() -> Bool {
-        if self.isEmptyAndNil(str: (self.psw1?.text)!) || (self.psw1?.text?.characters.count)! < 6 || self.isEmptyAndNil(str: (self.psw2?.text)!) || (self.psw2?.text?.characters.count)! < 6{
+        if (self.psw1?.text?.isEmpty)! || (self.psw1?.text?.count)! < 6 || (self.psw2?.text?.isEmpty)! || (self.psw2?.text?.count)! < 6  {
             SVProgressHUD.showError(withStatus: "请设置正确的登陆密码")
             return false
         } else if self.psw1?.text != self.psw2?.text{

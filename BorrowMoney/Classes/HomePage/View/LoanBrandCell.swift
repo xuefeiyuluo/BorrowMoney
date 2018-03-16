@@ -26,7 +26,7 @@ class LoanBrandCell: UITableViewCell {
             self.channelName?.text = String (format: "%@-%@", (hotModel?.channelName)!,(hotModel?.name)!)
             
             // 申请人数
-            if !self.isEmptyAndNil(str: (hotModel?.apply_count)!) {
+            if !(hotModel?.apply_count?.isEmpty)! {
                 self.loanNumber?.text = (hotModel?.apply_count)! + "人申请"
             }
             
@@ -48,7 +48,7 @@ class LoanBrandCell: UITableViewCell {
             }
             
             // 产品简介
-            if !self.isEmptyAndNil(str: (hotModel?.descriptions)!) {
+            if !(hotModel?.descriptions?.isEmpty)! {
                 self.contentLabel?.isHidden = false
                 self.contentLabel?.text = hotModel?.descriptions
             } else {

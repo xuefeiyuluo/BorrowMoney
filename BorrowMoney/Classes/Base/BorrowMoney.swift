@@ -18,7 +18,7 @@ let HEIGHT_SCALE = getScreenHightscale()
 
 // ********************************* 颜色 *****************************************
 let MAIN_COLOR = UIColor().colorWithHexString(hex: "F2F2F2")
-let NAVIGATION_COLOR = UIColor().colorWithHexString(hex: "16c2ac")
+let NAVIGATION_COLOR = UIColor().colorWithHexString(hex: "16C2AC")
 let TEXT_SECOND_COLOR = UIColor().colorWithHexString(hex: "383838")
 let TEXT_BLACK_COLOR = UIColor().colorWithHexString(hex: "585858")
 let TEXT_LIGHT_COLOR = UIColor().colorWithHexString(hex: "888888")

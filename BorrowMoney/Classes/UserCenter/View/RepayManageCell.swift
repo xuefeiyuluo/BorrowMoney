@@ -38,7 +38,7 @@ class RepayManageCell: UITableViewCell {
             self.loanName?.text = loanData?.loanChannelName
             
             // 贷款账户
-            if !self.isEmptyAndNil(str: (loanData?.loanUser)!) {
+            if !(loanData?.loanUser?.isEmpty)! {
                 self.loanAccount?.text = loanData?.loanUser
             } else {
                 

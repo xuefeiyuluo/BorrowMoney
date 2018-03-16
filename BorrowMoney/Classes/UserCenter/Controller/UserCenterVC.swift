@@ -60,6 +60,7 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     var userCenter : UserCenterModel?//
     var messageTimer : Timer?// 消息的定时器
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
         self.navigationLine = true

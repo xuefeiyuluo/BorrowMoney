@@ -91,7 +91,7 @@ class RepayRecomView: BasicView, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let temphot : HotLoanModel = self.booksArray[indexPath.section] as HotLoanModel
-        if self.isEmptyAndNil(str: temphot.descriptions!) {
+        if (temphot.descriptions?.isEmpty)! {
             return 75 * HEIGHT_SCALE
         } else {
             return 105 * HEIGHT_SCALE

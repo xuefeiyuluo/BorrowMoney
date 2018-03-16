@@ -260,7 +260,7 @@ class OrderManageVC: BasicVC, UITableViewDelegate, UITableViewDataSource, UIScro
             self.navigationController?.pushViewController(loanResult(loanModel: loanOrder), animated: true)
         } else if sender.titleLabel?.text ==  "查看其它产品" {
             if orderModel.loanType == "API" {
-                if (BASICINFO?.lightningLoanUrl != nil && !self.isEmptyAndNil(str: (BASICINFO?.lightningLoanUrl)!)){
+                if (BASICINFO?.lightningLoanUrl != nil && !(BASICINFO?.lightningLoanUrl?.isEmpty)!){
                     self.navigationController?.pushViewController(userCenterWebViewWithUrl(url: (BASICINFO?.lightningLoanUrl)!), animated: true)
                 } else {
                     // 贷款大全

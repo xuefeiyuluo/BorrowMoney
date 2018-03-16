@@ -299,6 +299,13 @@ class URLDataCenter: NSObject {
     }
     
     
+    //  订单详情
+    public func requestOrderDetail(orderId : String,loanType : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["orderId":orderId,"loanType":loanType]
+        param.method = "userOrder.queryOrderDetail"
+        return param
+    }
     
     //  查询xx贷款结果
 //    public func requestLoanResult(status : String,pageNo : String) -> URLCenter {

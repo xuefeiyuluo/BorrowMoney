@@ -37,13 +37,13 @@ class OrderManageModel: NSObject {
         }
         get {
             if self.status == "6" {
-                if !self.isEmptyAndNil(str: self.needRepayAmount) && !self.isEmptyAndNil(str: self.needRepayTime) {
+                if !self.needRepayAmount.isEmpty && !self.needRepayTime.isEmpty {
                     return "2"
                 } else {
                     return "1"
                 }
             } else if self.status == "7" {
-                if !self.isEmptyAndNil(str: self.overdueAmount) && !self.isEmptyAndNil(str: self.overdueTime) {
+                if !self.overdueAmount.isEmpty && !self.overdueTime.isEmpty {
                     return "2"
                 } else {
                     return "1"

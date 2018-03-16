@@ -25,12 +25,12 @@ class OrderManageCell2: BasicViewCell {
             self.iconImageView.kf.setImage(with: URL (string: (orderModel?.loanChannelLogo)!), placeholder: UIImage (named: "defaultWait.png"), options: nil, progressBlock: nil, completionHandler: nil)
             
             // 机构名称
-            if (!self.isEmptyAndNil(str: (orderModel?.loanChannelName)!) && !self.isEmptyAndNil(str: (orderModel?.loanName)!)) {
+            if (!(orderModel?.loanChannelName.isEmpty)! && !(orderModel?.loanName.isEmpty)!) {
                 self.channelLabel.text = String (format:"%@-%@", (orderModel?.loanChannelName)!,(orderModel?.loanName)!)
             } else {
-                if (!self.isEmptyAndNil(str: (orderModel?.loanChannelName)!)){
+                if (!(orderModel?.loanChannelName.isEmpty)!){
                     self.channelLabel.text = (orderModel?.loanChannelName)!
-                } else if (!self.isEmptyAndNil(str: (orderModel?.loanName)!)) {
+                } else if (!(orderModel?.loanName.isEmpty)!) {
                     self.channelLabel.text = (orderModel?.loanName)!
                 } else {
                     self.channelLabel.text = ""
@@ -46,7 +46,7 @@ class OrderManageCell2: BasicViewCell {
             self.stateLabel.text = orderModel?.statusDesc
             
             // 金额
-            self.amountLabel.text = String (format: "金额:%@.00元", (orderModel?.loanAmount)!)
+            self.amountLabel.text = String (format: "金额:%@元", (orderModel?.loanAmount)!)
             
             // 期限
             self.termsLabel.text = String (format: "期限:%@", (orderModel?.loanTerms)!)
@@ -55,7 +55,7 @@ class OrderManageCell2: BasicViewCell {
         
             if orderModel?.canRepay == "1" {
                 self.operationBtn.isHidden = false
-                if self.isEmptyAndNil(str: (orderModel?.loanApplyUrl)!) {
+                if (orderModel?.loanApplyUrl.isEmpty)! {
                     self.operationBtn.setTitle("去还款", for: UIControlState.normal)
                 } else {
                     if orderModel?.loanApplyUrl == "hryh" {
