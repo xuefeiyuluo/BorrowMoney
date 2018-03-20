@@ -109,7 +109,6 @@ class RepayRecomView: BasicView, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 10 * HEIGHT_SCALE
-//        return 0.01
     }
     
     

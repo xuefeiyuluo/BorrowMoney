@@ -307,6 +307,42 @@ class URLDataCenter: NSObject {
         return param
     }
     
+
+    //  推荐列表
+    public func requestRecommendList(pageNo : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["pageNo":pageNo,"pageSize":"10"]
+        param.method = "roleInfo.recommendLoan"
+        return param
+    }
+
+    
+    //  账单详情
+    public func requestBillDetail(loanId : String,loanType : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["id":loanId,"loanType":loanType]
+        param.method = "roleInfo.loanDetail"
+        return param
+    }
+    
+
+    //  账单详情 设为已还
+    public func requestBillRepaid(ids : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["ids":ids]
+        param.method = "roleInfo.makeRepaid"
+        return param
+    }
+    
+    
+    //  账单详情 设为已还
+    public func requestAccountManage(ids : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["ids":ids]
+        param.method = "roleInfo.makeRepaid"
+        return param
+    }
+    
     //  查询xx贷款结果
 //    public func requestLoanResult(status : String,pageNo : String) -> URLCenter {
 //        let param : URLCenter = URLCenter()

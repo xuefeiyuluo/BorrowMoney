@@ -13,7 +13,7 @@ extension UIColor {
         
         var cString: String = hex.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
         
-        if cString.characters.count < 6 {
+        if cString.count < 6 {
             return UIColor.black
         }
         if cString.hasPrefix("0X") {
@@ -22,7 +22,7 @@ extension UIColor {
         if cString.hasPrefix("#") {
             cString = cString.substring(from: cString.index(cString.startIndex, offsetBy: 1))
         }
-        if cString.characters.count != 6 {
+        if cString.count != 6 {
             return UIColor.black
         }
         

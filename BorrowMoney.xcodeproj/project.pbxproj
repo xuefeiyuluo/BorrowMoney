@@ -14,8 +14,10 @@
 		400B42B01FD12461009B4EE0 /* HomePageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B42AF1FD12461009B4EE0 /* HomePageService.swift */; };
 		400B42B21FD12B97009B4EE0 /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B42B11FD12B97009B4EE0 /* BannerModel.swift */; };
 		400B42B41FD14326009B4EE0 /* HotLoanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B42B31FD14326009B4EE0 /* HotLoanModel.swift */; };
+		4011498A20613CC80005B8DA /* MechanismLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011498920613CC80005B8DA /* MechanismLoginVC.swift */; };
 		4011FE541FF22B12006CC349 /* DropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011FE531FF22B12006CC349 /* DropdownView.swift */; };
 		4011FE561FF2590A006CC349 /* DropViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011FE551FF2590A006CC349 /* DropViewCell.swift */; };
+		40133ACD205CF718009093C6 /* PlanViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40133ACC205CF718009093C6 /* PlanViewCell.swift */; };
 		40142AA92047AAA100A181C5 /* UIAlertView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40142AA82047AAA100A181C5 /* UIAlertView+Extension.swift */; };
 		40142AAE2047F90F00A181C5 /* BankNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40142AAD2047F90F00A181C5 /* BankNameModel.swift */; };
 		4017EDC71F8E196A0077B8E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4017EDC61F8E196A0077B8E0 /* Assets.xcassets */; };
@@ -23,6 +25,8 @@
 		4017EDD51F8E196A0077B8E0 /* BorrowMoneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4017EDD41F8E196A0077B8E0 /* BorrowMoneyTests.swift */; };
 		4017EDE01F8E196A0077B8E0 /* BorrowMoneyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4017EDDF1F8E196A0077B8E0 /* BorrowMoneyUITests.swift */; };
 		401A97C4204D7DA8005826CC /* OrderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A97C3204D7DA8005826CC /* OrderHeaderView.swift */; };
+		401C3767205D3EBE008FAD01 /* EvaluateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C3766205D3EBE008FAD01 /* EvaluateVC.swift */; };
+		401C376B205F8FED008FAD01 /* BillDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C376A205F8FED008FAD01 /* BillDetailHeaderView.swift */; };
 		401D9ABB1FD694E70038A860 /* LoanBooksHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D9ABA1FD694E70038A860 /* LoanBooksHeaderView.swift */; };
 		401E56D62049537400C73CBE /* DisCountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401E56D52049537400C73CBE /* DisCountViewCell.swift */; };
 		401E56D82049590300C73CBE /* DiscountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401E56D72049590300C73CBE /* DiscountModel.swift */; };
@@ -110,6 +114,8 @@
 		4025052620197FAB00FD4B3E /* LoanBooksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025052520197FAA00FD4B3E /* LoanBooksService.swift */; };
 		402505282019B50400FD4B3E /* LoanAmountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402505272019B50400FD4B3E /* LoanAmountType.swift */; };
 		4025052A2019EE9C00FD4B3E /* SortViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402505292019EE9C00FD4B3E /* SortViewCell.swift */; };
+		402C3E012060F8A9006B2630 /* RepaidViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402C3E002060F8A9006B2630 /* RepaidViewCell.swift */; };
+		402C3E0320611C90006B2630 /* AccountManageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402C3E0220611C90006B2630 /* AccountManageCell.swift */; };
 		402D0AD72046C36400BA24E1 /* BankSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D0AD62046C36400BA24E1 /* BankSheetView.swift */; };
 		403BA2AD205121190049585F /* OrderManageCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BA2AC205121190049585F /* OrderManageCell2.swift */; };
 		403BA2AF205150110049585F /* OrderDetailTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BA2AE205150110049585F /* OrderDetailTitleCell.swift */; };
@@ -130,6 +136,9 @@
 		40B9BE852059164700CB22FD /* recommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9BE842059164700CB22FD /* recommendCell.swift */; };
 		40B9BE892059255100CB22FD /* OrderDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9BE882059255100CB22FD /* OrderDetailModel.swift */; };
 		40CCFE852031917500A8C7C7 /* UserCenterWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CCFE842031917500A8C7C7 /* UserCenterWebVC.swift */; };
+		40E8386C2060B5D8005E30EA /* BillDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8386B2060B5D8005E30EA /* BillDetailFooterView.swift */; };
+		40E8386E2060B6CD005E30EA /* RepaidAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8386D2060B6CD005E30EA /* RepaidAlertView.swift */; };
+		40E958EE205FB15A00B56360 /* BillDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E958ED205FB15A00B56360 /* BillDetailModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,8 +165,10 @@
 		400B42AF1FD12461009B4EE0 /* HomePageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageService.swift; sourceTree = "<group>"; };
 		400B42B11FD12B97009B4EE0 /* BannerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
 		400B42B31FD14326009B4EE0 /* HotLoanModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotLoanModel.swift; sourceTree = "<group>"; };
+		4011498920613CC80005B8DA /* MechanismLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MechanismLoginVC.swift; sourceTree = "<group>"; };
 		4011FE531FF22B12006CC349 /* DropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownView.swift; sourceTree = "<group>"; };
 		4011FE551FF2590A006CC349 /* DropViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewCell.swift; sourceTree = "<group>"; };
+		40133ACC205CF718009093C6 /* PlanViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewCell.swift; sourceTree = "<group>"; };
 		40142AA82047AAA100A181C5 /* UIAlertView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertView+Extension.swift"; sourceTree = "<group>"; };
 		40142AAD2047F90F00A181C5 /* BankNameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankNameModel.swift; sourceTree = "<group>"; };
 		4017EDBC1F8E196A0077B8E0 /* BorrowMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BorrowMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +183,8 @@
 		4017EDE11F8E196A0077B8E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4017EDED1F8E1B790077B8E0 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "Pods/../build/Debug-iphoneos/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
 		401A97C3204D7DA8005826CC /* OrderHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHeaderView.swift; sourceTree = "<group>"; };
+		401C3766205D3EBE008FAD01 /* EvaluateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateVC.swift; sourceTree = "<group>"; };
+		401C376A205F8FED008FAD01 /* BillDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailHeaderView.swift; sourceTree = "<group>"; };
 		401D9ABA1FD694E70038A860 /* LoanBooksHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanBooksHeaderView.swift; sourceTree = "<group>"; };
 		401E56D52049537400C73CBE /* DisCountViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisCountViewCell.swift; sourceTree = "<group>"; };
 		401E56D72049590300C73CBE /* DiscountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountModel.swift; sourceTree = "<group>"; };
@@ -260,6 +273,8 @@
 		4025052520197FAA00FD4B3E /* LoanBooksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanBooksService.swift; sourceTree = "<group>"; };
 		402505272019B50400FD4B3E /* LoanAmountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanAmountType.swift; sourceTree = "<group>"; };
 		402505292019EE9C00FD4B3E /* SortViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewCell.swift; sourceTree = "<group>"; };
+		402C3E002060F8A9006B2630 /* RepaidViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepaidViewCell.swift; sourceTree = "<group>"; };
+		402C3E0220611C90006B2630 /* AccountManageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManageCell.swift; sourceTree = "<group>"; };
 		402D0AD62046C36400BA24E1 /* BankSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSheetView.swift; sourceTree = "<group>"; };
 		403BA2AC205121190049585F /* OrderManageCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderManageCell2.swift; sourceTree = "<group>"; };
 		403BA2AE205150110049585F /* OrderDetailTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailTitleCell.swift; sourceTree = "<group>"; };
@@ -280,6 +295,9 @@
 		40B9BE842059164700CB22FD /* recommendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recommendCell.swift; sourceTree = "<group>"; };
 		40B9BE882059255100CB22FD /* OrderDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailModel.swift; sourceTree = "<group>"; };
 		40CCFE842031917500A8C7C7 /* UserCenterWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenterWebVC.swift; sourceTree = "<group>"; };
+		40E8386B2060B5D8005E30EA /* BillDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailFooterView.swift; sourceTree = "<group>"; };
+		40E8386D2060B6CD005E30EA /* RepaidAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepaidAlertView.swift; sourceTree = "<group>"; };
+		40E958ED205FB15A00B56360 /* BillDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailModel.swift; sourceTree = "<group>"; };
 		4590E8911C82E60953B15D95 /* Pods_BorrowMoney.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BorrowMoney.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30E7E8962F70FA8C295C3E8 /* Pods-BorrowMoney.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BorrowMoney.release.xcconfig"; path = "Pods/Target Support Files/Pods-BorrowMoney/Pods-BorrowMoney.release.xcconfig"; sourceTree = "<group>"; };
 		CF58623B744DB930670B6B5D /* Pods-BorrowMoney.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BorrowMoney.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BorrowMoney/Pods-BorrowMoney.debug.xcconfig"; sourceTree = "<group>"; };
@@ -662,6 +680,8 @@
 				40229BAE204BDD5800506ACC /* IntegralDetailVC.swift */,
 				4009B93C204E5C1A00F72455 /* OrderDetailVC.swift */,
 				40222ECA204FAC9600F1101A /* LoanResultVC.swift */,
+				401C3766205D3EBE008FAD01 /* EvaluateVC.swift */,
+				4011498920613CC80005B8DA /* MechanismLoginVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -681,6 +701,7 @@
 				40229BB0204BF94F00506ACC /* IntergralModel.swift */,
 				4009B93E204E7C8100F72455 /* OrderManageModel.swift */,
 				40B9BE882059255100CB22FD /* OrderDetailModel.swift */,
+				40E958ED205FB15A00B56360 /* BillDetailModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -717,6 +738,12 @@
 				403BA2B0205150300049585F /* OrderDetailSateCell.swift */,
 				403BA2B2205150590049585F /* OrderDetailInfoCell.swift */,
 				40B9BE842059164700CB22FD /* recommendCell.swift */,
+				40133ACC205CF718009093C6 /* PlanViewCell.swift */,
+				401C376A205F8FED008FAD01 /* BillDetailHeaderView.swift */,
+				40E8386B2060B5D8005E30EA /* BillDetailFooterView.swift */,
+				40E8386D2060B6CD005E30EA /* RepaidAlertView.swift */,
+				402C3E002060F8A9006B2630 /* RepaidViewCell.swift */,
+				402C3E0220611C90006B2630 /* AccountManageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -978,11 +1005,14 @@
 				40234E6C204526FF006B988A /* BankCardVC.swift in Sources */,
 				401F8BE11FCEDF1800298DD4 /* UserCenterCell1.swift in Sources */,
 				401E56D82049590300C73CBE /* DiscountModel.swift in Sources */,
+				40E8386C2060B5D8005E30EA /* BillDetailFooterView.swift in Sources */,
 				4021B3C52044050A00E16022 /* WeChatFocusVC.swift in Sources */,
 				40222ECF204FD3F900F1101A /* RepayRecomView.swift in Sources */,
+				40133ACD205CF718009093C6 /* PlanViewCell.swift in Sources */,
 				401F8BE21FCEDF1800298DD4 /* UserCenterCell2.swift in Sources */,
 				401D9ABB1FD694E70038A860 /* LoanBooksHeaderView.swift in Sources */,
 				4067B1C9204AA8390036804F /* URLDataCenter.swift in Sources */,
+				4011498A20613CC80005B8DA /* MechanismLoginVC.swift in Sources */,
 				401F8BDF1FCEDF1800298DD4 /* RepayManageCell.swift in Sources */,
 				40222ECB204FAC9600F1101A /* LoanResultVC.swift in Sources */,
 				401F8BD21FCEDF1800298DD4 /* OrderManageVC.swift in Sources */,
@@ -993,6 +1023,7 @@
 				403BA2AF205150110049585F /* OrderDetailTitleCell.swift in Sources */,
 				4067B1C8204AA8390036804F /* URLCenter.swift in Sources */,
 				401F8BB81FCEDF1800298DD4 /* NSArray+Extension.swift in Sources */,
+				401C376B205F8FED008FAD01 /* BillDetailHeaderView.swift in Sources */,
 				400B42B41FD14326009B4EE0 /* HotLoanModel.swift in Sources */,
 				401F8BD51FCEDF1800298DD4 /* RepayRecordVC.swift in Sources */,
 				4025052A2019EE9C00FD4B3E /* SortViewCell.swift in Sources */,
@@ -1008,7 +1039,9 @@
 				401F8BD91FCEDF1800298DD4 /* LoanOrderModel.swift in Sources */,
 				40B9BE892059255100CB22FD /* OrderDetailModel.swift in Sources */,
 				401F8BCF1FCEDF1800298DD4 /* BillDetailVC.swift in Sources */,
+				40E8386E2060B6CD005E30EA /* RepaidAlertView.swift in Sources */,
 				401F8BDD1FCEDF1800298DD4 /* UserCenterService.swift in Sources */,
+				402C3E012060F8A9006B2630 /* RepaidViewCell.swift in Sources */,
 				401F8BB01FCEDF1800298DD4 /* AppDelegate.swift in Sources */,
 				40CCFE852031917500A8C7C7 /* UserCenterWebVC.swift in Sources */,
 				40142AA92047AAA100A181C5 /* UIAlertView+Extension.swift in Sources */,
@@ -1018,6 +1051,7 @@
 				401F8BEE1FCFDFB900298DD4 /* ProductTypeView.swift in Sources */,
 				401F8BAD1FCEDF1800298DD4 /* ForgetVC.swift in Sources */,
 				4011FE561FF2590A006CC349 /* DropViewCell.swift in Sources */,
+				40E958EE205FB15A00B56360 /* BillDetailModel.swift in Sources */,
 				401F8BC71FCEDF1800298DD4 /* LoginInfoView.swift in Sources */,
 				403FD2451FD1BCB00034C4E5 /* LoanDetailVC.swift in Sources */,
 				40234E68204509F5006B988A /* AccountManageVC.swift in Sources */,
@@ -1053,7 +1087,9 @@
 				4009B93F204E7C8100F72455 /* OrderManageModel.swift in Sources */,
 				40234E622045087E006B988A /* MyCashVC.swift in Sources */,
 				401F8BF41FCFE27D00298DD4 /* LoanBrandCell.swift in Sources */,
+				401C3767205D3EBE008FAD01 /* EvaluateVC.swift in Sources */,
 				4084BDB420469DAF008A354F /* XNumRule.swift in Sources */,
+				402C3E0320611C90006B2630 /* AccountManageCell.swift in Sources */,
 				401F8BBB1FCEDF1800298DD4 /* String+Extension.swift in Sources */,
 				40229BAF204BDD5800506ACC /* IntegralDetailVC.swift in Sources */,
 				401F8BBE1FCEDF1800298DD4 /* UserDefaults+Extension.swift in Sources */,

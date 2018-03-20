@@ -42,7 +42,7 @@ class OrderDetailInfoCell: BasicViewCell, UITextViewDelegate {
                 })
                 self.memberCardLabel.text = String (format: "会员服务：%@",(orderDetail?.memberCard)!)
             }
-            
+
             // 协议
             if self.orderDetail?.protocols.count != 0 {
                 let protocolStr : NSMutableString = "查看协议:"
@@ -51,7 +51,6 @@ class OrderDetailInfoCell: BasicViewCell, UITextViewDelegate {
                 }
                 
                 let attString : NSMutableAttributedString = NSMutableAttributedString.init(string:protocolStr as String)
-                // foregroundColor
                 attString.setAttributes([NSForegroundColorAttributeName : LINE_COLOR3,NSFontAttributeName : UIFont.systemFont(ofSize: 12 * WIDTH_SCALE)], range: NSMakeRange(0, 5))
                 
                 var index : Int = 5;
@@ -63,10 +62,16 @@ class OrderDetailInfoCell: BasicViewCell, UITextViewDelegate {
                 }
                 // 设置合同协议的颜色
                 self.protocolView.linkTextAttributes = [NSForegroundColorAttributeName : NAVIGATION_COLOR]
-                
+    
+                let size : CGSize = self.sizeWithText(text: protocolStr as String, font: UIFont.systemFont(ofSize: 12 * WIDTH_SCALE), maxSize: CGSize.init(width: SCREEN_WIDTH - 25 * WIDTH_SCALE, height: CGFloat(MAXFLOAT)))
                 if (orderDetail?.memberCard.isEmpty)! {
                     self.protocolView.snp.updateConstraints({ (make) in
                         make.top.equalTo(self.memberCardLabel.snp.bottom).offset(-10 * HEIGHT_SCALE)
+                        make.height.equalTo((size.height + 10) * HEIGHT_SCALE)
+                    })
+                } else {
+                    self.protocolView.snp.updateConstraints({ (make) in
+                        make.height.equalTo((size.height + 10) * HEIGHT_SCALE)
                     })
                 }
                 self.protocolView.attributedText = attString
@@ -116,17 +121,17 @@ class OrderDetailInfoCell: BasicViewCell, UITextViewDelegate {
         self.memberCardLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.contentView.snp.left).offset(15 * WIDTH_SCALE)
             make.top.equalTo(self.timeLabel.snp.bottom).offset(10 * HEIGHT_SCALE)
-            make.height.equalTo(14 * HEIGHT_SCALE)
+            make.height.equalTo(0.01 * HEIGHT_SCALE)
             make.width.equalTo((SCREEN_WIDTH - 30 * WIDTH_SCALE) / 2)
         }
-        
+
         // 协议
         self.protocolView.delegate = self
         self.protocolView.isEditable = false
         self.contentView.addSubview(self.protocolView)
         self.protocolView.snp.makeConstraints { (make) in
             make.top.equalTo(self.memberCardLabel.snp.bottom).offset(10 * HEIGHT_SCALE)
-            make.bottom.equalTo(self.contentView.snp.bottom).offset(-10 * HEIGHT_SCALE)
+            make.height.equalTo(0.01 * HEIGHT_SCALE)
             make.left.equalTo(self.contentView.snp.left).offset(10 * WIDTH_SCALE)
             make.right.equalTo(self.contentView.snp.right).offset(-15 * WIDTH_SCALE)
         }

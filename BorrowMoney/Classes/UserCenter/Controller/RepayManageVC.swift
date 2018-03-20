@@ -15,14 +15,13 @@ class RepayManageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     var loaoManage : LoanManageModel?// 获取的数据
     var loanArray : NSArray = []// 还款管理列表
     var selectedSection : Int?//
-    var rightBtn : UIButton = UIButton()// 还款记录
     var repayRecomView : RepayRecomView = RepayRecomView()// 推荐（无数据）数据界面
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // 获取还款管理列表
-        self.requestRepayManageData()
+        // 刚进入就刷新数据
+        self.repayTableView?.mj_header.beginRefreshing()
     }
 
     
@@ -53,8 +52,6 @@ class RepayManageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         footer.setTitle("接小二努力加载产品中...", for: .idle)
         footer.setTitle("接小二努力加载产品中...", for: .refreshing)
         footer.setTitle("已经到了我的底线", for: MJRefreshState.noMoreData)
-        // 刚进入就刷新数据
-        self.repayTableView?.mj_header.beginRefreshing()
     }
 
     
@@ -66,6 +63,7 @@ class RepayManageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         self.repayRecomView.snp.makeConstraints { (make) in
             make.top.left.right.bottom.equalTo(self.view)
         }
+        
         // 点击列表的回调
         self.repayRecomView.recommendDetail = { (loanModel : HotLoanModel) in
             self.navigationController?.pushViewController(loanDetail(hotLoan:loanModel), animated: true)
@@ -121,10 +119,6 @@ class RepayManageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         if model.status == "UPDATING" {
             buttomHeight = 30 * HEIGHT_SCALE;
         }
-        if indexPath.section == 1 {
-            let model : LoanManageData = self.loanArray[indexPath.section] as! LoanManageData
-            model.loanType = "API"
-        }
         // 立即还款按钮
         if model.loanType == "API" && model.repaymentType != "NONE" {
             return 227 * HEIGHT_SCALE - buttomHeight
@@ -137,10 +131,6 @@ class RepayManageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : RepayManageCell = tableView.dequeueReusableCell(withIdentifier: "repayManage") as! RepayManageCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        if indexPath.section == 1 {
-            let model : LoanManageData = self.loanArray[indexPath.section] as! LoanManageData
-            model.loanType = "API"
-        }
         cell.loanData = self.loanArray[indexPath.section] as? LoanManageData
         cell.repaymentBtn?.tag = indexPath.section
         cell.loanRepaid?.tag = indexPath.section
@@ -171,15 +161,15 @@ class RepayManageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     override func setUpNavigationView() -> () {
         super .setUpNavigationView()
         self.navigationItem .titleView = NaviBarView() .setUpNaviBarWithTitle(title: "还款管理")
-        
-        self.rightBtn.frame = CGRect (x: 0, y: 0, width: 60 * WIDTH_SCALE, height: 30)
-        self.rightBtn.titleLabel?.font = UIFont .systemFont(ofSize: 13)
-        self.rightBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -20)
-        self.rightBtn.setTitle("还款记录", for: UIControlState.normal)
-        self.rightBtn.setTitleColor(LINE_COLOR2, for: UIControlState.normal)
-        self.rightBtn.addTarget(self, action: #selector(repayClick), for: UIControlEvents.touchUpInside)
-        self.rightBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -25)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem (customView:self.rightBtn)
+        let rightBtn : UIButton = UIButton (type: UIButtonType.custom)
+        rightBtn.frame = CGRect (x: 0, y: 0, width: 60 * WIDTH_SCALE, height: 30)
+        rightBtn.titleLabel?.font = UIFont .systemFont(ofSize: 13)
+        rightBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -20)
+        rightBtn.setTitle("还款记录", for: UIControlState.normal)
+        rightBtn.setTitleColor(LINE_COLOR2, for: UIControlState.normal)
+        rightBtn.addTarget(self, action: #selector(repayClick), for: UIControlEvents.touchUpInside)
+        rightBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -25)
+        navigationItem.rightBarButtonItem = UIBarButtonItem (customView:rightBtn)
     }
 
     
@@ -254,20 +244,18 @@ class RepayManageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             self.loaoManage = LoanManageModel.objectWithKeyValues(dict: dataDict) as? LoanManageModel
             
             // 更新头部View
-            if !(self.loaoManage?.status == "NO_LOAN") {
+            if self.loaoManage?.status != "NO_LOAN" {
                 self.headerView?.updateHeaderView(loanManage: self.loaoManage!)
             }
             
             if (self.loaoManage?.loanList.count == 0) {
                 self.repayTableView?.isHidden = true
                 self.repayRecomView.isHidden = false
-                self.rightBtn.isHidden = true
                 // 数据请求
                 self.repayRecomView.requestRecommendListData()
             } else {
                 self.repayTableView?.isHidden = false
                 self.repayRecomView.isHidden = true
-                self.rightBtn.isHidden = false
                 self.loanArray = (self.loaoManage?.loanList)!
                 self.repayTableView?.mj_footer.endRefreshingWithNoMoreData()
                 // 界面刷新

@@ -84,7 +84,6 @@ class RepayManageHeaderView: BasicView {
         
         // 已逾期
         let dateName : UILabel = UILabel()
-        
         dateName.textColor = UIColor.white
         dateName.font = UIFont .systemFont(ofSize: 13 * WIDTH_SCALE)
         self.dateInfo = dateName
@@ -93,9 +92,9 @@ class RepayManageHeaderView: BasicView {
             make.right.equalTo((self.dateLabel?.snp.left)!)
             make.bottom.equalTo(amoutName.snp.bottom)
         }
+        
         // 已逾期
         let infoLabel : UILabel = UILabel()
-        
         infoLabel.textColor = UIColor.white
         infoLabel.textAlignment = NSTextAlignment.center
         infoLabel.font = UIFont .systemFont(ofSize: 12 * WIDTH_SCALE)
@@ -111,16 +110,16 @@ class RepayManageHeaderView: BasicView {
     // 更新界面
     func updateHeaderView(loanManage : LoanManageModel) -> Void {
         if loanManage.status == "HAD_OVERDUED" {
-            self.amountLabel?.text = "逾期金额:"
-            self.dateLabel?.text = "已逾期:"
+            self.amountInfo?.text = "逾期金额:"
+            self.dateInfo?.text = "已逾期:"
         } else {
-            self.amountLabel?.text = "应还金额:"
-            self.dateLabel?.text = "距还款日:"
+            self.amountInfo?.text = "应还金额:"
+            self.dateInfo?.text = "距还款日:"
         }
         
         // 金额
         self.amountLabel?.text = loanManage.currentRepayAmount
-        
+
         // 天数
         let absTemp : Int = abs(Int(loanManage.currentRepayDays!)!)
         self.dateLabel?.text = String(absTemp)

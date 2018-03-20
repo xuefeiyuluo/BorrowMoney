@@ -16,12 +16,16 @@ class ProtocolModel: NSObject {
 
 
 class PlanModel: NSObject {
-    var period : String = ""//
+    var period : String = ""// 当前期数
     var planId : String = ""//
-    var repayAmount : String = ""//
-    var repayDate : String = ""//
-    var status : String = ""//
-    var statusStr : String = ""//
+    var repayAmount : String = ""// 金额
+    var repayDate : String = ""// 日期
+    var status : String = ""// 状态  0=未出账 1=待还款 2=正常结清 3=逾期结清 4=逾期
+    var statusStr : String = ""// 状态文案
+    var selectedId : Bool = false// 是否选中   YES为选中   NO未选中
+    
+    
+    
     
 }
 
@@ -46,7 +50,7 @@ class OrderDetailModel: NSObject {
     var loanChannelId : String = ""//
     var tips : String = ""// 账单列表的提示文案
     var loanTerms : String = ""// 申请期限
-    var hasComment : String = ""// 评价
+    var hasComment : String = ""// "0"显示评价
     var loanApplyId : String = ""//
     var statusDesc : String = ""// 状态文案
     var orderTime : String = ""// 订单时间
@@ -55,8 +59,8 @@ class OrderDetailModel: NSObject {
     var planList : NSArray = []// 出帐列表
     var capitalDrawUrl : String = ""// 存管账户提款url
     var memberCard : String = ""// 会员服务
-    var cdsac : NSDictionary = [:]
-    
+    var needRepayAmount : String = ""// 应还金额
+    var needRepayTime : String = ""// 距离还款日期
     
     override func replacedKeyFromPropertyName() -> NSDictionary {
         return ["protocols":"protocol"]

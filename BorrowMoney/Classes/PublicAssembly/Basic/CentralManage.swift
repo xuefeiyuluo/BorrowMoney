@@ -225,6 +225,16 @@ func orderDetail(orderModel : OrderManageModel) -> BasicVC {
 }
 
 
+// 评价界面 
+func evaluate(loanOrder : LoanOrderModel) -> BasicVC {
+    let orderDetail : EvaluateVC = EvaluateVC()
+    orderDetail.loanOrder = loanOrder
+    return orderDetail
+}
+
+
+
+
 // 查询“xx”贷款结果
 func loanResult(loanModel : LoanOrderModel) -> BasicVC {
     let loanOrder : LoanResultVC = LoanResultVC()
