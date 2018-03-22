@@ -117,6 +117,9 @@
 		4023D6BE2063933200D657B6 /* IntergralListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4023D6BD2063933200D657B6 /* IntergralListModel.swift */; };
 		4023D6C02063977200D657B6 /* HomePageWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4023D6BF2063977200D657B6 /* HomePageWebVC.swift */; };
 		4023D6C220639C3E00D657B6 /* CalculatorHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4023D6C120639C3E00D657B6 /* CalculatorHeaderView.swift */; };
+		4023D6C42063B04000D657B6 /* EvaluateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4023D6C32063B04000D657B6 /* EvaluateHeaderView.swift */; };
+		4023D6C62063B09400D657B6 /* EvaluateMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4023D6C52063B09400D657B6 /* EvaluateMarkView.swift */; };
+		4023D6C82063B0B300D657B6 /* EvaluateSubmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4023D6C72063B0B300D657B6 /* EvaluateSubmitView.swift */; };
 		4025052620197FAB00FD4B3E /* LoanBooksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025052520197FAA00FD4B3E /* LoanBooksService.swift */; };
 		402505282019B50400FD4B3E /* LoanAmountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402505272019B50400FD4B3E /* LoanAmountType.swift */; };
 		4025052A2019EE9C00FD4B3E /* SortViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402505292019EE9C00FD4B3E /* SortViewCell.swift */; };
@@ -286,6 +289,9 @@
 		4023D6BD2063933200D657B6 /* IntergralListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntergralListModel.swift; sourceTree = "<group>"; };
 		4023D6BF2063977200D657B6 /* HomePageWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageWebVC.swift; sourceTree = "<group>"; };
 		4023D6C120639C3E00D657B6 /* CalculatorHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorHeaderView.swift; sourceTree = "<group>"; };
+		4023D6C32063B04000D657B6 /* EvaluateHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateHeaderView.swift; sourceTree = "<group>"; };
+		4023D6C52063B09400D657B6 /* EvaluateMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateMarkView.swift; sourceTree = "<group>"; };
+		4023D6C72063B0B300D657B6 /* EvaluateSubmitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateSubmitView.swift; sourceTree = "<group>"; };
 		4025052520197FAA00FD4B3E /* LoanBooksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanBooksService.swift; sourceTree = "<group>"; };
 		402505272019B50400FD4B3E /* LoanAmountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanAmountType.swift; sourceTree = "<group>"; };
 		402505292019EE9C00FD4B3E /* SortViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewCell.swift; sourceTree = "<group>"; };
@@ -774,6 +780,9 @@
 				402C3E0220611C90006B2630 /* AccountManageCell.swift */,
 				40D6CD20206244C6000FC915 /* AddOrganCell.swift */,
 				4023D6C120639C3E00D657B6 /* CalculatorHeaderView.swift */,
+				4023D6C32063B04000D657B6 /* EvaluateHeaderView.swift */,
+				4023D6C52063B09400D657B6 /* EvaluateMarkView.swift */,
+				4023D6C72063B0B300D657B6 /* EvaluateSubmitView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1030,6 +1039,7 @@
 				40234E6420450935006B988A /* MyInterestFreeVC.swift in Sources */,
 				4023D6B82063538E00D657B6 /* ChannelModel.swift in Sources */,
 				403BA2B1205150300049585F /* OrderDetailSateCell.swift in Sources */,
+				4023D6C62063B09400D657B6 /* EvaluateMarkView.swift in Sources */,
 				401F8BB41FCEDF1800298DD4 /* NaviBarView.swift in Sources */,
 				403BA2B3205150590049585F /* OrderDetailInfoCell.swift in Sources */,
 				401F8BB51FCEDF1800298DD4 /* TabBarController.swift in Sources */,
@@ -1060,6 +1070,7 @@
 				4067B1C8204AA8390036804F /* URLCenter.swift in Sources */,
 				401F8BB81FCEDF1800298DD4 /* NSArray+Extension.swift in Sources */,
 				401C376B205F8FED008FAD01 /* BillDetailHeaderView.swift in Sources */,
+				4023D6C82063B0B300D657B6 /* EvaluateSubmitView.swift in Sources */,
 				400B42B41FD14326009B4EE0 /* HotLoanModel.swift in Sources */,
 				401F8BD51FCEDF1800298DD4 /* RepayRecordVC.swift in Sources */,
 				4025052A2019EE9C00FD4B3E /* SortViewCell.swift in Sources */,
@@ -1068,6 +1079,7 @@
 				40234E6020450816006B988A /* LoanCalculatorVC.swift in Sources */,
 				401F8BBC1FCEDF1800298DD4 /* UIColor+Extension.swift in Sources */,
 				401F8BD01FCEDF1800298DD4 /* MessageCenterVC.swift in Sources */,
+				4023D6C42063B04000D657B6 /* EvaluateHeaderView.swift in Sources */,
 				40234E662045098E006B988A /* MyIntegralVC.swift in Sources */,
 				401F8BBF1FCEDF1800298DD4 /* XConfigure.swift in Sources */,
 				4067B1C3204AA8390036804F /* BasicVC.swift in Sources */,

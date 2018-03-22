@@ -18,9 +18,11 @@ class EvaluateVC: BasicVC {
     }
 
     
+    
+    
     override func setUpNavigationView() {
         super.setUpNavigationView()
-        self.navigationItem .titleView = NaviBarView() .setUpNaviBarWithTitle(title: "评价")
+        self.navigationItem .titleView = NaviBarView() .setUpNaviBarWithTitle(title: String (format: "评价%@", (self.loanOrder?.channelName)!))
     }
     
     

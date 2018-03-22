@@ -655,7 +655,6 @@ class OrderDetailVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     // 评价的点击事件
     func evaluateClick(sender: UIButton) -> Void {
-        XPrint("评价的点击事件")
         // 300电话联系机构   400评价
         if sender.tag == 300 {
             UIApplication.shared.openURL(NSURL (string: String (format: "tel%@", self.orderDetail.loanChannelTel))! as URL)
