@@ -373,8 +373,13 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     // 一键申请点击事件
     func fastClick(sender: UIButton) -> Void {
-//        let hotLoan : HotLoanModel = self.hotArray[sender.tag]
-//        self.navigationController?.pushViewController(loanDetail(hotLoan: hotLoan), animated: true)
+        let hotLoan : HotLoanModel = self.hotArray[sender.tag]
+            hotLoan.source = "1"
+        if hotLoan.targetType == "APPLY_NOW" {
+            // 跳转url
+        } else {
+            self.navigationController?.pushViewController(loanDetail(hotLoan: hotLoan), animated: true)
+        }
     }
     
     

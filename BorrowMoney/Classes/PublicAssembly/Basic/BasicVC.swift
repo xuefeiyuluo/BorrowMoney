@@ -72,11 +72,6 @@ class BasicVC: UIViewController {
     }
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

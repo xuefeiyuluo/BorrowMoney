@@ -233,6 +233,29 @@ func evaluate(loanOrder : LoanOrderModel) -> BasicVC {
 }
 
 
+// 机构的详细信息
+func organDetail(accountModel : AccountModel) -> BasicVC {
+    let organDetail : OrganDetailVC = OrganDetailVC()
+    organDetail.accountModel = accountModel
+    return organDetail
+}
+
+
+// 添加贷款机构
+func addOrganList() -> BasicVC {
+    let addOrgan : AddOrganVC = AddOrganVC()
+    return addOrgan
+}
+
+
+// 贷款机构登录
+func organLogin(organModel : OrganModel) -> BasicVC {
+    let organLogin : OrganLoginVC = OrganLoginVC()
+    organLogin.organModel = organModel
+    return organLogin
+}
+
+
 
 
 // 查询“xx”贷款结果

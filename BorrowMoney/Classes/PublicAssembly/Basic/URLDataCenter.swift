@@ -335,13 +335,59 @@ class URLDataCenter: NSObject {
     }
     
     
-    //  账单详情 设为已还
-    public func requestAccountManage(ids : String) -> URLCenter {
+    // 账号管理列表 
+    public func requestAccountManage() -> URLCenter {
         let param : URLCenter = URLCenter()
-        param.dict = ["ids":ids]
-        param.method = "roleInfo.makeRepaid"
+        param.method = "userAccount.getAccouns"
         return param
     }
+    
+    
+    // 添加机构列表
+    public func requestAddOrganList() -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.method = "userAccount.getEnableChannel"
+        return param
+    }
+    
+    
+    // 更新机构状态
+    public func requestUpdateChannelSatet(channelId : String,loanUserName : String,loanPassword : String,delFlag : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["channelId":channelId,"loanUserName":loanUserName,"loanPassword" : loanPassword,"delFlag" : delFlag]
+        param.method = "userAccount.updateAccount"
+        return param
+    }
+    
+    
+    
+    // 添加机构
+    public func requestAddChannelSatet(channelId : String,loanUserName : String,loanPassword : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["channelId":channelId,"loanUserName":loanUserName,"loanPassword" : loanPassword]
+        param.method = "userAccount.addAccount"
+        return param
+    }
+    
+    
+    // 获取机构登录的提示信息
+    public func requestChannelPlaceholder(channelId : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["channelId":channelId]
+        param.method = "userAccount.getChannelTip"
+        return param
+    }
+    
+    
+
+    // 获取积分明细列表
+    public func requestIntegralDetail() -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.method = "taskCenter.getGoldRecord"
+        return param
+    }
+    
+    
     
     //  查询xx贷款结果
 //    public func requestLoanResult(status : String,pageNo : String) -> URLCenter {

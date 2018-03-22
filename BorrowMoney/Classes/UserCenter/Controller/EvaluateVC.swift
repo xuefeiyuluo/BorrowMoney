@@ -17,6 +17,14 @@ class EvaluateVC: BasicVC {
         
     }
 
+    
+    override func setUpNavigationView() {
+        super.setUpNavigationView()
+        self.navigationItem .titleView = NaviBarView() .setUpNaviBarWithTitle(title: "评价")
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

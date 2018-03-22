@@ -10,8 +10,9 @@ import UIKit
 
 class MyIntegralVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     var integralLabel : UILabel = UILabel()// 积分
-    var integralArray : [IntergralModel] = [IntergralModel]()// 列表
-    var intergralTableView : UITableView?//
+    var sectionArray : NSArray?// 列表
+    var intergralTableView : UITableView?// 积分列表
+    var intergralDict : NSMutableDictionary = NSMutableDictionary()//
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,23 +137,38 @@ class MyIntegralVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : IntegralViewCell = tableView.dequeueReusableCell(withIdentifier: "integralView") as! IntegralViewCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
+        let tempArray : NSArray = self.sectionArray![indexPath.section] as! NSArray
+        let key : String = tempArray[indexPath.row] as! String
+        cell.intergralModel = self.intergralDict.object(forKey: key) as? IntergralModel
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let tempArray : NSArray = self.sectionArray![indexPath.section] as! NSArray
+        let key : String = tempArray[indexPath.row] as! String
+        if key == "申请贷款" {
+            APPDELEGATE.tabBarControllerSelectedIndex(index: 1)
+            self.navigationController?.popToRootViewController(animated: true)
+        } else if key == "邀请好友" {
+            self.navigationController?.pushViewController(userCenterWebViewWithUrl(url: InvitingFriends), animated: true)
+        } else if key == "导入账单" {
+            // 跳转添加贷款机构
+            self.navigationController?.pushViewController(addOrganList(), animated: true)
+        }
     }
     
     
     // 积分换礼物
-    func integralClick() -> Void {
-        
+    func integralClick() -> Void
+    {
+        self.navigationController?.pushViewController(userCenterWebViewWithUrl(url: LuckDraw), animated: true)
     }
     
     
     // 积分明细
-    func integralDetail() -> Void {
+    func integralDetail() -> Void
+    {
         self.navigationController?.pushViewController(intergralDetail(), animated: true)
     }
     
@@ -169,6 +185,14 @@ class MyIntegralVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         rightBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14 * WIDTH_SCALE)
         rightBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -15 * WIDTH_SCALE)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem (customView: rightBtn)
+    }
+    
+    
+    // 初始化数据
+    override func initializationData() {
+        super.initializationData()
+        
+        self.sectionArray = [["邀请好友"],["注册","导入账单","申请贷款"]]
     }
     
     
@@ -189,9 +213,15 @@ class MyIntegralVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     func requestIntegralInfo() -> Void {
         UserCenterService.userInstance.requestIntegralInfo(success: { (responseObject) in
             let tempArray : NSArray = responseObject as! NSArray
-            self.integralArray = IntergralModel.objectArrayWithKeyValuesArray(array: tempArray) as! [IntergralModel]
-        }) { (error) in
+            let dataArray : [IntergralModel] = IntergralModel.objectArrayWithKeyValuesArray(array: tempArray) as! [IntergralModel]
             
+            for model : IntergralModel in dataArray {
+                self.intergralDict.setObject(model, forKey: model.taskName as NSCopying)
+            }
+            
+            // 刷新数据
+            self.intergralTableView?.reloadData()
+        }) { (error) in
         }
     }
     

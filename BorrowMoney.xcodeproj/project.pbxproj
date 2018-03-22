@@ -14,7 +14,7 @@
 		400B42B01FD12461009B4EE0 /* HomePageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B42AF1FD12461009B4EE0 /* HomePageService.swift */; };
 		400B42B21FD12B97009B4EE0 /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B42B11FD12B97009B4EE0 /* BannerModel.swift */; };
 		400B42B41FD14326009B4EE0 /* HotLoanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B42B31FD14326009B4EE0 /* HotLoanModel.swift */; };
-		4011498A20613CC80005B8DA /* MechanismLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011498920613CC80005B8DA /* MechanismLoginVC.swift */; };
+		4011498A20613CC80005B8DA /* OrganLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011498920613CC80005B8DA /* OrganLoginVC.swift */; };
 		4011FE541FF22B12006CC349 /* DropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011FE531FF22B12006CC349 /* DropdownView.swift */; };
 		4011FE561FF2590A006CC349 /* DropViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011FE551FF2590A006CC349 /* DropViewCell.swift */; };
 		40133ACD205CF718009093C6 /* PlanViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40133ACC205CF718009093C6 /* PlanViewCell.swift */; };
@@ -63,7 +63,6 @@
 		401F8BD01FCEDF1800298DD4 /* MessageCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B951FCEDF1800298DD4 /* MessageCenterVC.swift */; };
 		401F8BD11FCEDF1800298DD4 /* ModifyPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B961FCEDF1800298DD4 /* ModifyPasswordVC.swift */; };
 		401F8BD21FCEDF1800298DD4 /* OrderManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B971FCEDF1800298DD4 /* OrderManageVC.swift */; };
-		401F8BD31FCEDF1800298DD4 /* PersonalInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B981FCEDF1800298DD4 /* PersonalInfoVC.swift */; };
 		401F8BD41FCEDF1800298DD4 /* RepayManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B991FCEDF1800298DD4 /* RepayManageVC.swift */; };
 		401F8BD51FCEDF1800298DD4 /* RepayRecordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B9A1FCEDF1800298DD4 /* RepayRecordVC.swift */; };
 		401F8BD61FCEDF1800298DD4 /* SetUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8B9B1FCEDF1800298DD4 /* SetUpVC.swift */; };
@@ -97,6 +96,8 @@
 		40222ECB204FAC9600F1101A /* LoanResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40222ECA204FAC9600F1101A /* LoanResultVC.swift */; };
 		40222ECD204FB28100F1101A /* BasicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40222ECC204FB28100F1101A /* BasicModel.swift */; };
 		40222ECF204FD3F900F1101A /* RepayRecomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40222ECE204FD3F900F1101A /* RepayRecomView.swift */; };
+		402279FD2061F93000650C7E /* OrganDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402279FC2061F93000650C7E /* OrganDetailVC.swift */; };
+		402279FF2061F95100650C7E /* AddOrganVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402279FE2061F95100650C7E /* AddOrganVC.swift */; };
 		40229BAD204BCDED00506ACC /* IntegralViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40229BAC204BCDED00506ACC /* IntegralViewCell.swift */; };
 		40229BAF204BDD5800506ACC /* IntegralDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40229BAE204BDD5800506ACC /* IntegralDetailVC.swift */; };
 		40229BB1204BF94F00506ACC /* IntergralModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40229BB0204BF94F00506ACC /* IntergralModel.swift */; };
@@ -111,6 +112,11 @@
 		40234E7620454D35006B988A /* CapitalDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40234E7520454D35006B988A /* CapitalDetailHeaderView.swift */; };
 		40234E7A20455F5D006B988A /* CapitalViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40234E7920455F5D006B988A /* CapitalViewCell.swift */; };
 		40234E7C204568BD006B988A /* CapitalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40234E7B204568BD006B988A /* CapitalModel.swift */; };
+		4023D6B82063538E00D657B6 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4023D6B72063538E00D657B6 /* ChannelModel.swift */; };
+		4023D6BC2063880000D657B6 /* IntegralDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4023D6BB2063880000D657B6 /* IntegralDetailCell.swift */; };
+		4023D6BE2063933200D657B6 /* IntergralListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4023D6BD2063933200D657B6 /* IntergralListModel.swift */; };
+		4023D6C02063977200D657B6 /* HomePageWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4023D6BF2063977200D657B6 /* HomePageWebVC.swift */; };
+		4023D6C220639C3E00D657B6 /* CalculatorHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4023D6C120639C3E00D657B6 /* CalculatorHeaderView.swift */; };
 		4025052620197FAB00FD4B3E /* LoanBooksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025052520197FAA00FD4B3E /* LoanBooksService.swift */; };
 		402505282019B50400FD4B3E /* LoanAmountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402505272019B50400FD4B3E /* LoanAmountType.swift */; };
 		4025052A2019EE9C00FD4B3E /* SortViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402505292019EE9C00FD4B3E /* SortViewCell.swift */; };
@@ -136,6 +142,10 @@
 		40B9BE852059164700CB22FD /* recommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9BE842059164700CB22FD /* recommendCell.swift */; };
 		40B9BE892059255100CB22FD /* OrderDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9BE882059255100CB22FD /* OrderDetailModel.swift */; };
 		40CCFE852031917500A8C7C7 /* UserCenterWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CCFE842031917500A8C7C7 /* UserCenterWebVC.swift */; };
+		40D6CD1F206228FE000FC915 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D6CD1E206228FE000FC915 /* AccountModel.swift */; };
+		40D6CD21206244C6000FC915 /* AddOrganCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D6CD20206244C6000FC915 /* AddOrganCell.swift */; };
+		40D6CD232062489A000FC915 /* OrganListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D6CD222062489A000FC915 /* OrganListModel.swift */; };
+		40D6CD2520626909000FC915 /* PersonalInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D6CD2420626909000FC915 /* PersonalInfoVC.swift */; };
 		40E8386C2060B5D8005E30EA /* BillDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8386B2060B5D8005E30EA /* BillDetailFooterView.swift */; };
 		40E8386E2060B6CD005E30EA /* RepaidAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8386D2060B6CD005E30EA /* RepaidAlertView.swift */; };
 		40E958EE205FB15A00B56360 /* BillDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E958ED205FB15A00B56360 /* BillDetailModel.swift */; };
@@ -165,7 +175,7 @@
 		400B42AF1FD12461009B4EE0 /* HomePageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageService.swift; sourceTree = "<group>"; };
 		400B42B11FD12B97009B4EE0 /* BannerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
 		400B42B31FD14326009B4EE0 /* HotLoanModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotLoanModel.swift; sourceTree = "<group>"; };
-		4011498920613CC80005B8DA /* MechanismLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MechanismLoginVC.swift; sourceTree = "<group>"; };
+		4011498920613CC80005B8DA /* OrganLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganLoginVC.swift; sourceTree = "<group>"; };
 		4011FE531FF22B12006CC349 /* DropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownView.swift; sourceTree = "<group>"; };
 		4011FE551FF2590A006CC349 /* DropViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewCell.swift; sourceTree = "<group>"; };
 		40133ACC205CF718009093C6 /* PlanViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewCell.swift; sourceTree = "<group>"; };
@@ -222,7 +232,6 @@
 		401F8B951FCEDF1800298DD4 /* MessageCenterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCenterVC.swift; sourceTree = "<group>"; };
 		401F8B961FCEDF1800298DD4 /* ModifyPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyPasswordVC.swift; sourceTree = "<group>"; };
 		401F8B971FCEDF1800298DD4 /* OrderManageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderManageVC.swift; sourceTree = "<group>"; };
-		401F8B981FCEDF1800298DD4 /* PersonalInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoVC.swift; sourceTree = "<group>"; };
 		401F8B991FCEDF1800298DD4 /* RepayManageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepayManageVC.swift; sourceTree = "<group>"; };
 		401F8B9A1FCEDF1800298DD4 /* RepayRecordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepayRecordVC.swift; sourceTree = "<group>"; };
 		401F8B9B1FCEDF1800298DD4 /* SetUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetUpVC.swift; sourceTree = "<group>"; };
@@ -256,6 +265,8 @@
 		40222ECA204FAC9600F1101A /* LoanResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanResultVC.swift; sourceTree = "<group>"; };
 		40222ECC204FB28100F1101A /* BasicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicModel.swift; sourceTree = "<group>"; };
 		40222ECE204FD3F900F1101A /* RepayRecomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepayRecomView.swift; sourceTree = "<group>"; };
+		402279FC2061F93000650C7E /* OrganDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganDetailVC.swift; sourceTree = "<group>"; };
+		402279FE2061F95100650C7E /* AddOrganVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrganVC.swift; sourceTree = "<group>"; };
 		40229BAC204BCDED00506ACC /* IntegralViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegralViewCell.swift; sourceTree = "<group>"; };
 		40229BAE204BDD5800506ACC /* IntegralDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegralDetailVC.swift; sourceTree = "<group>"; };
 		40229BB0204BF94F00506ACC /* IntergralModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntergralModel.swift; sourceTree = "<group>"; };
@@ -270,6 +281,11 @@
 		40234E7520454D35006B988A /* CapitalDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalDetailHeaderView.swift; sourceTree = "<group>"; };
 		40234E7920455F5D006B988A /* CapitalViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalViewCell.swift; sourceTree = "<group>"; };
 		40234E7B204568BD006B988A /* CapitalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalModel.swift; sourceTree = "<group>"; };
+		4023D6B72063538E00D657B6 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
+		4023D6BB2063880000D657B6 /* IntegralDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegralDetailCell.swift; sourceTree = "<group>"; };
+		4023D6BD2063933200D657B6 /* IntergralListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntergralListModel.swift; sourceTree = "<group>"; };
+		4023D6BF2063977200D657B6 /* HomePageWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageWebVC.swift; sourceTree = "<group>"; };
+		4023D6C120639C3E00D657B6 /* CalculatorHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorHeaderView.swift; sourceTree = "<group>"; };
 		4025052520197FAA00FD4B3E /* LoanBooksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanBooksService.swift; sourceTree = "<group>"; };
 		402505272019B50400FD4B3E /* LoanAmountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanAmountType.swift; sourceTree = "<group>"; };
 		402505292019EE9C00FD4B3E /* SortViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewCell.swift; sourceTree = "<group>"; };
@@ -295,6 +311,10 @@
 		40B9BE842059164700CB22FD /* recommendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recommendCell.swift; sourceTree = "<group>"; };
 		40B9BE882059255100CB22FD /* OrderDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailModel.swift; sourceTree = "<group>"; };
 		40CCFE842031917500A8C7C7 /* UserCenterWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenterWebVC.swift; sourceTree = "<group>"; };
+		40D6CD1E206228FE000FC915 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
+		40D6CD20206244C6000FC915 /* AddOrganCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrganCell.swift; sourceTree = "<group>"; };
+		40D6CD222062489A000FC915 /* OrganListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganListModel.swift; sourceTree = "<group>"; };
+		40D6CD2420626909000FC915 /* PersonalInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoVC.swift; sourceTree = "<group>"; };
 		40E8386B2060B5D8005E30EA /* BillDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailFooterView.swift; sourceTree = "<group>"; };
 		40E8386D2060B6CD005E30EA /* RepaidAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepaidAlertView.swift; sourceTree = "<group>"; };
 		40E958ED205FB15A00B56360 /* BillDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailModel.swift; sourceTree = "<group>"; };
@@ -417,6 +437,7 @@
 		401F8B581FCEDF1800298DD4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				40D6CD2420626909000FC915 /* PersonalInfoVC.swift */,
 				401F8B591FCEDF1800298DD4 /* ForgetVC.swift */,
 				401F8B5A1FCEDF1800298DD4 /* RegisterVC.swift */,
 			);
@@ -476,6 +497,7 @@
 				401F8B691FCEDF1800298DD4 /* HomePageVC.swift */,
 				401F8BE91FCFDA7500298DD4 /* SearchResultVC.swift */,
 				4021B3C22043FD8700E16022 /* LargeLoanVC.swift */,
+				4023D6BF2063977200D657B6 /* HomePageWebVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -663,7 +685,6 @@
 				401F8B951FCEDF1800298DD4 /* MessageCenterVC.swift */,
 				401F8B961FCEDF1800298DD4 /* ModifyPasswordVC.swift */,
 				401F8B971FCEDF1800298DD4 /* OrderManageVC.swift */,
-				401F8B981FCEDF1800298DD4 /* PersonalInfoVC.swift */,
 				401F8B991FCEDF1800298DD4 /* RepayManageVC.swift */,
 				401F8B9A1FCEDF1800298DD4 /* RepayRecordVC.swift */,
 				401F8B9B1FCEDF1800298DD4 /* SetUpVC.swift */,
@@ -681,7 +702,9 @@
 				4009B93C204E5C1A00F72455 /* OrderDetailVC.swift */,
 				40222ECA204FAC9600F1101A /* LoanResultVC.swift */,
 				401C3766205D3EBE008FAD01 /* EvaluateVC.swift */,
-				4011498920613CC80005B8DA /* MechanismLoginVC.swift */,
+				4011498920613CC80005B8DA /* OrganLoginVC.swift */,
+				402279FC2061F93000650C7E /* OrganDetailVC.swift */,
+				402279FE2061F95100650C7E /* AddOrganVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -702,6 +725,10 @@
 				4009B93E204E7C8100F72455 /* OrderManageModel.swift */,
 				40B9BE882059255100CB22FD /* OrderDetailModel.swift */,
 				40E958ED205FB15A00B56360 /* BillDetailModel.swift */,
+				40D6CD1E206228FE000FC915 /* AccountModel.swift */,
+				40D6CD222062489A000FC915 /* OrganListModel.swift */,
+				4023D6B72063538E00D657B6 /* ChannelModel.swift */,
+				4023D6BD2063933200D657B6 /* IntergralListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -717,6 +744,7 @@
 		401F8BA51FCEDF1800298DD4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4023D6BB2063880000D657B6 /* IntegralDetailCell.swift */,
 				401F8BA61FCEDF1800298DD4 /* MessageCenterCell.swift */,
 				401F8BA71FCEDF1800298DD4 /* RepayManageCell.swift */,
 				401F8BA81FCEDF1800298DD4 /* RepayManageHeaderView.swift */,
@@ -744,6 +772,8 @@
 				40E8386D2060B6CD005E30EA /* RepaidAlertView.swift */,
 				402C3E002060F8A9006B2630 /* RepaidViewCell.swift */,
 				402C3E0220611C90006B2630 /* AccountManageCell.swift */,
+				40D6CD20206244C6000FC915 /* AddOrganCell.swift */,
+				4023D6C120639C3E00D657B6 /* CalculatorHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -981,19 +1011,24 @@
 				4067B1C5204AA8390036804F /* BasicViewCell.swift in Sources */,
 				401F8BD11FCEDF1800298DD4 /* ModifyPasswordVC.swift in Sources */,
 				4067B1C6204AA8390036804F /* BasicWebVC.swift in Sources */,
+				40D6CD1F206228FE000FC915 /* AccountModel.swift in Sources */,
 				4009B93B204E5AB100F72455 /* OrderManageCell.swift in Sources */,
 				4021B3C32043FD8700E16022 /* LargeLoanVC.swift in Sources */,
 				401F8BD71FCEDF1800298DD4 /* UserCenterVC.swift in Sources */,
 				40234E7620454D35006B988A /* CapitalDetailHeaderView.swift in Sources */,
 				401F8BB21FCEDF1800298DD4 /* CustomNavigationController.swift in Sources */,
 				4011FE541FF22B12006CC349 /* DropdownView.swift in Sources */,
+				402279FD2061F93000650C7E /* OrganDetailVC.swift in Sources */,
 				401F8BE41FCEDF1800298DD4 /* UserCollectionViewCell.swift in Sources */,
+				4023D6BE2063933200D657B6 /* IntergralListModel.swift in Sources */,
+				40D6CD21206244C6000FC915 /* AddOrganCell.swift in Sources */,
 				401F8BB11FCEDF1800298DD4 /* BorrowMoney.swift in Sources */,
 				40B9BE852059164700CB22FD /* recommendCell.swift in Sources */,
 				40234E6A20452632006B988A /* CapitalDetailsVC.swift in Sources */,
 				40234E6E20453FCE006B988A /* CashModel.swift in Sources */,
 				401F8BC51FCEDF1800298DD4 /* GraphicView.swift in Sources */,
 				40234E6420450935006B988A /* MyInterestFreeVC.swift in Sources */,
+				4023D6B82063538E00D657B6 /* ChannelModel.swift in Sources */,
 				403BA2B1205150300049585F /* OrderDetailSateCell.swift in Sources */,
 				401F8BB41FCEDF1800298DD4 /* NaviBarView.swift in Sources */,
 				403BA2B3205150590049585F /* OrderDetailInfoCell.swift in Sources */,
@@ -1012,12 +1047,13 @@
 				401F8BE21FCEDF1800298DD4 /* UserCenterCell2.swift in Sources */,
 				401D9ABB1FD694E70038A860 /* LoanBooksHeaderView.swift in Sources */,
 				4067B1C9204AA8390036804F /* URLDataCenter.swift in Sources */,
-				4011498A20613CC80005B8DA /* MechanismLoginVC.swift in Sources */,
+				4011498A20613CC80005B8DA /* OrganLoginVC.swift in Sources */,
 				401F8BDF1FCEDF1800298DD4 /* RepayManageCell.swift in Sources */,
 				40222ECB204FAC9600F1101A /* LoanResultVC.swift in Sources */,
 				401F8BD21FCEDF1800298DD4 /* OrderManageVC.swift in Sources */,
 				401F8BDE1FCEDF1800298DD4 /* MessageCenterCell.swift in Sources */,
 				401F8BC81FCEDF1800298DD4 /* LoginSegmentedView.swift in Sources */,
+				4023D6C02063977200D657B6 /* HomePageWebVC.swift in Sources */,
 				402D0AD72046C36400BA24E1 /* BankSheetView.swift in Sources */,
 				401F8BE61FCFB47D00298DD4 /* CustomNavigationView.swift in Sources */,
 				403BA2AF205150110049585F /* OrderDetailTitleCell.swift in Sources */,
@@ -1050,6 +1086,7 @@
 				40234E7A20455F5D006B988A /* CapitalViewCell.swift in Sources */,
 				401F8BEE1FCFDFB900298DD4 /* ProductTypeView.swift in Sources */,
 				401F8BAD1FCEDF1800298DD4 /* ForgetVC.swift in Sources */,
+				40D6CD232062489A000FC915 /* OrganListModel.swift in Sources */,
 				4011FE561FF2590A006CC349 /* DropViewCell.swift in Sources */,
 				40E958EE205FB15A00B56360 /* BillDetailModel.swift in Sources */,
 				401F8BC71FCEDF1800298DD4 /* LoginInfoView.swift in Sources */,
@@ -1058,8 +1095,9 @@
 				401F8BAF1FCEDF1800298DD4 /* AlamofireManager.swift in Sources */,
 				401F8BC91FCEDF1800298DD4 /* LoginVC.swift in Sources */,
 				401F8BE31FCEDF1800298DD4 /* UserCenterHeaderView.swift in Sources */,
+				40D6CD2520626909000FC915 /* PersonalInfoVC.swift in Sources */,
+				4023D6C220639C3E00D657B6 /* CalculatorHeaderView.swift in Sources */,
 				401F8BDA1FCEDF1800298DD4 /* LoanProductsModel.swift in Sources */,
-				401F8BD31FCEDF1800298DD4 /* PersonalInfoVC.swift in Sources */,
 				40234E7C204568BD006B988A /* CapitalModel.swift in Sources */,
 				401F8BCB1FCEDF1800298DD4 /* PublicService.swift in Sources */,
 				401F8BC11FCEDF1800298DD4 /* XPrint.swift in Sources */,
@@ -1091,6 +1129,7 @@
 				4084BDB420469DAF008A354F /* XNumRule.swift in Sources */,
 				402C3E0320611C90006B2630 /* AccountManageCell.swift in Sources */,
 				401F8BBB1FCEDF1800298DD4 /* String+Extension.swift in Sources */,
+				4023D6BC2063880000D657B6 /* IntegralDetailCell.swift in Sources */,
 				40229BAF204BDD5800506ACC /* IntegralDetailVC.swift in Sources */,
 				401F8BBE1FCEDF1800298DD4 /* UserDefaults+Extension.swift in Sources */,
 				401A97C4204D7DA8005826CC /* OrderHeaderView.swift in Sources */,
@@ -1099,6 +1138,7 @@
 				401F8BCE1FCEDF1800298DD4 /* AboutVC.swift in Sources */,
 				401F8BCA1FCEDF1800298DD4 /* UserModel.swift in Sources */,
 				401F8BF21FCFE07C00298DD4 /* FixedAdverView.swift in Sources */,
+				402279FF2061F95100650C7E /* AddOrganVC.swift in Sources */,
 				4022003F204648C200BC296A /* CaptialNullDataView.swift in Sources */,
 				402505282019B50400FD4B3E /* LoanAmountType.swift in Sources */,
 			);

@@ -673,7 +673,7 @@ class OrderDetailVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     // 联系信贷经理的点击事件
     func infoFooterClick() -> Void {
-        XPrint("联系信贷经理")
+        self.navigationController?.pushViewController(largeLoan(), animated: true)
     }
     
     

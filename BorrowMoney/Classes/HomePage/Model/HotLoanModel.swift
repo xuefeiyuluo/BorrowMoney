@@ -24,7 +24,7 @@ class HotLoanModel: NSObject {
     var month_fee_rate : String? = ""//
     var name : String? = ""// 贷款名
     var rankType : String? = ""//
-    var targetType : String? = ""//
+    var targetType : String? = ""// DETAIL跳转到详情页 APPLY_NOW跳转立即申请url
     var deviceType : String? = ""//
     var source : String? = ""// 来源
 //    var arguments : NSDictionary?//

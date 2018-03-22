@@ -12,17 +12,25 @@ class AccountManageCell: BasicViewCell {
     var iconImageView : UIImageView = UIImageView()// 图标
     var accountLabel : UILabel = UILabel()// 账号
     var channelLabel : UILabel = UILabel()// 贷款名称
+    var accountModel : AccountModel?{
+        didSet{
+            // 图标
+            self.iconImageView.kf.setImage(with:URL (string: (accountModel?.productLogo)!), placeholder: UIImage (named: "defaultWait.png"), options: nil, progressBlock: nil, completionHandler: nil)
+            
+            // 账号
+            self.accountLabel.text = accountModel?.loanUserName
+            
+            // 贷款名称
+            self.channelLabel.text = accountModel?.loanChannelName
+        }
+    }
     
-    // 图标
-    // 账号
-    // 贷款名称
 
     // 创建界面
     override func createUI() {
         super.createUI()
         
         // 图标
-        self.iconImageView.backgroundColor = UIColor.purple
         self.contentView.addSubview(self.iconImageView)
         self.iconImageView.snp.makeConstraints { (make) in
             make.left.equalTo(self.contentView.snp.left).offset(6 * WIDTH_SCALE)
@@ -32,7 +40,6 @@ class AccountManageCell: BasicViewCell {
         }
         
         // 账号
-        self.accountLabel.text = "1221432432"
         self.accountLabel.textColor = TEXT_SECOND_COLOR
         self.accountLabel.font = UIFont.systemFont(ofSize: 13 * WIDTH_SCALE)
         self.contentView.addSubview(self.accountLabel)
@@ -42,7 +49,6 @@ class AccountManageCell: BasicViewCell {
         }
         
         // 贷款名称
-        self.channelLabel.text = "前站"
         self.channelLabel.textColor = UIColor().colorWithHexString(hex: "A7A7A7")
         self.channelLabel.backgroundColor = UIColor().colorWithHexString(hex: "FFFBF5")
         self.channelLabel.font = UIFont.systemFont(ofSize: 13 * WIDTH_SCALE)

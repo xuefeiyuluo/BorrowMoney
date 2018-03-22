@@ -206,21 +206,16 @@ class RepayManageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         self.selectedSection = sender.tag
         let loanData : LoanManageData = self.loanArray[sender.tag] as! LoanManageData
         if loanData.status == "PASSWORD_ERROR" {
-            
+            let organModel : OrganModel = OrganModel()
+            organModel.logo = loanData.productLogo!
+            organModel.channelId = loanData.loanChannelId!
+            organModel.name = loanData.loanChannelName!
+            organModel.entryType = "3"
+            organModel.account = ""
+            self.navigationController?.pushViewController(organLogin(organModel: organModel), animated: true)
         } else if loanData.status == "DATA_EXCEPTION" {
             requestFlushStatus(accountId: loanData.accountId!)
         }
-        //        if([self.selectedData.status isEqualToString:@"PASSWORD_ERROR"]) {
-        //            LoanPlatformDetails *detail = [[LoanPlatformDetails alloc] init];
-        //            detail.channelName = self.selectedData.loanChannelName;
-        //            detail.logo = self.selectedData.productLogo;
-        //            detail.loan_channel_id = self.selectedData.loanChannelId;
-        //            detail.entryType = @"3";
-        //            [self.navigationController pushViewController:[HTUIControlCenter addAccountControllerWithLoanPlatformDetails:detail accounts:@""] animated:YES];
-        //        } else if([self.selectedData.status isEqualToString:@"DATA_EXCEPTION"]) {
-        //            // 刷新订单状态
-        //            [self requestFlushStatus];
-        //        }
     }
 
     
