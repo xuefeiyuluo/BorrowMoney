@@ -9,13 +9,20 @@
 import UIKit
 
 class RegisterVC: BasicVC {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
     }
     
+    
+    // 创建界面
+    func createUI() -> Void {
+
+    
+    }
+
     
     
     

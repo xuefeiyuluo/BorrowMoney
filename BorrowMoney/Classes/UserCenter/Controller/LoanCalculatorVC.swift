@@ -100,20 +100,11 @@ class LoanCalculatorVC: BasicVC, UIWebViewDelegate {
     
     // 加载url
     func loadWebViewWithUrl(url : String) -> Void {
-        if USERINFO?.sessionId != nil{
-            if (url.range(of: "jiedianqian") != nil) || (url.range(of: "rongzhijia") != nil) {
-                let webUrl : String = self.urlWithSession(url: url)
-                let request : URLRequest = URLRequest (url: NSURL (string: webUrl)! as URL)
-                self.webView.loadRequest(request)
-            } else {
-                return
-            }
+        if (url.range(of: "jiedianqian") != nil) || (url.range(of: "rongzhijia") != nil) {
+            let webUrl : String = self.urlWithSession(url: url)
+            let request : URLRequest = URLRequest (url: NSURL (string: webUrl)! as URL)
+            self.webView.loadRequest(request)
         } else {
-            userLogin(successHandler: { () -> (Void) in
-                // 成功登录后重新加载界面
-                self.loadWebViewWithUrl(url: self.urlArray[self.tagSelected])
-            }) { () -> (Void) in
-            }
             return
         }
     }
@@ -121,11 +112,16 @@ class LoanCalculatorVC: BasicVC, UIWebViewDelegate {
     
     // url后添加Session
     func urlWithSession(url : String) -> String {
-        if url.range(of: "?") != nil {
-            return String (format: "%@&sessionId=", url,(USERINFO?.sessionId)!)
+        if ASSERLOGIN! {
+            if url.range(of: "?") != nil {
+                return String (format: "%@&sessionId=%@", url,(USERINFO?.sessionId)!)
+            } else {
+                return String (format: "%@?sessionId=%@", url,(USERINFO?.sessionId)!)
+            }
         } else {
-            return String (format: "%@?sessionId=", url,(USERINFO?.sessionId)!)
+            return url
         }
+        
     }
 
 

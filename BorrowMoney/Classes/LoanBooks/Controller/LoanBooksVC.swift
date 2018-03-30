@@ -27,6 +27,7 @@ class LoanBooksVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     var booksArray : [HotLoanModel] = [HotLoanModel]()// 列表数据
     var currentPage : Int = 1;// 列表的当前页数
     var first = 0;// 首次进入该界面
+    var homeToBooks : String = "-1"// 默认值为-1 从首页跳转贷款大全
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -395,9 +396,70 @@ class LoanBooksVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     // 首次请求数据
     func firstRequestLoanData() -> Void {
         if self.first == 2 {
-            requestLoanList()
+            // 从首页跳转贷款大全时，对头部数据的处理
+            requestLoanListData()
         }
     }
+    
+    
+    // 从首页跳转贷款大全页面
+    func fromHomeToLoanBooks(loanType : String) -> Void {
+        self.homeToBooks = loanType
+        if self.first == 2 {
+            // 从首页跳转贷款大全时，对头部数据的处理
+            requestLoanListData()
+        } else {
+            // 获取金额区间
+            requestLoanAmountRang()
+            
+            // 获取贷款类型
+            requestLoanType()
+        }
+    }
+    
+    
+    // 首页跳转贷款大全后，更新头部下拉框的数据
+    func updateHeaderDateFromHome() -> Void {
+        if self.homeToBooks != "-1" {
+            
+            // 金额数据
+            updateHeaderViewData(dataArray: self.amountArray, tag: 0)
+            self.amountSelectrd = self.amountArray[0]
+            self.headerView.changeHeaderButtonText(tag : 0, titleText:(self.amountSelectrd?.desc)!)
+            
+            // 贷款类型
+            for i in 0 ..< self.typeArray.count {
+                let model : LoanAmountType = self.typeArray[i]
+                if model.tagId == self.homeToBooks {
+                    model.typeSelected = true
+                    self.typeSelectrd = model
+                } else {
+                    model.typeSelected = false
+                }
+            }
+            self.headerView.changeHeaderButtonText(tag : 1, titleText:(self.typeSelectrd?.tagName)!)
+            
+            // 排序
+            updateHeaderViewData(dataArray: self.sortArray, tag: 0)
+            self.sortSelectrd = self.sortArray[0]
+            self.headerView.changeHeaderButtonText(tag : 2, titleText:(self.sortSelectrd?.sortName)!)
+            
+            // 重置为初始状态
+            self.homeToBooks = "-1"
+        }
+    }
+    
+    
+    // 从首页跳转贷款大全时，对头部数据的处理
+    func requestLoanListData() -> Void {
+        // 首页跳转贷款大全后，更新头部下拉框的数据
+        updateHeaderDateFromHome()
+        
+        // 获取贷款列表
+        requestLoanList()
+    }
+    
+    
     
     
     // 获取贷款类型

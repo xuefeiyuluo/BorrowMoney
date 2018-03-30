@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias ImageBlock = (String) -> Void
+typealias ImageBlock = (Int) -> Void
 class ProductTypeView: BasicView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     var productCollectionView : UICollectionView?//
     var lineView : UIView?// 横线
@@ -108,7 +108,7 @@ class ProductTypeView: BasicView, UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         if self.imageBlock != nil {
-            self.imageBlock!("")
+            self.imageBlock!(indexPath.item)
         }
     }
     

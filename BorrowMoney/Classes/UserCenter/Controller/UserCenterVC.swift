@@ -229,7 +229,10 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
                     self.navigationController?.pushViewController(weChatFocus(), animated: true)
                 // 常见问题
                 } else if index == 2 {
-                    self.navigationController?.pushViewController(userCenterWebViewWithUrl(url: CommonProblem), animated: true)
+                    userLogin(successHandler: { () -> (Void) in
+                        self.navigationController?.pushViewController(userCenterWebViewWithUrl(url: CommonProblem), animated: true)
+                    }) { () -> (Void) in
+                    }
                 // 现金
                 } else if index == 3 {
                     userLogin(successHandler: { () -> (Void) in

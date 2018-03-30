@@ -36,11 +36,11 @@ class BasicVC: UIViewController {
         super.viewDidLoad()
         self.view .backgroundColor = MAIN_COLOR
         
-        // 设置导航栏
-        setUpNavigationView()
-        
         // 初始化数据
         initializationData()
+        
+        // 设置导航栏
+        setUpNavigationView()
     }
     
     
@@ -48,6 +48,15 @@ class BasicVC: UIViewController {
         super.viewDidDisappear(animated)
         SVProgressHUD.dismiss()
     }
+    
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        get {
+            return UIStatusBarStyle.lightContent
+        }
+    }
+    
+    
     
     
     // 初始化数据

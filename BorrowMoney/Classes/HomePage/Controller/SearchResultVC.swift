@@ -223,7 +223,7 @@ class SearchResultVC: BasicVC, UISearchBarDelegate, UITableViewDelegate, UITable
     // 根据输入的关键词搜索
     func requestKeywordLoanlist(keyword:String) -> Void
     {
-        HomePageService.homeInstance.requestSearchText(keyword: "免息", success: { (responseObject) in
+        HomePageService.homeInstance.requestSearchText(keyword: (self.navigationView?.searchBar?.text)!, success: { (responseObject) in
             let tempDict : NSDictionary = responseObject as! NSDictionary
             
 //            self.resultData = HotLoanModel.objectArrayWithKeyValuesArray(array: tempDict["allList"] as! NSArray) as! [HotLoanModel]

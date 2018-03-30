@@ -60,6 +60,7 @@ class MessageCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         self.view .addSubview(self.messageTableView!)
     }
     
+    // MARK: UITableViewDataSource, UITableViewDelegate
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

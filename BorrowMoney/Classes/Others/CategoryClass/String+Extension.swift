@@ -27,11 +27,17 @@ extension String {
     }
     
     
-    // utf8编码
-    func utf8EncodedString() ->String {
+    // url编码
+    func stringToUrlEncoded() -> String {
         let encodeWord = self.addingPercentEncoding(withAllowedCharacters: NSCharacterSet(charactersIn:"`#%^{}\"[]|\\<> ").inverted)
-        
         return encodeWord!
+    }
+    
+    
+    // Utf8编码 string -> utf8
+    func stringToUTF8Encoded() -> Data {
+        let data : Data = self.data(using: String.Encoding.utf8)!
+        return data
     }
     
     

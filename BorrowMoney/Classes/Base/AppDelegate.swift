@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     
     var window: UIWindow?
     var tabBar : UITabBarController?
+    var currentVC : BasicVC?// 当前的控制器
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -99,6 +100,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     
     // tableBar界面的跳转
     func tabBarControllerSelectedIndex(index : Int) -> Void {
+        let navArray : [CustomNavigationController] = self.tabBar?.childViewControllers as! [CustomNavigationController]
+        let nav : CustomNavigationController = navArray[index]
+        let vcArray : [BasicVC] = nav.childViewControllers as! [BasicVC]
+        self.currentVC = vcArray[0]
         self.tabBar?.selectedIndex = index
     }
     

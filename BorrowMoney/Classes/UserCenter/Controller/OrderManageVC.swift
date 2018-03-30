@@ -152,6 +152,15 @@ class OrderManageVC: BasicVC, UITableViewDelegate, UITableViewDataSource, UIScro
     }
     
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let orderUI : OrderManageUI = self.uiArray[self.modelSelected]
         let orderModel : OrderManageModel = orderUI.dataArray[indexPath.section]

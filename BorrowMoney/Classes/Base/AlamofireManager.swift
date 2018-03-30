@@ -13,6 +13,7 @@ final class AlamofireManager: NSObject {
     static let shareNetWork = AlamofireManager()
     static let secret = "fbcf15e88f1b821cb9a1b4446cea1e8f"
     var alertView : UIAlertView?//"-8"重新登录弹框
+    var sessionManager : Alamofire.SessionManager!
     
     // get请求
     func getRequest(urlCenter : URLCenter,params:NSMutableDictionary,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
@@ -58,12 +59,12 @@ final class AlamofireManager: NSObject {
         
         Alamofire.request(SERVERURL as String, method: .post, parameters:dict as? Parameters, encoding: URLEncoding.default, headers: headers).responseJSON { (responseObject:DataResponse<Any>) in
             switch(responseObject.result){
-            case .success(let value):
+            case.success(let value):
                 SVProgressHUD .dismiss()
                 // 返回结果处理
                 self.handleSuccessResult(value: value, success: success, failure: failure)
                 break
-            case .failure(let error):
+            case.failure(let error):
                 SVProgressHUD .dismiss()
                 let errorInfo = self.handleFailResult(error: error,urlCenter : urlCenter)
                 failure(errorInfo)
@@ -148,12 +149,9 @@ final class AlamofireManager: NSObject {
     func handleSuccessResult(value : Any,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
         SVProgressHUD .dismiss()
         let resultDict : NSMutableDictionary = NSMutableDictionary (dictionary: (value as! NSDictionary))
-        // "0"请求成功
-        if resultDict["code"] is NSNumber {
-            resultDict .setValue((resultDict["code"] as! NSNumber).stringValue, forKey: "code")
-        }
         
-        if resultDict["code"] as! String == "0" {
+        // "0"请求成功
+        if resultDict.stringForKey(key: "code") == "0" {
             success(resultDict as AnyObject)
         } else {
             self.errorResult(resultDict: resultDict, success: success, failure:failure)
@@ -164,7 +162,7 @@ final class AlamofireManager: NSObject {
     // 处理请求成功但返回的一些错误信息
     func errorResult(resultDict : NSDictionary,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
         // 登录超时，重新登录界面
-        if (resultDict["code"]as! String) == "-8" {
+        if resultDict.stringForKey(key: "code") == "-8" {
             USERDEFAULT.clearUserDefaultsData()
             NotificationCenter.default.post(name: NSNotification.Name (rawValue: "NotificationLoginOut"), object: nil)
 
@@ -178,7 +176,7 @@ final class AlamofireManager: NSObject {
             }
             
         // 短信发送触发图形码验证
-        } else if (resultDict["code"]as! String) == "-69" {
+        } else if resultDict.stringForKey(key: "code") == "-69" {
             success(resultDict)
         } else {
             SVProgressHUD .showError(withStatus: resultDict["desc"]as! String)
@@ -212,12 +210,12 @@ final class AlamofireManager: NSObject {
     // 请求数据组装
     func requestDataAssemble(urlCenter : URLCenter) -> (NSMutableDictionary) {
         let dict : NSMutableDictionary = NSMutableDictionary (dictionary: urlCenter.dict)
-        dict .setObject(self.requestTimeInterval(), forKey: "timestamp" as NSCopying)
-        dict .setObject("b28f79b83f1e1862", forKey: "appkey" as NSCopying)
-        dict .setObject("1.0", forKey: "version" as NSCopying)
-        dict .setObject("MD5", forKey: "signType" as NSCopying)
-        dict .setObject(CURRENTVERSION, forKey: "appVersion" as NSCopying)
-        dict .setObject("IOS", forKey: "deviceType" as NSCopying)
+        dict.setObject(self.requestTimeInterval(), forKey: "timestamp" as NSCopying)
+        dict.setObject("b28f79b83f1e1862", forKey: "appkey" as NSCopying)
+        dict.setObject("1.0", forKey: "version" as NSCopying)
+        dict.setObject("MD5", forKey: "signType" as NSCopying)
+        dict.setObject(CURRENTVERSION, forKey: "appVersion" as NSCopying)
+        dict.setObject("IOS", forKey: "deviceType" as NSCopying)
         dict.setObject("jiedianqian", forKey: "system" as NSCopying)
         dict.setObject(BASICINFO?.uuid! as Any, forKey: "uid" as NSCopying)
         var method : String = urlCenter.method
@@ -232,7 +230,7 @@ final class AlamofireManager: NSObject {
                 dict .setObject(USERINFO?.sessionId! as Any, forKey: "sessionId" as NSCopying)
             }
         }
-        dict .setObject(self.createMd5Sign(dict: dict), forKey: "sign" as NSCopying)
+        dict.setObject(self.createMd5Sign(dict: dict), forKey: "sign" as NSCopying)
         return dict
     }
     
@@ -256,11 +254,11 @@ final class AlamofireManager: NSObject {
         
         for i in 0 ..< keyArray.count {
             let key : String = keyArray[i] as! String
-            if !(dict[key] as! String == "") && !(key == "sign"){
+            if (dict[key] as! String != "" && key != "sign"){
                 if i == keyArray .count - 1 {
-                   contentString = contentString.appendingFormat("%@=%@",key,(dict[key] as! String) .removingPercentEncoding!)
+                   contentString = contentString.appendingFormat("%@=%@",key,(dict[key] as! String).removingPercentEncoding!)
                 } else {
-                    contentString = contentString.appendingFormat("%@=%@&",key,(dict[key] as! String) .removingPercentEncoding!)
+                    contentString = contentString.appendingFormat("%@=%@&",key,(dict[key] as! String).removingPercentEncoding!)
                 }
             }
         }
@@ -273,9 +271,10 @@ final class AlamofireManager: NSObject {
     
     // 设置请求超时时长
     func setRequestTimeOut() -> Void {
-        var sessionManager:Alamofire.SessionManager!
-        let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 10
-        sessionManager = Alamofire.SessionManager(configuration: configuration)
+        self.sessionManager  = Alamofire.SessionManager.default
+        self.sessionManager.session.configuration.timeoutIntervalForRequest = 10
+//        let configuration = URLSessionConfiguration.default
+//        configuration.timeoutIntervalForRequest = 10
+//        sessionManager = Alamofire.SessionManager(configuration: configuration)
     }
 }

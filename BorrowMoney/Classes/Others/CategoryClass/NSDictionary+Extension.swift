@@ -9,5 +9,15 @@
 import Foundation
 
 extension NSDictionary {
-    
+    // 字典的取值nil判断
+    func stringForKey(key : String) -> String {
+        var value = self.object(forKey: key)
+        if value is String {
+        } else if value is NSNumber {
+            return (value as! NSNumber).stringValue
+        } else {
+            value = ""
+        }
+        return value as! String
+    }
 }

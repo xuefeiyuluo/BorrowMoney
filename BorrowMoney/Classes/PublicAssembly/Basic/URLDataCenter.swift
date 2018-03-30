@@ -379,7 +379,6 @@ class URLDataCenter: NSObject {
     }
     
     
-
     // 获取积分明细列表
     public func requestIntegralDetail() -> URLCenter {
         let param : URLCenter = URLCenter()
@@ -387,6 +386,13 @@ class URLDataCenter: NSObject {
         return param
     }
     
+    
+    // 获取评价的标签列表
+    public func requestEvaluateList() -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.method = "product.getCommentTagList"
+        return param
+    }
     
     
     //  查询xx贷款结果

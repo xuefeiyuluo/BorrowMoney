@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1E5657E5BDC108A4BF39A17D /* Pods_BorrowMoney.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4590E8911C82E60953B15D95 /* Pods_BorrowMoney.framework */; };
+		40028F0F2068D70600FBDCF7 /* PersonHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40028F0E2068D70600FBDCF7 /* PersonHeaderView.swift */; };
+		40028F172068ED3200FBDCF7 /* personInfo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 40028F162068ED3200FBDCF7 /* personInfo.gif */; };
 		4009B93B204E5AB100F72455 /* OrderManageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4009B93A204E5AB100F72455 /* OrderManageCell.swift */; };
 		4009B93D204E5C1A00F72455 /* OrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4009B93C204E5C1A00F72455 /* OrderDetailVC.swift */; };
 		4009B93F204E7C8100F72455 /* OrderManageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4009B93E204E7C8100F72455 /* OrderManageModel.swift */; };
@@ -88,6 +90,20 @@
 		401F8BF21FCFE07C00298DD4 /* FixedAdverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8BF11FCFE07C00298DD4 /* FixedAdverView.swift */; };
 		401F8BF41FCFE27D00298DD4 /* LoanBrandCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8BF31FCFE27D00298DD4 /* LoanBrandCell.swift */; };
 		401F8BF61FD0049D00298DD4 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8BF51FD0049D00298DD4 /* ProductViewCell.swift */; };
+		4020C311206C977E0083C4E2 /* BaseCertificaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C310206C977E0083C4E2 /* BaseCertificaCell.swift */; };
+		4020C313206C97A20083C4E2 /* LargeCertificaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C312206C97A20083C4E2 /* LargeCertificaCell.swift */; };
+		4020C315206C97CC0083C4E2 /* PersonFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C314206C97CC0083C4E2 /* PersonFooterView.swift */; };
+		4020C317206CEB990083C4E2 /* CertificaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C316206CEB990083C4E2 /* CertificaVC.swift */; };
+		4020C319206CEF2F0083C4E2 /* ChooseCityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C318206CEF2F0083C4E2 /* ChooseCityVC.swift */; };
+		4020C31B206CF1B30083C4E2 /* CertificaBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C31A206CF1B30083C4E2 /* CertificaBaseView.swift */; };
+		4020C31D206CF1D70083C4E2 /* CertificaFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C31C206CF1D70083C4E2 /* CertificaFamilyView.swift */; };
+		4020C31F206CF2030083C4E2 /* CertificaContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C31E206CF2030083C4E2 /* CertificaContactsView.swift */; };
+		4020C321206CF22C0083C4E2 /* CertificaOperatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C320206CF22C0083C4E2 /* CertificaOperatorView.swift */; };
+		4020C323206CF25E0083C4E2 /* CertificaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C322206CF25E0083C4E2 /* CertificaCardView.swift */; };
+		4020C325206CF2760083C4E2 /* CertificaBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C324206CF2760083C4E2 /* CertificaBankView.swift */; };
+		4020C327206CF2B90083C4E2 /* CertificaOccupaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C326206CF2B90083C4E2 /* CertificaOccupaView.swift */; };
+		4020C329206CF2FB0083C4E2 /* CertificaCreditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C328206CF2FB0083C4E2 /* CertificaCreditView.swift */; };
+		4020C32B206CF3470083C4E2 /* CertificaSSAFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C32A206CF3470083C4E2 /* CertificaSSAFView.swift */; };
 		4021B3C32043FD8700E16022 /* LargeLoanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4021B3C22043FD8700E16022 /* LargeLoanVC.swift */; };
 		4021B3C52044050A00E16022 /* WeChatFocusVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4021B3C42044050A00E16022 /* WeChatFocusVC.swift */; };
 		4021B3C720441A0200E16022 /* XJurisdiction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4021B3C620441A0200E16022 /* XJurisdiction.swift */; };
@@ -131,6 +147,8 @@
 		403BA2B1205150300049585F /* OrderDetailSateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BA2B0205150300049585F /* OrderDetailSateCell.swift */; };
 		403BA2B3205150590049585F /* OrderDetailInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BA2B2205150590049585F /* OrderDetailInfoCell.swift */; };
 		403FD2451FD1BCB00034C4E5 /* LoanDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403FD2441FD1BCB00034C4E5 /* LoanDetailVC.swift */; };
+		4044E929206B6981006E505F /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4044E928206B6980006E505F /* Data+Extension.swift */; };
+		40595BFF2065157800023100 /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40595BFE2065157800023100 /* TagModel.swift */; };
 		4067B1BA204A8EBD0036804F /* redPackExplain.html in Resources */ = {isa = PBXBuildFile; fileRef = 4067B1B9204A8EBD0036804F /* redPackExplain.html */; };
 		4067B1C3204AA8390036804F /* BasicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4067B1BC204AA8390036804F /* BasicVC.swift */; };
 		4067B1C4204AA8390036804F /* BasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4067B1BD204AA8390036804F /* BasicView.swift */; };
@@ -172,6 +190,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		40028F0E2068D70600FBDCF7 /* PersonHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonHeaderView.swift; sourceTree = "<group>"; };
+		40028F162068ED3200FBDCF7 /* personInfo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = personInfo.gif; sourceTree = "<group>"; };
 		4009B93A204E5AB100F72455 /* OrderManageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderManageCell.swift; sourceTree = "<group>"; };
 		4009B93C204E5C1A00F72455 /* OrderDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailVC.swift; sourceTree = "<group>"; };
 		4009B93E204E7C8100F72455 /* OrderManageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderManageModel.swift; sourceTree = "<group>"; };
@@ -260,6 +280,20 @@
 		401F8BF11FCFE07C00298DD4 /* FixedAdverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedAdverView.swift; sourceTree = "<group>"; };
 		401F8BF31FCFE27D00298DD4 /* LoanBrandCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoanBrandCell.swift; sourceTree = "<group>"; };
 		401F8BF51FD0049D00298DD4 /* ProductViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
+		4020C310206C977E0083C4E2 /* BaseCertificaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCertificaCell.swift; sourceTree = "<group>"; };
+		4020C312206C97A20083C4E2 /* LargeCertificaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCertificaCell.swift; sourceTree = "<group>"; };
+		4020C314206C97CC0083C4E2 /* PersonFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonFooterView.swift; sourceTree = "<group>"; };
+		4020C316206CEB990083C4E2 /* CertificaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificaVC.swift; sourceTree = "<group>"; };
+		4020C318206CEF2F0083C4E2 /* ChooseCityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCityVC.swift; sourceTree = "<group>"; };
+		4020C31A206CF1B30083C4E2 /* CertificaBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificaBaseView.swift; sourceTree = "<group>"; };
+		4020C31C206CF1D70083C4E2 /* CertificaFamilyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificaFamilyView.swift; sourceTree = "<group>"; };
+		4020C31E206CF2030083C4E2 /* CertificaContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificaContactsView.swift; sourceTree = "<group>"; };
+		4020C320206CF22C0083C4E2 /* CertificaOperatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificaOperatorView.swift; sourceTree = "<group>"; };
+		4020C322206CF25E0083C4E2 /* CertificaCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificaCardView.swift; sourceTree = "<group>"; };
+		4020C324206CF2760083C4E2 /* CertificaBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificaBankView.swift; sourceTree = "<group>"; };
+		4020C326206CF2B90083C4E2 /* CertificaOccupaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificaOccupaView.swift; sourceTree = "<group>"; };
+		4020C328206CF2FB0083C4E2 /* CertificaCreditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificaCreditView.swift; sourceTree = "<group>"; };
+		4020C32A206CF3470083C4E2 /* CertificaSSAFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificaSSAFView.swift; sourceTree = "<group>"; };
 		4021B3C22043FD8700E16022 /* LargeLoanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeLoanVC.swift; sourceTree = "<group>"; };
 		4021B3C42044050A00E16022 /* WeChatFocusVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeChatFocusVC.swift; sourceTree = "<group>"; };
 		4021B3C620441A0200E16022 /* XJurisdiction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XJurisdiction.swift; sourceTree = "<group>"; };
@@ -303,6 +337,8 @@
 		403BA2B0205150300049585F /* OrderDetailSateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailSateCell.swift; sourceTree = "<group>"; };
 		403BA2B2205150590049585F /* OrderDetailInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailInfoCell.swift; sourceTree = "<group>"; };
 		403FD2441FD1BCB00034C4E5 /* LoanDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoanDetailVC.swift; sourceTree = "<group>"; };
+		4044E928206B6980006E505F /* Data+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		40595BFE2065157800023100 /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
 		4067B1B9204A8EBD0036804F /* redPackExplain.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = redPackExplain.html; sourceTree = "<group>"; };
 		4067B1BC204AA8390036804F /* BasicVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicVC.swift; sourceTree = "<group>"; };
 		4067B1BD204AA8390036804F /* BasicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicView.swift; sourceTree = "<group>"; };
@@ -356,6 +392,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40028F152068ED1100FBDCF7 /* GifImage */ = {
+			isa = PBXGroup;
+			children = (
+				40028F162068ED3200FBDCF7 /* personInfo.gif */,
+			);
+			path = GifImage;
+			sourceTree = "<group>";
+		};
 		4017EDB31F8E19690077B8E0 = {
 			isa = PBXGroup;
 			children = (
@@ -410,6 +454,7 @@
 		401E56D92049977A00C73CBE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				40028F152068ED1100FBDCF7 /* GifImage */,
 				4067B1B8204A8EAA0036804F /* Html */,
 			);
 			path = Resource;
@@ -446,6 +491,8 @@
 				40D6CD2420626909000FC915 /* PersonalInfoVC.swift */,
 				401F8B591FCEDF1800298DD4 /* ForgetVC.swift */,
 				401F8B5A1FCEDF1800298DD4 /* RegisterVC.swift */,
+				4020C316206CEB990083C4E2 /* CertificaVC.swift */,
+				4020C318206CEF2F0083C4E2 /* ChooseCityVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -467,6 +514,19 @@
 		401F8B5D1FCEDF1800298DD4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				40028F0E2068D70600FBDCF7 /* PersonHeaderView.swift */,
+				4020C310206C977E0083C4E2 /* BaseCertificaCell.swift */,
+				4020C312206C97A20083C4E2 /* LargeCertificaCell.swift */,
+				4020C314206C97CC0083C4E2 /* PersonFooterView.swift */,
+				4020C31A206CF1B30083C4E2 /* CertificaBaseView.swift */,
+				4020C31C206CF1D70083C4E2 /* CertificaFamilyView.swift */,
+				4020C31E206CF2030083C4E2 /* CertificaContactsView.swift */,
+				4020C320206CF22C0083C4E2 /* CertificaOperatorView.swift */,
+				4020C322206CF25E0083C4E2 /* CertificaCardView.swift */,
+				4020C324206CF2760083C4E2 /* CertificaBankView.swift */,
+				4020C326206CF2B90083C4E2 /* CertificaOccupaView.swift */,
+				4020C328206CF2FB0083C4E2 /* CertificaCreditView.swift */,
+				4020C32A206CF3470083C4E2 /* CertificaSSAFView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -602,6 +662,7 @@
 		401F8B741FCEDF1800298DD4 /* CategoryClass */ = {
 			isa = PBXGroup;
 			children = (
+				4044E928206B6980006E505F /* Data+Extension.swift */,
 				401F8B751FCEDF1800298DD4 /* NSArray+Extension.swift */,
 				401F8B761FCEDF1800298DD4 /* NSDictionary+Extension.swift */,
 				401F8B771FCEDF1800298DD4 /* NSObject+Extension.swift */,
@@ -735,6 +796,7 @@
 				40D6CD222062489A000FC915 /* OrganListModel.swift */,
 				4023D6B72063538E00D657B6 /* ChannelModel.swift */,
 				4023D6BD2063933200D657B6 /* IntergralListModel.swift */,
+				40595BFE2065157800023100 /* TagModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -901,7 +963,7 @@
 					4017EDBB1F8E196A0077B8E0 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = BB7E664454;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					4017EDCF1F8E196A0077B8E0 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -941,6 +1003,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4017EDCA1F8E196A0077B8E0 /* LaunchScreen.storyboard in Resources */,
+				40028F172068ED3200FBDCF7 /* personInfo.gif in Resources */,
 				4017EDC71F8E196A0077B8E0 /* Assets.xcassets in Resources */,
 				4067B1BA204A8EBD0036804F /* redPackExplain.html in Resources */,
 			);
@@ -1017,8 +1080,10 @@
 			files = (
 				401F8BB61FCEDF1800298DD4 /* HomePageVC.swift in Sources */,
 				401F8BDC1FCEDF1800298DD4 /* UserCenterModel.swift in Sources */,
+				4020C31B206CF1B30083C4E2 /* CertificaBaseView.swift in Sources */,
 				4067B1C5204AA8390036804F /* BasicViewCell.swift in Sources */,
 				401F8BD11FCEDF1800298DD4 /* ModifyPasswordVC.swift in Sources */,
+				4020C313206C97A20083C4E2 /* LargeCertificaCell.swift in Sources */,
 				4067B1C6204AA8390036804F /* BasicWebVC.swift in Sources */,
 				40D6CD1F206228FE000FC915 /* AccountModel.swift in Sources */,
 				4009B93B204E5AB100F72455 /* OrderManageCell.swift in Sources */,
@@ -1055,26 +1120,32 @@
 				40222ECF204FD3F900F1101A /* RepayRecomView.swift in Sources */,
 				40133ACD205CF718009093C6 /* PlanViewCell.swift in Sources */,
 				401F8BE21FCEDF1800298DD4 /* UserCenterCell2.swift in Sources */,
+				4020C31F206CF2030083C4E2 /* CertificaContactsView.swift in Sources */,
 				401D9ABB1FD694E70038A860 /* LoanBooksHeaderView.swift in Sources */,
 				4067B1C9204AA8390036804F /* URLDataCenter.swift in Sources */,
 				4011498A20613CC80005B8DA /* OrganLoginVC.swift in Sources */,
 				401F8BDF1FCEDF1800298DD4 /* RepayManageCell.swift in Sources */,
+				40028F0F2068D70600FBDCF7 /* PersonHeaderView.swift in Sources */,
+				4020C317206CEB990083C4E2 /* CertificaVC.swift in Sources */,
 				40222ECB204FAC9600F1101A /* LoanResultVC.swift in Sources */,
 				401F8BD21FCEDF1800298DD4 /* OrderManageVC.swift in Sources */,
 				401F8BDE1FCEDF1800298DD4 /* MessageCenterCell.swift in Sources */,
 				401F8BC81FCEDF1800298DD4 /* LoginSegmentedView.swift in Sources */,
+				4020C315206C97CC0083C4E2 /* PersonFooterView.swift in Sources */,
 				4023D6C02063977200D657B6 /* HomePageWebVC.swift in Sources */,
 				402D0AD72046C36400BA24E1 /* BankSheetView.swift in Sources */,
 				401F8BE61FCFB47D00298DD4 /* CustomNavigationView.swift in Sources */,
 				403BA2AF205150110049585F /* OrderDetailTitleCell.swift in Sources */,
 				4067B1C8204AA8390036804F /* URLCenter.swift in Sources */,
 				401F8BB81FCEDF1800298DD4 /* NSArray+Extension.swift in Sources */,
+				4020C31D206CF1D70083C4E2 /* CertificaFamilyView.swift in Sources */,
 				401C376B205F8FED008FAD01 /* BillDetailHeaderView.swift in Sources */,
 				4023D6C82063B0B300D657B6 /* EvaluateSubmitView.swift in Sources */,
 				400B42B41FD14326009B4EE0 /* HotLoanModel.swift in Sources */,
 				401F8BD51FCEDF1800298DD4 /* RepayRecordVC.swift in Sources */,
 				4025052A2019EE9C00FD4B3E /* SortViewCell.swift in Sources */,
 				40142AAE2047F90F00A181C5 /* BankNameModel.swift in Sources */,
+				4020C325206CF2760083C4E2 /* CertificaBankView.swift in Sources */,
 				403BA2AD205121190049585F /* OrderManageCell2.swift in Sources */,
 				40234E6020450816006B988A /* LoanCalculatorVC.swift in Sources */,
 				401F8BBC1FCEDF1800298DD4 /* UIColor+Extension.swift in Sources */,
@@ -1088,8 +1159,10 @@
 				40B9BE892059255100CB22FD /* OrderDetailModel.swift in Sources */,
 				401F8BCF1FCEDF1800298DD4 /* BillDetailVC.swift in Sources */,
 				40E8386E2060B6CD005E30EA /* RepaidAlertView.swift in Sources */,
+				4044E929206B6981006E505F /* Data+Extension.swift in Sources */,
 				401F8BDD1FCEDF1800298DD4 /* UserCenterService.swift in Sources */,
 				402C3E012060F8A9006B2630 /* RepaidViewCell.swift in Sources */,
+				4020C329206CF2FB0083C4E2 /* CertificaCreditView.swift in Sources */,
 				401F8BB01FCEDF1800298DD4 /* AppDelegate.swift in Sources */,
 				40CCFE852031917500A8C7C7 /* UserCenterWebVC.swift in Sources */,
 				40142AA92047AAA100A181C5 /* UIAlertView+Extension.swift in Sources */,
@@ -1104,6 +1177,7 @@
 				401F8BC71FCEDF1800298DD4 /* LoginInfoView.swift in Sources */,
 				403FD2451FD1BCB00034C4E5 /* LoanDetailVC.swift in Sources */,
 				40234E68204509F5006B988A /* AccountManageVC.swift in Sources */,
+				4020C321206CF22C0083C4E2 /* CertificaOperatorView.swift in Sources */,
 				401F8BAF1FCEDF1800298DD4 /* AlamofireManager.swift in Sources */,
 				401F8BC91FCEDF1800298DD4 /* LoginVC.swift in Sources */,
 				401F8BE31FCEDF1800298DD4 /* UserCenterHeaderView.swift in Sources */,
@@ -1116,6 +1190,7 @@
 				401F8BB91FCEDF1800298DD4 /* NSDictionary+Extension.swift in Sources */,
 				4067B1CB204AA8E40036804F /* BasicLocalWebVC.swift in Sources */,
 				40229BAD204BCDED00506ACC /* IntegralViewCell.swift in Sources */,
+				40595BFF2065157800023100 /* TagModel.swift in Sources */,
 				401F8BD81FCEDF1800298DD4 /* LoanManageModel.swift in Sources */,
 				4009B93D204E5C1A00F72455 /* OrderDetailVC.swift in Sources */,
 				401F8BEA1FCFDA7500298DD4 /* SearchResultVC.swift in Sources */,
@@ -1123,6 +1198,7 @@
 				401F8BF61FD0049D00298DD4 /* ProductViewCell.swift in Sources */,
 				40222ECD204FB28100F1101A /* BasicModel.swift in Sources */,
 				401F8BEC1FCFDAFC00298DD4 /* SearchNavigationView.swift in Sources */,
+				4020C319206CEF2F0083C4E2 /* ChooseCityVC.swift in Sources */,
 				401F8BB71FCEDF1800298DD4 /* LoanBooksVC.swift in Sources */,
 				401F8BD61FCEDF1800298DD4 /* SetUpVC.swift in Sources */,
 				401F8BE01FCEDF1800298DD4 /* RepayManageHeaderView.swift in Sources */,
@@ -1134,8 +1210,12 @@
 				4021B3C720441A0200E16022 /* XJurisdiction.swift in Sources */,
 				401F8BC61FCEDF1800298DD4 /* LoginFooterView.swift in Sources */,
 				40229BB1204BF94F00506ACC /* IntergralModel.swift in Sources */,
+				4020C32B206CF3470083C4E2 /* CertificaSSAFView.swift in Sources */,
+				4020C311206C977E0083C4E2 /* BaseCertificaCell.swift in Sources */,
 				4009B93F204E7C8100F72455 /* OrderManageModel.swift in Sources */,
+				4020C327206CF2B90083C4E2 /* CertificaOccupaView.swift in Sources */,
 				40234E622045087E006B988A /* MyCashVC.swift in Sources */,
+				4020C323206CF25E0083C4E2 /* CertificaCardView.swift in Sources */,
 				401F8BF41FCFE27D00298DD4 /* LoanBrandCell.swift in Sources */,
 				401C3767205D3EBE008FAD01 /* EvaluateVC.swift in Sources */,
 				4084BDB420469DAF008A354F /* XNumRule.swift in Sources */,
@@ -1300,8 +1380,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Luo Xuanbin (4VGDFLUTSF)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Luo Xuanbin (4VGDFLUTSF)";
-				DEVELOPMENT_TEAM = BB7E664454;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/SDWebImage",
@@ -1309,10 +1390,10 @@
 				INFOPLIST_FILE = BorrowMoney/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wdzj.rzj;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rzj.xdb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "709ccca8-9274-4dfe-ac5a-b1cea435ffe2";
-				PROVISIONING_PROFILE_SPECIFIER = dve_jdq_1207;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/BorrowMoney/Classes/Base/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
@@ -1325,8 +1406,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				DEVELOPMENT_TEAM = BB7E664454;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/SDWebImage",
@@ -1334,7 +1416,7 @@
 				INFOPLIST_FILE = BorrowMoney/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wdzj.rzj;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rzj.xdb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -256,6 +256,21 @@ func organLogin(organModel : OrganModel) -> BasicVC {
 }
 
 
+// 认证界面
+func certifica(type : Int) -> BasicVC {
+    let certifica : CertificaVC = CertificaVC()
+    certifica.certificaType = type
+    return certifica
+}
+
+
+// 首页html5跳转
+func homePageWeb(url : String) -> BasicVC {
+    let homePageWeb : HomePageWebVC = HomePageWebVC()
+    homePageWeb.hidesBottomBarWhenPushed = true
+    homePageWeb.url = url
+    return homePageWeb
+}
 
 
 // 查询“xx”贷款结果

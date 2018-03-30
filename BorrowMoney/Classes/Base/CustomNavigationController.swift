@@ -46,6 +46,14 @@ class CustomNavigationController: UINavigationController,UINavigationControllerD
     }
     
     
+    override var childViewControllerForStatusBarStyle: UIViewController?{
+        get {
+            return self.topViewController
+        }
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

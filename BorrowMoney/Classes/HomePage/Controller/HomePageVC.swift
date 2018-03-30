@@ -21,6 +21,9 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     var hotArray : [HotLoanModel] = [HotLoanModel]()// 热门贷款数据
     var messageTimer : Timer?// 消息的定时器
     var hotText : NSDictionary?// 最近热搜的标签
+    var productArray : [BannerModel] = [BannerModel]()// 顶部贷款类别数据
+    var rollArray : [BannerModel] = [BannerModel]()// 滚动图的数据
+    var fixedArray : [BannerModel] = [BannerModel]()// 额度任你选与闪电放款数据
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,10 +77,16 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         
         self.messageTimer?.invalidate()
         self.messageTimer = nil
+    }
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         
         // 显示导航栏
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
+    
     
     // 添加下拉刷新
     func createRefresh() -> Void {
@@ -115,6 +124,8 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     // 创建界面
     func createUI() -> Void {
+        weak var weakSelf = self
+        
         // 主界面
         let tableView :UITableView  = UITableView.init(frame: CGRect (x: 0, y: 64 + (30 * HEIGHT_SCALE), width: SCREEN_WIDTH, height: SCREEN_HEIGHT - (64 + (30 * HEIGHT_SCALE)) - 44), style: UITableViewStyle.plain)
         tableView.delegate = self
@@ -138,9 +149,9 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             make.height.equalTo(95 * HEIGHT_SCALE)
         })
         self.productTypeView?.imageBlock = { (index) in
-            self.navigationController?.pushViewController(largeLoan(), animated: true)
+            let model : BannerModel = (weakSelf?.productArray[index])!
+            weakSelf?.html5JumpWeb(url:model.address!)
         }
-        
         
         // 滚动图
         let rollPictureView : RollPictureView = RollPictureView()
@@ -152,7 +163,8 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             make.height.equalTo(95 * HEIGHT_SCALE)
         })
         self.rollPictureView?.rollImageBlock = { (index) in
-        
+            let model : BannerModel = (weakSelf?.rollArray[index])!
+            weakSelf?.html5JumpWeb(url:model.address!)
         }
         
         // 固定广告
@@ -165,7 +177,7 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             make.height.equalTo(90 * HEIGHT_SCALE)
         })
         self.fixedAdverView?.adverClickBlock = { (url) in
-            
+            weakSelf?.html5JumpWeb(url: url)
         }
         self.homeTableView?.tableHeaderView = self.tableHeaderView
         
@@ -295,19 +307,16 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     // 更新广告信息
     func updateBannerInfo() -> Void {
         // 数据处理
-        var productArray : [BannerModel] = [BannerModel]()
-        var rollArray : [BannerModel] = [BannerModel]()
-        var fixedArray : [BannerModel] = [BannerModel]()
         for i in 0 ..< self.bannerArray.count {
             let tempBanner : BannerModel = self.bannerArray[i]
             if tempBanner.location == "top_banner_50" {
-                rollArray.append(tempBanner)
+                self.rollArray.append(tempBanner)
             } else if tempBanner.location == "loan_type_banner_50" {
-                productArray.append(tempBanner)
+                self.productArray.append(tempBanner)
             } else if tempBanner.location == "loan_left_banner_50" {
-                fixedArray.append(tempBanner)
+                self.fixedArray.append(tempBanner)
             } else if tempBanner.location == "loan_right_banner_50" {
-                fixedArray.append(tempBanner)
+                self.fixedArray.append(tempBanner)
                 let basicModel : BasicModel = BASICINFO!
                 basicModel.lightningLoanUrl = tempBanner.address
                 USERDEFAULT.saveCustomObject(customObject: basicModel as NSCoding, key: "basicInfo")
@@ -318,14 +327,14 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         // 界面更新
         // 产品类别
         var productHeight : CGFloat = 0.0
-        if productArray.count > 0 && productArray.count <= 5  {
+        if self.productArray.count > 0 && self.productArray.count <= 5  {
             productHeight = 10
             self.productTypeView?.lineView?.isHidden = true
             self.productTypeView?.snp.updateConstraints({ (make) in
                 make.height.equalTo(85 * HEIGHT_SCALE)
                 
             })
-        } else if productArray.count > 5 {
+        } else if self.productArray.count > 5 {
             self.productTypeView?.lineView?.isHidden = false
             self.productTypeView?.snp.updateConstraints({ (make) in
                 make.height.equalTo(95 * HEIGHT_SCALE)
@@ -334,15 +343,15 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             productHeight = 95
         }
         
-        if productArray.count > 0 {
-            self.productTypeView?.updateProductData(dataArray: productArray as NSArray)
+        if self.productArray.count > 0 {
+            self.productTypeView?.updateProductData(dataArray: self.productArray as NSArray)
         }
         
         
         // 滚动图
         var rollHeight : CGFloat = 0.0
-        if rollArray.count > 0 {
-            self.rollPictureView?.updateRollImageDate(dateArray: rollArray as NSArray)
+        if self.rollArray.count > 0 {
+            self.rollPictureView?.updateRollImageDate(dateArray: self.rollArray as NSArray)
         } else {
             rollHeight = 95
         }
@@ -350,8 +359,8 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         
         // 固定广告
         var fixedHeight : CGFloat = 0.0
-        if fixedArray.count > 0 {
-            self.fixedAdverView?.updateFixedAdverData(dataArray: fixedArray as NSArray)
+        if self.fixedArray.count > 0 {
+            self.fixedAdverView?.updateFixedAdverData(dataArray: self.fixedArray as NSArray)
         } else {
             fixedHeight = 90
         }
@@ -381,6 +390,39 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(loanDetail(hotLoan: hotLoan), animated: true)
         }
     }
+    
+    
+    // html5跳转判断
+    func html5JumpWeb(url : String) -> Void {
+        let dataArray : [String] = ((url.components(separatedBy: "?") as [String]).last!).components(separatedBy: "&") as [String]
+        // 获取url里面的key与value转换位置字典
+        let dateDict : NSMutableDictionary = NSMutableDictionary()
+        for keyAndValue : String in dataArray {
+            let array : [String] = keyAndValue.components(separatedBy: "=")
+            dateDict.setValue(array.last, forKey: array[0])
+        }
+        
+        // 贷款大全里面的贷款类型
+        if url.range(of: "jdqTag") != nil {
+            APPDELEGATE.tabBarControllerSelectedIndex(index: 1)
+            (APPDELEGATE.currentVC as! LoanBooksVC).fromHomeToLoanBooks(loanType: dateDict.stringForKey(key: "jdqTag"))
+            return
+        }
+        
+        // 大额信贷经理
+        if url.range(of: "jiedianqian.com/activites/basicInfo/index.html") != nil {
+            userLogin(successHandler: { () -> (Void) in
+                self.navigationController?.pushViewController(largeLoan(), animated: true)
+            }) { () -> (Void) in
+            }
+            return
+        }
+        
+        
+        
+        self.navigationController?.pushViewController(homePageWeb(url: url), animated: true)
+    }
+    
     
     
     // 获取首页广告信息

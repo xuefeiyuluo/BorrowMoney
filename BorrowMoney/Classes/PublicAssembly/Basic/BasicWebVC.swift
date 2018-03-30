@@ -91,18 +91,9 @@ class BasicWebVC: BasicVC, UIWebViewDelegate {
     
     
     func loadWebViewWithUrl() -> Void {
-        if USERINFO?.sessionId != nil{
-            if (self.url.range(of: "jiedianqian") != nil) || (self.url.range(of: "rongzhijia") != nil) {
-            } else {
-                return
-            }
+        if (self.url.range(of: "jiedianqian") != nil) || (self.url.range(of: "rongzhijia") != nil) {
         } else {
-            userLogin(successHandler: { () -> (Void) in
-                // 成功登录后重新加载界面
-                self.loadWebViewWithUrl()
-            }) { () -> (Void) in
-                
-            }
+            SVProgressHUD.showError(withStatus: "加载错误。。。")
             return
         }
     }
@@ -110,10 +101,14 @@ class BasicWebVC: BasicVC, UIWebViewDelegate {
     
     // url后添加Session
     func urlWithSession() -> String {
-        if self.url.range(of: "?") != nil {
-            return String (format: "%@&sessionId=", self.url,(USERINFO?.sessionId)!)
+        if ASSERLOGIN! {
+            if self.url.range(of: "?") != nil {
+                return String (format: "%@&sessionId=%@", self.url,(USERINFO?.sessionId)!)
+            } else {
+                return String (format: "%@?sessionId=%@", self.url,(USERINFO?.sessionId)!)
+            }
         } else {
-            return String (format: "%@?sessionId=", self.url,(USERINFO?.sessionId)!)
+            return self.url
         }
     }
     
