@@ -76,7 +76,7 @@ class BasicVC: UIViewController {
     
     // 返回上一个界面
     func comeBack() -> () {
-        self.view .endEditing(true)
+        self.view.endEditing(true)
         self.navigationController?.popViewController(animated: true)
     }
     

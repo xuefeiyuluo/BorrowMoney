@@ -9,9 +9,6 @@
 import UIKit
 
 class UserCenterModel: NSObject {
-
-    
-    
     var yhzxShowFlag : String? = ""//
     var signInToday : String? = ""//
     var headImage : String? = ""//

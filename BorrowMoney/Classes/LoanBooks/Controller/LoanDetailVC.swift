@@ -29,7 +29,8 @@ class LoanDetailVC: BasicVC {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        // 解决第一个navigation为隐藏时跳页面navigation为显示，返回上一个界面时navigation有一闪而过的现象
+         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     

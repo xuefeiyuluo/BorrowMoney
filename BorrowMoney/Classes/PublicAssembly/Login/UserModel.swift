@@ -10,22 +10,22 @@ import UIKit
 
 class UserModel: NSObject, NSCoding{
     
-    var mobile : String?// 手机号码
-    var sessionId : String?// session
-    var isNewUser : String?//
-    var hasPassword : Bool?//
-    var name : String?//
-    var idCard : String?// 身份证号码
-    var roleType : String?//
-    var verify : String?//
-    var headImage : String?// 头像
-    var webCookies : NSArray?//
-    var redPacketCount : String?//
-    var balanceAmount : String?//
-    var signInToday : Bool?//
-    var yhzxShowFlag : String?//
-    var gender : String?//
-    var bankCard : String?// 银行卡号
+    var mobile : String? = ""// 手机号码
+    var sessionId : String? = ""// session
+    var isNewUser : String? = ""//
+    var hasPassword : Bool? = false//
+    var name : String? = ""//
+    var idCard : String? = ""// 身份证号码
+    var roleType : String? = ""//
+    var verify : Int?//
+    var headImage : String? = ""// 头像
+    var webCookies : NSArray? = []//
+    var redPacketCount : Int?//
+    var balanceAmount : Double?//
+    var signInToday : String? = ""//
+    var yhzxShowFlag : String? = ""//
+    var gender : String? = ""//
+    var bankCard : String? = ""// 银行卡号
     
     override init() {
         super.init()
@@ -42,11 +42,11 @@ class UserModel: NSObject, NSCoding{
         name = decoder.decodeObject(forKey: "name") as? String
         idCard = decoder.decodeObject(forKey: "idCard") as? String
         roleType = decoder.decodeObject(forKey: "roleType") as? String
-        verify = decoder.decodeObject(forKey: "verify") as? String
+        verify = decoder.decodeObject(forKey: "verify") as? Int
         headImage = decoder.decodeObject(forKey: "headImage") as? String
-        redPacketCount = decoder.decodeObject(forKey: "redPacketCount") as? String
-        balanceAmount = decoder.decodeObject(forKey: "balanceAmount") as? String
-        signInToday = decoder.decodeObject(forKey: "signInToday") as? Bool
+        redPacketCount = decoder.decodeObject(forKey: "redPacketCount") as? Int
+        balanceAmount = decoder.decodeObject(forKey: "balanceAmount") as? Double
+        signInToday = decoder.decodeObject(forKey: "signInToday") as? String
         yhzxShowFlag = decoder.decodeObject(forKey: "yhzxShowFlag") as? String
         gender = decoder.decodeObject(forKey: "gender") as? String
         bankCard = decoder.decodeObject(forKey: "bankCard") as? String
@@ -65,7 +65,9 @@ class UserModel: NSObject, NSCoding{
         aCoder.encode(verify, forKey: "verify")
         aCoder.encode(headImage, forKey: "headImage")
         aCoder.encode(redPacketCount, forKey: "redPacketCount")
+        aCoder.encode(balanceAmount, forKey: "balanceAmount")
         aCoder.encode(yhzxShowFlag, forKey: "yhzxShowFlag")
+        aCoder.encode(signInToday, forKey: "signInToday")
         aCoder.encode(gender, forKey: "gender")
         aCoder.encode(bankCard, forKey: "bankCard")
     }

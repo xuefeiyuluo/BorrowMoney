@@ -298,7 +298,7 @@ class SetUpVC: BasicVC {
     func loginOutClick() -> Void {
         UserCenterService.userInstance.loginOut(success: { (responseObject) in
             let dataDict : NSDictionary = responseObject as! NSDictionary
-            if dataDict["code"] as! String == "0" {
+            if dataDict.stringForKey(key: "code") == "0" {
                 USERDEFAULT.clearUserDefaultsData()
                 NotificationCenter.default.post(name: NSNotification.Name (rawValue: "NotificationLoginOut"), object: nil)
                 self.navigationController?.popViewController(animated: true)
@@ -312,7 +312,7 @@ class SetUpVC: BasicVC {
     func requestPushMessageState() -> Void {
         UserCenterService.userInstance.requestPushMessageChangeStates(success: { (responseObject) in
             let dataDict : NSDictionary = responseObject as! NSDictionary
-            if dataDict["ios_notification_enable"] as! Int == 0 {
+            if dataDict.stringForKey(key: "ios_notification_enable") == "0" {
                 self.pushSwith?.setOn(false, animated: true)
             } else {
                 self.pushSwith?.setOn(true, animated: true)

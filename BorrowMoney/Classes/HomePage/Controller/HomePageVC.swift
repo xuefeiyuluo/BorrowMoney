@@ -85,6 +85,7 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         
         // 显示导航栏
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+
     }
     
     
@@ -298,8 +299,8 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
 
     override func setUpNavigationView() {
         super.setUpNavigationView()
-        self.navigationItem.titleView = NaviBarView() .setUpNaviBarWithTitle(title: "首页");
-        self.navigationItem.leftBarButtonItem = nil
+//        self.navigationItem.titleView = NaviBarView() .setUpNaviBarWithTitle(title: "首页");
+//        self.navigationItem.leftBarButtonItem = nil
         
     }
     
@@ -417,9 +418,6 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             }
             return
         }
-        
-        
-        
         self.navigationController?.pushViewController(homePageWeb(url: url), animated: true)
     }
     
@@ -455,15 +453,17 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     // 请求消息数据
     func requestMessageList() -> Void {
-        UserCenterService.userInstance.requestMessageSate(success: { (responseObject) in
-            let dataDict : NSDictionary = responseObject as! NSDictionary
-            if (dataDict["newMessageCount"] as! Int) > 0 {
-                self.navigationView?.messageBtn?.setImage(UIImage (named: "newMessage.png"), for: UIControlState.normal)
-            } else {
-                self.navigationView?.messageBtn?.setImage(UIImage (named: "message.png"), for: UIControlState.normal)
+        if ASSERLOGIN! {
+            UserCenterService.userInstance.requestMessageSate(success: { (responseObject) in
+                let dataDict : NSDictionary = responseObject as! NSDictionary
+                if (dataDict["newMessageCount"] as! Int) > 0 {
+                    self.navigationView?.messageBtn?.setImage(UIImage (named: "newMessage.png"), for: UIControlState.normal)
+                } else {
+                    self.navigationView?.messageBtn?.setImage(UIImage (named: "message.png"), for: UIControlState.normal)
+                }
+                
+            }) { (errorInfo) in
             }
-            
-        }) { (errorInfo) in
         }
     }
     

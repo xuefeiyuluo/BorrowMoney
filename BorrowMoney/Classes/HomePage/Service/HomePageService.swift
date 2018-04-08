@@ -81,4 +81,17 @@ class HomePageService: NSObject {
         }
     }
     
+
+    // 获取信贷员列表
+    func requestLoanData(cityId : String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.loanListData(cityId: cityId)
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
+            failure(errorInfo)
+        }
+    }
 }

@@ -273,6 +273,16 @@ func homePageWeb(url : String) -> BasicVC {
 }
 
 
+// 选择城市
+func chooseCity() -> BasicVC {
+    let chooseCity : ChooseCityVC = ChooseCityVC()
+    return chooseCity
+}
+
+
+
+
+
 // 查询“xx”贷款结果
 func loanResult(loanModel : LoanOrderModel) -> BasicVC {
     let loanOrder : LoanResultVC = LoanResultVC()

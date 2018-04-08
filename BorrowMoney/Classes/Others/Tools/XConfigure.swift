@@ -43,6 +43,8 @@ class XConfigure: NSObject {
         } else {
             basicModel = BasicModel()
             basicModel?.uuid = NSUUID().uuidString
+            basicModel?.cityName = "上海市"
+            basicModel?.cityId = "251"
             USERDEFAULT.saveCustomObject(customObject: (basicModel)!, key: "basicInfo")
         }
         return basicModel!

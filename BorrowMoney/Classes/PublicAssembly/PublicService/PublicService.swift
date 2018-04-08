@@ -59,5 +59,18 @@ class PublicService: NSObject {
     }
     
     
+    // 获取定位城市信息
+    func requestLocationCityInfo(city:String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.locationCityInfo(city: city)
+        
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            // 数据处理 json转model
+            success(responseObject)
+        }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
+            failure(errorInfo)
+        }
+    }
     
 }

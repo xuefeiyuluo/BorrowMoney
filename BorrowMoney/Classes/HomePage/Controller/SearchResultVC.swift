@@ -38,6 +38,18 @@ class SearchResultVC: BasicVC, UISearchBarDelegate, UITableViewDelegate, UITable
         createResultListUI()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // 隐藏导航栏
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    
+    
+    
+    
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

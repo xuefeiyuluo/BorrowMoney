@@ -138,7 +138,6 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         self.headerView?.userHeaderBlock = { (sign) in
             if sign == 100 {
                 userLogin(successHandler: { () -> (Void) in
-                    self.requestBaseInfo()
                 }) { () -> (Void) in
                 }
             } else {
@@ -375,7 +374,6 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
         UserCenterService.userInstance.baseInfo(success: { (responseObject) in
             let dataDict : NSDictionary = responseObject as! NSDictionary
             self.userCenter = UserCenterModel.objectWithKeyValues(dict: dataDict) as? UserCenterModel
-            
             // 更新界面
             self.updataUI()
             
@@ -383,20 +381,31 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             self.requestLoanOfficeSate()
             
             let userInfo : UserModel = USERINFO!
-            userInfo.mobile = dataDict["mobile"] as? String
-            userInfo.webCookies = dataDict["webCookies"] as? NSArray
-            userInfo.hasPassword = dataDict["hasPassword"] as? Bool
-            userInfo.isNewUser = dataDict["isNewUser"] as? String
-            userInfo.name = dataDict["name"] as? String
-            userInfo.idCard = dataDict["idCard"] as? String
-            userInfo.roleType = dataDict["roleType"] as? String
-            userInfo.verify = dataDict["verify"] as? String
-            userInfo.headImage = dataDict["headImage"] as? String
-            userInfo.redPacketCount = dataDict["redPacketCount"] as? String
-            userInfo.balanceAmount = dataDict["balanceAmount"] as? String
-            userInfo.signInToday = dataDict["signInToday"] as? Bool
-            userInfo.yhzxShowFlag = dataDict["yhzxShowFlag"] as? String
-            userInfo.gender = dataDict["gender"] as? String
+            userInfo.mobile = dataDict["mobile"] == nil ? "" : dataDict["mobile"] as? String
+            userInfo.isNewUser = dataDict["isNewUser"] == nil ? "" : dataDict["isNewUser"] as? String
+            userInfo.name = dataDict["name"] == nil ? "" : dataDict["name"] as? String
+            userInfo.idCard = dataDict["idCard"] == nil ? "" : dataDict["idCard"] as? String
+            userInfo.roleType = dataDict["roleType"] == nil ? "" : dataDict["roleType"] as? String
+            if dataDict["verify"] == nil {
+                userInfo.verify = 0
+            } else {
+                userInfo.verify = dataDict["verify"] as? Int
+            }
+            userInfo.headImage = dataDict["headImage"] == nil ? "" : dataDict["headImage"] as? String
+            if dataDict["redPacketCount"] == nil {
+                userInfo.redPacketCount = 0
+            } else {
+                userInfo.redPacketCount = dataDict["redPacketCount"] as? Int
+            }
+            if dataDict["balanceAmount"] == nil {
+                userInfo.balanceAmount = 0
+            } else {
+                userInfo.balanceAmount = dataDict["balanceAmount"] as? Double
+            }
+            userInfo.signInToday = dataDict["signInToday"] == nil ? "" : dataDict["signInToday"] as? String
+            userInfo.yhzxShowFlag = dataDict["yhzxShowFlag"] == nil ? "" : dataDict["yhzxShowFlag"] as? String
+            userInfo.gender = dataDict["gender"] == nil ? "" : dataDict["gender"] as? String
+            USERDEFAULT.saveCustomObject(customObject: userInfo, key: "userInfo")
             USERDEFAULT.saveCustomObject(customObject: userInfo, key: "userInfo")
         }) { (errorInfo) in
             

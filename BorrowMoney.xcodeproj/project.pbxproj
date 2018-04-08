@@ -22,6 +22,8 @@
 		40133ACD205CF718009093C6 /* PlanViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40133ACC205CF718009093C6 /* PlanViewCell.swift */; };
 		40142AA92047AAA100A181C5 /* UIAlertView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40142AA82047AAA100A181C5 /* UIAlertView+Extension.swift */; };
 		40142AAE2047F90F00A181C5 /* BankNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40142AAD2047F90F00A181C5 /* BankNameModel.swift */; };
+		401738412073586400933927 /* LargeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401738402073586400933927 /* LargeHeaderView.swift */; };
+		401738432073589900933927 /* LargeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401738422073589900933927 /* LargeViewCell.swift */; };
 		4017EDC71F8E196A0077B8E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4017EDC61F8E196A0077B8E0 /* Assets.xcassets */; };
 		4017EDCA1F8E196A0077B8E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4017EDC81F8E196A0077B8E0 /* LaunchScreen.storyboard */; };
 		4017EDD51F8E196A0077B8E0 /* BorrowMoneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4017EDD41F8E196A0077B8E0 /* BorrowMoneyTests.swift */; };
@@ -142,6 +144,7 @@
 		402C3E012060F8A9006B2630 /* RepaidViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402C3E002060F8A9006B2630 /* RepaidViewCell.swift */; };
 		402C3E0320611C90006B2630 /* AccountManageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402C3E0220611C90006B2630 /* AccountManageCell.swift */; };
 		402D0AD72046C36400BA24E1 /* BankSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D0AD62046C36400BA24E1 /* BankSheetView.swift */; };
+		40397C8E2074CCAC003EE5AE /* LargeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40397C8D2074CCAC003EE5AE /* LargeModel.swift */; };
 		403BA2AD205121190049585F /* OrderManageCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BA2AC205121190049585F /* OrderManageCell2.swift */; };
 		403BA2AF205150110049585F /* OrderDetailTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BA2AE205150110049585F /* OrderDetailTitleCell.swift */; };
 		403BA2B1205150300049585F /* OrderDetailSateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BA2B0205150300049585F /* OrderDetailSateCell.swift */; };
@@ -159,6 +162,14 @@
 		4067B1C9204AA8390036804F /* URLDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4067B1C2204AA8390036804F /* URLDataCenter.swift */; };
 		4067B1CB204AA8E40036804F /* BasicLocalWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4067B1CA204AA8E40036804F /* BasicLocalWebVC.swift */; };
 		4084BDB420469DAF008A354F /* XNumRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4084BDB320469DAF008A354F /* XNumRule.swift */; };
+		4087C0AA2072033D00C17479 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4087C0A92072033D00C17479 /* SearchView.swift */; };
+		4087C0AC207213D000C17479 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4087C0AB207213D000C17479 /* AccountService.swift */; };
+		4087C0AE2072187A00C17479 /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4087C0AD2072187A00C17479 /* CityModel.swift */; };
+		4087C0B0207221D600C17479 /* CityPositionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4087C0AF207221D600C17479 /* CityPositionCell.swift */; };
+		4087C0B22072220B00C17479 /* CityHotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4087C0B12072220B00C17479 /* CityHotCell.swift */; };
+		4087C0B42072222F00C17479 /* CityViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4087C0B32072222F00C17479 /* CityViewCell.swift */; };
+		4087C0B6207243F400C17479 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4087C0B5207243F300C17479 /* CoreLocation.framework */; };
+		4087C0B8207245C500C17479 /* ObtainLocationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4087C0B7207245C500C17479 /* ObtainLocationInfo.swift */; };
 		40B080ED201EF1EA0054134A /* HotSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B080EC201EF1EA0054134A /* HotSearchView.swift */; };
 		40B9BE852059164700CB22FD /* recommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9BE842059164700CB22FD /* recommendCell.swift */; };
 		40B9BE892059255100CB22FD /* OrderDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9BE882059255100CB22FD /* OrderDetailModel.swift */; };
@@ -204,6 +215,8 @@
 		40133ACC205CF718009093C6 /* PlanViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewCell.swift; sourceTree = "<group>"; };
 		40142AA82047AAA100A181C5 /* UIAlertView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertView+Extension.swift"; sourceTree = "<group>"; };
 		40142AAD2047F90F00A181C5 /* BankNameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankNameModel.swift; sourceTree = "<group>"; };
+		401738402073586400933927 /* LargeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeHeaderView.swift; sourceTree = "<group>"; };
+		401738422073589900933927 /* LargeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeViewCell.swift; sourceTree = "<group>"; };
 		4017EDBC1F8E196A0077B8E0 /* BorrowMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BorrowMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4017EDC61F8E196A0077B8E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4017EDC91F8E196A0077B8E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -332,6 +345,7 @@
 		402C3E002060F8A9006B2630 /* RepaidViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepaidViewCell.swift; sourceTree = "<group>"; };
 		402C3E0220611C90006B2630 /* AccountManageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManageCell.swift; sourceTree = "<group>"; };
 		402D0AD62046C36400BA24E1 /* BankSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSheetView.swift; sourceTree = "<group>"; };
+		40397C8D2074CCAC003EE5AE /* LargeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeModel.swift; sourceTree = "<group>"; };
 		403BA2AC205121190049585F /* OrderManageCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderManageCell2.swift; sourceTree = "<group>"; };
 		403BA2AE205150110049585F /* OrderDetailTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailTitleCell.swift; sourceTree = "<group>"; };
 		403BA2B0205150300049585F /* OrderDetailSateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailSateCell.swift; sourceTree = "<group>"; };
@@ -349,6 +363,14 @@
 		4067B1C2204AA8390036804F /* URLDataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLDataCenter.swift; sourceTree = "<group>"; };
 		4067B1CA204AA8E40036804F /* BasicLocalWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicLocalWebVC.swift; sourceTree = "<group>"; };
 		4084BDB320469DAF008A354F /* XNumRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XNumRule.swift; sourceTree = "<group>"; };
+		4087C0A92072033D00C17479 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		4087C0AB207213D000C17479 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
+		4087C0AD2072187A00C17479 /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
+		4087C0AF207221D600C17479 /* CityPositionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPositionCell.swift; sourceTree = "<group>"; };
+		4087C0B12072220B00C17479 /* CityHotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityHotCell.swift; sourceTree = "<group>"; };
+		4087C0B32072222F00C17479 /* CityViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewCell.swift; sourceTree = "<group>"; };
+		4087C0B5207243F300C17479 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4087C0B7207245C500C17479 /* ObtainLocationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainLocationInfo.swift; sourceTree = "<group>"; };
 		40B080EC201EF1EA0054134A /* HotSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotSearchView.swift; sourceTree = "<group>"; };
 		40B9BE842059164700CB22FD /* recommendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recommendCell.swift; sourceTree = "<group>"; };
 		40B9BE882059255100CB22FD /* OrderDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailModel.swift; sourceTree = "<group>"; };
@@ -370,6 +392,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4087C0B6207243F400C17479 /* CoreLocation.framework in Frameworks */,
 				4021B3C920441AC500E16022 /* AVFoundation.framework in Frameworks */,
 				1E5657E5BDC108A4BF39A17D /* Pods_BorrowMoney.framework in Frameworks */,
 			);
@@ -500,6 +523,7 @@
 		401F8B5B1FCEDF1800298DD4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4087C0AD2072187A00C17479 /* CityModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -507,6 +531,7 @@
 		401F8B5C1FCEDF1800298DD4 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				4087C0AB207213D000C17479 /* AccountService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -527,6 +552,10 @@
 				4020C326206CF2B90083C4E2 /* CertificaOccupaView.swift */,
 				4020C328206CF2FB0083C4E2 /* CertificaCreditView.swift */,
 				4020C32A206CF3470083C4E2 /* CertificaSSAFView.swift */,
+				4087C0A92072033D00C17479 /* SearchView.swift */,
+				4087C0AF207221D600C17479 /* CityPositionCell.swift */,
+				4087C0B12072220B00C17479 /* CityHotCell.swift */,
+				4087C0B32072222F00C17479 /* CityViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -573,6 +602,7 @@
 			children = (
 				400B42B11FD12B97009B4EE0 /* BannerModel.swift */,
 				400B42B31FD14326009B4EE0 /* HotLoanModel.swift */,
+				40397C8D2074CCAC003EE5AE /* LargeModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -596,6 +626,8 @@
 				401F8BF31FCFE27D00298DD4 /* LoanBrandCell.swift */,
 				401F8BF51FD0049D00298DD4 /* ProductViewCell.swift */,
 				40B080EC201EF1EA0054134A /* HotSearchView.swift */,
+				401738402073586400933927 /* LargeHeaderView.swift */,
+				401738422073589900933927 /* LargeViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -678,6 +710,7 @@
 		401F8B7C1FCEDF1800298DD4 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				4087C0B7207245C500C17479 /* ObtainLocationInfo.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -884,6 +917,7 @@
 		DEF4582A04F02B4443F90B3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4087C0B5207243F300C17479 /* CoreLocation.framework */,
 				4021B3C820441AC500E16022 /* AVFoundation.framework */,
 				4017EDED1F8E1B790077B8E0 /* SDWebImage.framework */,
 				4590E8911C82E60953B15D95 /* Pods_BorrowMoney.framework */,
@@ -1098,9 +1132,11 @@
 				40D6CD21206244C6000FC915 /* AddOrganCell.swift in Sources */,
 				401F8BB11FCEDF1800298DD4 /* BorrowMoney.swift in Sources */,
 				40B9BE852059164700CB22FD /* recommendCell.swift in Sources */,
+				4087C0AE2072187A00C17479 /* CityModel.swift in Sources */,
 				40234E6A20452632006B988A /* CapitalDetailsVC.swift in Sources */,
 				40234E6E20453FCE006B988A /* CashModel.swift in Sources */,
 				401F8BC51FCEDF1800298DD4 /* GraphicView.swift in Sources */,
+				401738432073589900933927 /* LargeViewCell.swift in Sources */,
 				40234E6420450935006B988A /* MyInterestFreeVC.swift in Sources */,
 				4023D6B82063538E00D657B6 /* ChannelModel.swift in Sources */,
 				403BA2B1205150300049585F /* OrderDetailSateCell.swift in Sources */,
@@ -1123,6 +1159,7 @@
 				4020C31F206CF2030083C4E2 /* CertificaContactsView.swift in Sources */,
 				401D9ABB1FD694E70038A860 /* LoanBooksHeaderView.swift in Sources */,
 				4067B1C9204AA8390036804F /* URLDataCenter.swift in Sources */,
+				4087C0B0207221D600C17479 /* CityPositionCell.swift in Sources */,
 				4011498A20613CC80005B8DA /* OrganLoginVC.swift in Sources */,
 				401F8BDF1FCEDF1800298DD4 /* RepayManageCell.swift in Sources */,
 				40028F0F2068D70600FBDCF7 /* PersonHeaderView.swift in Sources */,
@@ -1135,7 +1172,9 @@
 				4023D6C02063977200D657B6 /* HomePageWebVC.swift in Sources */,
 				402D0AD72046C36400BA24E1 /* BankSheetView.swift in Sources */,
 				401F8BE61FCFB47D00298DD4 /* CustomNavigationView.swift in Sources */,
+				401738412073586400933927 /* LargeHeaderView.swift in Sources */,
 				403BA2AF205150110049585F /* OrderDetailTitleCell.swift in Sources */,
+				4087C0B42072222F00C17479 /* CityViewCell.swift in Sources */,
 				4067B1C8204AA8390036804F /* URLCenter.swift in Sources */,
 				401F8BB81FCEDF1800298DD4 /* NSArray+Extension.swift in Sources */,
 				4020C31D206CF1D70083C4E2 /* CertificaFamilyView.swift in Sources */,
@@ -1190,12 +1229,14 @@
 				401F8BB91FCEDF1800298DD4 /* NSDictionary+Extension.swift in Sources */,
 				4067B1CB204AA8E40036804F /* BasicLocalWebVC.swift in Sources */,
 				40229BAD204BCDED00506ACC /* IntegralViewCell.swift in Sources */,
+				4087C0AA2072033D00C17479 /* SearchView.swift in Sources */,
 				40595BFF2065157800023100 /* TagModel.swift in Sources */,
 				401F8BD81FCEDF1800298DD4 /* LoanManageModel.swift in Sources */,
 				4009B93D204E5C1A00F72455 /* OrderDetailVC.swift in Sources */,
 				401F8BEA1FCFDA7500298DD4 /* SearchResultVC.swift in Sources */,
 				401F8BBD1FCEDF1800298DD4 /* UIImage+Extension.swift in Sources */,
 				401F8BF61FD0049D00298DD4 /* ProductViewCell.swift in Sources */,
+				40397C8E2074CCAC003EE5AE /* LargeModel.swift in Sources */,
 				40222ECD204FB28100F1101A /* BasicModel.swift in Sources */,
 				401F8BEC1FCFDAFC00298DD4 /* SearchNavigationView.swift in Sources */,
 				4020C319206CEF2F0083C4E2 /* ChooseCityVC.swift in Sources */,
@@ -1204,6 +1245,7 @@
 				401F8BE01FCEDF1800298DD4 /* RepayManageHeaderView.swift in Sources */,
 				400B42B21FD12B97009B4EE0 /* BannerModel.swift in Sources */,
 				401F8BC01FCEDF1800298DD4 /* XFoundation.swift in Sources */,
+				4087C0AC207213D000C17479 /* AccountService.swift in Sources */,
 				401F8BAE1FCEDF1800298DD4 /* RegisterVC.swift in Sources */,
 				401F8BF01FCFE04200298DD4 /* RollPictureView.swift in Sources */,
 				4067B1C7204AA8390036804F /* CentralManage.swift in Sources */,
@@ -1218,6 +1260,7 @@
 				4020C323206CF25E0083C4E2 /* CertificaCardView.swift in Sources */,
 				401F8BF41FCFE27D00298DD4 /* LoanBrandCell.swift in Sources */,
 				401C3767205D3EBE008FAD01 /* EvaluateVC.swift in Sources */,
+				4087C0B22072220B00C17479 /* CityHotCell.swift in Sources */,
 				4084BDB420469DAF008A354F /* XNumRule.swift in Sources */,
 				402C3E0320611C90006B2630 /* AccountManageCell.swift in Sources */,
 				401F8BBB1FCEDF1800298DD4 /* String+Extension.swift in Sources */,
@@ -1227,6 +1270,7 @@
 				401A97C4204D7DA8005826CC /* OrderHeaderView.swift in Sources */,
 				401F8BBA1FCEDF1800298DD4 /* NSObject+Extension.swift in Sources */,
 				4025052620197FAB00FD4B3E /* LoanBooksService.swift in Sources */,
+				4087C0B8207245C500C17479 /* ObtainLocationInfo.swift in Sources */,
 				401F8BCE1FCEDF1800298DD4 /* AboutVC.swift in Sources */,
 				401F8BCA1FCEDF1800298DD4 /* UserModel.swift in Sources */,
 				401F8BF21FCFE07C00298DD4 /* FixedAdverView.swift in Sources */,

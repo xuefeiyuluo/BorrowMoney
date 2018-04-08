@@ -12,7 +12,6 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "MJRefresh.h"
 #import "SVProgressHUD.h"
-#import "YYText.h"
 #import "KeyboardManager.h"
 
 

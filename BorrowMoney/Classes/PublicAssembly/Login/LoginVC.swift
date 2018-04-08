@@ -116,6 +116,10 @@ class LoginVC: BasicVC {
         userInfo.webCookies = dict["webCookies"] as? NSArray
         userInfo.hasPassword = dict["hasPassword"] as? Bool
         USERDEFAULT.saveCustomObject(customObject: userInfo as NSCoding, key: "userInfo")
+        
+        // 获取用户基本信息
+        requestBaseInfo()
+        
         // 返回原来的界面
         self.loginSuccess()
     }
@@ -140,6 +144,44 @@ class LoginVC: BasicVC {
             self.cancelHandler!()
         }
     }
+    
+    
+    // 获取用户基本信息
+    func requestBaseInfo() -> Void {
+        UserCenterService.userInstance.baseInfo(success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            let userInfo : UserModel = USERINFO!
+            userInfo.hasPassword = dataDict["hasPassword"] == nil ? false : dataDict["hasPassword"] as? Bool
+            userInfo.mobile = dataDict["mobile"] == nil ? "" : dataDict["mobile"] as? String
+            userInfo.isNewUser = dataDict["isNewUser"] == nil ? "" : dataDict["isNewUser"] as? String
+            userInfo.name = dataDict["name"] == nil ? "" : dataDict["name"] as? String
+            userInfo.idCard = dataDict["idCard"] == nil ? "" : dataDict["idCard"] as? String
+            userInfo.roleType = dataDict["roleType"] == nil ? "" : dataDict["roleType"] as? String
+            if dataDict["verify"] == nil {
+                userInfo.verify = 0
+            } else {
+                userInfo.verify = dataDict["verify"] as? Int
+            }
+            userInfo.headImage = dataDict["headImage"] == nil ? "" : dataDict["headImage"] as? String
+            if dataDict["redPacketCount"] == nil {
+                userInfo.redPacketCount = 0
+            } else {
+                userInfo.redPacketCount = dataDict["redPacketCount"] as? Int
+            }
+            if dataDict["balanceAmount"] == nil {
+                userInfo.balanceAmount = 0.0
+            } else {
+                userInfo.balanceAmount = dataDict["balanceAmount"] as? Double
+            }
+            userInfo.signInToday = dataDict["signInToday"] == nil ? "" : dataDict["signInToday"] as? String
+            userInfo.yhzxShowFlag = dataDict["yhzxShowFlag"] == nil ? "" : dataDict["yhzxShowFlag"] as? String
+            userInfo.gender = dataDict["gender"] == nil ? "" : dataDict["gender"] as? String
+            USERDEFAULT.saveCustomObject(customObject: userInfo, key: "userInfo")
+        }) { (errorInfo) in
+            
+        }
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

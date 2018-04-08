@@ -38,6 +38,18 @@ class URLDataCenter: NSObject {
         param.sessionBool = false
         return param
     }
+
+    
+    // 获取定位城市信息
+    public func locationCityInfo(city : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["name":city]
+        param.method = "xdb.entry.getCityByName"
+        param.engineeringBool = true
+        param.loadingIcon = false
+        return param
+    }
+
     
     // 个人中心
     public func baseInfo() -> URLCenter {
@@ -393,6 +405,25 @@ class URLDataCenter: NSObject {
         param.method = "product.getCommentTagList"
         return param
     }
+    
+    
+    // 获取所有城市
+    public func allCityList() -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.method = "roleInfo.getCity"
+        return param
+    }
+    
+    
+    // 获取信贷员列表
+    public func loanListData(cityId : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["cityId":cityId]
+        param.engineeringBool = true
+        param.method = "xdb.entry.getProviderService"
+        return param
+    }
+    
     
     
     //  查询xx贷款结果
