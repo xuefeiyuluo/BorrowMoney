@@ -406,7 +406,6 @@ class UserCenterVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             userInfo.yhzxShowFlag = dataDict["yhzxShowFlag"] == nil ? "" : dataDict["yhzxShowFlag"] as? String
             userInfo.gender = dataDict["gender"] == nil ? "" : dataDict["gender"] as? String
             USERDEFAULT.saveCustomObject(customObject: userInfo, key: "userInfo")
-            USERDEFAULT.saveCustomObject(customObject: userInfo, key: "userInfo")
         }) { (errorInfo) in
             
         }

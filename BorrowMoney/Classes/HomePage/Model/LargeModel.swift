@@ -93,4 +93,10 @@ class LargeInfoModel: NSObject {
     var cardText : String? = ""// 身份证
     var loanNumText : String? = ""// 当前信贷经理数量
     var verify : String = ""// 是否通过审核 1已审核
+    var url : String = ""// 头像
+    var providerId : String? = ""// 信贷经理的id
+    var spreadTypeName : String? = ""// 贷款名称
+    var spreadType : String? = ""// 贷款名称Id
+    var providerName : String? = ""// 信贷经理的名称
+    var recordId : String? = ""// 电话拨打的ID
 }

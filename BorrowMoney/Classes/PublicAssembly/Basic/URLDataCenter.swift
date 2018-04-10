@@ -425,6 +425,43 @@ class URLDataCenter: NSObject {
     }
     
     
+    // 提交用户信息
+    public func userIfo(attributeName : String,value : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["attribute_name":attributeName,"value" : value]
+        param.method = "roleInfo.changeBasicInfo"
+        return param
+    }
+
+    
+    // 提交信贷经理
+    public func creditManager(applyAmount : String,applyTerm : String,idCard : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["applyAmount":applyAmount,"applyTermMouth" : applyTerm,"idCard" : idCard]
+        param.engineeringBool = true
+        param.method = "xdb.entry.checkLargeLoanApply"
+        return param
+    }
+    
+    
+    // 判断是否可以拨打电话
+    public func beforeCall(applyAmount : String,applyTerm : String,card : String,city : String,name : String,providerId : String,spreadType : String,spreadTypeName : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["applyAmount":applyAmount,"applyTermMouth" : applyTerm,"card" : card,"city" : city,"name":name,"providerId" : providerId,"spreadType" : spreadType,"spreadTypeName" : spreadTypeName]
+        param.engineeringBool = true
+        param.method = "xdb.entry.checkLargeLoanApply"
+        return param
+    }
+    
+
+    // 判断是否可以拨打电话
+    public func callResult(recordId : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["recordId":recordId]
+        param.engineeringBool = true
+        param.method = "xdb.entry.getCallProviderStatus"
+        return param
+    }
     
     //  查询xx贷款结果
 //    public func requestLoanResult(status : String,pageNo : String) -> URLCenter {

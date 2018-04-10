@@ -238,7 +238,6 @@ class LargeViewCell: UICollectionViewCell {
     func changeClick(sender : UIButton) -> Void {
         let typeModel : LoanTypeModel = self.loanDate[sender.tag]
         typeModel.providerNum += 1
-        
         if self.refreshBlock != nil {
             self.refreshBlock!(sender.tag)
         }

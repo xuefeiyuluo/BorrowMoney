@@ -9,6 +9,7 @@
 import UIKit
 
 typealias LargeChangeCity = () -> Void
+typealias LargeSubmitBlock = (NSDictionary) -> Void
 class LargeHeaderView: UICollectionReusableView, UITextFieldDelegate {
     var topView : UIView = UIView()// 顶部View
     var midView : UIView = UIView()// 中间View
@@ -16,12 +17,15 @@ class LargeHeaderView: UICollectionReusableView, UITextFieldDelegate {
     var cityText : UIButton = UIButton()// 城市信息
     var changeBtn : UIButton = UIButton()// 更换城市
     var largeChangeCity : LargeChangeCity?// 更换城市的回调
+    var largeSubmitBlock : LargeSubmitBlock?// 提交申请回调
     var amountField : UITextField = UITextField()// 金额
     var termField : UITextField = UITextField()// 申请期限
     var nameField : UITextField = UITextField()// 姓名
     var cardField : UITextField = UITextField()// 身份证
     var submitBtn : UIButton = UIButton()// 提交申请
     var promptLabel : UILabel = UILabel()// 提示信息
+    var largeInfoModel : LargeInfoModel = LargeInfoModel()// 头部信息Model
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -192,6 +196,7 @@ class LargeHeaderView: UICollectionReusableView, UITextFieldDelegate {
         self.amountField.font = UIFont.systemFont(ofSize: 14 * WIDTH_SCALE)
         self.amountField.placeholder = "请输入"
         self.amountField.text = "50000"
+        self.amountField.keyboardType = .numberPad
         self.amountField.textAlignment = .right
         self.amountField.delegate = self
         self.amountField.textColor = TEXT_SECOND_COLOR
@@ -235,6 +240,7 @@ class LargeHeaderView: UICollectionReusableView, UITextFieldDelegate {
         self.termField.font = UIFont.systemFont(ofSize: 14 * WIDTH_SCALE)
         self.termField.placeholder = "请输入"
         self.termField.text = "12"
+        self.termField.keyboardType = .numberPad
         self.termField.textAlignment = .right
         self.termField.delegate = self
         self.termField.textColor = TEXT_SECOND_COLOR
@@ -408,8 +414,58 @@ class LargeHeaderView: UICollectionReusableView, UITextFieldDelegate {
     }
     
     
+    //MARK: UITextFieldDelegate
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.submitBtn.isEnabled = false
+        if textField == self.amountField {
+            let amount : Int = Int(textField.text!)!
+            if amount < 10000 || amount > 10000000 || amount % 10000 != 0 {
+                SVProgressHUD.showError(withStatus: "申请金额需在1万元至1000万元，且为1万元的整数倍")
+                textField.text = "50000"
+                return
+            }
+        } else if textField == self.termField {
+            let term : Int = Int(textField.text!)!
+            if term < 1 {
+                SVProgressHUD.showError(withStatus: "申请期限大于等于1个月")
+                textField.text = "12"
+                return
+            }
+        } else if textField == self.nameField {
+            if self.largeInfoModel.verify != "1" {
+                if textField.text?.count == 0 {
+                    SVProgressHUD.showError(withStatus: "请输入姓名")
+                    return
+                } else {
+                    // 上传服务器
+                    requestUserName(attributeName: textField.text!, value: "name")
+                }
+            }
+        } else if textField == self.cardField {
+            if self.largeInfoModel.verify != "1" {
+                if !XNumRule().cardRule(cardNum: textField.text!) {
+                    SVProgressHUD.showError(withStatus: "请输入正确的身份证号码")
+                    return
+                } else {
+                    // 上传服务器
+                    requestUserIdCard(attributeName: textField.text!, value: "IdCard")
+                }
+            }
+        }
+        
+        self.largeInfoModel.amountText = self.amountField.text
+        self.largeInfoModel.termText = self.termField.text
+        if self.largeInfoModel.verify != "1" {
+            self.largeInfoModel.nameText = self.nameField.text
+            self.largeInfoModel.cardText = self.cardField.text
+        }
+        self.submitBtn.isEnabled = true
+    }
+    
+    
     // 更新头部信息
     func updateLargeHeaderData(largeInfo : LargeInfoModel) -> Void {
+        self.largeInfoModel = largeInfo
         // 金额
         self.amountField.text = largeInfo.amountText
 
@@ -417,7 +473,6 @@ class LargeHeaderView: UICollectionReusableView, UITextFieldDelegate {
         self.termField.text = largeInfo.termText
 
         // 姓名 身份证
-        
         if largeInfo.verify == "1" {
             self.nameField.textColor = LINE_COLOR3
             self.cardField.textColor = LINE_COLOR3
@@ -452,6 +507,37 @@ class LargeHeaderView: UICollectionReusableView, UITextFieldDelegate {
     
     // 提交申请的点击事件
     func submitClick() -> Void {
-        XPrint("cdsvjdfs")
+        if !(self.amountField.text?.isEmpty)! && !(self.termField.text?.isEmpty)! && !(self.nameField.text?.isEmpty)! && !(self.cardField.text?.isEmpty)! {
+            HomePageService.homeInstance.requestCreditManager(applyAmount: self.amountField.text!, applyTerm: self.termField.text!, idCard: self.cardField.text!, success: { (responseObject) in
+                let dataDict : NSDictionary = ["amount":self.amountField.text!,"term":self.termField.text!,"card":self.cardField.text!]
+                if self.largeSubmitBlock != nil{
+                    self.largeSubmitBlock!(dataDict)
+                }
+            }, failure: { (errorInfo) in
+            })
+        }
+    }
+    
+    
+    // 提交身份证信息
+    func requestUserIdCard(attributeName : String, value : String) -> Void {
+        HomePageService.homeInstance.requestUserInfo(attributeName: attributeName, value: value, success: { (responseObject) in
+            let tempDict : NSDictionary = responseObject as! NSDictionary
+            let verify : String = tempDict.stringForKey(key: "verify") as String
+            let userModel : UserModel = USERINFO!
+            userModel.verify = Int(verify)
+            userModel.idCard = self.cardField.text
+            USERDEFAULT.saveCustomObject(customObject: userModel, key: "userInfo")
+        }) { (errorInfo) in
+        }
+    }
+
+    
+    // 提交姓名信息
+    func requestUserName(attributeName : String, value : String) -> Void {
+        HomePageService.homeInstance.requestUserInfo(attributeName: attributeName, value: value, success: { (responseObject) in
+            USERINFO?.name = self.nameField.text
+        }) { (errorInfo) in
+        }
     }
 }

@@ -29,6 +29,10 @@ class XNumRule: NSObject {
     
     // 身份证号码验证
     func cardRule(cardNum : String) -> Bool {
+        if cardNum.isEmpty {
+            return false
+        }
+        
         //判断位数
         if cardNum.count != 15 && cardNum.count != 18 {
             return false

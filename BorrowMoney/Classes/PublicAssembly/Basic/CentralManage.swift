@@ -280,6 +280,12 @@ func chooseCity() -> BasicVC {
 }
 
 
+// 信贷经理一对一
+func oneToOne(dict : NSDictionary) -> BasicVC {
+    let oneToOne : LargeOneToOneVC = LargeOneToOneVC()
+    oneToOne.dataDict = dict
+    return oneToOne
+}
 
 
 

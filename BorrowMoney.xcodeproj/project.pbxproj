@@ -19,6 +19,7 @@
 		4011498A20613CC80005B8DA /* OrganLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011498920613CC80005B8DA /* OrganLoginVC.swift */; };
 		4011FE541FF22B12006CC349 /* DropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011FE531FF22B12006CC349 /* DropdownView.swift */; };
 		4011FE561FF2590A006CC349 /* DropViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011FE551FF2590A006CC349 /* DropViewCell.swift */; };
+		40132917207B18A600D8F0E5 /* LargeOneToOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40132916207B18A600D8F0E5 /* LargeOneToOneVC.swift */; };
 		40133ACD205CF718009093C6 /* PlanViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40133ACC205CF718009093C6 /* PlanViewCell.swift */; };
 		40142AA92047AAA100A181C5 /* UIAlertView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40142AA82047AAA100A181C5 /* UIAlertView+Extension.swift */; };
 		40142AAE2047F90F00A181C5 /* BankNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40142AAD2047F90F00A181C5 /* BankNameModel.swift */; };
@@ -144,13 +145,16 @@
 		402C3E012060F8A9006B2630 /* RepaidViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402C3E002060F8A9006B2630 /* RepaidViewCell.swift */; };
 		402C3E0320611C90006B2630 /* AccountManageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402C3E0220611C90006B2630 /* AccountManageCell.swift */; };
 		402D0AD72046C36400BA24E1 /* BankSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D0AD62046C36400BA24E1 /* BankSheetView.swift */; };
+		4034BEF0207B38F000C9E490 /* ConsultAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4034BEEF207B38F000C9E490 /* ConsultAlertView.swift */; };
 		40397C8E2074CCAC003EE5AE /* LargeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40397C8D2074CCAC003EE5AE /* LargeModel.swift */; };
 		403BA2AD205121190049585F /* OrderManageCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BA2AC205121190049585F /* OrderManageCell2.swift */; };
 		403BA2AF205150110049585F /* OrderDetailTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BA2AE205150110049585F /* OrderDetailTitleCell.swift */; };
 		403BA2B1205150300049585F /* OrderDetailSateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BA2B0205150300049585F /* OrderDetailSateCell.swift */; };
 		403BA2B3205150590049585F /* OrderDetailInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BA2B2205150590049585F /* OrderDetailInfoCell.swift */; };
+		403CABBA207BADC400071D90 /* CallPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403CABB9207BADC400071D90 /* CallPhoneView.swift */; };
 		403FD2451FD1BCB00034C4E5 /* LoanDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403FD2441FD1BCB00034C4E5 /* LoanDetailVC.swift */; };
 		4044E929206B6981006E505F /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4044E928206B6980006E505F /* Data+Extension.swift */; };
+		4054AED4207C5780003E613E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4054AED3207C577F003E613E /* CoreTelephony.framework */; };
 		40595BFF2065157800023100 /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40595BFE2065157800023100 /* TagModel.swift */; };
 		4067B1BA204A8EBD0036804F /* redPackExplain.html in Resources */ = {isa = PBXBuildFile; fileRef = 4067B1B9204A8EBD0036804F /* redPackExplain.html */; };
 		4067B1C3204AA8390036804F /* BasicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4067B1BC204AA8390036804F /* BasicVC.swift */; };
@@ -212,6 +216,7 @@
 		4011498920613CC80005B8DA /* OrganLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganLoginVC.swift; sourceTree = "<group>"; };
 		4011FE531FF22B12006CC349 /* DropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownView.swift; sourceTree = "<group>"; };
 		4011FE551FF2590A006CC349 /* DropViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewCell.swift; sourceTree = "<group>"; };
+		40132916207B18A600D8F0E5 /* LargeOneToOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeOneToOneVC.swift; sourceTree = "<group>"; };
 		40133ACC205CF718009093C6 /* PlanViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewCell.swift; sourceTree = "<group>"; };
 		40142AA82047AAA100A181C5 /* UIAlertView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertView+Extension.swift"; sourceTree = "<group>"; };
 		40142AAD2047F90F00A181C5 /* BankNameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankNameModel.swift; sourceTree = "<group>"; };
@@ -345,13 +350,16 @@
 		402C3E002060F8A9006B2630 /* RepaidViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepaidViewCell.swift; sourceTree = "<group>"; };
 		402C3E0220611C90006B2630 /* AccountManageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManageCell.swift; sourceTree = "<group>"; };
 		402D0AD62046C36400BA24E1 /* BankSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSheetView.swift; sourceTree = "<group>"; };
+		4034BEEF207B38F000C9E490 /* ConsultAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultAlertView.swift; sourceTree = "<group>"; };
 		40397C8D2074CCAC003EE5AE /* LargeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeModel.swift; sourceTree = "<group>"; };
 		403BA2AC205121190049585F /* OrderManageCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderManageCell2.swift; sourceTree = "<group>"; };
 		403BA2AE205150110049585F /* OrderDetailTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailTitleCell.swift; sourceTree = "<group>"; };
 		403BA2B0205150300049585F /* OrderDetailSateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailSateCell.swift; sourceTree = "<group>"; };
 		403BA2B2205150590049585F /* OrderDetailInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailInfoCell.swift; sourceTree = "<group>"; };
+		403CABB9207BADC400071D90 /* CallPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallPhoneView.swift; sourceTree = "<group>"; };
 		403FD2441FD1BCB00034C4E5 /* LoanDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoanDetailVC.swift; sourceTree = "<group>"; };
 		4044E928206B6980006E505F /* Data+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		4054AED3207C577F003E613E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		40595BFE2065157800023100 /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
 		4067B1B9204A8EBD0036804F /* redPackExplain.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = redPackExplain.html; sourceTree = "<group>"; };
 		4067B1BC204AA8390036804F /* BasicVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicVC.swift; sourceTree = "<group>"; };
@@ -392,6 +400,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4054AED4207C5780003E613E /* CoreTelephony.framework in Frameworks */,
 				4087C0B6207243F400C17479 /* CoreLocation.framework in Frameworks */,
 				4021B3C920441AC500E16022 /* AVFoundation.framework in Frameworks */,
 				1E5657E5BDC108A4BF39A17D /* Pods_BorrowMoney.framework in Frameworks */,
@@ -593,6 +602,7 @@
 				401F8BE91FCFDA7500298DD4 /* SearchResultVC.swift */,
 				4021B3C22043FD8700E16022 /* LargeLoanVC.swift */,
 				4023D6BF2063977200D657B6 /* HomePageWebVC.swift */,
+				40132916207B18A600D8F0E5 /* LargeOneToOneVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -628,6 +638,8 @@
 				40B080EC201EF1EA0054134A /* HotSearchView.swift */,
 				401738402073586400933927 /* LargeHeaderView.swift */,
 				401738422073589900933927 /* LargeViewCell.swift */,
+				4034BEEF207B38F000C9E490 /* ConsultAlertView.swift */,
+				403CABB9207BADC400071D90 /* CallPhoneView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -917,6 +929,7 @@
 		DEF4582A04F02B4443F90B3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4054AED3207C577F003E613E /* CoreTelephony.framework */,
 				4087C0B5207243F300C17479 /* CoreLocation.framework */,
 				4021B3C820441AC500E16022 /* AVFoundation.framework */,
 				4017EDED1F8E1B790077B8E0 /* SDWebImage.framework */,
@@ -1159,6 +1172,7 @@
 				4020C31F206CF2030083C4E2 /* CertificaContactsView.swift in Sources */,
 				401D9ABB1FD694E70038A860 /* LoanBooksHeaderView.swift in Sources */,
 				4067B1C9204AA8390036804F /* URLDataCenter.swift in Sources */,
+				403CABBA207BADC400071D90 /* CallPhoneView.swift in Sources */,
 				4087C0B0207221D600C17479 /* CityPositionCell.swift in Sources */,
 				4011498A20613CC80005B8DA /* OrganLoginVC.swift in Sources */,
 				401F8BDF1FCEDF1800298DD4 /* RepayManageCell.swift in Sources */,
@@ -1250,6 +1264,7 @@
 				401F8BF01FCFE04200298DD4 /* RollPictureView.swift in Sources */,
 				4067B1C7204AA8390036804F /* CentralManage.swift in Sources */,
 				4021B3C720441A0200E16022 /* XJurisdiction.swift in Sources */,
+				4034BEF0207B38F000C9E490 /* ConsultAlertView.swift in Sources */,
 				401F8BC61FCEDF1800298DD4 /* LoginFooterView.swift in Sources */,
 				40229BB1204BF94F00506ACC /* IntergralModel.swift in Sources */,
 				4020C32B206CF3470083C4E2 /* CertificaSSAFView.swift in Sources */,
@@ -1263,6 +1278,7 @@
 				4087C0B22072220B00C17479 /* CityHotCell.swift in Sources */,
 				4084BDB420469DAF008A354F /* XNumRule.swift in Sources */,
 				402C3E0320611C90006B2630 /* AccountManageCell.swift in Sources */,
+				40132917207B18A600D8F0E5 /* LargeOneToOneVC.swift in Sources */,
 				401F8BBB1FCEDF1800298DD4 /* String+Extension.swift in Sources */,
 				4023D6BC2063880000D657B6 /* IntegralDetailCell.swift in Sources */,
 				40229BAF204BDD5800506ACC /* IntegralDetailVC.swift in Sources */,
