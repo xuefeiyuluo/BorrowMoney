@@ -13,6 +13,5 @@
 #import "MJRefresh.h"
 #import "SVProgressHUD.h"
 #import "KeyboardManager.h"
-
-
+@import FMDB;
 #endif /* Bridging_Header_h */

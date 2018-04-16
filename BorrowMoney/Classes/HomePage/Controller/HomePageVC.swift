@@ -150,8 +150,10 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
             make.height.equalTo(95 * HEIGHT_SCALE)
         })
         self.productTypeView?.imageBlock = { (index) in
-            let model : BannerModel = (weakSelf?.productArray[index])!
-            weakSelf?.html5JumpWeb(url:model.address!)
+            if index < (weakSelf?.productArray.count)! {
+                let model : BannerModel = (weakSelf?.productArray[index])!
+                weakSelf?.html5JumpWeb(url:model.address!)
+            }
         }
         
         // 滚动图
@@ -259,6 +261,11 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : LoanBrandCell = tableView.dequeueReusableCell(withIdentifier: "loanBrand") as! LoanBrandCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
@@ -271,6 +278,7 @@ class HomePageVC: BasicVC, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let hotLoan : HotLoanModel = self.hotArray[indexPath.section]
+        hotLoan.backFrom = true
         self.navigationController?.pushViewController(loanDetail(hotLoan: hotLoan), animated: true)
     }
     

@@ -45,11 +45,11 @@ class BankSheetView: BasicView, UIPickerViewDelegate, UIPickerViewDataSource {
         }
         
         let lineView : UIView = UIView()
-        lineView.backgroundColor = UIColor.lightGray
+        lineView.backgroundColor = LINE_COLOR2
         self.addSubview(lineView)
         lineView.snp.makeConstraints { (make) in
             make.top.equalTo(self)
-            make.left.equalTo(cancelBtn.snp.left)
+            make.left.equalTo(cancelBtn.snp.right)
             make.height.equalTo(cancelBtn.snp.height)
             make.width.equalTo(1)
         }

@@ -27,7 +27,7 @@ class HotLoanModel: NSObject {
     var targetType : String? = ""// DETAIL跳转到详情页 APPLY_NOW跳转立即申请url
     var deviceType : String? = ""//
     var source : String? = ""// 来源
-//    var arguments : NSDictionary?//
+    var backFrom : Bool = false// 是否返回首页
     
     override func replacedKeyFromPropertyName() -> NSDictionary {
         return ["descriptions":"description"]

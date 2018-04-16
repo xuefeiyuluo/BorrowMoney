@@ -217,6 +217,24 @@ class URLDataCenter: NSObject {
         return param
     }
     
+
+    // 贷款详情
+    public func requestLoanDetailInfo(productId : String,rzj : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["product_id":productId,"rzj_s":rzj]
+        param.method = "rank.getProductDetail"
+        return param
+    }
+    
+    
+    // 贷款详情 用户评价
+    public func requestEvaluateList(productId : String,pageNo : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["product_id":productId,"pageNo":pageNo]
+        param.method = "product.getCommentByPidV2"
+        return param
+    }
+    
     
     // 我的现金 基本信息
     public func requestMyCashInfo() -> URLCenter {

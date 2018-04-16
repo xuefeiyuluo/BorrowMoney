@@ -18,6 +18,7 @@ class HotSearchView: UIView {
     var textHorizontalDistance : CGFloat = 8 * WIDTH_SCALE// 字两边距离边框的距离
     var verticalUI : CGFloat = 20 * HEIGHT_SCALE// 默认控件的高低位20
     var tagBlock : TagClickBlock?// 标签回调的点击事件
+    var markAllHeight : CGFloat = 20 * HEIGHT_SCALE// 标签view的总高度
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,6 +41,7 @@ class HotSearchView: UIView {
         let viewWidth : CGFloat = self.frame.size.width
         if self.font > self.verticalUI {
             XPrint("文字的高度大于整个控件的高度。。。")
+            // 设置默认高度
             self.font = 13 * WIDTH_SCALE
             self.verticalUI = 20 * HEIGHT_SCALE
         }
@@ -87,6 +89,13 @@ class HotSearchView: UIView {
                 columnCount += 1
             }
         }
+        
+        // 获取整个View的高度
+//        if rowCount > 0 {
+            self.markAllHeight = self.verticalUI + (self.verticalUI + self.verticalDistance) * rowCount + 10 * HEIGHT_SCALE
+//        } else {
+//            self.markAllHeight = self.verticalUI
+//        }
     }
     
     

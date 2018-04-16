@@ -52,4 +52,33 @@ class LoanBooksService: NSObject {
             failure(errorInfo)
         }
     }
+
+    
+    // 贷款详情界面
+    func requestLoanDetailInfo(productId : String,rzj : String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestLoanDetailInfo(productId: productId, rzj: rzj)
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
+            failure(errorInfo)
+        }
+    }
+    
+    
+    // 贷款详情界面 用户评价
+    func requestEvaluateList(productId : String,pageNo : String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestEvaluateList(productId: productId, pageNo: pageNo)
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
+            failure(errorInfo)
+        }
+    }
+    
 }

@@ -184,14 +184,6 @@ extension NSObject {
     }
     
     
-    // 计算文字的尺寸
-    func sizeWithText(text : String,font : UIFont, maxSize : CGSize) -> CGSize {
-        let dic = NSDictionary(object: font, forKey: NSFontAttributeName as NSCopying)
-        let size : CGSize = text.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, attributes: dic as? [String : AnyObject], context: nil).size
-        return size
-    }
-    
-    
     // 获取当前控制器
     func getCurrentVC()->UIViewController{
         var window = UIApplication.shared.keyWindow
@@ -221,7 +213,37 @@ extension NSObject {
             return (window?.rootViewController)!
         }
     }
-
+    
+    
+    // 计算文字的尺寸
+    func sizeWithText(text : String,font : UIFont, maxSize : CGSize) -> CGSize {
+        let dic = NSDictionary(object: font, forKey: NSFontAttributeName as NSCopying)
+        let size : CGSize = text.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, attributes: dic as? [String : AnyObject], context: nil).size
+        return size
+    }
+    
+    
+    // 设置文本的行间距
+    func setTextLineSpace(text : String,lineSpacing : CGFloat,font : UIFont) -> NSAttributedString {
+        let dic = NSDictionary(object: font, forKey: NSFontAttributeName as NSCopying)
+        let attributedStr = NSMutableAttributedString(string: text)
+        let paragraphStye = NSMutableParagraphStyle()
+        paragraphStye.lineSpacing = lineSpacing
+        let rang = NSMakeRange(0, CFStringGetLength(text as CFString?))
+        attributedStr.setAttributes(dic as? [String : Any], range: rang)
+        attributedStr.addAttribute(NSParagraphStyleAttributeName, value: paragraphStye, range: rang)
+        return attributedStr
+    }
+    
+    
+    // 计算Attribute文本的高度
+    func sizeWithAttributeText(text : String,font : UIFont, maxSize : CGSize,paragraphStyle : NSMutableParagraphStyle) -> CGSize {
+        let dic = [NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy()]
+        let size : CGSize = text.boundingRect(with: maxSize, options: [.usesLineFragmentOrigin,.usesFontLeading,.truncatesLastVisibleLine], attributes: dic, context: nil).size
+        return size
+    }
+    
+    
     
     
     
