@@ -38,7 +38,7 @@ extension UIImage {
         UIGraphicsBeginImageContextWithOptions(size, true, 0)
         let context = UIGraphicsGetCurrentContext()
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let colors = gradientColors.map {(color: UIColor) -> AnyObject! in return color.cgColor as AnyObject! } as NSArray
+        let colors = gradientColors.map {(color: UIColor) -> AnyObject? in return color.cgColor as AnyObject! } as NSArray
         let gradient = CGGradient(colorsSpace: colorSpace, colors: colors, locations: nil)
         // 第二个参数是起始位置，第三个参数是终止位置
         if direction == DirectionEnum.leftToRight {

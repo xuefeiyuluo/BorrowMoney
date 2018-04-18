@@ -10,8 +10,9 @@ import UIKit
 
 typealias TagClickBlock = (Int) -> Void
 class HotSearchView: UIView {
-    var font : CGFloat = 12 * WIDTH_SCALE // 字体高度默认为13
+    var font : CGFloat = 12 * WIDTH_SCALE // 字体高度默认为12
     var textColor : UIColor = TEXT_LIGHT_COLOR// 默认字体的颜色
+    var backColor : UIColor = UIColor.clear// 默认控件的背景颜色
     var textBorderColor : UIColor = TEXT_LIGHT_COLOR// 默认字体边框的颜色
     var verticalDistance : CGFloat = 8 * HEIGHT_SCALE// 默认垂直间的距离为5(第一行与第二行之间的距离)
     var horizontalDistance : CGFloat = 8 * WIDTH_SCALE// 默认水平间的距离为5(两个空间间的距离)
@@ -75,9 +76,10 @@ class HotSearchView: UIView {
             btn.setTitle(dataArray[i], for: UIControlState.normal)
             btn.setTitleColor(self.textColor, for: UIControlState.normal)
             btn.titleLabel?.font = UIFont.systemFont(ofSize: self.font)
+            btn.backgroundColor = backColor
             btn.layer.borderColor = self.textBorderColor.cgColor
-            btn.layer.borderWidth = 0.7 * WIDTH_SCALE
-            btn.layer.cornerRadius = 1 * WIDTH_SCALE
+            btn.layer.borderWidth = 0.8 * WIDTH_SCALE
+            btn.layer.cornerRadius = 1.5 * WIDTH_SCALE
             btn.layer.masksToBounds = true
             btn.addTarget(self, action: #selector(tagClick(sender:)), for: UIControlEvents.touchUpInside)
             self.addSubview(btn)
@@ -91,11 +93,7 @@ class HotSearchView: UIView {
         }
         
         // 获取整个View的高度
-//        if rowCount > 0 {
-            self.markAllHeight = self.verticalUI + (self.verticalUI + self.verticalDistance) * rowCount + 10 * HEIGHT_SCALE
-//        } else {
-//            self.markAllHeight = self.verticalUI
-//        }
+        self.markAllHeight = self.verticalUI + (self.verticalUI + self.verticalDistance) * rowCount + 10 * HEIGHT_SCALE
     }
     
     

@@ -27,6 +27,31 @@ extension String {
     }
     
     
+    // string -> Int
+    func intValue() -> Int {
+        var intNumber : Int = 0
+        if  self.isEmpty {
+            intNumber = 0
+        } else {
+            let intArray : [String] = self.components(separatedBy: ".") as [String]
+            intNumber = Int(intArray.first!)!
+        }
+        return intNumber
+    }
+    
+    
+    // string -> CGFloat
+    func floatValue() -> Double {
+        var floatNumber : Double = 0.00
+        if self.isEmpty {
+            floatNumber = 0.00
+        } else {
+            floatNumber = Double(self)!
+        }
+        return floatNumber
+    }
+    
+    
     // url编码
     func stringToUrlEncoded() -> String {
         let encodeWord = self.addingPercentEncoding(withAllowedCharacters: NSCharacterSet(charactersIn:"`#%^{}\"[]|\\<> ").inverted)

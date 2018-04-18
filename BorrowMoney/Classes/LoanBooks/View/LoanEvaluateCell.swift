@@ -19,6 +19,41 @@ class LoanEvaluateCell: BasicViewCell {
     var markView : HotSearchView = HotSearchView()// 标签View
     var contentLabel : UILabel = UILabel()// 评价内容
     var uiArray : [UIImageView] = [UIImageView]()// 评价星星数组
+    var evluateModel : EvaluateModel? {
+        didSet{
+            // 用户
+            self.userLabel.text = String (format: "用户%@", (evluateModel?.mobilephone)!)
+            
+            // 时间
+            self.timeLabel.text = evluateModel?.commentTime
+            
+            // 申请信息
+            self.applyLabel.text = String (format: "申请时间:%@   申请金额:%@", (evluateModel?.applyTime)!,(evluateModel?.applyAmount)!)
+            
+            // 评价星星的View
+            for i in 0 ..< self.uiArray.count {
+                let img : UIImageView = self.uiArray[i]
+                if i < (evluateModel?.score.intValue())! {
+                    img.image = UIImage (named: "evaluatStar1.png")
+                } else {
+                    img.image = UIImage (named: "evaluatStar2.png")
+                }
+            }
+            
+            
+            // 评价内容
+            let size : CGSize = self.sizeWithText(text: evluateModel!.coment, font: UIFont.systemFont(ofSize: 13 * WIDTH_SCALE), maxSize: CGSize.init(width: SCREEN_WIDTH - 20 * WIDTH_SCALE, height: CGFloat(MAXFLOAT)))
+            self.contentLabel.snp.updateConstraints { (make) in
+                make.height.equalTo(size.height + 1)
+            }
+            self.contentLabel.text = evluateModel!.coment
+            
+            // 标签View
+            self.markView.frame = CGRect (x: 0, y: 0, width: SCREEN_WIDTH - 20 * HEIGHT_SCALE, height: SCREEN_HEIGHT)
+            self.markView.createUI(dataArray: (evluateModel?.markArray)!)
+        }
+    }
+    
     
     // 创建界面
     override func createUI() {
@@ -43,7 +78,6 @@ class LoanEvaluateCell: BasicViewCell {
         }
         
         // 用户
-        self.userLabel.text = String (format: "用户%@", "13838383838")
         self.userLabel.textColor = UIColor().colorWithHexString(hex: "5A5A5A")
         self.userLabel.font = UIFont.systemFont(ofSize: 13 * WIDTH_SCALE)
         self.headerView.addSubview(self.userLabel)
@@ -53,7 +87,6 @@ class LoanEvaluateCell: BasicViewCell {
         }
         
         // 时间
-        self.timeLabel.text = "2016-12-12"
         self.timeLabel.textColor = UIColor().colorWithHexString(hex: "5A5A5A")
         self.timeLabel.font = UIFont.systemFont(ofSize: 13 * WIDTH_SCALE)
         self.headerView.addSubview(self.timeLabel)
@@ -85,7 +118,6 @@ class LoanEvaluateCell: BasicViewCell {
         
         
         // 申请信息
-        self.applyLabel.text = String (format: "申请时间:%@   申请金额:%@", "2016-12-12","10000")
         self.applyLabel.textColor = UIColor().colorWithHexString(hex: "5A5A5A")
         self.applyLabel.font = UIFont.systemFont(ofSize: 13 * WIDTH_SCALE)
         self.headerView.addSubview(self.applyLabel)
@@ -139,7 +171,6 @@ class LoanEvaluateCell: BasicViewCell {
         for i in 0 ..< 5 {
             let imageView : UIImageView = UIImageView()
             imageView.contentMode = .center
-            imageView.image = UIImage (named: "evaluatStar1.png")
             self.starView.addSubview(imageView)
             imageView.snp.makeConstraints { (make) in
                 make.left.equalTo(self.starView.snp.left).offset(CGFloat(i * 16) * WIDTH_SCALE)
@@ -150,18 +181,7 @@ class LoanEvaluateCell: BasicViewCell {
         }
         
         
-        // 标签View
-        self.markView.backgroundColor = UIColor.red
-        self.evaluatView.addSubview(self.markView)
-        self.markView.snp.makeConstraints { (make) in
-            make.left.equalTo(self.evaluatView.snp.left).offset(10 * WIDTH_SCALE)
-            make.right.equalTo(self.evaluatView.snp.right).offset(-10 * WIDTH_SCALE)
-            make.top.equalTo(self.starView.snp.bottom)
-            make.height.equalTo(20 * HEIGHT_SCALE)
-        }
-        
         // 评价内容
-        self.contentLabel.text = "虚心好评阿迪达斯"
         self.contentLabel.font = UIFont.systemFont(ofSize: 13 * WIDTH_SCALE)
         self.contentLabel.textColor = TEXT_SECOND_COLOR
         self.contentLabel.numberOfLines = 0
@@ -169,7 +189,21 @@ class LoanEvaluateCell: BasicViewCell {
         self.contentLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.evaluatView.snp.left).offset(10 * WIDTH_SCALE)
             make.right.equalTo(self.evaluatView.snp.right).offset(-10 * WIDTH_SCALE)
-            make.bottom.equalTo(self.evaluatView.snp.bottom).offset(-10 * HEIGHT_SCALE)
+            make.bottom.equalTo(self.evaluatView.snp.bottom).offset(-5 * HEIGHT_SCALE)
+            make.height.equalTo(15 * HEIGHT_SCALE)
+        }
+        
+        
+        // 标签View
+        self.markView.backColor = NAVIGATION_COLOR
+        self.markView.textColor = UIColor.white
+        self.markView.textBorderColor = NAVIGATION_COLOR
+        self.evaluatView.addSubview(self.markView)
+        self.markView.snp.makeConstraints { (make) in
+            make.left.equalTo(self.evaluatView.snp.left).offset(10 * WIDTH_SCALE)
+            make.right.equalTo(self.evaluatView.snp.right).offset(-10 * WIDTH_SCALE)
+            make.top.equalTo(self.starView.snp.bottom).offset(5 * HEIGHT_SCALE)
+            make.bottom.equalTo(self.contentLabel.snp.top)
         }
     }
 }

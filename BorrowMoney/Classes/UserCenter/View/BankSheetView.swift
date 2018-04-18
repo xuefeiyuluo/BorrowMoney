@@ -15,6 +15,7 @@ class BankSheetView: BasicView, UIPickerViewDelegate, UIPickerViewDataSource {
     var bankSheetBlock : BankSheetBlock?// 头部按钮
     var bankPickView : UIPickerView = UIPickerView()
     var bankPickBlock : BankPickBlock?// 选择框
+    var sheetBool : Bool = true
     var model : BankNameModel?// 选中的
     var bankArray : [BankNameModel] = [BankNameModel](){
         didSet{
@@ -125,7 +126,9 @@ class BankSheetView: BasicView, UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.model = self.bankArray[row]
-        bankNameSelected(model: self.model!)
+        if self.sheetBool {
+            bankNameSelected(model: self.model!)
+        }
     }
     
     
@@ -136,7 +139,15 @@ class BankSheetView: BasicView, UIPickerViewDelegate, UIPickerViewDataSource {
         }
         if self.model == nil {
             self.model = self.bankArray[0]
+        }
+        
+        if self.sheetBool {
             bankNameSelected(model: self.model!)
+        } else {
+            // 确定按钮的点击事件
+            if sender.tag == 501 {
+                bankNameSelected(model: self.model!)
+            }
         }
     }
     

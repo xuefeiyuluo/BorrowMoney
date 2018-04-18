@@ -9,6 +9,8 @@
 import UIKit
 
 class UserEvaluateVC: BasicVC {
+    var loanDetailModel : LoanDetailModel?// 贷款详情
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

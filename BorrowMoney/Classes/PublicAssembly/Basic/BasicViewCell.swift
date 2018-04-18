@@ -47,4 +47,9 @@ class BasicViewCell: UITableViewCell {
     func initializationData() -> Void {
         
     }
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }

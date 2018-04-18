@@ -25,6 +25,9 @@
 		40142AAE2047F90F00A181C5 /* BankNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40142AAD2047F90F00A181C5 /* BankNameModel.swift */; };
 		401738412073586400933927 /* LargeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401738402073586400933927 /* LargeHeaderView.swift */; };
 		401738432073589900933927 /* LargeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401738422073589900933927 /* LargeViewCell.swift */; };
+		4017A98A2085E407008611D9 /* LoanDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4017A9892085E407008611D9 /* LoanDetailFooterView.swift */; };
+		4017A98C2085F067008611D9 /* EvaluateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4017A98B2085F067008611D9 /* EvaluateModel.swift */; };
+		4017A98E2085F083008611D9 /* LoanEvaluateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4017A98D2085F083008611D9 /* LoanEvaluateModel.swift */; };
 		4017EDC71F8E196A0077B8E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4017EDC61F8E196A0077B8E0 /* Assets.xcassets */; };
 		4017EDCA1F8E196A0077B8E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4017EDC81F8E196A0077B8E0 /* LaunchScreen.storyboard */; };
 		4017EDD51F8E196A0077B8E0 /* BorrowMoneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4017EDD41F8E196A0077B8E0 /* BorrowMoneyTests.swift */; };
@@ -233,6 +236,9 @@
 		40142AAD2047F90F00A181C5 /* BankNameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankNameModel.swift; sourceTree = "<group>"; };
 		401738402073586400933927 /* LargeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeHeaderView.swift; sourceTree = "<group>"; };
 		401738422073589900933927 /* LargeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeViewCell.swift; sourceTree = "<group>"; };
+		4017A9892085E407008611D9 /* LoanDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanDetailFooterView.swift; sourceTree = "<group>"; };
+		4017A98B2085F067008611D9 /* EvaluateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateModel.swift; sourceTree = "<group>"; };
+		4017A98D2085F083008611D9 /* LoanEvaluateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanEvaluateModel.swift; sourceTree = "<group>"; };
 		4017EDBC1F8E196A0077B8E0 /* BorrowMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BorrowMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4017EDC61F8E196A0077B8E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4017EDC91F8E196A0077B8E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -693,6 +699,8 @@
 			children = (
 				402505272019B50400FD4B3E /* LoanAmountType.swift */,
 				40AAF2532080BA5C0037D923 /* LoanDetailModel.swift */,
+				4017A98B2085F067008611D9 /* EvaluateModel.swift */,
+				4017A98D2085F083008611D9 /* LoanEvaluateModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -720,6 +728,7 @@
 				40AAF2552080BECB0037D923 /* LoanEvaluateCell.swift */,
 				40AAF2572080BF330037D923 /* LoanEvaluateHeaderCell.swift */,
 				401EC6C9208443AD008D8A07 /* LoanApplicantTypeCell.swift */,
+				4017A9892085E407008611D9 /* LoanDetailFooterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1170,6 +1179,7 @@
 				4021B3C32043FD8700E16022 /* LargeLoanVC.swift in Sources */,
 				401F8BD71FCEDF1800298DD4 /* UserCenterVC.swift in Sources */,
 				40234E7620454D35006B988A /* CapitalDetailHeaderView.swift in Sources */,
+				4017A98E2085F083008611D9 /* LoanEvaluateModel.swift in Sources */,
 				401F8BB21FCEDF1800298DD4 /* CustomNavigationController.swift in Sources */,
 				4011FE541FF22B12006CC349 /* DropdownView.swift in Sources */,
 				402279FD2061F93000650C7E /* OrganDetailVC.swift in Sources */,
@@ -1240,6 +1250,7 @@
 				4020C325206CF2760083C4E2 /* CertificaBankView.swift in Sources */,
 				403BA2AD205121190049585F /* OrderManageCell2.swift in Sources */,
 				40234E6020450816006B988A /* LoanCalculatorVC.swift in Sources */,
+				4017A98C2085F067008611D9 /* EvaluateModel.swift in Sources */,
 				401F8BBC1FCEDF1800298DD4 /* UIColor+Extension.swift in Sources */,
 				401F8BD01FCEDF1800298DD4 /* MessageCenterVC.swift in Sources */,
 				4023D6C42063B04000D657B6 /* EvaluateHeaderView.swift in Sources */,
@@ -1334,6 +1345,7 @@
 				401F8BCE1FCEDF1800298DD4 /* AboutVC.swift in Sources */,
 				401F8BCA1FCEDF1800298DD4 /* UserModel.swift in Sources */,
 				401F8BF21FCFE07C00298DD4 /* FixedAdverView.swift in Sources */,
+				4017A98A2085E407008611D9 /* LoanDetailFooterView.swift in Sources */,
 				402279FF2061F95100650C7E /* AddOrganVC.swift in Sources */,
 				4022003F204648C200BC296A /* CaptialNullDataView.swift in Sources */,
 				402505282019B50400FD4B3E /* LoanAmountType.swift in Sources */,

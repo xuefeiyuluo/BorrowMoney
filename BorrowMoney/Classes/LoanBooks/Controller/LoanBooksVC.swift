@@ -32,10 +32,7 @@ class LoanBooksVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // 获取贷款列表
-        if first == 2 {
-            self.booksTableView.mj_header.beginRefreshing()
-        }
+        
     }
     
     

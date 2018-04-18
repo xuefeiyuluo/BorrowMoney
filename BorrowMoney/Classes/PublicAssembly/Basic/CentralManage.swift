@@ -288,6 +288,14 @@ func oneToOne(dict : NSDictionary) -> BasicVC {
 }
 
 
+// 用户评价
+func userEvluate(mode : LoanDetailModel) -> BasicVC {
+    let userEvluate : UserEvaluateVC = UserEvaluateVC()
+    userEvluate.loanDetailModel = mode
+    return userEvluate
+}
+
+
 
 // 查询“xx”贷款结果
 func loanResult(loanModel : LoanOrderModel) -> BasicVC {

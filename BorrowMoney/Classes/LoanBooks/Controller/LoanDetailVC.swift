@@ -8,16 +8,27 @@
 
 import UIKit
 
+enum SegmentedStateEnum : Int {
+    case segmentedRightState
+    case segmentedLeftState
+}
+
+
 class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     var hotLoan : HotLoanModel?// 贷款列表界面带过来的值
     var loanBottomView : LoanDetailBottomView = LoanDetailBottomView()// 提交申请View
-    var sheetView : BankSheetView = BankSheetView()// 弹框
+    var tableViewFooterView : LoanDetailFooterView = LoanDetailFooterView()// 列表尾部View
     var loanDetailTableView : UITableView?//
     var sectionArray : NSArray = NSArray()// 界面结构数组
+    var loanDetailModel : LoanDetailModel = LoanDetailModel()// 贷款详情数据
+    var segmentType : SegmentedStateEnum = SegmentedStateEnum.segmentedLeftState// 默认选择左边
+    var evaluateData : LoanEvaluateModel = LoanEvaluateModel()// 用户评论数据
+    var rowEvaluateArray : [String] = [String]()// 评价界面的数据结构
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.hotLoan?.backFrom = true
     }
     
     
@@ -45,6 +56,8 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
         self.loanDetailTableView?.mj_header = MJRefreshGifHeader(refreshingBlock: { () -> Void in
             // 获取贷款详情
             self.requestLoanDetailInfo()
+            // 获取评价列表
+            self.requestEvaluateList()
             self.loanDetailTableView?.mj_header.endRefreshing()
         })
         
@@ -65,24 +78,13 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     
     // 创建UI
     func createUI() -> Void {
-        weak var weakSelf = self
+//        weak var weakSelf = self
         
         // 创建底部“提交申请”view
         self.view.addSubview(self.loanBottomView)
         self.loanBottomView.snp.makeConstraints { (make) in
             make.bottom.left.right.equalTo(self.view)
             make.height.equalTo(55 * HEIGHT_SCALE)
-        }
-        
-        // 接口期限的弹框
-        self.sheetView.backgroundColor = UIColor.white
-        self.sheetView.frame = CGRect (x:0 , y: SCREEN_HEIGHT - 64, width: SCREEN_WIDTH, height: 200 * HEIGHT_SCALE)
-        self.view.addSubview(self.sheetView)
-        self.sheetView.bankSheetBlock = { (tag) in
-            
-        }
-        self.sheetView.bankPickBlock = {(model) in
-            
         }
         
         
@@ -111,13 +113,25 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: UITableViewDataSource, UITableViewDelegate
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.sectionArray.count + 2
+        if self.segmentType == SegmentedStateEnum.segmentedLeftState {
+            return self.sectionArray.count + 1
+        } else {
+            return self.sectionArray.count + 1
+        }
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section > 2 {
-            return 1
+            if self.segmentType == SegmentedStateEnum.segmentedLeftState {
+                if self.loanDetailModel.applicantState {
+                    return 1
+                } else {
+                    return 0
+                }
+            } else {
+                return self.rowEvaluateArray.count
+            }
         } else {
             let tempArray : NSArray = self.sectionArray[section] as! NSArray
             return tempArray.count
@@ -127,7 +141,11 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section > 2 {
-            return 45 * HEIGHT_SCALE
+            if self.segmentType == SegmentedStateEnum.segmentedLeftState {
+                return 45 * HEIGHT_SCALE
+            } else {
+                return 0.01 * HEIGHT_SCALE
+            }
         } else {
             return 0.01 * HEIGHT_SCALE
         }
@@ -145,21 +163,39 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section > 2 {
-            weak var weakSelf = self
-            let headerView : LoanApplicantHeaderView = LoanApplicantHeaderView()
-            headerView.tag = section - 3
-            headerView.frame = CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: 45 * HEIGHT_SCALE)
-            headerView.headerBlock = { (index) in
-                // 刷新界面
-                weakSelf?.loanDetailTableView?.reloadData()
+            if self.segmentType == SegmentedStateEnum.segmentedLeftState {
+                weak var weakSelf = self
+                let headerView : LoanApplicantHeaderView = LoanApplicantHeaderView()
+                headerView.tag = section - 3
+                headerView.frame = CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: 45 * HEIGHT_SCALE)
+                headerView.headerBlock = { (index) in
+                    // 刷新界面
+                    weakSelf?.loanDetailTableView?.reloadData()
+                }
+                return headerView
+            } else {
+                return nil
             }
-            return headerView
         }
         return nil
     }
     
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 1 {
+            let footerView : UIView = UIView()
+            footerView.backgroundColor = UIColor.clear
+            footerView.frame = CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: 10 * HEIGHT_SCALE)
+
+            let lineView : UIView = UIView()
+            lineView.backgroundColor = LINE_COLOR2
+            footerView.addSubview(lineView)
+            lineView.snp.makeConstraints { (make) in
+                make.top.left.right.equalTo(footerView)
+                make.height.equalTo(1 * HEIGHT_SCALE)
+            }
+            return footerView
+        }
         return nil
     }
     
@@ -167,20 +203,34 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section <= 2 {
             let rowString : String = (self.sectionArray[indexPath.section] as! NSArray)[indexPath.row] as! String
-            
             if rowString == "LoanDetailAmount" {
                 return 170 * HEIGHT_SCALE
             } else if rowString == "LoanDetailJXR" {
-                let str : String = "1、20-40岁\n2、在职员工\n3、工作周期满6个月\n4、20-40岁\n5、在职员工打别介啊阿茶"
-                return calculationConditionViewHeight(text: str)
+                return calculationConditionViewHeight(text: self.loanDetailModel.systemTips!,state: self.loanDetailModel.jxrState)
             }  else if rowString == "LoanDetailCondition" {
-                let str : String = "1、20-40岁\n2、在职员工\n3、工作周期满6个月\n4、20-40岁\n5、在职员工h女打卡咔擦和女开始\n6、工作周期满6个月"
-                return calculationConditionViewHeight(text: str)
+                return calculationConditionViewHeight(text: self.loanDetailModel.conditions!,state: self.loanDetailModel.conditionState)
             } else if rowString == "LoanDetailSegmented" {
                 return 50 * HEIGHT_SCALE
             }
         } else {
-            return 144 * HEIGHT_SCALE
+            if self.segmentType == SegmentedStateEnum.segmentedLeftState {
+                return 44 * HEIGHT_SCALE
+            } else {
+                let rowString : String = self.rowEvaluateArray[indexPath.row]
+                if  rowString == "EvaluateTitleRow" {
+                    if self.evaluateData.commentTag.count > 0 {
+                        return 35 * HEIGHT_SCALE + self.evaluateData.markHeight
+                    } else {
+                        return 35 * HEIGHT_SCALE
+                    }
+                } else if  rowString == "EvaluateFooterRow" {
+                    return 50 * HEIGHT_SCALE
+                } else {
+                    // 评价model
+                    let evaluateModel : EvaluateModel = self.evaluateData.commentList[indexPath.row - 1] as EvaluateModel
+                    return 95 * HEIGHT_SCALE + evaluateModel.contentHeight
+                }
+            }
         }
         return 44 * HEIGHT_SCALE
     }
@@ -189,67 +239,99 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         weak var weakSelf = self
         if indexPath.section <= 2 {
-            let rowString : String = (self.sectionArray[indexPath.section] as! NSArray)[indexPath.row] as! String
-            if rowString == "LoanDetailAmount" {
+            let sectionString : String = (self.sectionArray[indexPath.section] as! NSArray)[indexPath.row] as! String
+            if sectionString == "LoanDetailAmount" {
                 let cell : LoanDetailAmountCell = tableView.dequeueReusableCell(withIdentifier: "amountCell") as! LoanDetailAmountCell
                 cell.selectionStyle = UITableViewCellSelectionStyle.none
-                // 接口期限回调
-                cell.tremsBlock = { () in
-                    weakSelf?.sheetView.isHidden = true
-                }
-                
-                // 疑问的回调
-                cell.questionBlock = { () in
-                    
-                }
+                cell.loanDetail = self.loanDetailModel
                 return cell
-            } else if rowString == "LoanDetailJXR" {
+            } else if sectionString == "LoanDetailJXR" {
                 let cell : LoanDetailConditionCell = tableView.dequeueReusableCell(withIdentifier: "jxrCell") as! LoanDetailConditionCell
                 cell.selectionStyle = UITableViewCellSelectionStyle.none
-                let str : String = "1、20-40岁\n2、在职员工\n3、工作周期满6个月\n4、20-40岁\n5、在职员工打别介啊阿茶"
-                cell.updateConditionView(title: "接小二亲测：", text: str)
+                cell.updateConditionView(title: "接小二亲测：", text: self.loanDetailModel.systemTips!,state: self.loanDetailModel.jxrState)
                 // 条件显示全部的回调
                 cell.conditionBlock = { () in
-                    
+                    weakSelf?.loanDetailModel.jxrState = !(weakSelf?.loanDetailModel.jxrState)!
+                    // 刷新Section1的数据
+                    weakSelf?.loanDetailTableView?.reloadSections([1], with: .none)
                 }
                 return cell
-            }  else if rowString == "LoanDetailCondition" {
+            }  else if sectionString == "LoanDetailCondition" {
                 let cell : LoanDetailConditionCell = tableView.dequeueReusableCell(withIdentifier: "conditionCell") as! LoanDetailConditionCell
                 cell.selectionStyle = UITableViewCellSelectionStyle.none
-                let str : String = "1、20-40岁\n2、在职员工\n3、工作周期满6个月\n4、20-40岁\n5、在职员工h女打卡咔擦和女开始\n6、工作周期满6个月"
-                cell.updateConditionView(title: "申请条件：", text: str)
+                cell.updateConditionView(title: "申请条件：", text: self.loanDetailModel.conditions!,state: self.loanDetailModel.conditionState)
                 // 条件显示全部的回调
                 cell.conditionBlock = { () in
-                    
+                    weakSelf?.loanDetailModel.conditionState = !(weakSelf?.loanDetailModel.conditionState)!
+                    // 刷新Section1的数据
+                    weakSelf?.loanDetailTableView?.reloadSections([1], with: .none)
                 }
                 return cell
-            } else if rowString == "LoanDetailSegmented" {
+            } else if sectionString == "LoanDetailSegmented" {
                 let cell : LoanDetailSegmentedCell = tableView.dequeueReusableCell(withIdentifier: "segmentedCell") as! LoanDetailSegmentedCell
                 cell.selectionStyle = UITableViewCellSelectionStyle.none
                 cell.loanDetailSegmentBlock = { (tag) in
-                    XPrint(tag)
                     // 500申请资料  600用户评价
-                    
-                    
+                    if tag == 500 {
+                        self.segmentType = SegmentedStateEnum.segmentedLeftState
+                    } else {
+                        self.segmentType = SegmentedStateEnum.segmentedRightState
+                    }
+                    // 刷新界面
+                    weakSelf?.loanDetailTableView?.reloadData()
                 }
                 return cell
             }
         } else {
-//            let cell : LoanApplicantTypeCell = tableView.dequeueReusableCell(withIdentifier: "typeCell") as! LoanApplicantTypeCell
-//            cell.selectionStyle = UITableViewCellSelectionStyle.none
-//            return cell
-            
-//            let cell : LoanEvaluateHeaderCell = tableView.dequeueReusableCell(withIdentifier: "evaluateHeaderCell") as! LoanEvaluateHeaderCell
-//            cell.selectionStyle = UITableViewCellSelectionStyle.none
-//            return cell
-            
-            
-            let cell : LoanEvaluateCell = tableView.dequeueReusableCell(withIdentifier: "evaluateCell") as! LoanEvaluateCell
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
-            return cell
+            if self.segmentType == SegmentedStateEnum.segmentedLeftState {
+                let cell : LoanApplicantTypeCell = tableView.dequeueReusableCell(withIdentifier: "typeCell") as! LoanApplicantTypeCell
+                cell.selectionStyle = UITableViewCellSelectionStyle.none
+                return cell
+            } else {
+                let rowString : String = self.rowEvaluateArray[indexPath.row]
+                if rowString == "EvaluateTitleRow" {
+                    let cell : LoanEvaluateHeaderCell = tableView.dequeueReusableCell(withIdentifier: "evaluateHeaderCell") as! LoanEvaluateHeaderCell
+                    cell.selectionStyle = UITableViewCellSelectionStyle.none
+                    if self.evaluateData.commentList.count > 0 {
+                        cell.titleView.isHidden = false
+                        cell.markView.isHidden = false
+                        cell.promptLabel.isHidden = true
+                    } else {
+                        cell.titleView.isHidden = true
+                        cell.markView.isHidden = true
+                        cell.promptLabel.isHidden = false
+                    }
+                    cell.evaluateModel = self.evaluateData
+                    return cell
+                } else if rowString == "EvaluateFooterRow" {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier", for: indexPath)
+                    let allEvaluateBtn : UIButton = UIButton (type: UIButtonType.custom)
+                    allEvaluateBtn.setTitle("查看全部评论", for: UIControlState.normal)
+                    allEvaluateBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+                    allEvaluateBtn.setTitleColor(NAVIGATION_COLOR, for: UIControlState.normal)
+                    allEvaluateBtn.layer.borderColor = NAVIGATION_COLOR.cgColor
+                    allEvaluateBtn.layer.borderWidth = 1 * WIDTH_SCALE
+                    allEvaluateBtn.layer.cornerRadius = 2 * WIDTH_SCALE
+                    allEvaluateBtn.layer.masksToBounds = true
+                    allEvaluateBtn.addTarget(self, action: #selector(allEvaluateClick), for: UIControlEvents.touchUpInside)
+                    cell.contentView.addSubview(allEvaluateBtn)
+                    allEvaluateBtn.snp.makeConstraints { (make) in
+                        make.centerX.centerY.equalTo(cell.contentView)
+                        make.height.equalTo(30 * HEIGHT_SCALE)
+                        make.width.equalTo(100 * WIDTH_SCALE)
+                    }
+                    cell.selectionStyle = .none
+                    return cell
+                } else {
+                    let cell : LoanEvaluateCell = tableView.dequeueReusableCell(withIdentifier: "evaluateCell") as! LoanEvaluateCell
+                    cell.selectionStyle = UITableViewCellSelectionStyle.none
+                    cell.evluateModel = self.evaluateData.commentList[indexPath.row - 1] as EvaluateModel
+                    return cell
+                }
+            }
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier", for: indexPath)
-        cell.textLabel?.text = "67890-098765"
+        cell.textLabel?.text = ""
         cell.selectionStyle = .none
         return cell
     }
@@ -261,7 +343,7 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     
     
     // 计算申请条件与借小二亲测的高度
-    func calculationConditionViewHeight(text : String) -> CGFloat {
+    func calculationConditionViewHeight(text : String,state : Bool) -> CGFloat {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4 * HEIGHT_SCALE
         let size : CGSize = self.sizeWithAttributeText(text: text, font: UIFont.systemFont(ofSize: 14 * WIDTH_SCALE), maxSize: CGSize.init(width: SCREEN_WIDTH - 60 * WIDTH_SCALE, height: CGFloat(MAXFLOAT)), paragraphStyle: paragraphStyle)
@@ -269,7 +351,11 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
         if size.height < 105 * HEIGHT_SCALE {
             return 35 * HEIGHT_SCALE + size.height + 10 * HEIGHT_SCALE
         } else {
-            return 35 * HEIGHT_SCALE + 100 * HEIGHT_SCALE + 35 * HEIGHT_SCALE + 20 * HEIGHT_SCALE
+            if state {
+                return 35 * HEIGHT_SCALE + size.height + 35 * HEIGHT_SCALE + 20 * HEIGHT_SCALE
+            } else {
+                return 35 * HEIGHT_SCALE + 100 * HEIGHT_SCALE + 35 * HEIGHT_SCALE + 20 * HEIGHT_SCALE
+            }
         }
     }
     
@@ -288,6 +374,7 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     override func initializationData() {
         super.initializationData()
         self.sectionArray = [["LoanDetailAmount"],["LoanDetailJXR","LoanDetailCondition"],["LoanDetailSegmented"]]
+        self.rowEvaluateArray = ["EvaluateTitleRow"]
     }
     
     
@@ -314,16 +401,30 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     
+    // 查看全部点击事件
+    func allEvaluateClick() -> Void {
+        self.hotLoan?.backFrom = false
+        self.navigationController?.pushViewController(userEvluate(mode: self.loanDetailModel), animated: true)
+    }
+    
+    
     // 获取贷款详情
     func requestLoanDetailInfo() -> Void {
         LoanBooksService.loanInstance.requestLoanDetailInfo(productId: (self.hotLoan?.loan_id)!, rzj: (self.hotLoan?.source)!, success: { (responseObject) in
             // 取消上拉 下拉动画
             self.loanDetailTableView?.mj_header.endRefreshing()
             
+            let tempDict : NSDictionary = responseObject as! NSDictionary
+            self.loanDetailModel = LoanDetailModel.objectWithKeyValues(dict: tempDict) as! LoanDetailModel
             
+            if (self.loanDetailModel.systemTips?.isEmpty)! {
+                self.sectionArray = [["LoanDetailAmount"],["LoanDetailCondition"],["LoanDetailSegmented"]]
+            } else {
+                self.sectionArray = [["LoanDetailAmount"],["LoanDetailJXR","LoanDetailCondition"],["LoanDetailSegmented"]]
+            }
             
-            
-            
+            // 刷新界面
+            self.loanDetailTableView?.reloadData()
         }) { (errorInfo) in
             // 取消上拉 下拉动画
             self.loanDetailTableView?.mj_header.endRefreshing()
@@ -334,11 +435,21 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     // 获取评价列表
     func requestEvaluateList() -> Void {
         LoanBooksService.loanInstance.requestEvaluateList(productId: (self.hotLoan?.loan_id)!, pageNo: "1", success: { (responseObject) in
-            
+            let tempDict : NSDictionary = responseObject as! NSDictionary
+            self.evaluateData = LoanEvaluateModel.objectWithKeyValues(dict: tempDict) as! LoanEvaluateModel
+            if self.evaluateData.commentList.count == 0 {
+                self.rowEvaluateArray = ["EvaluateTitleRow"]
+            } else if self.evaluateData.commentList.count > 3 {
+                self.rowEvaluateArray = ["EvaluateTitleRow","EvaluateRow","EvaluateRow","EvaluateRow","EvaluateFooterRow"]
+            } else {
+                self.rowEvaluateArray = ["EvaluateTitleRow"]
+                for _ in 0 ..< self.evaluateData.commentList.count {
+                    self.rowEvaluateArray.append("EvaluateRow")
+                }
+            }
         }) { (errorInfo) in
         }
     }
-    
     
     
     override func didReceiveMemoryWarning() {
