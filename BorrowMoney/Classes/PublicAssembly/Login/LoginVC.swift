@@ -178,7 +178,6 @@ class LoginVC: BasicVC {
             userInfo.gender = dataDict["gender"] == nil ? "" : dataDict["gender"] as? String
             USERDEFAULT.saveCustomObject(customObject: userInfo, key: "userInfo")
         }) { (errorInfo) in
-            
         }
     }
     

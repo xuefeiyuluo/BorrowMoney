@@ -12,12 +12,12 @@ class UserModel: NSObject, NSCoding{
     
     var mobile : String? = ""// 手机号码
     var sessionId : String? = ""// session
-    var isNewUser : String? = ""//
+    var isNewUser : String? = ""// 是否为新用户
     var hasPassword : Bool? = false//
-    var name : String? = ""//
+    var name : String? = ""// 姓名
     var idCard : String? = ""// 身份证号码
-    var roleType : String? = ""//
-    var verify : Int?//
+    var roleType : String? = ""// 角色
+    var verify : Int?// 是否通过认证
     var headImage : String? = ""// 头像
     var webCookies : NSArray? = []//
     var redPacketCount : Int?//

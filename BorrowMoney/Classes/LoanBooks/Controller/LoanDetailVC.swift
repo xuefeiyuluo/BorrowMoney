@@ -24,6 +24,7 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     var segmentType : SegmentedStateEnum = SegmentedStateEnum.segmentedLeftState// 默认选择左边
     var evaluateData : LoanEvaluateModel = LoanEvaluateModel()// 用户评论数据
     var rowEvaluateArray : [String] = [String]()// 评价界面的数据结构
+    var applicantArray : [ApplicantModel] = [ApplicantModel]()// 申请资料数据
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +79,6 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     
     // 创建UI
     func createUI() -> Void {
-//        weak var weakSelf = self
         
         // 创建底部“提交申请”view
         self.view.addSubview(self.loanBottomView)
@@ -86,7 +86,6 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
             make.bottom.left.right.equalTo(self.view)
             make.height.equalTo(55 * HEIGHT_SCALE)
         }
-        
         
         // 还款管理列表
         let tableView :UITableView  = UITableView.init(frame: CGRect.zero, style: UITableViewStyle.grouped)
@@ -100,7 +99,8 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
         tableView.register(LoanDetailSegmentedCell.self, forCellReuseIdentifier: "segmentedCell")// 申请资料/用户评价View
         tableView.register(LoanEvaluateHeaderCell.self, forCellReuseIdentifier: "evaluateHeaderCell")// 评价头部View
         tableView.register(LoanEvaluateCell.self, forCellReuseIdentifier: "evaluateCell")// 评价cellView
-        tableView.register(LoanApplicantTypeCell.self, forCellReuseIdentifier: "typeCell")// 申请资料的cell
+        tableView.register(LoanApplicantType1Cell.self, forCellReuseIdentifier: "type1Cell")// 申请资料的cell
+        tableView.register(LoanApplicantType2Cell.self, forCellReuseIdentifier: "type2Cell")// 申请资料的cell
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellIdentifier")
         self.loanDetailTableView = tableView
         self.view.addSubview(self.loanDetailTableView!)
@@ -114,7 +114,7 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     // MARK: UITableViewDataSource, UITableViewDelegate
     func numberOfSections(in tableView: UITableView) -> Int {
         if self.segmentType == SegmentedStateEnum.segmentedLeftState {
-            return self.sectionArray.count + 1
+            return self.sectionArray.count + self.applicantArray.count
         } else {
             return self.sectionArray.count + 1
         }
@@ -124,8 +124,9 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section > 2 {
             if self.segmentType == SegmentedStateEnum.segmentedLeftState {
-                if self.loanDetailModel.applicantState {
-                    return 1
+                let applicantModel : ApplicantModel = self.applicantArray[section - 3]
+                if applicantModel.applicantState {
+                    return applicantModel.attrList.count
                 } else {
                     return 0
                 }
@@ -166,10 +167,22 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
             if self.segmentType == SegmentedStateEnum.segmentedLeftState {
                 weak var weakSelf = self
                 let headerView : LoanApplicantHeaderView = LoanApplicantHeaderView()
-                headerView.tag = section - 3
+                let model : ApplicantModel = self.applicantArray[section - 3]
+                model.applicantGroup = section - 3
+                headerView.applicantModel = model
                 headerView.frame = CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: 45 * HEIGHT_SCALE)
+                
                 headerView.headerBlock = { (index) in
-                    // 刷新界面
+                    for i in 0 ..< self.applicantArray.count {
+                        let model : ApplicantModel = (weakSelf?.applicantArray[i])!
+                        if i == index {
+                            model.applicantState = !model.applicantState
+                        } else {
+                            model.applicantState = false
+                        }
+                    }
+                    
+                    // 刷新数据
                     weakSelf?.loanDetailTableView?.reloadData()
                 }
                 return headerView
@@ -206,22 +219,32 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
             if rowString == "LoanDetailAmount" {
                 return 170 * HEIGHT_SCALE
             } else if rowString == "LoanDetailJXR" {
-                return calculationConditionViewHeight(text: self.loanDetailModel.systemTips!,state: self.loanDetailModel.jxrState)
+                return calculationConditionViewHeight(text: self.loanDetailModel.systemTips,state: self.loanDetailModel.jxrState)
             }  else if rowString == "LoanDetailCondition" {
-                return calculationConditionViewHeight(text: self.loanDetailModel.conditions!,state: self.loanDetailModel.conditionState)
+                return calculationConditionViewHeight(text: self.loanDetailModel.conditions,state: self.loanDetailModel.conditionState)
             } else if rowString == "LoanDetailSegmented" {
                 return 50 * HEIGHT_SCALE
             }
         } else {
             if self.segmentType == SegmentedStateEnum.segmentedLeftState {
-                return 44 * HEIGHT_SCALE
+                let applicantModel : ApplicantModel = self.applicantArray[indexPath.section - 3]
+                let regulaModel : ApplyRegulaModel = applicantModel.attrList[indexPath.row]
+                if regulaModel.attibute_type == "contact" {
+                    return 88 * HEIGHT_SCALE
+                } else {
+                    return 44 * HEIGHT_SCALE
+                }
             } else {
                 let rowString : String = self.rowEvaluateArray[indexPath.row]
                 if  rowString == "EvaluateTitleRow" {
                     if self.evaluateData.commentTag.count > 0 {
                         return 35 * HEIGHT_SCALE + self.evaluateData.markHeight
                     } else {
-                        return 35 * HEIGHT_SCALE
+                        if self.evaluateData.commentList.count > 0 {
+                            return 35 * HEIGHT_SCALE
+                        } else {
+                            return 50 * HEIGHT_SCALE
+                        }
                     }
                 } else if  rowString == "EvaluateFooterRow" {
                     return 50 * HEIGHT_SCALE
@@ -248,7 +271,7 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
             } else if sectionString == "LoanDetailJXR" {
                 let cell : LoanDetailConditionCell = tableView.dequeueReusableCell(withIdentifier: "jxrCell") as! LoanDetailConditionCell
                 cell.selectionStyle = UITableViewCellSelectionStyle.none
-                cell.updateConditionView(title: "接小二亲测：", text: self.loanDetailModel.systemTips!,state: self.loanDetailModel.jxrState)
+                cell.updateConditionView(title: "接小二亲测：", text: self.loanDetailModel.systemTips,state: self.loanDetailModel.jxrState)
                 // 条件显示全部的回调
                 cell.conditionBlock = { () in
                     weakSelf?.loanDetailModel.jxrState = !(weakSelf?.loanDetailModel.jxrState)!
@@ -259,7 +282,7 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
             }  else if sectionString == "LoanDetailCondition" {
                 let cell : LoanDetailConditionCell = tableView.dequeueReusableCell(withIdentifier: "conditionCell") as! LoanDetailConditionCell
                 cell.selectionStyle = UITableViewCellSelectionStyle.none
-                cell.updateConditionView(title: "申请条件：", text: self.loanDetailModel.conditions!,state: self.loanDetailModel.conditionState)
+                cell.updateConditionView(title: "申请条件：", text: self.loanDetailModel.conditions,state: self.loanDetailModel.conditionState)
                 // 条件显示全部的回调
                 cell.conditionBlock = { () in
                     weakSelf?.loanDetailModel.conditionState = !(weakSelf?.loanDetailModel.conditionState)!
@@ -284,9 +307,31 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
             }
         } else {
             if self.segmentType == SegmentedStateEnum.segmentedLeftState {
-                let cell : LoanApplicantTypeCell = tableView.dequeueReusableCell(withIdentifier: "typeCell") as! LoanApplicantTypeCell
-                cell.selectionStyle = UITableViewCellSelectionStyle.none
-                return cell
+                let applicantModel : ApplicantModel = self.applicantArray[indexPath.section - 3]
+                let regulaModel : ApplyRegulaModel = applicantModel.attrList[indexPath.row]
+                if regulaModel.attibute_type == "contact" {
+                    let cell : LoanApplicantType2Cell = tableView.dequeueReusableCell(withIdentifier: "type2Cell") as! LoanApplicantType2Cell
+                    cell.selectionStyle = UITableViewCellSelectionStyle.none
+                    cell.regulaModel = regulaModel
+                    cell.applicantType2Block = { () in
+                        // 登录界面
+                        userLogin(successHandler: { () -> (Void) in
+                        }) { () -> (Void) in
+                        }
+                    }
+                    return cell
+                } else {
+                    let cell : LoanApplicantType1Cell = tableView.dequeueReusableCell(withIdentifier: "type1Cell") as! LoanApplicantType1Cell
+                    cell.selectionStyle = UITableViewCellSelectionStyle.none
+                    cell.regulaModel = regulaModel
+                    cell.applicantType1Block = { () in
+                        // 登录界面
+                        userLogin(successHandler: { () -> (Void) in
+                        }) { () -> (Void) in
+                        }
+                    }
+                    return cell
+                }
             } else {
                 let rowString : String = self.rowEvaluateArray[indexPath.row]
                 if rowString == "EvaluateTitleRow" {
@@ -338,7 +383,56 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if indexPath.section > 2 {
+            // 登录界面
+            userLogin(successHandler: { () -> (Void) in
+            }) { () -> (Void) in
+            }
+            
+            let applicantModel : ApplicantModel = self.applicantArray[indexPath.section - 3]
+            let regulaModel : ApplyRegulaModel = applicantModel.attrList[indexPath.row]
+            
+            // 职业
+            if regulaModel.attibute_type == "10000" {
+                
+                // 弹框选择
+            } else if regulaModel.attibute_type == "enum" {
+                
+                // 连续半年缴纳社保
+            } else if regulaModel.attibute_type == "bool" {
+                
+                // 所在城市
+            } else if regulaModel.attibute_type == "city" {
+                
+                // 居住详细地址
+            } else if regulaModel.attibute_type == "area" {
+                
+                // 运营商验证
+            } else if regulaModel.attibute_type == "authVerify" {
+                
+                // 公积金授权
+            } else if regulaModel.attibute_type == "publicFund" {
+                
+                // 银行卡认证
+            } else if regulaModel.attibute_type == "quickVerify" {
+                
+                // 扫描身份证正面
+            } else if regulaModel.attibute_type == "idCardFrontOcr" {
+                
+                // 扫描身份证反面
+            } else if regulaModel.attibute_type == "idCardBackOcr" {
+                
+                // 人脸识别
+            } else if regulaModel.attibute_type == "livenessOcr" {
+                
+                // 淘宝账号
+            } else if regulaModel.attibute_type == "tbLoginCookie" {
+                
+                // 联系人信息
+            } else if regulaModel.attibute_type == "contact" {
+                
+            }
+        }
     }
     
     
@@ -365,7 +459,7 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
         
         if (self.hotLoan?.backFrom)! {
             // 解决第一个navigation为隐藏时跳页面navigation为显示，返回上一个界面时navigation有一闪而过的现象
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
+//            self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
     }
     
@@ -417,10 +511,18 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
             let tempDict : NSDictionary = responseObject as! NSDictionary
             self.loanDetailModel = LoanDetailModel.objectWithKeyValues(dict: tempDict) as! LoanDetailModel
             
-            if (self.loanDetailModel.systemTips?.isEmpty)! {
+            if self.loanDetailModel.systemTips.isEmpty {
                 self.sectionArray = [["LoanDetailAmount"],["LoanDetailCondition"],["LoanDetailSegmented"]]
             } else {
                 self.sectionArray = [["LoanDetailAmount"],["LoanDetailJXR","LoanDetailCondition"],["LoanDetailSegmented"]]
+            }
+            
+            if ASSERLOGIN! {
+                // 获取贷款用户的基本信息
+                self.requestUserBaseInfo()
+            } else {
+                // 未登录申请资料的接口
+                self.requestApplicantLoginOut()
             }
             
             // 刷新界面
@@ -452,6 +554,166 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     
+    // 获取贷款用户的基本信息
+    func requestUserBaseInfo() -> Void {
+        LoanBooksService.loanInstance.requestLoanUserBaseInfo(success: { (responseObject) in
+            let tempDict : NSDictionary = responseObject as! NSDictionary
+            let userInfo : UserModel = USERINFO!
+            userInfo.idCard = tempDict.stringForKey(key: "idCard")
+            userInfo.mobile = tempDict.stringForKey(key: "mobilePhone")
+            userInfo.verify = tempDict.stringForKey(key: "verify").intValue()
+            userInfo.name = tempDict.stringForKey(key: "userName")
+            USERDEFAULT.saveCustomObject(customObject: userInfo, key: "userInfo")
+            // 获取贷款的角色信息
+            self.requestLoanRoleInfo()
+        }) { (errorInfo) in
+            // 获取贷款的角色信息
+            self.requestLoanRoleInfo()
+        }
+    }
+    
+    
+    // 获取贷款的角色信息
+    func requestLoanRoleInfo() -> Void {
+        LoanBooksService.loanInstance.requestLoanRoleInfo(success: { (responseObject) in
+            let tempDict : NSDictionary = responseObject as! NSDictionary
+            let userInfo : UserModel = USERINFO!
+            userInfo.roleType = tempDict.stringForKey(key: "roleType")
+            USERDEFAULT.saveCustomObject(customObject: userInfo, key: "userInfo")
+            // 已登录获取申请资料的接口
+            self.requestApplicantLoginIn()
+        }) { (errorInfo) in
+            // 已登录获取申请资料的接口
+            self.requestApplicantLoginIn()
+        }
+    }
+    
+    
+    // 已登录获取申请资料的接口
+    func requestApplicantLoginIn() -> Void {
+        LoanBooksService.loanInstance.requestApplicantLoginIn(productId: self.loanDetailModel.product_id, success: { (responseObject) in
+            let tempArray : NSArray = responseObject as! NSArray
+            let modelArray : [ApplicantModel] = ApplicantModel.objectArrayWithKeyValuesArray(array: tempArray) as! [ApplicantModel]
+            
+            self.applicantListDate(tempArray: modelArray)
+        }) { (errorInfo) in
+        }
+    }
+    
+    
+    // 未登录时申请资料的接口
+    func requestApplicantLoginOut() -> Void {
+        LoanBooksService.loanInstance.requestApplicantLoginOut(productId: self.loanDetailModel.product_id, success: { (responseObject) in
+            let tempArray : NSArray = responseObject as! NSArray
+            let modelArray : [ApplicantModel] = ApplicantModel.objectArrayWithKeyValuesArray(array: tempArray) as! [ApplicantModel]
+            self.applicantListDate(tempArray: modelArray)
+        }) { (errorInfo) in
+        }
+    }
+    
+    
+    
+    func applicantListDate(tempArray : [ApplicantModel]) -> Void {
+        // 清除所有数据
+        self.applicantArray.removeAll()
+        
+        for model : ApplicantModel in tempArray {
+            if model.attributeId != "10000" {
+                self.applicantArray.append(model)
+            } else {
+                if model.attrList.count > 0 {
+                    var tempArray : [ApplyRegulaModel] = [ApplyRegulaModel]()
+                    for applyModel : ApplyRegulaModel in model.attrList {
+                        if applyModel.attribute_id != "10000" {
+                            tempArray.append(applyModel)
+                        }
+                    }
+                    if tempArray.count > 0 {
+                        model.attrList = tempArray
+                        self.applicantArray.append(model)
+                    }
+                }
+            }
+        }
+        
+        let applicantModel : ApplicantModel = ApplicantModel()
+        applicantModel.catName = "基本资料"
+        applicantModel.catLogo = "http://jdq-01.oss-cn-hangzhou.aliyuncs.com/img/ICON_basic-info.png"
+        applicantModel.verifyAttribute = ""
+        
+        
+        let phoneModel : ApplyRegulaModel = ApplyRegulaModel()
+        phoneModel.attribute_name = "手机号"
+        if ASSERLOGIN! {
+            phoneModel.attibute_type = "none"
+            phoneModel.selectValue = (USERINFO?.mobile)!
+        } else {
+            phoneModel.attibute_type = "string"
+            phoneModel.selectValue = ""
+        }
+        phoneModel.fillAttribute = "must"
+        applicantModel.attrList.append(phoneModel)
+        
+        
+        let nameModel : ApplyRegulaModel = ApplyRegulaModel()
+        nameModel.attribute_name = "真实姓名"
+        if USERINFO?.verify == 1 {
+            nameModel.attibute_type = "none"
+        } else {
+            nameModel.attibute_type = "string"
+        }
+        nameModel.attribute_id = "name"
+        nameModel.selectValue = (USERINFO?.name)!
+        nameModel.fillAttribute = "must"
+        applicantModel.attrList.append(nameModel)
+        
+        
+        let cardModel : ApplyRegulaModel = ApplyRegulaModel()
+        cardModel.attribute_name = "身份证号"
+        if USERINFO?.verify == 1 {
+            cardModel.attibute_type = "none"
+        } else {
+            cardModel.attibute_type = "string"
+        }
+        cardModel.attribute_id = "IdCard"
+        cardModel.selectValue = (USERINFO?.idCard)!
+        cardModel.fillAttribute = "must"
+        applicantModel.attrList.append(cardModel)
+        
+        
+        let occupModel : ApplyRegulaModel = ApplyRegulaModel()
+        if ASSERLOGIN! {
+            if (USERINFO?.roleType?.isEmpty)! {
+                occupModel.selectValue = "工薪族"
+            } else {
+                occupModel.selectValue = (USERINFO?.roleType)!
+            }
+        } else {
+            occupModel.selectValue = "工薪族"
+        }
+        occupModel.attribute_name = "职业"
+        occupModel.attibute_type = "enum"
+        occupModel.attribute_id = "10000"
+        occupModel.fillAttribute = "must"
+        occupModel.allChoice.adding(["attributeId":"10000","attibuteValue":"工薪族"])
+        occupModel.allChoice.adding(["attributeId":"10000","attibuteValue":"企业主"])
+        occupModel.allChoice.adding(["attributeId":"10000","attibuteValue":"自由职业者"])
+        applicantModel.attrList.append(occupModel)
+        
+        
+        // 将这个添加到数组的第一个位置
+        self.applicantArray.insert(applicantModel, at: 0)
+        
+        // 刷新数据
+        self.loanDetailTableView?.reloadData()
+        
+        let view : UIActionSheet
+        
+        
+        
+    }
+    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

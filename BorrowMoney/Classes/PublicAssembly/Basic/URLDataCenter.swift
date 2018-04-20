@@ -236,6 +236,40 @@ class URLDataCenter: NSObject {
     }
     
     
+    // 贷款详情 用户基本信息
+    public func requestLoanUserInfo() -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.method = "roleInfo.getUserBasicInfo"
+        return param
+    }
+    
+    
+    // 贷款详情 未登录时申请资料的接口
+    public func requestApplicantInfo(productId : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["productId":productId]
+        param.method = "application.getApplicationInfoWithoutLogin"
+        return param
+    }
+
+    
+    // 贷款详情 获取用户的角色信息
+    public func requestRoleInfo() -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.method = "roleInfo.getRole"
+        return param
+    }
+
+    
+    // 贷款详情 已登录时申请资料的接口
+    public func requestApplicantLoginInInfo(productId : String) -> URLCenter {
+        let param : URLCenter = URLCenter()
+        param.dict = ["product_id":productId]
+        param.method = "application.getApplicationInfoV2"
+        return param
+    }
+    
+    
     // 我的现金 基本信息
     public func requestMyCashInfo() -> URLCenter {
         let param : URLCenter = URLCenter()

@@ -76,7 +76,7 @@ class LoanEvaluateHeaderCell: BasicViewCell {
         self.markView.textColor = LINE_COLOR3
         self.contentView.addSubview(self.markView)
         self.markView.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self)
+            make.bottom.equalTo(self.contentView)
             make.left.equalTo(self.contentView.snp.left).offset(10 * WIDTH_SCALE)
             make.right.equalTo(self.contentView.snp.right).offset(-10 * WIDTH_SCALE)
             make.top.equalTo(self.titleView.snp.bottom).offset(10 * HEIGHT_SCALE)
@@ -88,7 +88,7 @@ class LoanEvaluateHeaderCell: BasicViewCell {
         self.promptLabel.text = "该产品暂无用户评价"
         self.promptLabel.isHidden =  true
         self.promptLabel.textAlignment = .center
-        self.addSubview(self.promptLabel)
+        self.contentView.addSubview(self.promptLabel)
         self.promptLabel.snp.makeConstraints { (make) in
             make.top.bottom.left.right.equalTo(self.contentView)
         }

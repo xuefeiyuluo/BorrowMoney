@@ -36,7 +36,7 @@ let SERVERURL = ""
 
 
 // ***************************** UserDefaults *************************************
-let USERDEFAULT : UserDefaults = UserDefaults .standard
+let USERDEFAULT : UserDefaults = UserDefaults.standard
 
 
 // ****************************** 系统delegate *************************************
@@ -96,19 +96,3 @@ func getScreenWidthscale() -> CGFloat {
         return 375 / standard
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

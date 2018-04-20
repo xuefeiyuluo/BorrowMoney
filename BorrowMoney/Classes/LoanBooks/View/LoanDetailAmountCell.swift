@@ -44,14 +44,14 @@ class LoanDetailAmountCell: BasicViewCell, UITextFieldDelegate {
             }
             
             // 借款期限/月  天
-            if (loanDetail?.allowTerms?.isEmpty)! {
+            if (loanDetail?.allowTerms.isEmpty)! {
                 self.tremBtn.isHidden = true
                 self.loanTerm.isEnabled = true
             } else {
                 self.tremBtn.isHidden = false
                 self.loanTerm.isEnabled = false
                 
-                self.termArray = (loanDetail?.allowTerms?.components(separatedBy: ","))!
+                self.termArray = (loanDetail?.allowTerms.components(separatedBy: ","))!
                 
                 var termBool : Bool = true
                 for str : String in self.termArray {
@@ -62,22 +62,22 @@ class LoanDetailAmountCell: BasicViewCell, UITextFieldDelegate {
                 }
                 
                 if termBool {
-                    loanDetail?.inputTerms = self.termArray.first
+                    loanDetail?.inputTerms = self.termArray.first!
                 }
-                self.loanTerm.text = String (format: "%ld", (loanDetail?.inputTerms?.intValue())! / loanTermType)
+                self.loanTerm.text = String (format: "%ld", (loanDetail?.inputTerms.intValue())! / loanTermType)
             }
         
             // 贷款金额  贷款期限
-            if !(loanDetail?.inputAmount?.isEmpty)! && !(self.loanDetail?.inputTerms?.isEmpty)! {
+            if !(loanDetail?.inputAmount.isEmpty)! && !(self.loanDetail?.inputTerms.isEmpty)! {
                 self.loanAmount.text = loanDetail?.inputAmount
                 if self.termArray.count == 0 {
-                    self.loanTerm.text = String (format: "%ld", (loanDetail?.inputTerms?.intValue())!  / loanTermType)
+                    self.loanTerm.text = String (format: "%ld", (loanDetail?.inputTerms.intValue())!  / loanTermType)
                 }
             } else {
                 // 贷款金额
-                if (loanDetail?.max_amount?.intValue())! < 10000 {
+                if (loanDetail?.max_amount.intValue())! < 10000 {
                     self.loanAmount.text = loanDetail?.max_amount
-                } else if (loanDetail?.min_amount?.intValue())! > 10000 {
+                } else if (loanDetail?.min_amount.intValue())! > 10000 {
                     self.loanAmount.text = loanDetail?.min_amount
                 } else {
                     self.loanAmount.text = "10000"
@@ -85,30 +85,30 @@ class LoanDetailAmountCell: BasicViewCell, UITextFieldDelegate {
                 
                 // 贷款期限
                 if self.termArray.count == 0 {
-                    if (loanDetail?.max_terms?.intValue())! < 360 {
-                        self.loanTerm.text = String (format: "%ld", (loanDetail?.max_terms?.intValue())!  / loanTermType)
-                    } else if (loanDetail?.min_terms?.intValue())! > 360 {
-                        self.loanTerm.text = String (format: "%ld", (loanDetail?.min_terms?.intValue())!  / loanTermType)
+                    if (loanDetail?.max_terms.intValue())! < 360 {
+                        self.loanTerm.text = String (format: "%ld", (loanDetail?.max_terms.intValue())!  / loanTermType)
+                    } else if (loanDetail?.min_terms.intValue())! > 360 {
+                        self.loanTerm.text = String (format: "%ld", (loanDetail?.min_terms.intValue())!  / loanTermType)
                     } else {
                         self.loanTerm.text = String (format: "%ld", 360  / loanTermType)
                     }
                 }
             }
-            loanDetail?.inputAmount = self.loanAmount.text
-            loanDetail?.inputTerms = self.loanTerm.text
+            loanDetail?.inputAmount = self.loanAmount.text!
+            loanDetail?.inputTerms = self.loanTerm.text!
             
             // 金额范围
-            if (loanDetail?.max_amount?.intValue())! < 10000 {
+            if (loanDetail?.max_amount.intValue())! < 10000 {
                 self.amountFooterLabel.text = String (format: "额度范围%@~%@元",(loanDetail?.min_amount)!,(loanDetail?.max_amount)!)
             } else {
-                self.amountFooterLabel.text = String (format: "额度范围%.2f~%.2f万元",(loanDetail?.min_amount?.floatValue())! / 10000,(loanDetail?.max_amount?.floatValue())! / 10000)
+                self.amountFooterLabel.text = String (format: "额度范围%.2f~%.2f万元",(loanDetail?.min_amount.floatValue())! / 10000,(loanDetail?.max_amount.floatValue())! / 10000)
             }
             
             // 期限范围
             if loanDetail?.interestUnit == "1" {
-                self.termFooterLabel.text = String (format: "期限范围%ld~%ld个月", (loanDetail?.min_terms?.intValue())! / loanTermType,(loanDetail?.max_terms?.intValue())! / loanTermType)
+                self.termFooterLabel.text = String (format: "期限范围%ld~%ld个月", (loanDetail?.min_terms.intValue())! / loanTermType,(loanDetail?.max_terms.intValue())! / loanTermType)
             } else {
-                self.termFooterLabel.text = String (format: "期限范围%ld~%ld个天", (loanDetail?.min_terms?.intValue())! / loanTermType,(loanDetail?.max_terms?.intValue())! / loanTermType)
+                self.termFooterLabel.text = String (format: "期限范围%ld~%ld个天", (loanDetail?.min_terms.intValue())! / loanTermType,(loanDetail?.max_terms.intValue())! / loanTermType)
             }
             
             // 更新下半部分的View
@@ -434,16 +434,16 @@ class LoanDetailAmountCell: BasicViewCell, UITextFieldDelegate {
     //MARK:UITextFieldDelegate
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == self.loanAmount {
-            if (textField.text?.intValue())! % 100 != 0  || (textField.text?.intValue())! < (self.loanDetail?.min_amount?.intValue())! {
+            if (textField.text?.intValue())! % 100 != 0  || (textField.text?.intValue())! < (self.loanDetail?.min_amount.intValue())! {
                 SVProgressHUD.showInfo(withStatus: String (format: "贷款额度为%@元~%@元且必须为100的整数倍",(self.loanDetail?.min_amount)!,(self.loanDetail?.max_amount)!))
                 textField.text = self.loanDetail?.inputAmount
             }
             return;
         } else if textField == self.loanTerm {
-            if (textField.text?.intValue())! < (self.loanDetail?.min_terms?.intValue())! || (textField.text?.intValue())! > (self.loanDetail?.max_terms?.intValue())! {
+            if (textField.text?.intValue())! < (self.loanDetail?.min_terms.intValue())! || (textField.text?.intValue())! > (self.loanDetail?.max_terms.intValue())! {
                 // "1"以月为单位
                 if self.loanDetail?.interestUnit == "1" {
-                    SVProgressHUD.showInfo(withStatus: String (format: "贷款期限为%ld~%ld个月",(self.loanDetail?.min_terms?.intValue())! / 30,(self.loanDetail?.max_terms?.intValue())! / 30))
+                    SVProgressHUD.showInfo(withStatus: String (format: "贷款期限为%ld~%ld个月",(self.loanDetail?.min_terms.intValue())! / 30,(self.loanDetail?.max_terms.intValue())! / 30))
                 } else {
                     SVProgressHUD.showInfo(withStatus: String (format: "贷款期限为%@~%@个天",(self.loanDetail?.min_terms)!,(self.loanDetail?.max_terms)!))
                 }
@@ -453,8 +453,8 @@ class LoanDetailAmountCell: BasicViewCell, UITextFieldDelegate {
         }
         
         
-        self.loanDetail?.inputAmount = self.loanAmount.text
-        self.loanDetail?.inputTerms = self.loanTerm.text
+        self.loanDetail?.inputAmount = self.loanAmount.text!
+        self.loanDetail?.inputTerms = self.loanTerm.text!
         // 更新下半部分的View的数据
 //        updateLowerViewDate()
     }
@@ -466,17 +466,17 @@ class LoanDetailAmountCell: BasicViewCell, UITextFieldDelegate {
         
         // 期限
         if textField == self.loanTerm {
-            if (loanDetail?.allowTerms?.isEmpty)! {
-                if  (textField.text?.intValue())! > (self.loanDetail?.max_terms?.intValue())! {
+            if (loanDetail?.allowTerms.isEmpty)! {
+                if  (textField.text?.intValue())! > (self.loanDetail?.max_terms.intValue())! {
                     if self.loanDetail?.interestUnit == "1" {
-                        SVProgressHUD.showInfo(withStatus: String (format: "贷款期限最长为%ld月",(self.loanDetail?.max_terms?.intValue())! / 30))
+                        SVProgressHUD.showInfo(withStatus: String (format: "贷款期限最长为%ld月",(self.loanDetail?.max_terms.intValue())! / 30))
                     } else {
                         SVProgressHUD.showInfo(withStatus: String (format: "贷款期限最长为%@天",(self.loanDetail?.max_terms)!))
                     }
                 }
             }
         } else if textField == self.loanAmount {
-            if  (textField.text?.intValue())! > (self.loanDetail?.max_amount?.intValue())! {
+            if  (textField.text?.intValue())! > (self.loanDetail?.max_amount.intValue())! {
                 textField.text =  self.loanDetail?.max_amount
                 SVProgressHUD.showInfo(withStatus: String (format: "贷款额度最大为%@元",(self.loanDetail?.max_amount)!))
             }
@@ -490,15 +490,15 @@ class LoanDetailAmountCell: BasicViewCell, UITextFieldDelegate {
         changeLowerView()
         
         // 利率 金额
-        self.rateLabel.text = String (format: "%.2f%%",(loanDetail?.interestValue?.floatValue())! / 100)
+        self.rateLabel.text = String (format: "%.2f%%",(loanDetail?.interestValue.floatValue())! / 100)
         if loanDetail?.interestUnit == "1" {
             self.amountTextLabel.text = "每月还款金额"
             self.rateTextLabel.text = "参考月利率"
-            self.amountLabel.text = String (format: "%.0f", (self.loanAmount.text?.floatValue())! / (self.loanTerm.text?.floatValue())! + (self.loanAmount.text?.floatValue())! * (self.loanDetail?.month_fee_rate?.floatValue())! / 10000)
+            self.amountLabel.text = String (format: "%.0f", (self.loanAmount.text?.floatValue())! / (self.loanTerm.text?.floatValue())! + (self.loanAmount.text?.floatValue())! * (self.loanDetail?.month_fee_rate.floatValue())! / 10000)
         } else {
             self.amountTextLabel.text = "每日还款金额"
             self.rateTextLabel.text = "参考日利率"
-            self.amountLabel.text = String (format: "%.0f", (self.loanAmount.text?.floatValue())! / (self.loanTerm.text?.floatValue())! + (self.loanAmount.text?.floatValue())! * (self.loanDetail?.dbInterest?.floatValue())! / 10000)
+            self.amountLabel.text = String (format: "%.0f", (self.loanAmount.text?.floatValue())! / (self.loanTerm.text?.floatValue())! + (self.loanAmount.text?.floatValue())! * (self.loanDetail?.dbInterest.floatValue())! / 10000)
         }
         
         // 时间

@@ -11,7 +11,7 @@ import Foundation
 typealias AlertBlock = (_ btnIndex : Int,_ btnTitle : String)->()
 extension UIAlertView : UIAlertViewDelegate {
     private static var blockKey = "AlertViewBlock"
-    
+
     // 给alertView添加了一个Block的属性
     func showWithAlertBlock(alertBlock : AlertBlock) -> Void {
         

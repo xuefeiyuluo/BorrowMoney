@@ -86,15 +86,16 @@ extension NSObject {
                 // 值是数组。 数组中存放字典。 将字典转换成模型。 如果协议中没有定义映射关系，就不做处理
                 }else if (valueType.range(of: "NSArray") != nil){
                     // 子模型的类名称
-                    if var subModelClassName = cls.customClassMapping()?[propertyKey!]{
-                        subModelClassName =  XFoundation.bundlePath + "." + subModelClassName
-                        if NSClassFromString(subModelClassName) != nil{
-                            value = NSClassFromString(subModelClassName)?.objectArrayWithKeyValuesArray(array: value as! NSArray)
-                        } else {
-                        XPrint("你定义的模型与数组不匹配，数组\(String(describing: propertyKey))对应一个自定义的模型")
+                    if cls.responds(to: "customClassMapping") {
+                        if var subModelClassName = cls.customClassMapping()?[propertyKey!]{
+                            subModelClassName =  XFoundation.bundlePath + "." + subModelClassName
+                            if NSClassFromString(subModelClassName) != nil{
+                                value = NSClassFromString(subModelClassName)?.objectArrayWithKeyValuesArray(array: value as! NSArray)
+                            } else {
+                            XPrint("你定义的模型与数组不匹配，数组\(String(describing: propertyKey))对应一个自定义的模型")
+                            }
                         }
                     }
-                    
                 // NSNumber转换为String
                 } else if (valueType.range(of: "Number") != nil) {
                     value = String (format: "%@", value as! CVarArg) as AnyObject
@@ -104,7 +105,7 @@ extension NSObject {
                     let subModelStr:String! = XFoundation.getCustomObjectType(code: propertyType!)
                     if subModelStr == nil{
                         // 判断当前key的类型如NSArray，NSDictionary
-                        let keyType : [String] = propertyType?.components(separatedBy: "\"") as! [String]
+                        let keyType : [String] = (propertyType?.components(separatedBy: "\""))!
                         if keyType.count >= 2 {
                             if keyType[1] == "NSArray" || keyType[1] == "Array" {
                                 value = [AnyObject]() as AnyObject

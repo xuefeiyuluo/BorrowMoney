@@ -81,4 +81,59 @@ class LoanBooksService: NSObject {
         }
     }
     
+    
+    // 贷款详情 用户的基本信息
+    func requestLoanUserBaseInfo(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestLoanUserInfo()
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
+            failure(errorInfo)
+        }
+    }
+    
+    
+    // 贷款详情 未登录时申请资料的接口
+    func requestApplicantLoginOut(productId : String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestApplicantInfo(productId: productId)
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
+            failure(errorInfo)
+        }
+    }
+    
+    
+    // 贷款详情 获取用户的角色信息
+    func requestLoanRoleInfo(success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestRoleInfo()
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
+            failure(errorInfo)
+        }
+    }
+    
+    
+    // 贷款详情 已登录时申请资料的接口
+    func requestApplicantLoginIn(productId : String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
+        let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.requestApplicantLoginInInfo(productId: productId)
+        AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
+            let dataDict : NSDictionary = responseObject as! NSDictionary
+            success(dataDict["data"] as AnyObject)
+        }) { (errorInfo) in
+            SVProgressHUD.showError(withStatus: String (format: "%@%@", errorInfo.methodName,errorInfo.msg))
+            XPrint("\(errorInfo.methodName)\(errorInfo.msg)")
+            failure(errorInfo)
+        }
+    }
 }

@@ -16,12 +16,40 @@ class LoanApplicantHeaderView: BasicView {
     let arrowImageView : UIImageView = UIImageView()// 是否展开
     let backBtn : UIButton = UIButton()
     var headerBlock : HeaderBlock?// 头部的点击事件
+    var applicantModel : ApplicantModel? {
+        didSet{
+            // 图标
+            self.iconImageView.kf.setImage(with: URL (string: (applicantModel?.catLogo)!), placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
+            // 标题信息
+            self.titleLabel.text = applicantModel?.catName
+            
+            // 状态
+            if ASSERLOGIN! {
+                self.stateLabel.text = "已完成"
+                self.stateLabel.textColor = NAVIGATION_COLOR
+                for regulaModel : ApplyRegulaModel in (applicantModel?.attrList)! {
+                    if regulaModel.selectValue.isEmpty {
+                        self.stateLabel.text = "未完成"
+                        self.stateLabel.textColor = TEXT_SECOND_COLOR
+                        continue
+                    }
+                }
+            } else {
+                self.stateLabel.text = "未完成"
+                self.stateLabel.textColor = TEXT_SECOND_COLOR
+            }
+            
+            // 是否展开
+            if (applicantModel?.applicantState)! {
+                self.arrowImageView.image = UIImage (named: "applicantUp")
+            } else {
+                self.arrowImageView.image = UIImage (named: "applicantDown")
+            }
+            
+            self.backBtn.tag = (applicantModel?.applicantGroup)!
+        }
+    }
     
-    
-    // 图标
-    // 标题信息
-    // 状态
-    // 是否展开
 
     // 创建UI
     override func createUI() {
@@ -29,7 +57,6 @@ class LoanApplicantHeaderView: BasicView {
         self.backgroundColor = UIColor.white
         
         // 图标
-        self.iconImageView.backgroundColor = UIColor.purple
         self.addSubview(self.iconImageView)
         self.iconImageView.snp.makeConstraints { (make) in
             make.centerY.equalTo(self)
@@ -39,7 +66,6 @@ class LoanApplicantHeaderView: BasicView {
         }
         
         // 标题信息
-        self.titleLabel.text = "基本资料"
         self.titleLabel.font = UIFont.systemFont(ofSize: 15 * WIDTH_SCALE)
         self.titleLabel.textColor = TEXT_SECOND_COLOR
         self.addSubview(self.titleLabel)
@@ -50,8 +76,6 @@ class LoanApplicantHeaderView: BasicView {
         
         // 是否展开
         self.arrowImageView.contentMode = .center
-        self.arrowImageView.isUserInteractionEnabled = true
-        self.arrowImageView.image = UIImage (named: "applicantDown")
         self.addSubview(self.arrowImageView)
         self.arrowImageView.snp.makeConstraints { (make) in
             make.top.bottom.equalTo(self)
@@ -60,10 +84,8 @@ class LoanApplicantHeaderView: BasicView {
         }
         
         // 状态
-        self.stateLabel.text = "未完成"
         self.stateLabel.textAlignment = .right
         self.stateLabel.font = UIFont.systemFont(ofSize: 15 * WIDTH_SCALE)
-        self.stateLabel.textColor = TEXT_SECOND_COLOR
         self.addSubview(self.stateLabel)
         self.stateLabel.snp.makeConstraints { (make) in
             make.right.equalTo(self.arrowImageView.snp.left)
@@ -79,7 +101,6 @@ class LoanApplicantHeaderView: BasicView {
         }
         
         self.backBtn.addTarget(self, action: #selector(headerClick(sender:)), for: UIControlEvents.touchUpInside)
-        self.backBtn.tag = self.tag
         self.addSubview(self.backBtn)
         self.backBtn.snp.makeConstraints { (make) in
             make.left.right.top.bottom.equalTo(self)

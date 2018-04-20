@@ -2,8 +2,8 @@
 //  PublicService.swift
 //  BorrowMoney
 //
-//  Created by 雪飞雨落 on 2017/11/7.
-//  Copyright © 2017年 sparrow. All rights reserved.
+//  Created by 雪飞雨落 on 2018/4/20.
+//  Copyright © 2018年 sparrow. All rights reserved.
 //
 
 import UIKit
@@ -31,7 +31,7 @@ class PublicService: NSObject {
     // 验证码登录
     func loginWithVerifyCode(userName:String,code:String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
         let serviceUrlCenter : URLCenter = PublicService.urlDataCenter.loginWithCode(mobile: userName, code: code)
-
+        
         AlamofireManager.shareNetWork.postRequest(urlCenter : serviceUrlCenter, success: { (responseObject) in
             
             let dataDict : NSDictionary = responseObject as! NSDictionary
@@ -42,7 +42,7 @@ class PublicService: NSObject {
             failure(errorInfo)
         }
     }
-
+    
     
     // 获取验证码
     func requestVerificationCode(mobile:String,code:String,success:@escaping (AnyObject)->(),failure:@escaping (ErrorInfo)->()) -> Void {
@@ -72,5 +72,4 @@ class PublicService: NSObject {
             failure(errorInfo)
         }
     }
-    
 }
