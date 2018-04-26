@@ -11,7 +11,7 @@ import UIKit
 class EvaluateModel: NSObject {
     var coment : String = ""// 评价内容
     var mobilephone : String = ""// 手机号码
-    var tagPriority : String = ""//
+    var tagPriority : String = ""// (high:好评,mid:中评,low:差评)
     var commentTime : String = ""// 评价时间
     var tag : String = ""// 评价标签
     var score : String = ""// 评分

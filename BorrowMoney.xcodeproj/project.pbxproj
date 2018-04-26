@@ -103,6 +103,8 @@
 		401F8BF21FCFE07C00298DD4 /* FixedAdverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8BF11FCFE07C00298DD4 /* FixedAdverView.swift */; };
 		401F8BF41FCFE27D00298DD4 /* LoanBrandCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8BF31FCFE27D00298DD4 /* LoanBrandCell.swift */; };
 		401F8BF61FD0049D00298DD4 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401F8BF51FD0049D00298DD4 /* ProductViewCell.swift */; };
+		40206932208EDC9E000F8419 /* loanDetailAgreement.html in Resources */ = {isa = PBXBuildFile; fileRef = 40206931208EDC9E000F8419 /* loanDetailAgreement.html */; };
+		40206934208F3ADF000F8419 /* NSNumber+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40206933208F3ADF000F8419 /* NSNumber+Extension.swift */; };
 		4020C311206C977E0083C4E2 /* BaseCertificaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C310206C977E0083C4E2 /* BaseCertificaCell.swift */; };
 		4020C313206C97A20083C4E2 /* LargeCertificaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C312206C97A20083C4E2 /* LargeCertificaCell.swift */; };
 		4020C315206C97CC0083C4E2 /* PersonFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020C314206C97CC0083C4E2 /* PersonFooterView.swift */; };
@@ -325,6 +327,8 @@
 		401F8BF11FCFE07C00298DD4 /* FixedAdverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedAdverView.swift; sourceTree = "<group>"; };
 		401F8BF31FCFE27D00298DD4 /* LoanBrandCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoanBrandCell.swift; sourceTree = "<group>"; };
 		401F8BF51FD0049D00298DD4 /* ProductViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
+		40206931208EDC9E000F8419 /* loanDetailAgreement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = loanDetailAgreement.html; sourceTree = "<group>"; };
+		40206933208F3ADF000F8419 /* NSNumber+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumber+Extension.swift"; sourceTree = "<group>"; };
 		4020C310206C977E0083C4E2 /* BaseCertificaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCertificaCell.swift; sourceTree = "<group>"; };
 		4020C312206C97A20083C4E2 /* LargeCertificaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCertificaCell.swift; sourceTree = "<group>"; };
 		4020C314206C97CC0083C4E2 /* PersonFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonFooterView.swift; sourceTree = "<group>"; };
@@ -764,6 +768,7 @@
 		401F8B741FCEDF1800298DD4 /* CategoryClass */ = {
 			isa = PBXGroup;
 			children = (
+				40206933208F3ADF000F8419 /* NSNumber+Extension.swift */,
 				4044E928206B6980006E505F /* Data+Extension.swift */,
 				401F8B751FCEDF1800298DD4 /* NSArray+Extension.swift */,
 				401F8B761FCEDF1800298DD4 /* NSDictionary+Extension.swift */,
@@ -956,6 +961,7 @@
 		4067B1B8204A8EAA0036804F /* Html */ = {
 			isa = PBXGroup;
 			children = (
+				40206931208EDC9E000F8419 /* loanDetailAgreement.html */,
 				4067B1B9204A8EBD0036804F /* redPackExplain.html */,
 			);
 			path = Html;
@@ -1111,6 +1117,7 @@
 				4017EDCA1F8E196A0077B8E0 /* LaunchScreen.storyboard in Resources */,
 				40028F172068ED3200FBDCF7 /* personInfo.gif in Resources */,
 				4017EDC71F8E196A0077B8E0 /* Assets.xcassets in Resources */,
+				40206932208EDC9E000F8419 /* loanDetailAgreement.html in Resources */,
 				4067B1BA204A8EBD0036804F /* redPackExplain.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1253,6 +1260,7 @@
 				401F8BE61FCFB47D00298DD4 /* CustomNavigationView.swift in Sources */,
 				401738412073586400933927 /* LargeHeaderView.swift in Sources */,
 				403BA2AF205150110049585F /* OrderDetailTitleCell.swift in Sources */,
+				40206934208F3ADF000F8419 /* NSNumber+Extension.swift in Sources */,
 				4087C0B42072222F00C17479 /* CityViewCell.swift in Sources */,
 				402103C2207DDA4200348BCC /* LoanDetailConditionCell.swift in Sources */,
 				4067B1C8204AA8390036804F /* URLCenter.swift in Sources */,

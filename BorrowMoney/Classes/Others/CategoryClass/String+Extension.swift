@@ -52,6 +52,22 @@ extension String {
     }
     
     
+    // string -> BOOL
+    func boolValue() -> Bool {
+        if self.isEmpty {
+            return false
+        } else {
+            if self == "1" {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+    
+    
+    
+    
     // url编码
     func stringToUrlEncoded() -> String {
         let encodeWord = self.addingPercentEncoding(withAllowedCharacters: NSCharacterSet(charactersIn:"`#%^{}\"[]|\\<> ").inverted)

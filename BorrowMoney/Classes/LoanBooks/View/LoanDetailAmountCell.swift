@@ -12,7 +12,7 @@ class LoanDetailAmountCell: BasicViewCell, UITextFieldDelegate {
     let upperView : UIView = UIView()// 上半部分View
     let lowerView : UIView = UIView()// 下半部分View
     let sheetBackView : UIView = UIView()// 弹框背景View
-    var sheetView : BankSheetView = BankSheetView()// 弹框
+    lazy var sheetView : SinglePickerView = SinglePickerView()// 弹框View
     var loanAmount : UITextField = UITextField()// 贷款金额
     var loanTerm : UITextField = UITextField()// 贷款期限
     var termHeaderLabel : UILabel = UILabel()// 贷款期限 月/天
@@ -31,16 +31,16 @@ class LoanDetailAmountCell: BasicViewCell, UITextFieldDelegate {
     var amountLabel : UILabel = UILabel()// 金额
     var amountTextLabel : UILabel = UILabel()// 金额文案
     var termArray : [String] = [String]()// 期限列表
+    var loanTermType : Int = 1;// 1或30 期限的单位 月或者天 默认为天
     var loanDetail : LoanDetailModel? {
         didSet{
-            var loanTermType : Int = 0;// 1或30
             
             if loanDetail?.interestUnit == "1" {
                 self.termHeaderLabel.text = "借款期限/月"
-                loanTermType = 30
+                self.loanTermType = 30
             } else {
                 self.termHeaderLabel.text = "借款期限/天"
-                loanTermType = 1
+                self.loanTermType = 1
             }
             
             // 借款期限/月  天
@@ -64,14 +64,14 @@ class LoanDetailAmountCell: BasicViewCell, UITextFieldDelegate {
                 if termBool {
                     loanDetail?.inputTerms = self.termArray.first!
                 }
-                self.loanTerm.text = String (format: "%ld", (loanDetail?.inputTerms.intValue())! / loanTermType)
+                self.loanTerm.text = String (format: "%ld", (loanDetail?.inputTerms.intValue())! / self.loanTermType)
             }
         
             // 贷款金额  贷款期限
             if !(loanDetail?.inputAmount.isEmpty)! && !(self.loanDetail?.inputTerms.isEmpty)! {
                 self.loanAmount.text = loanDetail?.inputAmount
                 if self.termArray.count == 0 {
-                    self.loanTerm.text = String (format: "%ld", (loanDetail?.inputTerms.intValue())!  / loanTermType)
+                    self.loanTerm.text = String (format: "%ld", (loanDetail?.inputTerms.intValue())!  / self.loanTermType)
                 }
             } else {
                 // 贷款金额
@@ -86,11 +86,11 @@ class LoanDetailAmountCell: BasicViewCell, UITextFieldDelegate {
                 // 贷款期限
                 if self.termArray.count == 0 {
                     if (loanDetail?.max_terms.intValue())! < 360 {
-                        self.loanTerm.text = String (format: "%ld", (loanDetail?.max_terms.intValue())!  / loanTermType)
+                        self.loanTerm.text = String (format: "%ld", (loanDetail?.max_terms.intValue())!  / self.loanTermType)
                     } else if (loanDetail?.min_terms.intValue())! > 360 {
-                        self.loanTerm.text = String (format: "%ld", (loanDetail?.min_terms.intValue())!  / loanTermType)
+                        self.loanTerm.text = String (format: "%ld", (loanDetail?.min_terms.intValue())!  / self.loanTermType)
                     } else {
-                        self.loanTerm.text = String (format: "%ld", 360  / loanTermType)
+                        self.loanTerm.text = String (format: "%ld", 360  / self.loanTermType)
                     }
                 }
             }
@@ -106,9 +106,9 @@ class LoanDetailAmountCell: BasicViewCell, UITextFieldDelegate {
             
             // 期限范围
             if loanDetail?.interestUnit == "1" {
-                self.termFooterLabel.text = String (format: "期限范围%ld~%ld个月", (loanDetail?.min_terms.intValue())! / loanTermType,(loanDetail?.max_terms.intValue())! / loanTermType)
+                self.termFooterLabel.text = String (format: "期限范围%ld~%ld个月", (loanDetail?.min_terms.intValue())! / self.loanTermType,(loanDetail?.max_terms.intValue())! / self.loanTermType)
             } else {
-                self.termFooterLabel.text = String (format: "期限范围%ld~%ld个天", (loanDetail?.min_terms.intValue())! / loanTermType,(loanDetail?.max_terms.intValue())! / loanTermType)
+                self.termFooterLabel.text = String (format: "期限范围%ld~%ld个天", (loanDetail?.min_terms.intValue())! / self.loanTermType,(loanDetail?.max_terms.intValue())! / self.loanTermType)
             }
             
             // 更新下半部分的View
@@ -409,22 +409,15 @@ class LoanDetailAmountCell: BasicViewCell, UITextFieldDelegate {
     // 创建弹框View
     func createSheetView() -> Void {
         weak var weakSelf = self
-        let window : UIWindow = UIApplication.shared.keyWindow!
-        self.sheetBackView.backgroundColor = UIColor.init(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.5)
-        self.sheetBackView.frame = window.bounds
-        window.addSubview(self.sheetBackView)
         
-        self.sheetView.backgroundColor = UIColor.white
-        self.sheetView.sheetBool = false
-        self.sheetView.frame = CGRect (x:0 , y: SCREEN_HEIGHT + 200 * HEIGHT_SCALE, width: SCREEN_WIDTH, height: 200 * HEIGHT_SCALE)
-        self.sheetBackView.addSubview(self.sheetView)
-        self.sheetView.bankSheetBlock = { (tag) in
-            weakSelf?.removeSheetView()
-        }
-        self.sheetView.bankPickBlock = { (model : BankNameModel) in
-            let trems : String = model.bankName.substringInRange(0...model.bankName.count - 2)
-            weakSelf?.loanDetail?.inputTerms = trems
-            weakSelf?.loanTerm.text = trems
+        let window : UIWindow = UIApplication.shared.keyWindow!
+        self.sheetView.frame = window.frame
+        window.addSubview(self.sheetView)
+        self.sheetView.pickerData = self.termArray
+        self.sheetView.singlePickerBlock = { (tag : Int,content : String) in
+            let trems : String = self.termArray[tag]
+            weakSelf?.loanDetail?.inputTerms = String (format: "%i", trems.intValue() / self.loanTermType)
+            weakSelf?.loanTerm.text = String (format: "%i", trems.intValue() / self.loanTermType)
             // 更新下半部分的View的数据
             weakSelf?.updateLowerViewDate()
         }
@@ -554,31 +547,17 @@ class LoanDetailAmountCell: BasicViewCell, UITextFieldDelegate {
         
         // 更新期限选择View
         if self.termArray.count > 0 {
-            var bankArray : [BankNameModel] = [BankNameModel]()
+            var bankArray : [String] = [String]()
             for trem : String in self.termArray {
-                let model : BankNameModel = BankNameModel()
+                var content : String = ""
                 if self.loanDetail?.interestUnit == "1" {
-                    model.bankName = String (format: "%i月", trem.intValue() / 30)
+                    content = String (format: "%i月", trem.intValue() / 30)
                 } else {
-                    model.bankName = String (format: "%@日", trem)
+                    content = String (format: "%@日", trem)
                 }
-                bankArray.append(model)
+                bankArray.append(content)
             }
-            self.sheetView.bankArray = bankArray
-        }
-        
-        UIView.animate(withDuration: 0.3) {
-            self.sheetView.frame = CGRect (x:0 , y: SCREEN_HEIGHT - 200 * HEIGHT_SCALE, width: SCREEN_WIDTH, height: 200 * HEIGHT_SCALE)
-        }
-    }
-    
-    
-    // 移除弹框
-    func removeSheetView() -> Void {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.sheetView.frame = CGRect (x:0 , y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: 200 * HEIGHT_SCALE)
-        }) { (finished : Bool) in
-            self.sheetBackView.removeFromSuperview()
+            self.sheetView.pickerData = bankArray
         }
     }
     

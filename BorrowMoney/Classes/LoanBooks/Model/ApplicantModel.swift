@@ -19,7 +19,11 @@ class ApplyRegulaModel: NSObject {
     var selectValueId : String = ""//
     var attribute_name : String = ""//
     var valueName : String = ""//
-    var allChoice : NSArray = []// 条目名称
+    var isBankCard : String = ""//
+    var authorize : String = ""//
+    var address : String = ""//
+    var authorizeMsg = ""//
+    var allChoice : [NSDictionary] = [NSDictionary]()// 条目名称
 }
 
 

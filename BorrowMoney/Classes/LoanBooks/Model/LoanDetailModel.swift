@@ -28,6 +28,8 @@ class LoanDetailModel: NSObject {
     var interestDisplay : String = ""// 判断是否有每月还款金额的View "1"有
     var materials : String = ""//
     var descriptions : String = ""//
+    var loanAgreement : String = ""// 借款协议http
+    var loanAgreementNew : [NSDictionary] = [NSDictionary]() // 借款协议string
     var max_terms : String = ""// 贷款最高期限值
     var min_terms : String = ""// 贷款最低期限值
     var flowList : [ApplyModel] = [ApplyModel]()// 审核资料列表
@@ -78,6 +80,22 @@ class LoanDetailModel: NSObject {
     var inputTerms : String = ""// 借款期限
     var conditionState : Bool = false// 申请条件的是否展开的状态
     var jxrState : Bool = false// 借小二的是否展开的状态
+    var loanAgreementType : String = ""// 借款协议的类型
+    var loanAgreementText : String {// 借款协议的文本
+        set{}
+        get{
+            if self.loanAgreementNew.count > 0 {
+                let protocolStr : NSMutableString = "查看协议:"
+                for dict : NSDictionary in self.loanAgreementNew {
+                    protocolStr.appendFormat("《%@》",dict.stringForKey(key: "name"))
+                }
+                return protocolStr as String
+            } else {
+                return ""
+            }
+        }
+    }
+    
     
     
     override func replacedKeyFromPropertyName() -> NSDictionary {

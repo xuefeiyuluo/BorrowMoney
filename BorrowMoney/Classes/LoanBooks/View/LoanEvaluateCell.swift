@@ -49,7 +49,15 @@ class LoanEvaluateCell: BasicViewCell {
             self.contentLabel.text = evluateModel!.coment
             
             // 标签View
-            self.markView.frame = CGRect (x: 0, y: 0, width: SCREEN_WIDTH - 20 * HEIGHT_SCALE, height: SCREEN_HEIGHT)
+            self.markView.frame = CGRect (x: 10 * WIDTH_SCALE, y: 25 * HEIGHT_SCALE, width: SCREEN_WIDTH - 20 * HEIGHT_SCALE, height: SCREEN_HEIGHT)
+            if evluateModel?.tagPriority == "high" {
+                self.markView.backColor = NAVIGATION_COLOR
+                self.markView.textBorderColor = NAVIGATION_COLOR
+            } else {
+                self.markView.backColor = TEXT_LIGHT_COLOR
+                self.markView.textBorderColor = TEXT_LIGHT_COLOR
+            }
+            
             self.markView.createUI(dataArray: (evluateModel?.markArray)!)
         }
     }
@@ -195,9 +203,7 @@ class LoanEvaluateCell: BasicViewCell {
         
         
         // 标签View
-        self.markView.backColor = NAVIGATION_COLOR
         self.markView.textColor = UIColor.white
-        self.markView.textBorderColor = NAVIGATION_COLOR
         self.evaluatView.addSubview(self.markView)
         self.markView.snp.makeConstraints { (make) in
             make.left.equalTo(self.evaluatView.snp.left).offset(10 * WIDTH_SCALE)

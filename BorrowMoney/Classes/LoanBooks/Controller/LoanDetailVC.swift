@@ -17,6 +17,7 @@ enum SegmentedStateEnum : Int {
 class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     var hotLoan : HotLoanModel?// 贷款列表界面带过来的值
     var loanBottomView : LoanDetailBottomView = LoanDetailBottomView()// 提交申请View
+    lazy var sheetView : SinglePickerView = SinglePickerView()// 弹框View
     var tableViewFooterView : LoanDetailFooterView = LoanDetailFooterView()// 列表尾部View
     var loanDetailTableView : UITableView?//
     var sectionArray : NSArray = NSArray()// 界面结构数组
@@ -77,9 +78,26 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     
+    // 创建弹框View
+    func createSheetView(tempArray : [String]) -> Void {
+        weak var weakSelf = self
+        
+        let window : UIWindow = UIApplication.shared.keyWindow!
+        self.sheetView.frame = window.frame
+        window.addSubview(self.sheetView)
+        self.sheetView.pickerData = tempArray
+        self.sheetView.singlePickerBlock = { (tag : Int,content : String) in
+            
+            
+            // 刷新数据
+            weakSelf?.loanDetailTableView?.reloadData()
+        }
+    }
+    
+    
     // 创建UI
     func createUI() -> Void {
-        
+        weak var weakSelf = self
         // 创建底部“提交申请”view
         self.view.addSubview(self.loanBottomView)
         self.loanBottomView.snp.makeConstraints { (make) in
@@ -87,7 +105,7 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
             make.height.equalTo(55 * HEIGHT_SCALE)
         }
         
-        // 还款管理列表
+        // 贷款详情
         let tableView :UITableView  = UITableView.init(frame: CGRect.zero, style: UITableViewStyle.grouped)
         tableView.delegate = self
         tableView.dataSource = self
@@ -108,6 +126,17 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
             make.top.left.right.equalTo(self.view)
             make.bottom.equalTo(self.loanBottomView.snp.top)
         })
+        
+        self.tableViewFooterView.frame = CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: 60 * HEIGHT_SCALE)
+//        self.tableViewFooterView.backgroundColor = UIColor.red
+        self.loanDetailTableView?.tableFooterView = self.tableViewFooterView
+        self.tableViewFooterView.agreementBlock = { (selected : Bool) in
+            weakSelf?.loanBottomView.updateSubmitBtn(selected: selected)
+        }
+        self.tableViewFooterView.textProtocolBlock = { (url) in
+            // 跳转webView界面
+            weakSelf?.navigationController?.pushViewController(homePageWeb(url: url), animated: true)
+        }
     }
     
     
@@ -298,6 +327,7 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
                     if tag == 500 {
                         self.segmentType = SegmentedStateEnum.segmentedLeftState
                     } else {
+                        self.loanDetailTableView?.tableFooterView = nil
                         self.segmentType = SegmentedStateEnum.segmentedRightState
                     }
                     // 刷新界面
@@ -391,44 +421,57 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
             
             let applicantModel : ApplicantModel = self.applicantArray[indexPath.section - 3]
             let regulaModel : ApplyRegulaModel = applicantModel.attrList[indexPath.row]
-            
-            // 职业
-            if regulaModel.attibute_type == "10000" {
                 
-                // 弹框选择
-            } else if regulaModel.attibute_type == "enum" {
+            // 弹框选择
+            if regulaModel.attibute_type == "enum" {
+                var contentArray : [String] = [String]()
+                for dict : NSDictionary in regulaModel.allChoice {
+                    contentArray.append(dict["attibuteValue"] as! String)
+                }
                 
-                // 连续半年缴纳社保
+                self.createSheetView(tempArray: contentArray)
+            // 连续半年缴纳社保
             } else if regulaModel.attibute_type == "bool" {
                 
-                // 所在城市
+            // 所在城市
             } else if regulaModel.attibute_type == "city" {
                 
-                // 居住详细地址
+            // 居住详细地址
             } else if regulaModel.attibute_type == "area" {
                 
-                // 运营商验证
+            // 运营商验证
             } else if regulaModel.attibute_type == "authVerify" {
                 
-                // 公积金授权
+            // 公积金授权
             } else if regulaModel.attibute_type == "publicFund" {
                 
-                // 银行卡认证
+            // 银行卡认证
+            } else if regulaModel.attibute_type == "verifyBank" {
+                self.navigationController?.pushViewController(bankCard(), animated: true)
             } else if regulaModel.attibute_type == "quickVerify" {
+                if regulaModel.authorize.intValue() == 1 && regulaModel.isBankCard.boolValue() {
+                    let alertView : UIAlertView = UIAlertView.init(title: regulaModel.authorizeMsg, message: "", delegate: self, cancelButtonTitle: "确定")
+                    alertView.show()
+                } else {
+                    if !regulaModel.address.isEmpty {
+                        self.navigationController?.pushViewController(homePageWeb(url: regulaModel.address), animated: true)
+                    }
+                }
+            } else if regulaModel.attibute_type == "dynamicVerify" {
                 
-                // 扫描身份证正面
+            // 扫描身份证正面
             } else if regulaModel.attibute_type == "idCardFrontOcr" {
                 
-                // 扫描身份证反面
+            // 扫描身份证反面
             } else if regulaModel.attibute_type == "idCardBackOcr" {
                 
-                // 人脸识别
+            // 人脸识别
             } else if regulaModel.attibute_type == "livenessOcr" {
                 
-                // 淘宝账号
+            // 淘宝账号
             } else if regulaModel.attibute_type == "tbLoginCookie" {
                 
-                // 联系人信息
+            // 联系人信息
             } else if regulaModel.attibute_type == "contact" {
                 
             }
@@ -476,22 +519,51 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
         super.setUpNavigationView()
         
         // title “贷款详情”
-        self.navigationItem.titleView = NaviBarView() .setUpNaviBarWithTitle(title: String (format: "%@-%@", (hotLoan?.channelName)!,(hotLoan?.name)!));
+        if (hotLoan?.channelName?.isEmpty)! && (hotLoan?.name?.isEmpty)! {
+            self.navigationItem.titleView = NaviBarView().setUpNaviBarWithTitle(title: "贷款详情");
+        } else {
+            self.navigationItem.titleView = NaviBarView().setUpNaviBarWithTitle(title: String (format: "%@-%@", (hotLoan?.channelName)!,(hotLoan?.name)!));
+        }
+    }
+    
+    
+    // 更新界面样式
+    func updateLoanDetailTableView() -> Void {
+        if !self.loanDetailModel.guideUrl.isEmpty {
+            let rightBtn = UIButton (type: UIButtonType.custom)
+            rightBtn.setTitle("贷款攻略", for: UIControlState.normal)
+            rightBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14 * WIDTH_SCALE)
+            rightBtn.setTitleColor(TEXT_LIGHT_COLOR, for:  UIControlState.normal)
+            rightBtn.frame = CGRect (x: 0, y: 0, width: 60 * WIDTH_SCALE, height: 30)
+            rightBtn .addTarget(self, action: #selector(rightNavClick), for: UIControlEvents.touchUpInside)
+            rightBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -20 * WIDTH_SCALE)
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem (customView: rightBtn)
+        }
         
-        let rightBtn = UIButton (type: UIButtonType.custom)
-        rightBtn.setTitle("贷款攻略", for: UIControlState.normal)
-        rightBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14 * WIDTH_SCALE)
-        rightBtn.setTitleColor(TEXT_LIGHT_COLOR, for:  UIControlState.normal)
-        rightBtn.frame = CGRect (x: 0, y: 0, width: 60 * WIDTH_SCALE, height: 30)
-        rightBtn .addTarget(self, action: #selector(rightNavClick), for: UIControlEvents.touchUpInside)
-        rightBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -20 * WIDTH_SCALE)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem (customView: rightBtn)
+        if self.segmentType == SegmentedStateEnum.segmentedLeftState {
+            if !self.loanDetailModel.loanAgreement.isEmpty {
+                self.loanDetailModel.loanAgreementType = "http"
+                self.tableViewFooterView.updateAgreementData(loanDetailModel: self.loanDetailModel)
+                self.loanDetailTableView?.tableFooterView = self.tableViewFooterView
+            } else if !self.loanDetailModel.loanAgreementText.isEmpty {
+                self.loanDetailModel.loanAgreementType = "text"
+                self.tableViewFooterView.updateAgreementData(loanDetailModel: self.loanDetailModel)
+                self.loanDetailTableView?.tableFooterView = self.tableViewFooterView
+            } else {
+                self.loanDetailTableView?.tableFooterView = nil
+            }
+        } else {
+            self.loanDetailTableView?.tableFooterView = nil
+        }
+        
+        // 刷新界面
+        self.loanDetailTableView?.reloadData()
     }
     
     
     // 贷款攻略的点击事件
     func rightNavClick() -> Void {
-        
+        self.navigationController?.pushViewController(homePageWeb(url: self.loanDetailModel.guideUrl), animated: true)
     }
     
     
@@ -525,8 +597,8 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
                 self.requestApplicantLoginOut()
             }
             
-            // 刷新界面
-            self.loanDetailTableView?.reloadData()
+            // 更新界面样式
+            self.updateLoanDetailTableView()
         }) { (errorInfo) in
             // 取消上拉 下拉动画
             self.loanDetailTableView?.mj_header.endRefreshing()
@@ -695,9 +767,9 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
         occupModel.attibute_type = "enum"
         occupModel.attribute_id = "10000"
         occupModel.fillAttribute = "must"
-        occupModel.allChoice.adding(["attributeId":"10000","attibuteValue":"工薪族"])
-        occupModel.allChoice.adding(["attributeId":"10000","attibuteValue":"企业主"])
-        occupModel.allChoice.adding(["attributeId":"10000","attibuteValue":"自由职业者"])
+        occupModel.allChoice.append(["attributeId":"10000","attibuteValue":"工薪族"])
+        occupModel.allChoice.append(["attributeId":"10000","attibuteValue":"企业主"])
+        occupModel.allChoice.append(["attributeId":"10000","attibuteValue":"自由职业者"])
         applicantModel.attrList.append(occupModel)
         
         
@@ -706,11 +778,6 @@ class LoanDetailVC: BasicVC, UITableViewDataSource, UITableViewDelegate {
         
         // 刷新数据
         self.loanDetailTableView?.reloadData()
-        
-        let view : UIActionSheet
-        
-        
-        
     }
     
 
