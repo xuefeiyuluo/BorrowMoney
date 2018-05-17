@@ -46,11 +46,6 @@ class SearchResultVC: BasicVC, UISearchBarDelegate, UITableViewDelegate, UITable
     }
     
     
-    
-    
-    
-    
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -73,7 +68,6 @@ class SearchResultVC: BasicVC, UISearchBarDelegate, UITableViewDelegate, UITable
             make.left.right.top.equalTo(self.view)
             make.height.equalTo(64)
         })
-        
     }
     
     
@@ -84,7 +78,7 @@ class SearchResultVC: BasicVC, UISearchBarDelegate, UITableViewDelegate, UITable
         self.hotView.snp.makeConstraints { (make) in
             make.top.equalTo((self.navigationView?.snp.bottom)!).offset(15 * HEIGHT_SCALE)
             make.left.right.equalTo(self.view)
-            make.height.equalTo(300 * HEIGHT_SCALE)
+            make.height.equalTo(80 * HEIGHT_SCALE)
         }
         
         let titleLabel : UILabel = UILabel()
@@ -118,7 +112,6 @@ class SearchResultVC: BasicVC, UISearchBarDelegate, UITableViewDelegate, UITable
     // 创建搜索结果列表
     func createResultListUI() -> Void
     {
-        
         let resultTableView : UITableView = UITableView (frame: CGRect.zero, style: UITableViewStyle.grouped)
         resultTableView.delegate = self
         resultTableView.dataSource = self
@@ -128,7 +121,8 @@ class SearchResultVC: BasicVC, UISearchBarDelegate, UITableViewDelegate, UITable
         self.resultTableView = resultTableView
         self.view.addSubview(self.resultTableView!)
         self.resultTableView?.snp.makeConstraints({ (make) in
-            make.top.right.left.bottom.equalTo(self.view)
+            make.right.left.bottom.equalTo(self.view)
+            make.top.equalTo(self.hotView.snp.bottom)
         })
     }
     
@@ -190,10 +184,7 @@ class SearchResultVC: BasicVC, UISearchBarDelegate, UITableViewDelegate, UITable
         return cell
     }
     
-    
-    
-    
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let loanMode : HotLoanModel = self.resultData[indexPath.section]
@@ -205,7 +196,6 @@ class SearchResultVC: BasicVC, UISearchBarDelegate, UITableViewDelegate, UITable
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         requestKeywordLoanlist(keyword: searchBar.text!)
     }
-    
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -237,9 +227,17 @@ class SearchResultVC: BasicVC, UISearchBarDelegate, UITableViewDelegate, UITable
     {
         HomePageService.homeInstance.requestSearchText(keyword: (self.navigationView?.searchBar?.text)!, success: { (responseObject) in
             let tempDict : NSDictionary = responseObject as! NSDictionary
+            let tempArray : NSArray = tempDict["result"] as! NSArray
+            if tempArray.count > 0 {
+                self.resultTableView?.isHidden = false
+                self.resultData = HotLoanModel.objectArrayWithKeyValuesArray(array: tempArray ) as! [HotLoanModel]
+            } else {
+                self.resultTableView?.isHidden = true
+                SVProgressHUD.showError(withStatus: "改词无搜索结果")
+            }
             
-//            self.resultData = HotLoanModel.objectArrayWithKeyValuesArray(array: tempDict["allList"] as! NSArray) as! [HotLoanModel]
-            
+            // 刷新界面
+            self.resultTableView?.reloadData()
         }) { (errorInfo) in
         }
     }

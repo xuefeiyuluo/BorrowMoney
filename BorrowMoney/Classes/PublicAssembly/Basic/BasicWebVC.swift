@@ -90,11 +90,19 @@ class BasicWebVC: BasicVC, UIWebViewDelegate {
     }
     
     
+    // html5页面加载
     func loadWebViewWithUrl() -> Void {
+        
+    }
+    
+    
+    // url的正确性判断
+    func linkCorrectnessJudgment() -> Bool {
         if (self.url.range(of: "jiedianqian") != nil) || (self.url.range(of: "rongzhijia") != nil) {
+            return true
         } else {
             SVProgressHUD.showError(withStatus: "加载错误。。。")
-            return
+            return false
         }
     }
     

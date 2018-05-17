@@ -25,9 +25,11 @@ class HomePageWebVC: BasicWebVC {
     override func loadWebViewWithUrl() {
         super.loadWebViewWithUrl()
         
-        let webUrl : String = self.urlWithSession()
-        let request : URLRequest = URLRequest (url: NSURL (string: webUrl)! as URL)
-        self.webView?.loadRequest(request)
+        if self.linkCorrectnessJudgment() {
+            let webUrl : String = self.urlWithSession()
+            let request : URLRequest = URLRequest (url: NSURL (string: webUrl)! as URL)
+            self.webView?.loadRequest(request)
+        }
     }
     
     
