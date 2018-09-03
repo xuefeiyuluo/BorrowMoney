@@ -12,7 +12,9 @@ import Alamofire
 final class AlamofireManager: NSObject {
     static let shareNetWork = AlamofireManager()
     static let secret = "fbcf15e88f1b821cb9a1b4446cea1e8f"
-    var alertView : UIAlertView?//"-8"重新登录弹框
+    var alertView : UIAlertView? //"-8"重新登录弹框
+    var httpDict : NSMutableDictionary = NSMutableDictionary()// 储存http请求消息
+    
     var sessionManager : Alamofire.SessionManager!
     
     // get请求
@@ -56,8 +58,12 @@ final class AlamofireManager: NSObject {
         
         // 数据组装
         let dict : NSMutableDictionary = self.requestDataAssemble(urlCenter: urlCenter)
+//        self.httpDict.setValue(urlCenter, forKey: dict["method"] as! String)
         
         Alamofire.request(SERVERURL as String, method: .post, parameters:dict as? Parameters, encoding: URLEncoding.default, headers: headers).responseJSON { (responseObject:DataResponse<Any>) in
+            
+//            self.requestHttpParams(responseObject: responseObject)
+            
             switch(responseObject.result){
             case.success(let value):
                 SVProgressHUD .dismiss()
@@ -224,13 +230,14 @@ final class AlamofireManager: NSObject {
         } else {
             
         }
-        dict .setObject(method, forKey: "method" as NSCopying)
+        dict.setObject(method, forKey: "method" as NSCopying)
         if urlCenter.sessionBool {
             if USERINFO?.sessionId != nil{
                 dict .setObject(USERINFO?.sessionId! as Any, forKey: "sessionId" as NSCopying)
             }
         }
         dict.setObject(self.createMd5Sign(dict: dict), forKey: "sign" as NSCopying)
+        urlCenter.dict = dict;
         return dict
     }
     
@@ -273,8 +280,33 @@ final class AlamofireManager: NSObject {
     func setRequestTimeOut() -> Void {
         self.sessionManager  = Alamofire.SessionManager.default
         self.sessionManager.session.configuration.timeoutIntervalForRequest = 10
-//        let configuration = URLSessionConfiguration.default
-//        configuration.timeoutIntervalForRequest = 10
-//        sessionManager = Alamofire.SessionManager(configuration: configuration)
     }
+    
+    
+    // 获取对应请求的参数信息
+    func requestHttpParams(responseObject:DataResponse<Any>) -> () {
+        let request : URLRequest = responseObject.request!;
+        let tempStr =  NSString(data:request.httpBody! ,encoding: String.Encoding.utf8.rawValue)
+        let tempArray = tempStr?.components(separatedBy: "&")
+        if (tempArray?.count)! > 0 {
+            for str in tempArray! {
+                if str.components(separatedBy: "method").count > 1 {
+                    let keyvalueArray : Array = str.components(separatedBy: "=")
+                    if keyvalueArray.count >= 2 {
+                        let key : String = keyvalueArray[1];
+                        let urlCenter : URLCenter = self.httpDict[key] as! URLCenter;
+                        self.httpDict.removeObject(forKey: key)
+//                        return urlCenter;
+                    } else {
+//                        return URLCenter()
+                    }
+                    break;
+                } else {
+//                    return URLCenter()
+                }
+            }
+        }
+//        return URLCenter()
+    }
+    
 }
